@@ -37,7 +37,7 @@
   },
   "homepage": "https://github.com/octokit/plugin-scim.js#readme",
   "devDependencies": {
-    "@octokit/routes": "14.6.2",
+    "@octokit/routes": "14.6.3",
     "coveralls": "^3.0.2",
     "lodash.camelcase": "^4.3.0",
     "semantic-release": "^15.10.7",
