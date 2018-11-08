@@ -24,6 +24,6 @@ octokit.scim.listProvisionedIdentities({
 
 The SCIM route definitions are build automatically from [`@octokit/routes`](https://github.com/octokit/routes). Each time there is a new `@octokit/routes` release, [Greenkeeper](https://greenkeeper.io/) will send a pull request which updates the dependency in `package.json` and `package-lock.json`. That kicks of a build on Travis CI where the `greenkeeper-routes-update` script is run. If there is a change, the script updates the `routes.json` file in the pull request.
 
-## LICENS
+## LICENSE
 
 [MIT](LICENSE)
