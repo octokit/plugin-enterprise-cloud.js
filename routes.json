@@ -1,5 +1,25 @@
 {
-  "getProvisionedIdentitiesList": {
+  "getProvisioningDetailsForUser": {
+    "headers": {
+      "accept": "application/vnd.github.cloud-9-preview+json"
+    },
+    "method": "GET",
+    "params": {
+      "external_identity_guid": {
+        "required": true,
+        "type": "string"
+      },
+      "org": {
+        "required": true,
+        "type": "string"
+      }
+    },
+    "url": "/scim/v2/organizations/:org/Users/:external_identity_guid"
+  },
+  "listProvisionedIdentities": {
+    "headers": {
+      "accept": "application/vnd.github.cloud-9-preview+json"
+    },
     "method": "GET",
     "params": {
       "count": {
@@ -8,80 +28,78 @@
       "filter": {
         "type": "string"
       },
-      "organization_id": {
+      "org": {
         "required": true,
-        "type": "integer"
+        "type": "string"
       },
       "startIndex": {
         "type": "integer"
       }
     },
-    "url": "/scim/v2/organizations/:organization_id/Users"
-  },
-  "getProvisioningDetailsForUser": {
-    "method": "GET",
-    "params": {
-      "external_identity_guid": {
-        "required": true,
-        "type": "string"
-      },
-      "organization_id": {
-        "required": true,
-        "type": "integer"
-      }
-    },
-    "url": "/scim/v2/organizations/:organization_id/Users/:external_identity_guid"
+    "url": "/scim/v2/organizations/:org/Users"
   },
   "provisionInviteUsers": {
+    "headers": {
+      "accept": "application/vnd.github.cloud-9-preview+json"
+    },
     "method": "POST",
     "params": {
-      "organization_id": {
+      "org": {
         "required": true,
-        "type": "integer"
+        "type": "string"
       }
     },
-    "url": "/scim/v2/organizations/:organization_id/Users"
+    "url": "/scim/v2/organizations/:org/Users"
   },
   "removeUserFromOrg": {
+    "headers": {
+      "accept": "application/vnd.github.cloud-9-preview+json"
+    },
     "method": "DELETE",
     "params": {
       "external_identity_guid": {
         "required": true,
         "type": "string"
       },
-      "organization_id": {
+      "org": {
         "required": true,
-        "type": "integer"
+        "type": "string"
       }
     },
-    "url": "/scim/v2/organizations/:organization_id/Users/:external_identity_guid"
+    "url": "/scim/v2/organizations/:org/Users/:external_identity_guid"
   },
   "updateProvisionedOrgMembership": {
+    "headers": {
+      "accept": "application/vnd.github.cloud-9-preview+json"
+    },
     "method": "PUT",
     "params": {
       "external_identity_guid": {
         "required": true,
         "type": "string"
       },
-      "organization_id": {
+      "org": {
         "required": true,
-        "type": "integer"
+        "type": "string"
       }
     },
-    "url": "/scim/v2/organizations/:organization_id/Users/:external_identity_guid"
+    "url": "/scim/v2/organizations/:org/Users/:external_identity_guid"
   },
   "updateUserAttribute": {
+    "headers": {
+      "accept": "application/vnd.github.cloud-9-preview+json"
+    },
     "method": "PATCH",
     "params": {
       "external_identity_guid": {
         "required": true,
         "type": "string"
       },
-      "organization_id": {
+      "org": {
         "required": true,
-        "type": "integer"
+        "type": "string"
       }
     },
-    "url": "/scim/v2/organizations/:organization_id/Users/:external_identity_guid"
+    "url": "/scim/v2/organizations/:org/Users/:external_identity_guid"
   }
 }
