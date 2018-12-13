@@ -12,7 +12,7 @@
 
 ```js
 const Octokit = require('@octokit/rest')
-  .plugin('@octokit/scim-routes')
+  .plugin(require('@octokit/scim-routes'))
 const octokit = new Octokit()
 
 octokit.scim.listProvisionedIdentities({
