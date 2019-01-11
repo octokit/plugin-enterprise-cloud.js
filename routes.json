@@ -38,6 +38,19 @@
     },
     "url": "/scim/v2/organizations/:org/Users"
   },
+  "provisionAndInviteUsers": {
+    "headers": {
+      "accept": "application/vnd.github.cloud-9-preview+json"
+    },
+    "method": "POST",
+    "params": {
+      "org": {
+        "required": true,
+        "type": "string"
+      }
+    },
+    "url": "/scim/v2/organizations/:org/Users"
+  },
   "provisionInviteUsers": {
     "headers": {
       "accept": "application/vnd.github.cloud-9-preview+json"
