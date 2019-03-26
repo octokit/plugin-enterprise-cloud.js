@@ -1,6 +1,6 @@
 # Contributing to @octokit/scim-routes.js
 
-Please do not edit the `routes.json` file directy, it is automatically
+Please do not edit the `routes.json` file directly, it is automatically
 generated from [`@octokit/routes`](https://github.com/octokit/routes). If there
 is a problem e.g. with the parameters or description, please submit an issue to
 https://github.com/octokit/routes instead.
