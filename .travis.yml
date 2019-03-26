@@ -10,10 +10,6 @@ branches:
     - master
     - /^greenkeeper.*$/
 
-branches:
-  except:
-    - /^v\d+\.\d+\.\d+$/
-
 jobs:
   include:
     - stage: test
