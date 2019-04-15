@@ -3,16 +3,8 @@
     "method": "GET",
     "params": {
       "external_identity_guid": {
-        "deprecated": {
-          "after": {
-            "name": "scim_user_id"
-          },
-          "before": {
-            "name": "external_identity_guid"
-          },
-          "date": "2019-04-10",
-          "message": "\"external_identity_guid\" parameter renamed to \"scim_user_id\""
-        },
+        "alias": "scim_user_id",
+        "deprecated": true,
         "type": "integer"
       },
       "org": {
@@ -56,6 +48,7 @@
     "url": "/scim/v2/organizations/:org/Users"
   },
   "provisionInviteUsers": {
+    "deprecated": "octokit.scim.provisionInviteUsers() has been renamed to octokit.scim.provisionAndInviteUsers() (2018-12-27)",
     "method": "POST",
     "params": {
       "org": {
@@ -69,16 +62,8 @@
     "method": "DELETE",
     "params": {
       "external_identity_guid": {
-        "deprecated": {
-          "after": {
-            "name": "scim_user_id"
-          },
-          "before": {
-            "name": "external_identity_guid"
-          },
-          "date": "2019-04-10",
-          "message": "\"external_identity_guid\" parameter renamed to \"scim_user_id\""
-        },
+        "alias": "scim_user_id",
+        "deprecated": true,
         "type": "integer"
       },
       "org": {
@@ -96,16 +81,8 @@
     "method": "PUT",
     "params": {
       "external_identity_guid": {
-        "deprecated": {
-          "after": {
-            "name": "scim_user_id"
-          },
-          "before": {
-            "name": "external_identity_guid"
-          },
-          "date": "2019-04-10",
-          "message": "\"external_identity_guid\" parameter renamed to \"scim_user_id\""
-        },
+        "alias": "scim_user_id",
+        "deprecated": true,
         "type": "integer"
       },
       "org": {
@@ -120,19 +97,12 @@
     "url": "/scim/v2/organizations/:org/Users/:scim_user_id"
   },
   "updateProvisionedOrgMembership": {
+    "deprecated": "octokit.scim.updateProvisionedOrgMembership() has been renamed to octokit.scim.replaceProvisionedUserInformation() (2019-04-10)",
     "method": "PUT",
     "params": {
       "external_identity_guid": {
-        "deprecated": {
-          "after": {
-            "name": "scim_user_id"
-          },
-          "before": {
-            "name": "external_identity_guid"
-          },
-          "date": "2019-04-10",
-          "message": "\"external_identity_guid\" parameter renamed to \"scim_user_id\""
-        },
+        "alias": "scim_user_id",
+        "deprecated": true,
         "type": "integer"
       },
       "org": {
@@ -150,16 +120,8 @@
     "method": "PATCH",
     "params": {
       "external_identity_guid": {
-        "deprecated": {
-          "after": {
-            "name": "scim_user_id"
-          },
-          "before": {
-            "name": "external_identity_guid"
-          },
-          "date": "2019-04-10",
-          "message": "\"external_identity_guid\" parameter renamed to \"scim_user_id\""
-        },
+        "alias": "scim_user_id",
+        "deprecated": true,
         "type": "integer"
       },
       "org": {
