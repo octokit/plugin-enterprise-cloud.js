@@ -3,15 +3,28 @@
     "method": "GET",
     "params": {
       "external_identity_guid": {
-        "required": true,
-        "type": "string"
+        "deprecated": {
+          "after": {
+            "name": "scim_user_id"
+          },
+          "before": {
+            "name": "external_identity_guid"
+          },
+          "date": "2019-04-10",
+          "message": "\"external_identity_guid\" parameter renamed to \"scim_user_id\""
+        },
+        "type": "integer"
       },
       "org": {
         "required": true,
         "type": "string"
+      },
+      "scim_user_id": {
+        "required": true,
+        "type": "integer"
       }
     },
-    "url": "/scim/v2/organizations/:org/Users/:external_identity_guid"
+    "url": "/scim/v2/organizations/:org/Users/:scim_user_id"
   },
   "listProvisionedIdentities": {
     "method": "GET",
@@ -56,42 +69,108 @@
     "method": "DELETE",
     "params": {
       "external_identity_guid": {
-        "required": true,
-        "type": "string"
+        "deprecated": {
+          "after": {
+            "name": "scim_user_id"
+          },
+          "before": {
+            "name": "external_identity_guid"
+          },
+          "date": "2019-04-10",
+          "message": "\"external_identity_guid\" parameter renamed to \"scim_user_id\""
+        },
+        "type": "integer"
       },
       "org": {
         "required": true,
         "type": "string"
+      },
+      "scim_user_id": {
+        "required": true,
+        "type": "integer"
       }
     },
-    "url": "/scim/v2/organizations/:org/Users/:external_identity_guid"
+    "url": "/scim/v2/organizations/:org/Users/:scim_user_id"
+  },
+  "replaceProvisionedUserInformation": {
+    "method": "PUT",
+    "params": {
+      "external_identity_guid": {
+        "deprecated": {
+          "after": {
+            "name": "scim_user_id"
+          },
+          "before": {
+            "name": "external_identity_guid"
+          },
+          "date": "2019-04-10",
+          "message": "\"external_identity_guid\" parameter renamed to \"scim_user_id\""
+        },
+        "type": "integer"
+      },
+      "org": {
+        "required": true,
+        "type": "string"
+      },
+      "scim_user_id": {
+        "required": true,
+        "type": "integer"
+      }
+    },
+    "url": "/scim/v2/organizations/:org/Users/:scim_user_id"
   },
   "updateProvisionedOrgMembership": {
     "method": "PUT",
     "params": {
       "external_identity_guid": {
-        "required": true,
-        "type": "string"
+        "deprecated": {
+          "after": {
+            "name": "scim_user_id"
+          },
+          "before": {
+            "name": "external_identity_guid"
+          },
+          "date": "2019-04-10",
+          "message": "\"external_identity_guid\" parameter renamed to \"scim_user_id\""
+        },
+        "type": "integer"
       },
       "org": {
         "required": true,
         "type": "string"
+      },
+      "scim_user_id": {
+        "required": true,
+        "type": "integer"
       }
     },
-    "url": "/scim/v2/organizations/:org/Users/:external_identity_guid"
+    "url": "/scim/v2/organizations/:org/Users/:scim_user_id"
   },
   "updateUserAttribute": {
     "method": "PATCH",
     "params": {
       "external_identity_guid": {
-        "required": true,
-        "type": "string"
+        "deprecated": {
+          "after": {
+            "name": "scim_user_id"
+          },
+          "before": {
+            "name": "external_identity_guid"
+          },
+          "date": "2019-04-10",
+          "message": "\"external_identity_guid\" parameter renamed to \"scim_user_id\""
+        },
+        "type": "integer"
       },
       "org": {
         "required": true,
         "type": "string"
+      },
+      "scim_user_id": {
+        "required": true,
+        "type": "integer"
       }
     },
-    "url": "/scim/v2/organizations/:org/Users/:external_identity_guid"
+    "url": "/scim/v2/organizations/:org/Users/:scim_user_id"
   }
 }
