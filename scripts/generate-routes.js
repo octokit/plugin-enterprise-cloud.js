@@ -5,7 +5,7 @@ const routes = require('@octokit/routes')
 const newRoutes = {}
 
 function normalize (methodName) {
-  return camelCase(methodName.replace(/^edit/, 'update'))
+  return camelCase(methodName)
 }
 
 const endpoints = Object.keys(routes).reduce((result, scope) => {
@@ -26,6 +26,7 @@ endpoints.forEach(endpoint => {
   // new route
   newRoutes[idName] = {
     method: endpoint.method,
+    headers: endpoint.headers,
     params: endpoint.params.reduce((result, param) => {
       result[param.name] = {
         type: param.type
@@ -37,7 +38,11 @@ endpoints.forEach(endpoint => {
         result[param.name].required = true
       }
       if (param.mapTo) {
-        result[param.name].mapTo = param.mapTo
+        result[param.name].mapTo = param.mapTo === 'input' ? 'data' : param.mapTo
+
+        if (result[param.name].mapTo === 'data' === param.name) {
+          delete result[param.name].mapTo
+        }
       }
       if (param.enum) {
         result[param.name].enum = param.enum
@@ -45,11 +50,9 @@ endpoints.forEach(endpoint => {
       if (param.regex) {
         result[param.name].validation = param.regex
       }
-      if (param.alias) {
-        result[param.name].alias = param.alias
-      }
       if (param.deprecated) {
-        result[param.name].deprecated = param.deprecated
+        result[param.name].deprecated = true
+        result[param.name].alias = param.deprecated.after.name
       }
       return result
     }, {}),
@@ -66,6 +69,11 @@ endpoints.forEach(endpoint => {
       accept: previewHeaders
     }
   }
+
+  if (endpoint.deprecated) {
+    newRoutes[idName].deprecated = `octokit.scim.${camelCase(endpoint.deprecated.before.idName)}() has been renamed to octokit.scim.${camelCase(endpoint.deprecated.after.idName)}() (${endpoint.deprecated.date})`
+  }
 })
 
 require('fs').writeFileSync('routes.json', JSON.stringify(sortKeys(newRoutes, { deep: true }), null, 2) + '\n')
+console.log(`routes.json written.`)
