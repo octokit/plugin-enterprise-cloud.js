@@ -1,6 +1,6 @@
 const camelCase = require('lodash.camelcase')
 const sortKeys = require('sort-keys')
-const routes = require('@octokit/routes')
+const SCIM_ROUTES = require('@octokit/routes').scim
 
 const newRoutes = {}
 
@@ -8,19 +8,7 @@ function normalize (methodName) {
   return camelCase(methodName)
 }
 
-const endpoints = Object.keys(routes).reduce((result, scope) => {
-  const scopeEndpoints = routes[scope]
-  scopeEndpoints.forEach(endpoint => {
-    endpoint.scope = scope
-  })
-  return result.concat(scopeEndpoints)
-}, [])
-
-endpoints.forEach(endpoint => {
-  if (endpoint.scope !== 'scim') {
-    return
-  }
-
+SCIM_ROUTES.forEach(endpoint => {
   const idName = normalize(endpoint.idName)
 
   // new route
