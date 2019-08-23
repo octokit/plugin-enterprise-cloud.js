@@ -64,4 +64,4 @@ SCIM_ROUTES.forEach(endpoint => {
 })
 
 require('fs').writeFileSync('routes.json', JSON.stringify(sortKeys(newRoutes, { deep: true }), null, 2) + '\n')
-console.log(`routes.json written.`)
+console.log('routes.json written.')
