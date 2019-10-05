@@ -1,0 +1,692 @@
+[
+  {
+    "scope": "orgs",
+    "id": "listCredentialAuthorizations",
+    "method": "GET",
+    "url": "/orgs/{org}/credential-authorizations",
+    "isDeprecated": false,
+    "documentationUrl": "https://developer.github.com/v3/orgs/#list-credential-authorizations-for-an-organization",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "org",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "[{\"login\":\"octocat\",\"credential_id\":\"161195\",\"credential_type\":\"personal access token\",\"token_last_eight\":\"71c3fc11\",\"credential_authorized_at\":\"2011-01-26T19:06:43Z\",\"scopes\":[\"user\",\"repo\"]},{\"login\":\"hubot\",\"credential_id\":\"161196\",\"credential_type\":\"personal access token\",\"token_last_eight\":\"12345678\",\"credential_authorized_at\":\"2019-03-29T19:06:43Z\",\"scopes\":[\"repo\"]}]"
+          }
+        ]
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "orgs",
+    "id": "removeCredentialAuthorization",
+    "method": "DELETE",
+    "url": "/orgs/{org}/credential-authorizations/{credential_id}",
+    "isDeprecated": false,
+    "documentationUrl": "https://developer.github.com/v3/orgs/#remove-a-credential-authorization-for-an-organization",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "org",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "credential_id",
+        "in": "PATH",
+        "type": "integer",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [],
+    "renamed": null
+  },
+  {
+    "scope": "teams",
+    "id": "listIdPGroupsForOrg",
+    "method": "GET",
+    "url": "/orgs/{org}/team-sync/groups",
+    "isDeprecated": false,
+    "documentationUrl": "https://developer.github.com/v3/teams/team_sync/#list-idp-groups-in-an-organization",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "org",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "per_page",
+        "in": "QUERY",
+        "type": "integer",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "page",
+        "in": "QUERY",
+        "type": "integer",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "{\"groups\":[{\"group_id\":\"123\",\"group_name\":\"Octocat admins\",\"group_description\":\"The people who configure your octoworld.\"},{\"group_id\":\"456\",\"group_name\":\"Octocat docs members\",\"group_description\":\"The people who make your octoworld come to life.\"}]}"
+          }
+        ]
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "scim",
+    "id": "listProvisionedIdentities",
+    "method": "GET",
+    "url": "/scim/v2/organizations/{org}/Users",
+    "isDeprecated": false,
+    "documentationUrl": "https://developer.github.com/v3/scim/#get-a-list-of-provisioned-identities",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "org",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "startIndex",
+        "in": "QUERY",
+        "type": "integer",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "count",
+        "in": "QUERY",
+        "type": "integer",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "filter",
+        "in": "QUERY",
+        "type": "string",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "{\"schemas\":[\"urn:ietf:params:scim:api:messages:2.0:ListResponse\"],\"totalResults\":1,\"itemsPerPage\":1,\"startIndex\":1,\"Resources\":[{\"schemas\":[\"urn:ietf:params:scim:schemas:core:2.0:User\"],\"id\":\"5fc0c238-1112-11e8-8e45-920c87bdbd75\",\"externalId\":\"00u1dhhb1fkIGP7RL1d8\",\"userName\":\"octocat@github.com\",\"name\":{\"givenName\":\"Mona\",\"familyName\":\"Octocat\"},\"emails\":[{\"value\":\"octocat@github.com\",\"primary\":true,\"type\":\"work\"}],\"active\":true,\"meta\":{\"resourceType\":\"User\",\"created\":\"2018-02-13T15:05:24.000-08:00\",\"lastModified\":\"2018-02-13T15:05:55.000-08:00\",\"location\":\"https://api.github.com/scim/v2/organizations/octo-org/Users/5fc0c238-1112-11e8-8e45-920c87bdbd75\"}}]}"
+          },
+          {
+            "data": "{\"schemas\":[\"urn:ietf:params:scim:api:messages:2.0:ListResponse\"],\"totalResults\":2,\"itemsPerPage\":2,\"startIndex\":1,\"Resources\":[{\"schemas\":[\"urn:ietf:params:scim:schemas:core:2.0:User\"],\"id\":\"edefdfedf-050c-11e7-8d32\",\"externalId\":\"a7d0f98382\",\"userName\":\"mona.octocat@okta.example.com\",\"name\":{\"givenName\":\"Mona\",\"familyName\":\"Octocat\"},\"emails\":[{\"value\":\"mona.octocat@okta.example.com\",\"type\":\"work\",\"primary\":true}],\"active\":true,\"meta\":{\"resourceType\":\"User\",\"created\":\"2017-03-09T16:11:13-05:00\",\"lastModified\":\"2017-03-09T16:11:13-05:00\",\"location\":\"https://api.github.com/scim/v2/organizations/octo-org/Users/edefdfedf-050c-11e7-8d32\"}},{\"schemas\":[\"urn:ietf:params:scim:schemas:core:2.0:User\"],\"id\":\"77563764-eb6-24-0598234-958243\",\"externalId\":\"sdfoiausdofiua\",\"userName\":\"hubot@example.com\",\"name\":{\"givenName\":\"hu\",\"familyName\":\"bot\"},\"emails\":[{\"value\":\"hubot@example.com\",\"type\":\"work\",\"primary\":true}],\"active\":true,\"meta\":{\"resourceType\":\"User\",\"created\":\"2017-03-09T16:11:13-05:00\",\"lastModified\":\"2017-03-09T16:11:13-05:00\",\"location\":\"https://api.github.com/scim/v2/organizations/octo-org/Users/77563764-eb6-24-0598234-958243\"}}]}"
+          }
+        ]
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "scim",
+    "id": "provisionAndInviteUsers",
+    "method": "POST",
+    "url": "/scim/v2/organizations/{org}/Users",
+    "isDeprecated": false,
+    "documentationUrl": "https://developer.github.com/v3/scim/#provision-and-invite-users",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "org",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 201,
+        "examples": [
+          {
+            "data": "{\"schemas\":[\"urn:ietf:params:scim:schemas:core:2.0:User\"],\"id\":\"edefdfedf-050c-11e7-8d32\",\"externalId\":\"a7d0f98382\",\"userName\":\"mona.octocat@okta.example.com\",\"name\":{\"givenName\":\"Mona\",\"familyName\":\"Octocat\"},\"emails\":[{\"value\":\"mona.octocat@okta.example.com\",\"type\":\"work\",\"primary\":true}],\"active\":true,\"meta\":{\"resourceType\":\"User\",\"created\":\"2017-03-09T16:11:13-05:00\",\"lastModified\":\"2017-03-09T16:11:13-05:00\",\"location\":\"https://api.github.com/scim/v2/organizations/octo-org/Users/edefdfedf-050c-11e7-8d32\"}}"
+          }
+        ]
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "scim",
+    "id": "provisionInviteUsers",
+    "method": "POST",
+    "url": "/scim/v2/organizations/{org}/Users",
+    "isDeprecated": false,
+    "documentationUrl": "https://developer.github.com/v3/scim/#provision-and-invite-users",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "org",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 201,
+        "examples": [
+          {
+            "data": "{\"schemas\":[\"urn:ietf:params:scim:schemas:core:2.0:User\"],\"id\":\"edefdfedf-050c-11e7-8d32\",\"externalId\":\"a7d0f98382\",\"userName\":\"mona.octocat@okta.example.com\",\"name\":{\"givenName\":\"Mona\",\"familyName\":\"Octocat\"},\"emails\":[{\"value\":\"mona.octocat@okta.example.com\",\"type\":\"work\",\"primary\":true}],\"active\":true,\"meta\":{\"resourceType\":\"User\",\"created\":\"2017-03-09T16:11:13-05:00\",\"lastModified\":\"2017-03-09T16:11:13-05:00\",\"location\":\"https://api.github.com/scim/v2/organizations/octo-org/Users/edefdfedf-050c-11e7-8d32\"}}"
+          }
+        ]
+      }
+    ],
+    "renamed": {
+      "before": "provisionInviteUsers",
+      "after": "provisionAndInviteUsers",
+      "date": "2018-12-27",
+      "note": "`idName` changed for \"Provision and invite users\". It now includes `-and-`"
+    }
+  },
+  {
+    "scope": "scim",
+    "id": "getProvisioningDetailsForUser",
+    "method": "GET",
+    "url": "/scim/v2/organizations/{org}/Users/{scim_user_id}",
+    "isDeprecated": false,
+    "documentationUrl": "https://developer.github.com/v3/scim/#get-provisioning-details-for-a-single-user",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "org",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "scim_user_id",
+        "in": "PATH",
+        "type": "integer",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "external_identity_guid",
+        "in": null,
+        "type": null,
+        "required": null,
+        "enum": null,
+        "allowNull": null,
+        "mapToData": null,
+        "validation": null,
+        "alias": "scim_user_id",
+        "deprecated": true
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "{\"schemas\":[\"urn:ietf:params:scim:schemas:core:2.0:User\"],\"id\":\"edefdfedf-050c-11e7-8d32\",\"externalId\":\"a7d0f98382\",\"userName\":\"mona.octocat@okta.example.com\",\"name\":{\"givenName\":\"Mona\",\"familyName\":\"Octocat\"},\"emails\":[{\"value\":\"mona.octocat@okta.example.com\",\"type\":\"work\",\"primary\":true}],\"active\":true,\"meta\":{\"resourceType\":\"User\",\"created\":\"2017-03-09T16:11:13-05:00\",\"lastModified\":\"2017-03-09T16:11:13-05:00\",\"location\":\"https://api.github.com/scim/v2/organizations/octo-org/Users/edefdfedf-050c-11e7-8d32\"}}"
+          }
+        ]
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "scim",
+    "id": "replaceProvisionedUserInformation",
+    "method": "PUT",
+    "url": "/scim/v2/organizations/{org}/Users/{scim_user_id}",
+    "isDeprecated": false,
+    "documentationUrl": "https://developer.github.com/v3/scim/#replace-a-provisioned-users-information",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "org",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "scim_user_id",
+        "in": "PATH",
+        "type": "integer",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "external_identity_guid",
+        "in": null,
+        "type": null,
+        "required": null,
+        "enum": null,
+        "allowNull": null,
+        "mapToData": null,
+        "validation": null,
+        "alias": "scim_user_id",
+        "deprecated": true
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "{\"schemas\":[\"urn:ietf:params:scim:schemas:core:2.0:User\"],\"id\":\"edefdfedf-050c-11e7-8d32\",\"externalId\":\"a7d0f98382\",\"userName\":\"mona.octocat@okta.example.com\",\"name\":{\"givenName\":\"Mona\",\"familyName\":\"Octocat\"},\"emails\":[{\"value\":\"mona.octocat@okta.example.com\",\"type\":\"work\",\"primary\":true}],\"active\":true,\"meta\":{\"resourceType\":\"User\",\"created\":\"2017-03-09T16:11:13-05:00\",\"lastModified\":\"2017-03-09T16:11:13-05:00\",\"location\":\"https://api.github.com/scim/v2/organizations/octo-org/Users/edefdfedf-050c-11e7-8d32\"}}"
+          }
+        ]
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "scim",
+    "id": "updateProvisionedOrgMembership",
+    "method": "PUT",
+    "url": "/scim/v2/organizations/{org}/Users/{scim_user_id}",
+    "isDeprecated": false,
+    "documentationUrl": "https://developer.github.com/v3/scim/#replace-a-provisioned-users-information",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "org",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "scim_user_id",
+        "in": "PATH",
+        "type": "integer",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "external_identity_guid",
+        "in": null,
+        "type": null,
+        "required": null,
+        "enum": null,
+        "allowNull": null,
+        "mapToData": null,
+        "validation": null,
+        "alias": "scim_user_id",
+        "deprecated": true
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "{\"schemas\":[\"urn:ietf:params:scim:schemas:core:2.0:User\"],\"id\":\"edefdfedf-050c-11e7-8d32\",\"externalId\":\"a7d0f98382\",\"userName\":\"mona.octocat@okta.example.com\",\"name\":{\"givenName\":\"Mona\",\"familyName\":\"Octocat\"},\"emails\":[{\"value\":\"mona.octocat@okta.example.com\",\"type\":\"work\",\"primary\":true}],\"active\":true,\"meta\":{\"resourceType\":\"User\",\"created\":\"2017-03-09T16:11:13-05:00\",\"lastModified\":\"2017-03-09T16:11:13-05:00\",\"location\":\"https://api.github.com/scim/v2/organizations/octo-org/Users/edefdfedf-050c-11e7-8d32\"}}"
+          }
+        ]
+      }
+    ],
+    "renamed": {
+      "before": "updateProvisionedOrgMembership",
+      "after": "replaceProvisionedUserInformation",
+      "date": "2019-04-10",
+      "note": "\"Update a provisioned organization membership\" renamed to \"Replace a provisioned user's information\""
+    }
+  },
+  {
+    "scope": "scim",
+    "id": "updateUserAttribute",
+    "method": "PATCH",
+    "url": "/scim/v2/organizations/{org}/Users/{scim_user_id}",
+    "isDeprecated": false,
+    "documentationUrl": "https://developer.github.com/v3/scim/#update-a-user-attribute",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "org",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "scim_user_id",
+        "in": "PATH",
+        "type": "integer",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "external_identity_guid",
+        "in": null,
+        "type": null,
+        "required": null,
+        "enum": null,
+        "allowNull": null,
+        "mapToData": null,
+        "validation": null,
+        "alias": "scim_user_id",
+        "deprecated": true
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "{\"schemas\":[\"urn:ietf:params:scim:schemas:core:2.0:User\"],\"id\":\"edefdfedf-050c-11e7-8d32\",\"externalId\":\"a7d0f98382\",\"userName\":\"mona.octocat@okta.example.com\",\"name\":{\"givenName\":\"Monalisa\",\"familyName\":\"Octocat\"},\"emails\":[{\"value\":\"mona.octocat@okta.example.com\",\"type\":\"work\",\"primary\":true},{\"value\":\"monalisa@octocat.github.com\",\"type\":\"home\"}],\"active\":true,\"meta\":{\"resourceType\":\"User\",\"created\":\"2017-03-09T16:11:13-05:00\",\"lastModified\":\"2017-03-09T16:11:13-05:00\",\"location\":\"https://api.github.com/scim/v2/organizations/octo-org/Users/edefdfedf-050c-11e7-8d32\"}}"
+          }
+        ]
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "scim",
+    "id": "removeUserFromOrg",
+    "method": "DELETE",
+    "url": "/scim/v2/organizations/{org}/Users/{scim_user_id}",
+    "isDeprecated": false,
+    "documentationUrl": "https://developer.github.com/v3/scim/#remove-a-user-from-the-organization",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "org",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "scim_user_id",
+        "in": "PATH",
+        "type": "integer",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "external_identity_guid",
+        "in": null,
+        "type": null,
+        "required": null,
+        "enum": null,
+        "allowNull": null,
+        "mapToData": null,
+        "validation": null,
+        "alias": "scim_user_id",
+        "deprecated": true
+      }
+    ],
+    "responses": [],
+    "renamed": null
+  },
+  {
+    "scope": "teams",
+    "id": "listIdPGroups",
+    "method": "GET",
+    "url": "/teams/{team_id}/team-sync/group-mappings",
+    "isDeprecated": false,
+    "documentationUrl": "https://developer.github.com/v3/teams/team_sync/#list-idp-groups-for-a-team",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "team_id",
+        "in": "PATH",
+        "type": "integer",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "{\"groups\":[{\"group_id\":\"123\",\"group_name\":\"Octocat admins\",\"group_description\":\"The people who configure your octoworld.\"},{\"group_id\":\"456\",\"group_name\":\"Octocat docs members\",\"group_description\":\"The people who make your octoworld come to life.\"}]}"
+          }
+        ]
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "teams",
+    "id": "createOrUpdateIdPGroupConnections",
+    "method": "PATCH",
+    "url": "/teams/{team_id}/team-sync/group-mappings",
+    "isDeprecated": false,
+    "documentationUrl": "https://developer.github.com/v3/teams/team_sync/#create-or-update-idp-group-connections",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "team_id",
+        "in": "PATH",
+        "type": "integer",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "groups",
+        "in": "BODY",
+        "type": "object[]",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "groups[].group_id",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "groups[].group_name",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "groups[].group_description",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "{\"groups\":{\"group_id\":\"123\",\"group_name\":\"Octocat admins\",\"group_description\":\"The people who configure your octoworld.\"}}"
+          }
+        ]
+      }
+    ],
+    "renamed": null
+  }
+]
