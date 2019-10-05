@@ -13,7 +13,9 @@
   "scripts": {
     "coverage": "tap --coverage-report=html",
     "coverage:upload": "npm run test && tap --coverage-report=text-lcov | coveralls",
-    "generate-routes": "node scripts/generate-routes",
+    "update-endpoints": "npm-run-all update-endpoints:*",
+    "update-endpoints:fetch-json": "node scripts/update-endpoints/fetch-json",
+    "update-endpoints:code": "node scripts/update-endpoints/code",
     "pretest": "standard && standard-markdown *.md",
     "test": "tap --coverage test.js",
     "semantic-release": "semantic-release"
