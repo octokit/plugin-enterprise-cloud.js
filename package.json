@@ -15,7 +15,7 @@
     "update-endpoints": "npm-run-all update-endpoints:*",
     "update-endpoints:fetch-json": "node scripts/update-endpoints/fetch-json",
     "update-endpoints:code": "node scripts/update-endpoints/code",
-    "pretest": "standard && standard-markdown *.md",
+    "pretest": "standard",
     "test": "tap --coverage test.js",
     "semantic-release": "semantic-release"
   },
@@ -46,7 +46,6 @@
     "simple-mock": "^0.8.0",
     "sort-keys": "^3.0.0",
     "standard": "^14.0.2",
-    "standard-markdown": "^5.0.1",
     "tap": "^14.0.0"
   },
   "dependencies": {}
