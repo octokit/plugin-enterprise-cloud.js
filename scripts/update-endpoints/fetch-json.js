@@ -3,9 +3,13 @@ const path = require('path')
 
 const { graphql } = require('@octokit/graphql')
 
+if (!process.env.VERSION) {
+  throw new Error(`VERSION environment variable must be set`)
+}
+
 const QUERY = `
-{
-  endpoints(filter: { isLegacy: false, isGithubCloudOnly: true }) {
+query ($version: String) {
+  endpoints(version: $version, filter: { isLegacy: false, isGithubCloudOnly: true }) {
     scope(format: CAMELCASE)
     id(format: CAMELCASE)
     method
@@ -50,7 +54,8 @@ main()
 
 async function main () {
   const { endpoints } = await graphql(QUERY, {
-    url: 'https://octokit-routes-graphql-server.now.sh/'
+    url: 'https://octokit-routes-graphql-server.now.sh/',
+    version: process.env.VERSION
   })
 
   writeFileSync(
