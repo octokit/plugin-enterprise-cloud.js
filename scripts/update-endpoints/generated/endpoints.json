@@ -274,8 +274,14 @@
       }
     ],
     "renamed": {
-      "before": "provisionInviteUsers",
-      "after": "provisionAndInviteUsers",
+      "before": {
+        "scope": "scim",
+        "id": "provisionInviteUsers"
+      },
+      "after": {
+        "scope": "scim",
+        "id": "provisionAndInviteUsers"
+      },
       "date": "2018-12-27",
       "note": "`idName` changed for \"Provision and invite users\". It now includes `-and-`"
     }
@@ -456,8 +462,14 @@
       }
     ],
     "renamed": {
-      "before": "updateProvisionedOrgMembership",
-      "after": "replaceProvisionedUserInformation",
+      "before": {
+        "scope": "scim",
+        "id": "updateProvisionedOrgMembership"
+      },
+      "after": {
+        "scope": "scim",
+        "id": "replaceProvisionedUserInformation"
+      },
       "date": "2019-04-10",
       "note": "\"Update a provisioned organization membership\" renamed to \"Replace a provisioned user's information\""
     }
