@@ -1,10 +1,10 @@
-# plugin-scim.js
+# plugin-enterprise-cloud.js
 
 > Octokit plugin for GitHub’s SCIM API
 
-[![npm](https://img.shields.io/npm/v/@octokit/plugin-scim.svg)](https://www.npmjs.com/package/@octokit/plugin-scim)
-![Build Status](https://github.com/octokit/plugin-scim.js/workflows/Test/badge.svg)
-[![Greenkeeper](https://badges.greenkeeper.io/octokit/plugin-scim.js.svg)](https://greenkeeper.io/)
+[![npm](https://img.shields.io/npm/v/@octokit/plugin-enterprise-cloud.svg)](https://www.npmjs.com/package/@octokit/plugin-enterprise-cloud)
+![Build Status](https://github.com/octokit/plugin-enterprise-cloud.js/workflows/Test/badge.svg)
+[![Greenkeeper](https://badges.greenkeeper.io/octokit/plugin-enterprise-cloud.js.svg)](https://greenkeeper.io/)
 
 `@octokit/rest` does not include endpoint methods for the SCIM API, because it is available only to [organizations on GitHub Business Cloud](https://help.github.com/articles/organization-billing-plans/#business-plan). See also the [GitHub REST SCIM API documentation](https://developer.github.com/v3/scim/).
 
@@ -12,7 +12,7 @@
 
 ```js
 const Octokit = require("@octokit/rest").plugin(
-  require("@octokit/plugin-scim")
+  require("@octokit/plugin-enterprise-cloud")
 );
 const octokit = new Octokit();
 
