@@ -1,12 +1,12 @@
 # plugin-enterprise-cloud.js
 
-> Octokit plugin for GitHub’s SCIM API
+> Octokit plugin for GitHub’s Enterprise Cloud REST APIs
 
 [![@latest](https://img.shields.io/npm/v/@octokit/plugin-enterprise-cloud.svg)](https://www.npmjs.com/package/@octokit/plugin-enterprise-cloud)
 [![Build Status](https://github.com/octokit/plugin-enterprise-cloud.js/workflows/Test/badge.svg)](https://github.com/octokit/plugin-enterprise-cloud.js/actions?workflow=Test)
 [![Greenkeeper](https://badges.greenkeeper.io/octokit/plugin-enterprise-cloud.js.svg)](https://greenkeeper.io/)
 
-`@octokit/rest` does not include endpoint methods for the SCIM API, because it is available only to [organizations on GitHub Business Cloud](https://help.github.com/articles/organization-billing-plans/#business-plan). See also the [GitHub REST SCIM API documentation](https://developer.github.com/v3/scim/).
+`@octokit/rest` does not include endpoint methods for Enterprise Cloud, because it is available only to [organizations on GitHub Business Cloud](https://help.github.com/articles/organization-billing-plans/#business-plan). Learn more about [About enterprise accounts](https://help.github.com/en/github/setting-up-and-managing-your-enterprise-account/about-enterprise-accounts).
 
 ## Usage
 
