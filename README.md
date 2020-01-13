@@ -10,10 +10,41 @@
 
 ## Usage
 
+<table>
+<tbody valign=top align=left>
+<tr><th>
+Browsers
+</th><td width=100%>
+
+Load `@octokit/plugin-enterprise-cloud` and [`@octokit/core`](https://github.com/octokit/core.js) (or core-compatible module) directly from [cdn.pika.dev](https://cdn.pika.dev)
+
+```html
+<script type="module">
+  import { Octokit } from "https://cdn.pika.dev/@octokit/core";
+  import { enterpriseCloud } from "https://cdn.pika.dev/@octokit/plugin-enterprise-cloud";
+</script>
+```
+
+</td></tr>
+<tr><th>
+Node
+</th><td>
+
+Install with `npm install @octokit/core @octokit/plugin-enterprise-cloud`. Optionally replace `@octokit/core` with a core-compatible module
+
 ```js
-const Octokit = require("@octokit/rest").plugin(
-  require("@octokit/plugin-enterprise-cloud")
-);
+const { Octokit } = require("@octokit/core");
+const { enterpriseCloud } = require("@octokit/plugin-enterprise-cloud");
+```
+
+</td></tr>
+</tbody>
+</table>
+
+```js
+const MyOctokit = Octokit.plugin(enterpriseCloud);
+const octokit = new MyOctokit({ auth: "secret123" });
+
 const octokit = new Octokit();
 
 octokit.scim.listProvisionedIdentities({
@@ -23,7 +54,7 @@ octokit.scim.listProvisionedIdentities({
 
 ## How it works
 
-The SCIM route definitions are build automatically from [`@octokit/routes`](https://github.com/octokit/routes). Each time there is a new `@octokit/routes` release, the [`.github/workflows/routes-update.yml`](.github/workflows/routes-update.yml) workflow is triggered. If an update to [`routes.json`](routes.json) is found, a pull request is created.
+The GitHub Enterprise Cloud route definitions are build automatically from [`@octokit/routes`](https://github.com/octokit/routes). Each time there is a new `@octokit/routes` release, the [`.github/workflows/routes-update.yml`](.github/workflows/routes-update.yml) workflow is triggered. If an update to [`routes.json`](routes.json) is found, a pull request is created.
 
 ## LICENSE
 
