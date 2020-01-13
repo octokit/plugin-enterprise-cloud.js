@@ -1,4 +1,4 @@
-# Contributing to @octokit/scim-routes.js
+# Contributing to @octokit/plugin-enterprise-cloud.js
 
 Please do not edit the `routes.json` file directly, it is automatically
 generated from [`@octokit/routes`](https://github.com/octokit/routes). If there
