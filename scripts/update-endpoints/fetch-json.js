@@ -1,10 +1,10 @@
-const { writeFileSync } = require('fs')
-const path = require('path')
+const { writeFileSync } = require("fs");
+const path = require("path");
 
-const { graphql } = require('@octokit/graphql')
+const { graphql } = require("@octokit/graphql");
 
 if (!process.env.VERSION) {
-  throw new Error('VERSION environment variable must be set')
+  throw new Error("VERSION environment variable must be set");
 }
 
 const QUERY = `
@@ -42,24 +42,30 @@ query ($version: String) {
       }
     }
     renamed {
-      before(format: CAMELCASE)
-      after(format: CAMELCASE)
+      before {
+        scope(format: CAMELCASE)
+        id(format: CAMELCASE)
+      }
+      after {
+        scope(format: CAMELCASE)
+        id(format: CAMELCASE)
+      }
       date
       note
     }
   }
-}`
+}`;
 
-main()
+main();
 
-async function main () {
+async function main() {
   const { endpoints } = await graphql(QUERY, {
-    url: 'https://octokit-routes-graphql-server.now.sh/',
+    url: "https://octokit-routes-graphql-server.now.sh/",
     version: process.env.VERSION
-  })
+  });
 
   writeFileSync(
-    path.resolve(__dirname, 'generated', 'endpoints.json'),
-    JSON.stringify(endpoints, null, 2) + '\n'
-  )
+    path.resolve(__dirname, "generated", "endpoints.json"),
+    JSON.stringify(endpoints, null, 2) + "\n"
+  );
 }
