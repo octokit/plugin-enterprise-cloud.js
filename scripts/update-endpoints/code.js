@@ -28,16 +28,18 @@ ENDPOINTS.forEach(endpoint => {
     /\{([^}]+)}/g,
     ":$1"
   )}`;
-  const endpointDefaults = {
-    headers: endpoint.headers.reduce((result, header) => {
+  const endpointDefaults = {};
+  const endpointDecorations = {};
+
+  if (endpoint.headers.length) {
+    endpointDefaults.headers = endpoint.headers.reduce((result, header) => {
       if (!result) {
         result = {};
       }
       result[header.name] = header.value;
       return result;
-    }, undefined)
-  };
-  const endpointDecorations = {};
+    }, undefined);
+  }
 
   if (endpoint.previews.length) {
     endpointDefaults.mediaType = {
@@ -56,11 +58,16 @@ ENDPOINTS.forEach(endpoint => {
     endpointDecorations.deprecated = `octokit.scim.${idName}() is deprecated, see ${endpoint.documentationUrl}`;
   }
 
-  newRoutes[endpoint.scope][idName] = [
-    route,
-    endpointDefaults,
-    endpointDecorations
-  ].filter(obj => Object.keys(obj).length);
+  newRoutes[endpoint.scope][idName] = [route];
+
+  if (Object.keys(endpointDecorations).length) {
+    newRoutes[endpoint.scope][idName].push(
+      endpointDefaults,
+      endpointDecorations
+    );
+  } else if (Object.keys(endpointDefaults).length) {
+    newRoutes[endpoint.scope][idName].push(endpointDefaults);
+  }
 });
 
 writeFileSync(
