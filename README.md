@@ -45,8 +45,6 @@ const { enterpriseCloud } = require("@octokit/plugin-enterprise-cloud");
 const MyOctokit = Octokit.plugin(enterpriseCloud);
 const octokit = new MyOctokit({ auth: "secret123" });
 
-const octokit = new Octokit();
-
 octokit.scim.listProvisionedIdentities({
   filter: 'userName eq "Octocat"'
 });
