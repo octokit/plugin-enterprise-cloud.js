@@ -22,8 +22,6 @@ ENDPOINTS.forEach(endpoint => {
   }
 
   const idName = endpoint.id;
-
-  // new route
   const route = `${endpoint.method} ${endpoint.url.replace(
     /\{([^}]+)}/g,
     ":$1"
