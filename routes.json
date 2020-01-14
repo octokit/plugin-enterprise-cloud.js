@@ -2,218 +2,78 @@
   "orgs": {
     "listCredentialAuthorizations": {
       "method": "GET",
-      "params": {
-        "org": {
-          "required": true,
-          "type": "string"
-        }
-      },
       "url": "/orgs/:org/credential-authorizations"
     },
     "removeCredentialAuthorization": {
       "method": "DELETE",
-      "params": {
-        "credential_id": {
-          "required": true,
-          "type": "integer"
-        },
-        "org": {
-          "required": true,
-          "type": "string"
-        }
-      },
       "url": "/orgs/:org/credential-authorizations/:credential_id"
     }
   },
   "scim": {
     "getProvisioningDetailsForUser": {
       "method": "GET",
-      "params": {
-        "external_identity_guid": {
-          "alias": "scim_user_id",
-          "deprecated": true,
-          "type": "integer"
-        },
-        "org": {
-          "required": true,
-          "type": "string"
-        },
-        "scim_user_id": {
-          "required": true,
-          "type": "integer"
-        }
-      },
       "url": "/scim/v2/organizations/:org/Users/:scim_user_id"
     },
     "listProvisionedIdentities": {
       "method": "GET",
-      "params": {
-        "count": {
-          "type": "integer"
-        },
-        "filter": {
-          "type": "string"
-        },
-        "org": {
-          "required": true,
-          "type": "string"
-        },
-        "startIndex": {
-          "type": "integer"
-        }
-      },
       "url": "/scim/v2/organizations/:org/Users"
     },
     "provisionAndInviteUsers": {
       "method": "POST",
-      "params": {
-        "org": {
-          "required": true,
-          "type": "string"
-        }
-      },
       "url": "/scim/v2/organizations/:org/Users"
     },
     "provisionInviteUsers": {
-      "deprecated": "octokit.scim.provisionInviteUsers() has been renamed to octokit.scim.provisionAndInviteUsers() (2018-12-27)",
       "method": "POST",
-      "params": {
-        "org": {
-          "required": true,
-          "type": "string"
-        }
-      },
+      "renamed": [
+        [
+          "scim",
+          "provisionInviteUsers"
+        ],
+        [
+          "scim",
+          "provisionAndInviteUsers"
+        ]
+      ],
       "url": "/scim/v2/organizations/:org/Users"
     },
     "removeUserFromOrg": {
       "method": "DELETE",
-      "params": {
-        "external_identity_guid": {
-          "alias": "scim_user_id",
-          "deprecated": true,
-          "type": "integer"
-        },
-        "org": {
-          "required": true,
-          "type": "string"
-        },
-        "scim_user_id": {
-          "required": true,
-          "type": "integer"
-        }
-      },
       "url": "/scim/v2/organizations/:org/Users/:scim_user_id"
     },
     "replaceProvisionedUserInformation": {
       "method": "PUT",
-      "params": {
-        "external_identity_guid": {
-          "alias": "scim_user_id",
-          "deprecated": true,
-          "type": "integer"
-        },
-        "org": {
-          "required": true,
-          "type": "string"
-        },
-        "scim_user_id": {
-          "required": true,
-          "type": "integer"
-        }
-      },
       "url": "/scim/v2/organizations/:org/Users/:scim_user_id"
     },
     "updateProvisionedOrgMembership": {
-      "deprecated": "octokit.scim.updateProvisionedOrgMembership() has been renamed to octokit.scim.replaceProvisionedUserInformation() (2019-04-10)",
       "method": "PUT",
-      "params": {
-        "external_identity_guid": {
-          "alias": "scim_user_id",
-          "deprecated": true,
-          "type": "integer"
-        },
-        "org": {
-          "required": true,
-          "type": "string"
-        },
-        "scim_user_id": {
-          "required": true,
-          "type": "integer"
-        }
-      },
+      "renamed": [
+        [
+          "scim",
+          "updateProvisionedOrgMembership"
+        ],
+        [
+          "scim",
+          "replaceProvisionedUserInformation"
+        ]
+      ],
       "url": "/scim/v2/organizations/:org/Users/:scim_user_id"
     },
     "updateUserAttribute": {
       "method": "PATCH",
-      "params": {
-        "external_identity_guid": {
-          "alias": "scim_user_id",
-          "deprecated": true,
-          "type": "integer"
-        },
-        "org": {
-          "required": true,
-          "type": "string"
-        },
-        "scim_user_id": {
-          "required": true,
-          "type": "integer"
-        }
-      },
       "url": "/scim/v2/organizations/:org/Users/:scim_user_id"
     }
   },
   "teams": {
     "createOrUpdateIdPGroupConnections": {
       "method": "PATCH",
-      "params": {
-        "groups": {
-          "required": true,
-          "type": "object[]"
-        },
-        "groups[].group_description": {
-          "required": true,
-          "type": "string"
-        },
-        "groups[].group_id": {
-          "required": true,
-          "type": "string"
-        },
-        "groups[].group_name": {
-          "required": true,
-          "type": "string"
-        },
-        "team_id": {
-          "required": true,
-          "type": "integer"
-        }
-      },
       "url": "/teams/:team_id/team-sync/group-mappings"
     },
     "listIdPGroups": {
       "method": "GET",
-      "params": {
-        "team_id": {
-          "required": true,
-          "type": "integer"
-        }
-      },
       "url": "/teams/:team_id/team-sync/group-mappings"
     },
     "listIdPGroupsForOrg": {
       "method": "GET",
-      "params": {
-        "org": {
-          "required": true,
-          "type": "string"
-        },
-        "page": {
-          "type": "integer"
-        },
-        "per_page": {
-          "type": "integer"
-        }
-      },
       "url": "/orgs/:org/team-sync/groups"
     }
   }
