@@ -1,4 +1,5 @@
-export default {
+import { EndpointsDefaultsAndDecorations } from "../types";
+const Endpoints: EndpointsDefaultsAndDecorations = {
   orgs: {
     listCredentialAuthorizations: [
       { method: "GET", url: "/orgs/:org/credential-authorizations" }
@@ -22,12 +23,7 @@ export default {
     ],
     provisionInviteUsers: [
       { method: "POST", url: "/scim/v2/organizations/:org/Users" },
-      {
-        renamed: [
-          ["scim", "provisionInviteUsers"],
-          ["scim", "provisionAndInviteUsers"]
-        ]
-      }
+      { renamed: ["scim", "provisionAndInviteUsers"] }
     ],
     removeUserFromOrg: [
       {
@@ -40,12 +36,7 @@ export default {
     ],
     updateProvisionedOrgMembership: [
       { method: "PUT", url: "/scim/v2/organizations/:org/Users/:scim_user_id" },
-      {
-        renamed: [
-          ["scim", "updateProvisionedOrgMembership"],
-          ["scim", "replaceProvisionedUserInformation"]
-        ]
-      }
+      { renamed: ["scim", "replaceProvisionedUserInformation"] }
     ],
     updateUserAttribute: [
       {
@@ -64,3 +55,5 @@ export default {
     listIdPGroupsForOrg: [{ method: "GET", url: "/orgs/:org/team-sync/groups" }]
   }
 };
+
+export default Endpoints;

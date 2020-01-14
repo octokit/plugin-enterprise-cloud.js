@@ -48,8 +48,8 @@ ENDPOINTS.forEach(endpoint => {
 
   if (endpoint.renamed) {
     endpointDecorations.renamed = [
-      [endpoint.renamed.before.scope, endpoint.renamed.before.id],
-      [endpoint.renamed.after.scope, endpoint.renamed.after.id]
+      endpoint.renamed.after.scope,
+      endpoint.renamed.after.id
     ];
   }
 
@@ -63,16 +63,16 @@ ENDPOINTS.forEach(endpoint => {
   ].filter(obj => Object.keys(obj).length);
 });
 
-// require("fs").writeFileSync(
-//   "routes.json",
-//   JSON.stringify(sortKeys(newRoutes, { deep: true }), null, 2) + "\n"
-// );
-// console.log("routes.json written.");
-
 writeFileSync(
   ROUTES_PATH,
   prettier.format(
-    `export default ` + JSON.stringify(sortKeys(newRoutes, { deep: true }))
+    `import { EndpointsDefaultsAndDecorations } from "../types";
+const Endpoints: EndpointsDefaultsAndDecorations = ${JSON.stringify(
+      sortKeys(newRoutes, { deep: true })
+    )}
+
+export default Endpoints`,
+    { parser: "typescript" }
   )
 );
 console.log(`${ROUTES_PATH} written.`);
