@@ -1,4 +1,4 @@
-import { EndpointOptions } from "@octokit/types";
+import { Route, RequestParameters } from "@octokit/types";
 
 type EndpointDecorations = {
   deprecated?: string;
@@ -7,6 +7,6 @@ type EndpointDecorations = {
 
 export type EndpointsDefaultsAndDecorations = {
   [scope: string]: {
-    [methodName: string]: [EndpointOptions, EndpointDecorations?];
+    [methodName: string]: [Route, RequestParameters?, EndpointDecorations?];
   };
 };

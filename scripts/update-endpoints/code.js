@@ -24,10 +24,11 @@ ENDPOINTS.forEach(endpoint => {
   const idName = endpoint.id;
 
   // new route
-  const endpointDecorations = {};
+  const route = `${endpoint.method} ${endpoint.url.replace(
+    /\{([^}]+)}/g,
+    ":$1"
+  )}`;
   const endpointDefaults = {
-    method: endpoint.method,
-    url: endpoint.url.replace(/\{([^}]+)}/g, ":$1"),
     headers: endpoint.headers.reduce((result, header) => {
       if (!result) {
         result = {};
@@ -36,14 +37,12 @@ ENDPOINTS.forEach(endpoint => {
       return result;
     }, undefined)
   };
+  const endpointDecorations = {};
 
   if (endpoint.previews.length) {
-    if (!newRoutes[endpoint.scope][idName].mediaType) {
-      newRoutes[endpoint.scope][idName].mediaType = {};
-    }
-    newRoutes[endpoint.scope][
-      idName
-    ].mediaType.previews = endpoint.previews.map(preview => preview.name);
+    endpointDefaults.mediaType = {
+      previews: endpoint.previews.map(preview => preview.name)
+    };
   }
 
   if (endpoint.renamed) {
@@ -58,6 +57,7 @@ ENDPOINTS.forEach(endpoint => {
   }
 
   newRoutes[endpoint.scope][idName] = [
+    route,
     endpointDefaults,
     endpointDecorations
   ].filter(obj => Object.keys(obj).length);

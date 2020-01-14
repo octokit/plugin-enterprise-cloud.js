@@ -2,57 +2,51 @@ import { EndpointsDefaultsAndDecorations } from "../types";
 const Endpoints: EndpointsDefaultsAndDecorations = {
   orgs: {
     listCredentialAuthorizations: [
-      { method: "GET", url: "/orgs/:org/credential-authorizations" }
+      "GET /orgs/:org/credential-authorizations",
+      {}
     ],
     removeCredentialAuthorization: [
-      {
-        method: "DELETE",
-        url: "/orgs/:org/credential-authorizations/:credential_id"
-      }
+      "DELETE /orgs/:org/credential-authorizations/:credential_id",
+      {}
     ]
   },
   scim: {
     getProvisioningDetailsForUser: [
-      { method: "GET", url: "/scim/v2/organizations/:org/Users/:scim_user_id" }
+      "GET /scim/v2/organizations/:org/Users/:scim_user_id",
+      {}
     ],
-    listProvisionedIdentities: [
-      { method: "GET", url: "/scim/v2/organizations/:org/Users" }
-    ],
-    provisionAndInviteUsers: [
-      { method: "POST", url: "/scim/v2/organizations/:org/Users" }
-    ],
+    listProvisionedIdentities: ["GET /scim/v2/organizations/:org/Users", {}],
+    provisionAndInviteUsers: ["POST /scim/v2/organizations/:org/Users", {}],
     provisionInviteUsers: [
-      { method: "POST", url: "/scim/v2/organizations/:org/Users" },
+      "POST /scim/v2/organizations/:org/Users",
+      {},
       { renamed: ["scim", "provisionAndInviteUsers"] }
     ],
     removeUserFromOrg: [
-      {
-        method: "DELETE",
-        url: "/scim/v2/organizations/:org/Users/:scim_user_id"
-      }
+      "DELETE /scim/v2/organizations/:org/Users/:scim_user_id",
+      {}
     ],
     replaceProvisionedUserInformation: [
-      { method: "PUT", url: "/scim/v2/organizations/:org/Users/:scim_user_id" }
+      "PUT /scim/v2/organizations/:org/Users/:scim_user_id",
+      {}
     ],
     updateProvisionedOrgMembership: [
-      { method: "PUT", url: "/scim/v2/organizations/:org/Users/:scim_user_id" },
+      "PUT /scim/v2/organizations/:org/Users/:scim_user_id",
+      {},
       { renamed: ["scim", "replaceProvisionedUserInformation"] }
     ],
     updateUserAttribute: [
-      {
-        method: "PATCH",
-        url: "/scim/v2/organizations/:org/Users/:scim_user_id"
-      }
+      "PATCH /scim/v2/organizations/:org/Users/:scim_user_id",
+      {}
     ]
   },
   teams: {
     createOrUpdateIdPGroupConnections: [
-      { method: "PATCH", url: "/teams/:team_id/team-sync/group-mappings" }
+      "PATCH /teams/:team_id/team-sync/group-mappings",
+      {}
     ],
-    listIdPGroups: [
-      { method: "GET", url: "/teams/:team_id/team-sync/group-mappings" }
-    ],
-    listIdPGroupsForOrg: [{ method: "GET", url: "/orgs/:org/team-sync/groups" }]
+    listIdPGroups: ["GET /teams/:team_id/team-sync/group-mappings", {}],
+    listIdPGroupsForOrg: ["GET /orgs/:org/team-sync/groups", {}]
   }
 };
 

@@ -1,5 +1,11 @@
 import { Octokit } from "@octokit/core";
-import { EndpointOptions, RequestParameters, Route } from "@octokit/types";
+import {
+  EndpointOptions,
+  RequestParameters,
+  RequestMethod,
+  Route,
+  Url
+} from "@octokit/types";
 
 import ENDPOINTS from "./generated/endpoints";
 import { VERSION } from "./version";
@@ -11,7 +17,12 @@ type EndpointMethods = {
 export function enterpriseCloud(octokit: Octokit) {
   for (const [scope, endpoints] of Object.entries(ENDPOINTS)) {
     for (const [methodName, endpoint] of Object.entries(endpoints)) {
-      const [defaults, decorations = {}] = endpoint;
+      const [route, defaults, decorations = {}] = endpoint;
+      const [method, url] = route.split(/ /) as [RequestMethod, Url];
+      const endpointDefaults: EndpointOptions = Object.assign(
+        { method, url },
+        defaults
+      );
 
       if (!octokit[scope]) {
         octokit[scope] = {};
@@ -24,7 +35,7 @@ export function enterpriseCloud(octokit: Octokit) {
         scopeMethods[methodName] = deprecate(
           octokit,
           `octokit.${scope}.${methodName}() has been renamed to octokit.${newScope}.${newMethodName}()`,
-          defaults
+          endpointDefaults
         );
         continue;
       }
@@ -34,12 +45,12 @@ export function enterpriseCloud(octokit: Octokit) {
         scopeMethods[methodName] = deprecate(
           octokit,
           decorations.deprecated,
-          defaults
+          endpointDefaults
         );
         continue;
       }
 
-      scopeMethods[methodName] = octokit.request.defaults(defaults);
+      scopeMethods[methodName] = octokit.request.defaults(endpointDefaults);
     }
   }
 }
