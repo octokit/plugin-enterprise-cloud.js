@@ -1,6 +1,18 @@
+const { join } = require("path");
+const { writeFileSync } = require("fs");
+
+const prettier = require("prettier");
 const sortKeys = require("sort-keys");
 
 const ENDPOINTS = require("./generated/endpoints.json");
+const ROUTES_PATH = join(
+  __dirname,
+  "..",
+  "..",
+  "src",
+  "generated",
+  "endpoints.ts"
+);
 
 const newRoutes = {};
 
@@ -51,8 +63,16 @@ ENDPOINTS.forEach(endpoint => {
   ].filter(obj => Object.keys(obj).length);
 });
 
-require("fs").writeFileSync(
-  "routes.json",
-  JSON.stringify(sortKeys(newRoutes, { deep: true }), null, 2) + "\n"
+// require("fs").writeFileSync(
+//   "routes.json",
+//   JSON.stringify(sortKeys(newRoutes, { deep: true }), null, 2) + "\n"
+// );
+// console.log("routes.json written.");
+
+writeFileSync(
+  ROUTES_PATH,
+  prettier.format(
+    `export default ` + JSON.stringify(sortKeys(newRoutes, { deep: true }))
+  )
 );
-console.log("routes.json written.");
+console.log(`${ROUTES_PATH} written.`);
