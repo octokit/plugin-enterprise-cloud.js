@@ -1,80 +1,110 @@
 {
   "orgs": {
-    "listCredentialAuthorizations": {
-      "method": "GET",
-      "url": "/orgs/:org/credential-authorizations"
-    },
-    "removeCredentialAuthorization": {
-      "method": "DELETE",
-      "url": "/orgs/:org/credential-authorizations/:credential_id"
-    }
+    "listCredentialAuthorizations": [
+      {
+        "method": "GET",
+        "url": "/orgs/:org/credential-authorizations"
+      }
+    ],
+    "removeCredentialAuthorization": [
+      {
+        "method": "DELETE",
+        "url": "/orgs/:org/credential-authorizations/:credential_id"
+      }
+    ]
   },
   "scim": {
-    "getProvisioningDetailsForUser": {
-      "method": "GET",
-      "url": "/scim/v2/organizations/:org/Users/:scim_user_id"
-    },
-    "listProvisionedIdentities": {
-      "method": "GET",
-      "url": "/scim/v2/organizations/:org/Users"
-    },
-    "provisionAndInviteUsers": {
-      "method": "POST",
-      "url": "/scim/v2/organizations/:org/Users"
-    },
-    "provisionInviteUsers": {
-      "method": "POST",
-      "renamed": [
-        [
-          "scim",
-          "provisionInviteUsers"
-        ],
-        [
-          "scim",
-          "provisionAndInviteUsers"
+    "getProvisioningDetailsForUser": [
+      {
+        "method": "GET",
+        "url": "/scim/v2/organizations/:org/Users/:scim_user_id"
+      }
+    ],
+    "listProvisionedIdentities": [
+      {
+        "method": "GET",
+        "url": "/scim/v2/organizations/:org/Users"
+      }
+    ],
+    "provisionAndInviteUsers": [
+      {
+        "method": "POST",
+        "url": "/scim/v2/organizations/:org/Users"
+      }
+    ],
+    "provisionInviteUsers": [
+      {
+        "method": "POST",
+        "url": "/scim/v2/organizations/:org/Users"
+      },
+      {
+        "renamed": [
+          [
+            "scim",
+            "provisionInviteUsers"
+          ],
+          [
+            "scim",
+            "provisionAndInviteUsers"
+          ]
         ]
-      ],
-      "url": "/scim/v2/organizations/:org/Users"
-    },
-    "removeUserFromOrg": {
-      "method": "DELETE",
-      "url": "/scim/v2/organizations/:org/Users/:scim_user_id"
-    },
-    "replaceProvisionedUserInformation": {
-      "method": "PUT",
-      "url": "/scim/v2/organizations/:org/Users/:scim_user_id"
-    },
-    "updateProvisionedOrgMembership": {
-      "method": "PUT",
-      "renamed": [
-        [
-          "scim",
-          "updateProvisionedOrgMembership"
-        ],
-        [
-          "scim",
-          "replaceProvisionedUserInformation"
+      }
+    ],
+    "removeUserFromOrg": [
+      {
+        "method": "DELETE",
+        "url": "/scim/v2/organizations/:org/Users/:scim_user_id"
+      }
+    ],
+    "replaceProvisionedUserInformation": [
+      {
+        "method": "PUT",
+        "url": "/scim/v2/organizations/:org/Users/:scim_user_id"
+      }
+    ],
+    "updateProvisionedOrgMembership": [
+      {
+        "method": "PUT",
+        "url": "/scim/v2/organizations/:org/Users/:scim_user_id"
+      },
+      {
+        "renamed": [
+          [
+            "scim",
+            "updateProvisionedOrgMembership"
+          ],
+          [
+            "scim",
+            "replaceProvisionedUserInformation"
+          ]
         ]
-      ],
-      "url": "/scim/v2/organizations/:org/Users/:scim_user_id"
-    },
-    "updateUserAttribute": {
-      "method": "PATCH",
-      "url": "/scim/v2/organizations/:org/Users/:scim_user_id"
-    }
+      }
+    ],
+    "updateUserAttribute": [
+      {
+        "method": "PATCH",
+        "url": "/scim/v2/organizations/:org/Users/:scim_user_id"
+      }
+    ]
   },
   "teams": {
-    "createOrUpdateIdPGroupConnections": {
-      "method": "PATCH",
-      "url": "/teams/:team_id/team-sync/group-mappings"
-    },
-    "listIdPGroups": {
-      "method": "GET",
-      "url": "/teams/:team_id/team-sync/group-mappings"
-    },
-    "listIdPGroupsForOrg": {
-      "method": "GET",
-      "url": "/orgs/:org/team-sync/groups"
-    }
+    "createOrUpdateIdPGroupConnections": [
+      {
+        "method": "PATCH",
+        "url": "/teams/:team_id/team-sync/group-mappings"
+      }
+    ],
+    "listIdPGroups": [
+      {
+        "method": "GET",
+        "url": "/teams/:team_id/team-sync/group-mappings"
+      }
+    ],
+    "listIdPGroupsForOrg": [
+      {
+        "method": "GET",
+        "url": "/orgs/:org/team-sync/groups"
+      }
+    ]
   }
 }
