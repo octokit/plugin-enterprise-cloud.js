@@ -12,7 +12,8 @@ ENDPOINTS.forEach(endpoint => {
   const idName = endpoint.id;
 
   // new route
-  newRoutes[endpoint.scope][idName] = {
+  const endpointDecorations = {};
+  const endpointDefaults = {
     method: endpoint.method,
     url: endpoint.url.replace(/\{([^}]+)}/g, ":$1"),
     headers: endpoint.headers.reduce((result, header) => {
@@ -34,17 +35,20 @@ ENDPOINTS.forEach(endpoint => {
   }
 
   if (endpoint.renamed) {
-    newRoutes[endpoint.scope][idName].renamed = [
+    endpointDecorations.renamed = [
       [endpoint.renamed.before.scope, endpoint.renamed.before.id],
       [endpoint.renamed.after.scope, endpoint.renamed.after.id]
     ];
   }
 
   if (endpoint.isDeprecated) {
-    newRoutes[endpoint.scope][
-      idName
-    ].deprecated = `octokit.scim.${idName}() is deprecated, see ${endpoint.documentationUrl}`;
+    endpointDecorations.deprecated = `octokit.scim.${idName}() is deprecated, see ${endpoint.documentationUrl}`;
   }
+
+  newRoutes[endpoint.scope][idName] = [
+    endpointDefaults,
+    endpointDecorations
+  ].filter(obj => Object.keys(obj).length);
 });
 
 require("fs").writeFileSync(
