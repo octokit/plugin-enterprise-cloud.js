@@ -7,8 +7,8 @@
   "description": "Octokit plugin for GitHub’s Enterprise Cloud REST APIs",
   "scripts": {
     "build": "pika build",
-    "lint": "prettier --check '{src,test,scripts}/**/*' README.md package.json",
-    "lint:fix": "prettier --write '{src,test,scripts}/**/*' README.md package.json",
+    "lint": "prettier --check '{src,test,scripts}/*' README.md package.json",
+    "lint:fix": "prettier --write '{src,test,scripts}/*' README.md package.json",
     "pretest": "npm run -s lint",
     "test": "jest --coverage",
     "update-endpoints": "npm-run-all update-endpoints:*",
