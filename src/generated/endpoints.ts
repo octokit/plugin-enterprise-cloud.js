@@ -33,11 +33,13 @@ const Endpoints: EndpointsDefaultsAndDecorations = {
     ]
   },
   teams: {
-    createOrUpdateIdPGroupConnections: [
-      "PATCH /teams/:team_id/team-sync/group-mappings"
+    createOrUpdateIdPGroupConnectionsInOrg: [
+      "PATCH /orgs/:org/teams/:team_slug/team-sync/group-mappings"
     ],
-    listIdPGroups: ["GET /teams/:team_id/team-sync/group-mappings"],
-    listIdPGroupsForOrg: ["GET /orgs/:org/team-sync/groups"]
+    listIdPGroupsForOrg: ["GET /orgs/:org/team-sync/groups"],
+    listIdPGroupsInOrg: [
+      "GET /orgs/:org/teams/:team_slug/team-sync/group-mappings"
+    ]
   }
 };
 
