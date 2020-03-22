@@ -9,22 +9,22 @@ describe("enterpriseCloud plugin", () => {
       .sandbox()
       .get("path:/scim/v2/organizations/octokit/Users", [{ ok: true }], {
         query: {
-          filter: 'userName eq "Octocat"'
-        }
+          filter: 'userName eq "Octocat"',
+        },
       });
 
     const MyOctokit = Octokit.plugin(enterpriseCloud);
     const octokit = new MyOctokit({
       auth: "secret123",
       request: {
-        fetch: mock
-      }
+        fetch: mock,
+      },
     });
 
     // See https://developer.github.com/v3/scim/#get-a-list-of-provisioned-identities
     const { data } = await octokit.scim.listProvisionedIdentities({
       org: "octokit",
-      filter: 'userName eq "Octocat"'
+      filter: 'userName eq "Octocat"',
     });
 
     expect(data).toStrictEqual([{ ok: true }]);
@@ -39,24 +39,24 @@ describe("enterpriseCloud plugin", () => {
           userName: "mona.octocat@okta.example.com",
           name: {
             familyName: "Octocat",
-            givenName: "Mona"
+            givenName: "Mona",
           },
           emails: [
             {
               value: "mona.octocat@okta.example.com",
               type: "work",
-              primary: true
-            }
-          ]
-        }
+              primary: true,
+            },
+          ],
+        },
       });
 
     const MyOctokit = Octokit.plugin(enterpriseCloud);
     const octokit = new MyOctokit({
       auth: "secret123",
       request: {
-        fetch: mock
-      }
+        fetch: mock,
+      },
     });
 
     // See https://developer.github.com/v3/scim/#provision-and-invite-users
@@ -66,15 +66,15 @@ describe("enterpriseCloud plugin", () => {
       userName: "mona.octocat@okta.example.com",
       name: {
         familyName: "Octocat",
-        givenName: "Mona"
+        givenName: "Mona",
       },
       emails: [
         {
           value: "mona.octocat@okta.example.com",
           type: "work",
-          primary: true
-        }
-      ]
+          primary: true,
+        },
+      ],
     });
 
     expect(data).toStrictEqual([{ ok: true }]);

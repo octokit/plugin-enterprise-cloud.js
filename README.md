@@ -46,7 +46,7 @@ const MyOctokit = Octokit.plugin(enterpriseCloud);
 const octokit = new MyOctokit({ auth: "secret123" });
 
 octokit.scim.listProvisionedIdentities({
-  filter: 'userName eq "Octocat"'
+  filter: 'userName eq "Octocat"',
 });
 ```
 
