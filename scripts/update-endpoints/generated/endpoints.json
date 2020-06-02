@@ -78,7 +78,7 @@
     "method": "GET",
     "url": "/orgs/{org}/team-sync/groups",
     "isDeprecated": false,
-    "documentationUrl": "https://developer.github.com/v3/teams/team_sync/#list-idp-groups-in-an-organization",
+    "documentationUrl": "https://developer.github.com/v3/teams/team_sync/#list-idp-groups-for-an-organization",
     "previews": [],
     "headers": [],
     "parameters": [
