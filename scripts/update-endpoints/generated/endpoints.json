@@ -78,7 +78,7 @@
     "method": "GET",
     "url": "/orgs/{org}/team-sync/groups",
     "isDeprecated": false,
-    "documentationUrl": "https://developer.github.com/v3/teams/team_sync/#list-idp-groups-in-an-organization",
+    "documentationUrl": "https://developer.github.com/v3/teams/team_sync/#list-idp-groups-for-an-organization",
     "previews": [],
     "headers": [],
     "parameters": [
@@ -125,6 +125,148 @@
         "examples": [
           {
             "data": "{\"groups\":[{\"group_id\":\"123\",\"group_name\":\"Octocat admins\",\"group_description\":\"The people who configure your octoworld.\"},{\"group_id\":\"456\",\"group_name\":\"Octocat docs members\",\"group_description\":\"The people who make your octoworld come to life.\"}]}"
+          }
+        ]
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "teams",
+    "id": "listIdPGroupsInOrg",
+    "method": "GET",
+    "url": "/orgs/{org}/teams/{team_slug}/team-sync/group-mappings",
+    "isDeprecated": false,
+    "documentationUrl": "https://developer.github.com/v3/teams/team_sync/#list-idp-groups-for-a-team",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "org",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "team_slug",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "{\"groups\":[{\"group_id\":\"123\",\"group_name\":\"Octocat admins\",\"group_description\":\"The people who configure your octoworld.\"},{\"group_id\":\"456\",\"group_name\":\"Octocat docs members\",\"group_description\":\"The people who make your octoworld come to life.\"}]}"
+          }
+        ]
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "teams",
+    "id": "createOrUpdateIdPGroupConnectionsInOrg",
+    "method": "PATCH",
+    "url": "/orgs/{org}/teams/{team_slug}/team-sync/group-mappings",
+    "isDeprecated": false,
+    "documentationUrl": "https://developer.github.com/v3/teams/team_sync/#create-or-update-idp-group-connections",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "org",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "team_slug",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "groups",
+        "in": "BODY",
+        "type": "object[]",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "groups[].group_id",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "groups[].group_name",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "groups[].group_description",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "{\"groups\":{\"group_id\":\"123\",\"group_name\":\"Octocat admins\",\"group_description\":\"The people who configure your octoworld.\"}}"
           }
         ]
       }
@@ -581,124 +723,6 @@
       }
     ],
     "responses": [],
-    "renamed": null
-  },
-  {
-    "scope": "teams",
-    "id": "listIdPGroups",
-    "method": "GET",
-    "url": "/teams/{team_id}/team-sync/group-mappings",
-    "isDeprecated": false,
-    "documentationUrl": "https://developer.github.com/v3/teams/team_sync/#list-idp-groups-for-a-team",
-    "previews": [],
-    "headers": [],
-    "parameters": [
-      {
-        "name": "team_id",
-        "in": "PATH",
-        "type": "integer",
-        "required": true,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      }
-    ],
-    "responses": [
-      {
-        "code": 200,
-        "examples": [
-          {
-            "data": "{\"groups\":[{\"group_id\":\"123\",\"group_name\":\"Octocat admins\",\"group_description\":\"The people who configure your octoworld.\"},{\"group_id\":\"456\",\"group_name\":\"Octocat docs members\",\"group_description\":\"The people who make your octoworld come to life.\"}]}"
-          }
-        ]
-      }
-    ],
-    "renamed": null
-  },
-  {
-    "scope": "teams",
-    "id": "createOrUpdateIdPGroupConnections",
-    "method": "PATCH",
-    "url": "/teams/{team_id}/team-sync/group-mappings",
-    "isDeprecated": false,
-    "documentationUrl": "https://developer.github.com/v3/teams/team_sync/#create-or-update-idp-group-connections",
-    "previews": [],
-    "headers": [],
-    "parameters": [
-      {
-        "name": "team_id",
-        "in": "PATH",
-        "type": "integer",
-        "required": true,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      },
-      {
-        "name": "groups",
-        "in": "BODY",
-        "type": "object[]",
-        "required": true,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      },
-      {
-        "name": "groups[].group_id",
-        "in": "BODY",
-        "type": "string",
-        "required": true,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      },
-      {
-        "name": "groups[].group_name",
-        "in": "BODY",
-        "type": "string",
-        "required": true,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      },
-      {
-        "name": "groups[].group_description",
-        "in": "BODY",
-        "type": "string",
-        "required": true,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      }
-    ],
-    "responses": [
-      {
-        "code": 200,
-        "examples": [
-          {
-            "data": "{\"groups\":{\"group_id\":\"123\",\"group_name\":\"Octocat admins\",\"group_description\":\"The people who configure your octoworld.\"}}"
-          }
-        ]
-      }
-    ],
     "renamed": null
   }
 ]
