@@ -1,17 +1,40 @@
 import { EndpointsDefaultsAndDecorations } from "../types";
 const Endpoints: EndpointsDefaultsAndDecorations = {
   orgs: {
-    listCredentialAuthorizations: ["GET /orgs/:org/credential-authorizations"],
+    listCredentialAuthorizations: [
+      "GET /orgs/:org/credential-authorizations",
+      {},
+      { renamed: ["orgs", "listSamlSsoAuthorizations"] },
+    ],
+    listSamlSsoAuthorizations: ["GET /orgs/:org/credential-authorizations"],
     removeCredentialAuthorization: [
+      "DELETE /orgs/:org/credential-authorizations/:credential_id",
+      {},
+      { renamed: ["orgs", "removeSamlSsoAuthorization"] },
+    ],
+    removeSamlSsoAuthorization: [
       "DELETE /orgs/:org/credential-authorizations/:credential_id",
     ],
   },
   scim: {
+    deleteUserFromOrg: [
+      "DELETE /scim/v2/organizations/:org/Users/:scim_user_id",
+    ],
     getProvisioningDetailsForUser: [
+      "GET /scim/v2/organizations/:org/Users/:scim_user_id",
+      {},
+      { renamed: ["scim", "getProvisioningInformationForUser"] },
+    ],
+    getProvisioningInformationForUser: [
       "GET /scim/v2/organizations/:org/Users/:scim_user_id",
     ],
     listProvisionedIdentities: ["GET /scim/v2/organizations/:org/Users"],
-    provisionAndInviteUsers: ["POST /scim/v2/organizations/:org/Users"],
+    provisionAndInviteUser: ["POST /scim/v2/organizations/:org/Users"],
+    provisionAndInviteUsers: [
+      "POST /scim/v2/organizations/:org/Users",
+      {},
+      { renamed: ["scim", "provisionAndInviteUser"] },
+    ],
     provisionInviteUsers: [
       "POST /scim/v2/organizations/:org/Users",
       {},
@@ -19,9 +42,19 @@ const Endpoints: EndpointsDefaultsAndDecorations = {
     ],
     removeUserFromOrg: [
       "DELETE /scim/v2/organizations/:org/Users/:scim_user_id",
+      {},
+      { renamed: ["scim", "deleteUserFromOrg"] },
     ],
     replaceProvisionedUserInformation: [
       "PUT /scim/v2/organizations/:org/Users/:scim_user_id",
+      {},
+      { renamed: ["scim", "setInformationForProvisionedUser"] },
+    ],
+    setInformationForProvisionedUser: [
+      "PUT /scim/v2/organizations/:org/Users/:scim_user_id",
+    ],
+    updateAttributeForUser: [
+      "PATCH /scim/v2/organizations/:org/Users/:scim_user_id",
     ],
     updateProvisionedOrgMembership: [
       "PUT /scim/v2/organizations/:org/Users/:scim_user_id",
@@ -30,6 +63,8 @@ const Endpoints: EndpointsDefaultsAndDecorations = {
     ],
     updateUserAttribute: [
       "PATCH /scim/v2/organizations/:org/Users/:scim_user_id",
+      {},
+      { renamed: ["scim", "updateAttributeForUser"] },
     ],
   },
   teams: {
