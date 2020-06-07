@@ -1,11 +1,11 @@
 [
   {
     "scope": "orgs",
-    "id": "listCredentialAuthorizations",
+    "id": "listSamlSsoAuthorizations",
     "method": "GET",
     "url": "/orgs/{org}/credential-authorizations",
     "isDeprecated": false,
-    "documentationUrl": "https://developer.github.com/v3/orgs/#list-credential-authorizations-for-an-organization",
+    "documentationUrl": "https://developer.github.com/v3/orgs/#list-saml-sso-authorizations-for-an-organization",
     "previews": [],
     "headers": [],
     "parameters": [
@@ -36,11 +36,57 @@
   },
   {
     "scope": "orgs",
-    "id": "removeCredentialAuthorization",
+    "id": "listCredentialAuthorizations",
+    "method": "GET",
+    "url": "/orgs/{org}/credential-authorizations",
+    "isDeprecated": false,
+    "documentationUrl": "https://developer.github.com/v3/orgs/#list-saml-sso-authorizations-for-an-organization",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "org",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "[{\"login\":\"octocat\",\"credential_id\":\"161195\",\"credential_type\":\"personal access token\",\"token_last_eight\":\"71c3fc11\",\"credential_authorized_at\":\"2011-01-26T19:06:43Z\",\"scopes\":[\"user\",\"repo\"]},{\"login\":\"hubot\",\"credential_id\":\"161196\",\"credential_type\":\"personal access token\",\"token_last_eight\":\"12345678\",\"credential_authorized_at\":\"2019-03-29T19:06:43Z\",\"scopes\":[\"repo\"]}]"
+          }
+        ]
+      }
+    ],
+    "renamed": {
+      "before": {
+        "scope": "orgs",
+        "id": "listCredentialAuthorizations"
+      },
+      "after": {
+        "scope": "orgs",
+        "id": "listSamlSsoAuthorizations"
+      },
+      "date": "2020-06-04",
+      "note": "\"orgs/list-credential-authorizations\" operation ID is now \"orgs/list-saml-sso-authorizations\""
+    }
+  },
+  {
+    "scope": "orgs",
+    "id": "removeSamlSsoAuthorization",
     "method": "DELETE",
     "url": "/orgs/{org}/credential-authorizations/{credential_id}",
     "isDeprecated": false,
-    "documentationUrl": "https://developer.github.com/v3/orgs/#remove-a-credential-authorization-for-an-organization",
+    "documentationUrl": "https://developer.github.com/v3/orgs/#remove-a-saml-sso-authorization-for-an-organization",
     "previews": [],
     "headers": [],
     "parameters": [
@@ -71,6 +117,55 @@
     ],
     "responses": [],
     "renamed": null
+  },
+  {
+    "scope": "orgs",
+    "id": "removeCredentialAuthorization",
+    "method": "DELETE",
+    "url": "/orgs/{org}/credential-authorizations/{credential_id}",
+    "isDeprecated": false,
+    "documentationUrl": "https://developer.github.com/v3/orgs/#remove-a-saml-sso-authorization-for-an-organization",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "org",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "credential_id",
+        "in": "PATH",
+        "type": "integer",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [],
+    "renamed": {
+      "before": {
+        "scope": "orgs",
+        "id": "removeCredentialAuthorization"
+      },
+      "after": {
+        "scope": "orgs",
+        "id": "removeSamlSsoAuthorization"
+      },
+      "date": "2020-06-04",
+      "note": "\"orgs/remove-credential-authorization\" operation ID is now \"orgs/remove-saml-sso-authorization\""
+    }
   },
   {
     "scope": "teams",
@@ -279,7 +374,7 @@
     "method": "GET",
     "url": "/scim/v2/organizations/{org}/Users",
     "isDeprecated": false,
-    "documentationUrl": "https://developer.github.com/v3/scim/#get-a-list-of-provisioned-identities",
+    "documentationUrl": "https://developer.github.com/v3/scim/#list-scim-provisioned-identities",
     "previews": [],
     "headers": [],
     "parameters": [
@@ -349,11 +444,11 @@
   },
   {
     "scope": "scim",
-    "id": "provisionAndInviteUsers",
+    "id": "provisionAndInviteUser",
     "method": "POST",
     "url": "/scim/v2/organizations/{org}/Users",
     "isDeprecated": false,
-    "documentationUrl": "https://developer.github.com/v3/scim/#provision-and-invite-users",
+    "documentationUrl": "https://developer.github.com/v3/scim/#provision-and-invite-a-scim-user",
     "previews": [],
     "headers": [],
     "parameters": [
@@ -388,7 +483,7 @@
     "method": "POST",
     "url": "/scim/v2/organizations/{org}/Users",
     "isDeprecated": false,
-    "documentationUrl": "https://developer.github.com/v3/scim/#provision-and-invite-users",
+    "documentationUrl": "https://developer.github.com/v3/scim/#provision-and-invite-a-scim-user",
     "previews": [],
     "headers": [],
     "parameters": [
@@ -430,11 +525,57 @@
   },
   {
     "scope": "scim",
-    "id": "getProvisioningDetailsForUser",
+    "id": "provisionAndInviteUsers",
+    "method": "POST",
+    "url": "/scim/v2/organizations/{org}/Users",
+    "isDeprecated": false,
+    "documentationUrl": "https://developer.github.com/v3/scim/#provision-and-invite-a-scim-user",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "org",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 201,
+        "examples": [
+          {
+            "data": "{\"schemas\":[\"urn:ietf:params:scim:schemas:core:2.0:User\"],\"id\":\"edefdfedf-050c-11e7-8d32\",\"externalId\":\"a7d0f98382\",\"userName\":\"mona.octocat@okta.example.com\",\"name\":{\"givenName\":\"Mona\",\"familyName\":\"Octocat\"},\"emails\":[{\"value\":\"mona.octocat@okta.example.com\",\"type\":\"work\",\"primary\":true}],\"active\":true,\"meta\":{\"resourceType\":\"User\",\"created\":\"2017-03-09T16:11:13-05:00\",\"lastModified\":\"2017-03-09T16:11:13-05:00\",\"location\":\"https://api.github.com/scim/v2/organizations/octo-org/Users/edefdfedf-050c-11e7-8d32\"}}"
+          }
+        ]
+      }
+    ],
+    "renamed": {
+      "before": {
+        "scope": "scim",
+        "id": "provisionAndInviteUsers"
+      },
+      "after": {
+        "scope": "scim",
+        "id": "provisionAndInviteUser"
+      },
+      "date": "2020-06-04",
+      "note": "\"scim/provision-and-invite-users\" operation ID is now \"scim/provision-and-invite-user\""
+    }
+  },
+  {
+    "scope": "scim",
+    "id": "getProvisioningInformationForUser",
     "method": "GET",
     "url": "/scim/v2/organizations/{org}/Users/{scim_user_id}",
     "isDeprecated": false,
-    "documentationUrl": "https://developer.github.com/v3/scim/#get-provisioning-details-for-a-single-user",
+    "documentationUrl": "https://developer.github.com/v3/scim/#get-scim-provisioning-information-for-a-user",
     "previews": [],
     "headers": [],
     "parameters": [
@@ -489,11 +630,81 @@
   },
   {
     "scope": "scim",
-    "id": "replaceProvisionedUserInformation",
+    "id": "getProvisioningDetailsForUser",
+    "method": "GET",
+    "url": "/scim/v2/organizations/{org}/Users/{scim_user_id}",
+    "isDeprecated": false,
+    "documentationUrl": "https://developer.github.com/v3/scim/#get-scim-provisioning-information-for-a-user",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "org",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "scim_user_id",
+        "in": "PATH",
+        "type": "integer",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "external_identity_guid",
+        "in": null,
+        "type": null,
+        "required": null,
+        "enum": null,
+        "allowNull": null,
+        "mapToData": null,
+        "validation": null,
+        "alias": "scim_user_id",
+        "deprecated": true
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "{\"schemas\":[\"urn:ietf:params:scim:schemas:core:2.0:User\"],\"id\":\"edefdfedf-050c-11e7-8d32\",\"externalId\":\"a7d0f98382\",\"userName\":\"mona.octocat@okta.example.com\",\"name\":{\"givenName\":\"Mona\",\"familyName\":\"Octocat\"},\"emails\":[{\"value\":\"mona.octocat@okta.example.com\",\"type\":\"work\",\"primary\":true}],\"active\":true,\"meta\":{\"resourceType\":\"User\",\"created\":\"2017-03-09T16:11:13-05:00\",\"lastModified\":\"2017-03-09T16:11:13-05:00\",\"location\":\"https://api.github.com/scim/v2/organizations/octo-org/Users/edefdfedf-050c-11e7-8d32\"}}"
+          }
+        ]
+      }
+    ],
+    "renamed": {
+      "before": {
+        "scope": "scim",
+        "id": "getProvisioningDetailsForUser"
+      },
+      "after": {
+        "scope": "scim",
+        "id": "getProvisioningInformationForUser"
+      },
+      "date": "2020-06-04",
+      "note": "\"scim/get-provisioning-details-for-user\" operation ID is now \"scim/get-provisioning-information-for-user\""
+    }
+  },
+  {
+    "scope": "scim",
+    "id": "setInformationForProvisionedUser",
     "method": "PUT",
     "url": "/scim/v2/organizations/{org}/Users/{scim_user_id}",
     "isDeprecated": false,
-    "documentationUrl": "https://developer.github.com/v3/scim/#replace-a-provisioned-users-information",
+    "documentationUrl": "https://developer.github.com/v3/scim/#set-scim-information-for-a-provisioned-user",
     "previews": [],
     "headers": [],
     "parameters": [
@@ -552,7 +763,7 @@
     "method": "PUT",
     "url": "/scim/v2/organizations/{org}/Users/{scim_user_id}",
     "isDeprecated": false,
-    "documentationUrl": "https://developer.github.com/v3/scim/#replace-a-provisioned-users-information",
+    "documentationUrl": "https://developer.github.com/v3/scim/#set-scim-information-for-a-provisioned-user",
     "previews": [],
     "headers": [],
     "parameters": [
@@ -618,11 +829,81 @@
   },
   {
     "scope": "scim",
-    "id": "updateUserAttribute",
+    "id": "replaceProvisionedUserInformation",
+    "method": "PUT",
+    "url": "/scim/v2/organizations/{org}/Users/{scim_user_id}",
+    "isDeprecated": false,
+    "documentationUrl": "https://developer.github.com/v3/scim/#set-scim-information-for-a-provisioned-user",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "org",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "scim_user_id",
+        "in": "PATH",
+        "type": "integer",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "external_identity_guid",
+        "in": null,
+        "type": null,
+        "required": null,
+        "enum": null,
+        "allowNull": null,
+        "mapToData": null,
+        "validation": null,
+        "alias": "scim_user_id",
+        "deprecated": true
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "{\"schemas\":[\"urn:ietf:params:scim:schemas:core:2.0:User\"],\"id\":\"edefdfedf-050c-11e7-8d32\",\"externalId\":\"a7d0f98382\",\"userName\":\"mona.octocat@okta.example.com\",\"name\":{\"givenName\":\"Mona\",\"familyName\":\"Octocat\"},\"emails\":[{\"value\":\"mona.octocat@okta.example.com\",\"type\":\"work\",\"primary\":true}],\"active\":true,\"meta\":{\"resourceType\":\"User\",\"created\":\"2017-03-09T16:11:13-05:00\",\"lastModified\":\"2017-03-09T16:11:13-05:00\",\"location\":\"https://api.github.com/scim/v2/organizations/octo-org/Users/edefdfedf-050c-11e7-8d32\"}}"
+          }
+        ]
+      }
+    ],
+    "renamed": {
+      "before": {
+        "scope": "scim",
+        "id": "replaceProvisionedUserInformation"
+      },
+      "after": {
+        "scope": "scim",
+        "id": "setInformationForProvisionedUser"
+      },
+      "date": "2020-06-04",
+      "note": "\"scim/replace-provisioned-user-information\" operation ID is now \"scim/set-information-for-provisioned-user\""
+    }
+  },
+  {
+    "scope": "scim",
+    "id": "updateAttributeForUser",
     "method": "PATCH",
     "url": "/scim/v2/organizations/{org}/Users/{scim_user_id}",
     "isDeprecated": false,
-    "documentationUrl": "https://developer.github.com/v3/scim/#update-a-user-attribute",
+    "documentationUrl": "https://developer.github.com/v3/scim/#update-an-attribute-for-a-scim-user",
     "previews": [],
     "headers": [],
     "parameters": [
@@ -677,11 +958,81 @@
   },
   {
     "scope": "scim",
-    "id": "removeUserFromOrg",
+    "id": "updateUserAttribute",
+    "method": "PATCH",
+    "url": "/scim/v2/organizations/{org}/Users/{scim_user_id}",
+    "isDeprecated": false,
+    "documentationUrl": "https://developer.github.com/v3/scim/#update-an-attribute-for-a-scim-user",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "org",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "scim_user_id",
+        "in": "PATH",
+        "type": "integer",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "external_identity_guid",
+        "in": null,
+        "type": null,
+        "required": null,
+        "enum": null,
+        "allowNull": null,
+        "mapToData": null,
+        "validation": null,
+        "alias": "scim_user_id",
+        "deprecated": true
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "{\"schemas\":[\"urn:ietf:params:scim:schemas:core:2.0:User\"],\"id\":\"edefdfedf-050c-11e7-8d32\",\"externalId\":\"a7d0f98382\",\"userName\":\"mona.octocat@okta.example.com\",\"name\":{\"givenName\":\"Monalisa\",\"familyName\":\"Octocat\"},\"emails\":[{\"value\":\"mona.octocat@okta.example.com\",\"type\":\"work\",\"primary\":true},{\"value\":\"monalisa@octocat.github.com\",\"type\":\"home\"}],\"active\":true,\"meta\":{\"resourceType\":\"User\",\"created\":\"2017-03-09T16:11:13-05:00\",\"lastModified\":\"2017-03-09T16:11:13-05:00\",\"location\":\"https://api.github.com/scim/v2/organizations/octo-org/Users/edefdfedf-050c-11e7-8d32\"}}"
+          }
+        ]
+      }
+    ],
+    "renamed": {
+      "before": {
+        "scope": "scim",
+        "id": "updateUserAttribute"
+      },
+      "after": {
+        "scope": "scim",
+        "id": "updateAttributeForUser"
+      },
+      "date": "2020-06-04",
+      "note": "\"scim/update-user-attribute\" operation ID is now \"scim/update-attribute-for-user\""
+    }
+  },
+  {
+    "scope": "scim",
+    "id": "deleteUserFromOrg",
     "method": "DELETE",
     "url": "/scim/v2/organizations/{org}/Users/{scim_user_id}",
     "isDeprecated": false,
-    "documentationUrl": "https://developer.github.com/v3/scim/#remove-a-user-from-the-organization",
+    "documentationUrl": "https://developer.github.com/v3/scim/#delete-a-scim-user-from-an-organization",
     "previews": [],
     "headers": [],
     "parameters": [
@@ -724,5 +1075,66 @@
     ],
     "responses": [],
     "renamed": null
+  },
+  {
+    "scope": "scim",
+    "id": "removeUserFromOrg",
+    "method": "DELETE",
+    "url": "/scim/v2/organizations/{org}/Users/{scim_user_id}",
+    "isDeprecated": false,
+    "documentationUrl": "https://developer.github.com/v3/scim/#delete-a-scim-user-from-an-organization",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "org",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "scim_user_id",
+        "in": "PATH",
+        "type": "integer",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "external_identity_guid",
+        "in": null,
+        "type": null,
+        "required": null,
+        "enum": null,
+        "allowNull": null,
+        "mapToData": null,
+        "validation": null,
+        "alias": "scim_user_id",
+        "deprecated": true
+      }
+    ],
+    "responses": [],
+    "renamed": {
+      "before": {
+        "scope": "scim",
+        "id": "removeUserFromOrg"
+      },
+      "after": {
+        "scope": "scim",
+        "id": "deleteUserFromOrg"
+      },
+      "date": "2020-06-04",
+      "note": "\"scim/remove-user-from-org\" operation ID is now \"scim/delete-user-from-org\""
+    }
   }
 ]
