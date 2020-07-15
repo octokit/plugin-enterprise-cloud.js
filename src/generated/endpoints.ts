@@ -1,5 +1,16 @@
 import { EndpointsDefaultsAndDecorations } from "../types";
 const Endpoints: EndpointsDefaultsAndDecorations = {
+  billing: {
+    getGithubActionsBillingGhe: [
+      "GET /enterprises/:enterprise_id/settings/billing/actions",
+    ],
+    getGithubPackagesBillingGhe: [
+      "GET /enterprises/:enterprise_id/settings/billing/packages",
+    ],
+    getSharedStorageBillingGhe: [
+      "GET /enterprises/:enterprise_id/settings/billing/shared-storage",
+    ],
+  },
   orgs: {
     listCredentialAuthorizations: [
       "GET /orgs/:org/credential-authorizations",
