@@ -79,6 +79,15 @@ const Endpoints: EndpointsDefaultsAndDecorations = {
     ],
   },
   teams: {
+    createOrUpdateIdPGroupConnections: [
+      "PATCH /teams/:team_id/team-sync/group-mappings",
+      {},
+      {
+        deprecated:
+          "octokit.scim.createOrUpdateIdPGroupConnections() is deprecated, see https://developer.github.com/v3/teams/team_sync/#create-or-update-idp-group-connections-legacy",
+        renamed: ["teams", "createOrUpdateIdPGroupConnectionsLegacy"],
+      },
+    ],
     createOrUpdateIdPGroupConnectionsInOrg: [
       "PATCH /orgs/:org/teams/:team_slug/team-sync/group-mappings",
     ],
