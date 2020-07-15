@@ -46,11 +46,6 @@ const Endpoints: EndpointsDefaultsAndDecorations = {
       {},
       { renamed: ["scim", "provisionAndInviteUser"] },
     ],
-    provisionInviteUsers: [
-      "POST /scim/v2/organizations/:org/Users",
-      {},
-      { renamed: ["scim", "provisionAndInviteUsers"] },
-    ],
     removeUserFromOrg: [
       "DELETE /scim/v2/organizations/:org/Users/:scim_user_id",
       {},
