@@ -99,6 +99,15 @@ const Endpoints: EndpointsDefaultsAndDecorations = {
           "octokit.scim.createOrUpdateIdPGroupConnectionsLegacy() is deprecated, see https://developer.github.com/v3/teams/team_sync/#create-or-update-idp-group-connections-legacy",
       },
     ],
+    listIdPGroupsFor: [
+      "GET /teams/:team_id/team-sync/group-mappings",
+      {},
+      {
+        deprecated:
+          "octokit.scim.listIdPGroupsFor() is deprecated, see https://developer.github.com/v3/teams/team_sync/#list-idp-groups-for-a-team-legacy",
+        renamed: ["teams", "listIdPGroupsForLegacy"],
+      },
+    ],
     listIdPGroupsForOrg: ["GET /orgs/:org/team-sync/groups"],
     listIdPGroupsInOrg: [
       "GET /orgs/:org/teams/:team_slug/team-sync/group-mappings",
