@@ -7,9 +7,11 @@ if (!process.env.VERSION) {
   throw new Error("VERSION environment variable must be set");
 }
 
+const version = process.env.VERSION.replace(/^v/, "");
+
 const QUERY = `
-query ($version: String) {
-  endpoints(version: $version, filter: { isLegacy: false, isGithubCloudOnly: true }) {
+query ($version: String!, $ignoreChangesBefore: String!) {
+  endpoints(version: $version, ignoreChangesBefore: $ignoreChangesBefore, filter: { isGithubCloudOnly: true }) {
     scope(format: CAMELCASE)
     id(format: CAMELCASE)
     method
@@ -60,8 +62,9 @@ main();
 
 async function main() {
   const { endpoints } = await graphql(QUERY, {
-    url: "https://octokit-routes-graphql-server.now.sh/",
-    version: process.env.VERSION
+    url: "https://github-openapi-graphql-server.vercel.app/api/graphql",
+    version: process.env.VERSION,
+    ignoreChangesBefore: "2019-01-01",
   });
 
   writeFileSync(
