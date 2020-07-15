@@ -108,6 +108,14 @@ const Endpoints: EndpointsDefaultsAndDecorations = {
         renamed: ["teams", "listIdPGroupsForLegacy"],
       },
     ],
+    listIdPGroupsForLegacy: [
+      "GET /teams/:team_id/team-sync/group-mappings",
+      {},
+      {
+        deprecated:
+          "octokit.scim.listIdPGroupsForLegacy() is deprecated, see https://developer.github.com/v3/teams/team_sync/#list-idp-groups-for-a-team-legacy",
+      },
+    ],
     listIdPGroupsForOrg: ["GET /orgs/:org/team-sync/groups"],
     listIdPGroupsInOrg: [
       "GET /orgs/:org/teams/:team_slug/team-sync/group-mappings",
