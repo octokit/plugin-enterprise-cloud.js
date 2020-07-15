@@ -55,6 +55,7 @@ export function enterpriseCloud(octokit: Octokit) {
   }
 }
 
+/* istanbul ignore next */
 function deprecate(
   octokit: Octokit,
   deprecation: string,

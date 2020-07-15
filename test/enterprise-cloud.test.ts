@@ -59,8 +59,8 @@ describe("enterpriseCloud plugin", () => {
       },
     });
 
-    // See https://developer.github.com/v3/scim/#provision-and-invite-users
-    const { data } = await octokit.scim.provisionInviteUsers({
+    // See https://developer.github.com/v3/scim/#provision-and-invite-a-scim-user
+    const { data } = await octokit.scim.provisionAndInviteUser({
       org: "octokit",
       schemas: ["urn:ietf:params:scim:schemas:core:2.0:User"],
       userName: "mona.octocat@okta.example.com",
