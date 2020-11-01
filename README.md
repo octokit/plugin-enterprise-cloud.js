@@ -15,12 +15,12 @@
 Browsers
 </th><td width=100%>
 
-Load `@octokit/plugin-enterprise-cloud` and [`@octokit/core`](https://github.com/octokit/core.js) (or core-compatible module) directly from [cdn.pika.dev](https://cdn.pika.dev)
+Load `@octokit/plugin-enterprise-cloud` and [`@octokit/core`](https://github.com/octokit/core.js) (or core-compatible module) directly from [cdn.skypack.dev](https://cdn.skypack.dev)
 
 ```html
 <script type="module">
-  import { Octokit } from "https://cdn.pika.dev/@octokit/core";
-  import { enterpriseCloud } from "https://cdn.pika.dev/@octokit/plugin-enterprise-cloud";
+  import { Octokit } from "https://cdn.skypack.dev/@octokit/core";
+  import { enterpriseCloud } from "https://cdn.skypack.dev/@octokit/plugin-enterprise-cloud";
 </script>
 ```
 
