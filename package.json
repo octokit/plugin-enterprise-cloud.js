@@ -4,7 +4,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "description": "Octokit plugin for GitHub’s Enterprise Cloud REST APIs",
+  "description": "Octokit plugin for GitHubâs Enterprise Cloud REST APIs",
   "scripts": {
     "build": "pika build",
     "lint": "prettier --check '{src,test,scripts}/*' README.md package.json",
@@ -15,10 +15,7 @@
     "update-endpoints:fetch-json": "node scripts/update-endpoints/fetch-json",
     "update-endpoints:code": "node scripts/update-endpoints/code"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/octokit/plugin-enterprise-cloud.js.git"
-  },
+  "repository": "github:octokit/plugin-enterprise-cloud.js",
   "keywords": [
     "octokit",
     "github",
@@ -29,10 +26,6 @@
   ],
   "author": "Gregor Martynus (https://github.com/gr2m)",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/octokit/plugin-enterprise-cloud.js/issues"
-  },
-  "homepage": "https://github.com/octokit/plugin-enterprise-cloud.js#readme",
   "dependencies": {
     "@octokit/types": "^6.0.0"
   },
