@@ -5,7 +5,7 @@
 [![@latest](https://img.shields.io/npm/v/@octokit/plugin-enterprise-cloud.svg)](https://www.npmjs.com/package/@octokit/plugin-enterprise-cloud)
 [![Build Status](https://github.com/octokit/plugin-enterprise-cloud.js/workflows/Test/badge.svg)](https://github.com/octokit/plugin-enterprise-cloud.js/actions?workflow=Test)
 
-`@octokit/rest` does not include endpoint methods for Enterprise Cloud, because it is available only to [organizations on GitHub Business Cloud](https://help.github.com/articles/organization-billing-plans/#business-plan). Learn more about [About enterprise accounts](https://help.github.com/en/github/setting-up-and-managing-your-enterprise-account/about-enterprise-accounts).
+`@octokit/rest` does not include endpoint methods for Enterprise Cloud, because it is available only to [organizations on GitHub Enterprise Cloud](https://docs.github.com/en/github/getting-started-with-github/githubs-products#github-enterprise). Learn more about [About enterprise accounts](https://docs.github.com/en/github/setting-up-and-managing-your-enterprise/about-enterprise-accounts).
 
 ## Usage
 
