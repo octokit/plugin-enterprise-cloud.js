@@ -39,11 +39,22 @@ const Endpoints: EndpointsDefaultsAndDecorations = {
       "PATCH /orgs/:org/actions/runner-groups/:runner_group_id",
     ],
   },
+  billing: {
+    getGithubActionsBillingGhe: [
+      "GET /enterprises/:enterprise/settings/billing/actions",
+    ],
+    getGithubPackagesBillingGhe: [
+      "GET /enterprises/:enterprise/settings/billing/packages",
+    ],
+    getSharedStorageBillingGhe: [
+      "GET /enterprises/:enterprise/settings/billing/shared-storage",
+    ],
+  },
   enterpriseAdmin: {
     addOrgAccessToSelfHostedRunnerGroupInEnterprise: [
       "PUT /enterprises/:enterprise/actions/runner-groups/:runner_group_id/organizations/:org_id",
     ],
-    addSelfHostedRunnerToRunnerGroupForEnterprise: [
+    addSelfHostedRunnerToGroupForEnterprise: [
       "PUT /enterprises/:enterprise/actions/runner-groups/:runner_group_id/runners/:runner_id",
     ],
     createRegistrationTokenForEnterprise: [
@@ -67,12 +78,7 @@ const Endpoints: EndpointsDefaultsAndDecorations = {
     deleteUserFromEnterprise: [
       "DELETE /scim/v2/enterprises/:enterprise/Users/:scim_user_id",
     ],
-    getGithubActionsBillingGhe: [
-      "GET /enterprises/:enterprise/settings/billing/actions",
-    ],
-    getGithubPackagesBillingGhe: [
-      "GET /enterprises/:enterprise/settings/billing/packages",
-    ],
+    getAuditLog: ["GET /enterprises/:enterprise/audit-log"],
     getProvisioningInformationForEnterpriseGroup: [
       "GET /scim/v2/enterprises/:enterprise/Groups/:scim_group_id",
     ],
@@ -84,9 +90,6 @@ const Endpoints: EndpointsDefaultsAndDecorations = {
     ],
     getSelfHostedRunnerGroupForEnterprise: [
       "GET /enterprises/:enterprise/actions/runner-groups/:runner_group_id",
-    ],
-    getSharedStorageBillingGhe: [
-      "GET /enterprises/:enterprise/settings/billing/shared-storage",
     ],
     listOrgAccessToSelfHostedRunnerGroupInEnterprise: [
       "GET /enterprises/:enterprise/actions/runner-groups/:runner_group_id/organizations",
@@ -130,7 +133,7 @@ const Endpoints: EndpointsDefaultsAndDecorations = {
     setOrgAccessToSelfHostedRunnerGroupInEnterprise: [
       "PUT /enterprises/:enterprise/actions/runner-groups/:runner_group_id/organizations",
     ],
-    setSelfHostedInGroupForEnterprise: [
+    setSelfHostedRunnersInGroupForEnterprise: [
       "PUT /enterprises/:enterprise/actions/runner-groups/:runner_group_id/runners",
     ],
     updateAttributeForEnterpriseGroup: [
@@ -144,17 +147,8 @@ const Endpoints: EndpointsDefaultsAndDecorations = {
     ],
   },
   orgs: {
-    listCredentialAuthorizations: [
-      "GET /orgs/:org/credential-authorizations",
-      {},
-      { renamed: ["orgs", "listSamlSsoAuthorizations"] },
-    ],
+    getAuditLog: ["GET /orgs/:org/audit-log"],
     listSamlSsoAuthorizations: ["GET /orgs/:org/credential-authorizations"],
-    removeCredentialAuthorization: [
-      "DELETE /orgs/:org/credential-authorizations/:credential_id",
-      {},
-      { renamed: ["orgs", "removeSamlSsoAuthorization"] },
-    ],
     removeSamlSsoAuthorization: [
       "DELETE /orgs/:org/credential-authorizations/:credential_id",
     ],
@@ -163,88 +157,24 @@ const Endpoints: EndpointsDefaultsAndDecorations = {
     deleteUserFromOrg: [
       "DELETE /scim/v2/organizations/:org/Users/:scim_user_id",
     ],
-    getProvisioningDetailsForUser: [
-      "GET /scim/v2/organizations/:org/Users/:scim_user_id",
-      {},
-      { renamed: ["scim", "getProvisioningInformationForUser"] },
-    ],
     getProvisioningInformationForUser: [
       "GET /scim/v2/organizations/:org/Users/:scim_user_id",
     ],
     listProvisionedIdentities: ["GET /scim/v2/organizations/:org/Users"],
     provisionAndInviteUser: ["POST /scim/v2/organizations/:org/Users"],
-    provisionAndInviteUsers: [
-      "POST /scim/v2/organizations/:org/Users",
-      {},
-      { renamed: ["scim", "provisionAndInviteUser"] },
-    ],
-    removeUserFromOrg: [
-      "DELETE /scim/v2/organizations/:org/Users/:scim_user_id",
-      {},
-      { renamed: ["scim", "deleteUserFromOrg"] },
-    ],
-    replaceProvisionedUserInformation: [
-      "PUT /scim/v2/organizations/:org/Users/:scim_user_id",
-      {},
-      { renamed: ["scim", "setInformationForProvisionedUser"] },
-    ],
     setInformationForProvisionedUser: [
       "PUT /scim/v2/organizations/:org/Users/:scim_user_id",
     ],
     updateAttributeForUser: [
       "PATCH /scim/v2/organizations/:org/Users/:scim_user_id",
     ],
-    updateProvisionedOrgMembership: [
-      "PUT /scim/v2/organizations/:org/Users/:scim_user_id",
-      {},
-      { renamed: ["scim", "replaceProvisionedUserInformation"] },
-    ],
-    updateUserAttribute: [
-      "PATCH /scim/v2/organizations/:org/Users/:scim_user_id",
-      {},
-      { renamed: ["scim", "updateAttributeForUser"] },
-    ],
   },
   teams: {
-    createOrUpdateIdPGroupConnections: [
-      "PATCH /teams/:team_id/team-sync/group-mappings",
-      {},
-      {
-        deprecated:
-          "octokit.scim.createOrUpdateIdPGroupConnections() is deprecated, see https://developer.github.com/v3/teams/team_sync/#create-or-update-idp-group-connections-legacy",
-        renamed: ["teams", "createOrUpdateIdPGroupConnectionsLegacy"],
-      },
-    ],
-    createOrUpdateIdPGroupConnectionsInOrg: [
+    createOrUpdateIdpGroupConnectionsInOrg: [
       "PATCH /orgs/:org/teams/:team_slug/team-sync/group-mappings",
     ],
-    createOrUpdateIdPGroupConnectionsLegacy: [
-      "PATCH /teams/:team_id/team-sync/group-mappings",
-      {},
-      {
-        deprecated:
-          "octokit.scim.createOrUpdateIdPGroupConnectionsLegacy() is deprecated, see https://developer.github.com/v3/teams/team_sync/#create-or-update-idp-group-connections-legacy",
-      },
-    ],
-    listIdPGroupsFor: [
-      "GET /teams/:team_id/team-sync/group-mappings",
-      {},
-      {
-        deprecated:
-          "octokit.scim.listIdPGroupsFor() is deprecated, see https://developer.github.com/v3/teams/team_sync/#list-idp-groups-for-a-team-legacy",
-        renamed: ["teams", "listIdPGroupsForLegacy"],
-      },
-    ],
-    listIdPGroupsForLegacy: [
-      "GET /teams/:team_id/team-sync/group-mappings",
-      {},
-      {
-        deprecated:
-          "octokit.scim.listIdPGroupsForLegacy() is deprecated, see https://developer.github.com/v3/teams/team_sync/#list-idp-groups-for-a-team-legacy",
-      },
-    ],
-    listIdPGroupsForOrg: ["GET /orgs/:org/team-sync/groups"],
-    listIdPGroupsInOrg: [
+    listIdpGroupsForOrg: ["GET /orgs/:org/team-sync/groups"],
+    listIdpGroupsInOrg: [
       "GET /orgs/:org/teams/:team_slug/team-sync/group-mappings",
     ],
   },
