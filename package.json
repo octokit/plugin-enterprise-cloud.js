@@ -104,8 +104,15 @@
     "extends": [
       "github>octokit/.github"
     ],
-    "excludePackageNames": [
-      "sort-keys"
+    "packageRules": [
+      {
+        "depTypeList": [
+          "dependencies"
+        ],
+        "excludePackageNames": [
+          "sort-keys"
+        ]
+      }
     ]
   }
 }
