@@ -1,7 +1,7 @@
 [
   {
     "scope": "actions",
-    "id": "add-repo-access-to-self-hosted-runner-group-in-org",
+    "id": "addRepoAccessToSelfHostedRunnerGroupInOrg",
     "method": "PUT",
     "url": "/orgs/{org}/actions/runner-groups/{runner_group_id}/repositories/{repository_id}",
     "isDeprecated": false,
@@ -56,7 +56,7 @@
   },
   {
     "scope": "actions",
-    "id": "add-self-hosted-runner-to-group-for-org",
+    "id": "addSelfHostedRunnerToGroupForOrg",
     "method": "PUT",
     "url": "/orgs/{org}/actions/runner-groups/{runner_group_id}/runners/{runner_id}",
     "isDeprecated": false,
@@ -111,7 +111,7 @@
   },
   {
     "scope": "actions",
-    "id": "create-self-hosted-runner-group-for-org",
+    "id": "createSelfHostedRunnerGroupForOrg",
     "method": "POST",
     "url": "/orgs/{org}/actions/runner-groups",
     "isDeprecated": false,
@@ -198,7 +198,7 @@
   },
   {
     "scope": "actions",
-    "id": "delete-self-hosted-runner-group-from-org",
+    "id": "deleteSelfHostedRunnerGroupFromOrg",
     "method": "DELETE",
     "url": "/orgs/{org}/actions/runner-groups/{runner_group_id}",
     "isDeprecated": false,
@@ -241,7 +241,7 @@
   },
   {
     "scope": "actions",
-    "id": "get-self-hosted-runner-group-for-org",
+    "id": "getSelfHostedRunnerGroupForOrg",
     "method": "GET",
     "url": "/orgs/{org}/actions/runner-groups/{runner_group_id}",
     "isDeprecated": false,
@@ -288,7 +288,7 @@
   },
   {
     "scope": "actions",
-    "id": "list-repo-access-to-self-hosted-runner-group-in-org",
+    "id": "listRepoAccessToSelfHostedRunnerGroupInOrg",
     "method": "GET",
     "url": "/orgs/{org}/actions/runner-groups/{runner_group_id}/repositories",
     "isDeprecated": false,
@@ -359,7 +359,7 @@
   },
   {
     "scope": "actions",
-    "id": "list-self-hosted-runner-groups-for-org",
+    "id": "listSelfHostedRunnerGroupsForOrg",
     "method": "GET",
     "url": "/orgs/{org}/actions/runner-groups",
     "isDeprecated": false,
@@ -418,7 +418,7 @@
   },
   {
     "scope": "actions",
-    "id": "list-self-hosted-runners-in-group-for-org",
+    "id": "listSelfHostedRunnersInGroupForOrg",
     "method": "GET",
     "url": "/orgs/{org}/actions/runner-groups/{runner_group_id}/runners",
     "isDeprecated": false,
@@ -489,7 +489,7 @@
   },
   {
     "scope": "actions",
-    "id": "remove-repo-access-to-self-hosted-runner-group-in-org",
+    "id": "removeRepoAccessToSelfHostedRunnerGroupInOrg",
     "method": "DELETE",
     "url": "/orgs/{org}/actions/runner-groups/{runner_group_id}/repositories/{repository_id}",
     "isDeprecated": false,
@@ -544,7 +544,7 @@
   },
   {
     "scope": "actions",
-    "id": "remove-self-hosted-runner-from-group-for-org",
+    "id": "removeSelfHostedRunnerFromGroupForOrg",
     "method": "DELETE",
     "url": "/orgs/{org}/actions/runner-groups/{runner_group_id}/runners/{runner_id}",
     "isDeprecated": false,
@@ -599,7 +599,7 @@
   },
   {
     "scope": "actions",
-    "id": "set-repo-access-to-self-hosted-runner-group-in-org",
+    "id": "setRepoAccessToSelfHostedRunnerGroupInOrg",
     "method": "PUT",
     "url": "/orgs/{org}/actions/runner-groups/{runner_group_id}/repositories",
     "isDeprecated": false,
@@ -654,7 +654,7 @@
   },
   {
     "scope": "actions",
-    "id": "set-self-hosted-runners-in-group-for-org",
+    "id": "setSelfHostedRunnersInGroupForOrg",
     "method": "PUT",
     "url": "/orgs/{org}/actions/runner-groups/{runner_group_id}/runners",
     "isDeprecated": false,
@@ -709,7 +709,7 @@
   },
   {
     "scope": "actions",
-    "id": "update-self-hosted-runner-group-for-org",
+    "id": "updateSelfHostedRunnerGroupForOrg",
     "method": "PATCH",
     "url": "/orgs/{org}/actions/runner-groups/{runner_group_id}",
     "isDeprecated": false,
@@ -784,7 +784,7 @@
   },
   {
     "scope": "billing",
-    "id": "get-github-actions-billing-ghe",
+    "id": "getGithubActionsBillingGhe",
     "method": "GET",
     "url": "/enterprises/{enterprise}/settings/billing/actions",
     "isDeprecated": false,
@@ -819,7 +819,7 @@
   },
   {
     "scope": "billing",
-    "id": "get-github-packages-billing-ghe",
+    "id": "getGithubPackagesBillingGhe",
     "method": "GET",
     "url": "/enterprises/{enterprise}/settings/billing/packages",
     "isDeprecated": false,
@@ -854,7 +854,7 @@
   },
   {
     "scope": "billing",
-    "id": "get-shared-storage-billing-ghe",
+    "id": "getSharedStorageBillingGhe",
     "method": "GET",
     "url": "/enterprises/{enterprise}/settings/billing/shared-storage",
     "isDeprecated": false,
@@ -888,8 +888,8 @@
     "renamed": null
   },
   {
-    "scope": "enterprise-admin",
-    "id": "add-org-access-to-self-hosted-runner-group-in-enterprise",
+    "scope": "enterpriseAdmin",
+    "id": "addOrgAccessToSelfHostedRunnerGroupInEnterprise",
     "method": "PUT",
     "url": "/enterprises/{enterprise}/actions/runner-groups/{runner_group_id}/organizations/{org_id}",
     "isDeprecated": false,
@@ -943,8 +943,8 @@
     "renamed": null
   },
   {
-    "scope": "enterprise-admin",
-    "id": "add-self-hosted-runner-to-group-for-enterprise",
+    "scope": "enterpriseAdmin",
+    "id": "addSelfHostedRunnerToGroupForEnterprise",
     "method": "PUT",
     "url": "/enterprises/{enterprise}/actions/runner-groups/{runner_group_id}/runners/{runner_id}",
     "isDeprecated": false,
@@ -998,8 +998,8 @@
     "renamed": null
   },
   {
-    "scope": "enterprise-admin",
-    "id": "create-registration-token-for-enterprise",
+    "scope": "enterpriseAdmin",
+    "id": "createRegistrationTokenForEnterprise",
     "method": "POST",
     "url": "/enterprises/{enterprise}/actions/runners/registration-token",
     "isDeprecated": false,
@@ -1033,8 +1033,8 @@
     "renamed": null
   },
   {
-    "scope": "enterprise-admin",
-    "id": "create-remove-token-for-enterprise",
+    "scope": "enterpriseAdmin",
+    "id": "createRemoveTokenForEnterprise",
     "method": "POST",
     "url": "/enterprises/{enterprise}/actions/runners/remove-token",
     "isDeprecated": false,
@@ -1068,8 +1068,8 @@
     "renamed": null
   },
   {
-    "scope": "enterprise-admin",
-    "id": "create-self-hosted-runner-group-for-enterprise",
+    "scope": "enterpriseAdmin",
+    "id": "createSelfHostedRunnerGroupForEnterprise",
     "method": "POST",
     "url": "/enterprises/{enterprise}/actions/runner-groups",
     "isDeprecated": false,
@@ -1154,8 +1154,8 @@
     "renamed": null
   },
   {
-    "scope": "enterprise-admin",
-    "id": "delete-scim-group-from-enterprise",
+    "scope": "enterpriseAdmin",
+    "id": "deleteScimGroupFromEnterprise",
     "method": "DELETE",
     "url": "/scim/v2/enterprises/{enterprise}/Groups/{scim_group_id}",
     "isDeprecated": false,
@@ -1197,8 +1197,8 @@
     "renamed": null
   },
   {
-    "scope": "enterprise-admin",
-    "id": "delete-self-hosted-runner-from-enterprise",
+    "scope": "enterpriseAdmin",
+    "id": "deleteSelfHostedRunnerFromEnterprise",
     "method": "DELETE",
     "url": "/enterprises/{enterprise}/actions/runners/{runner_id}",
     "isDeprecated": false,
@@ -1240,8 +1240,8 @@
     "renamed": null
   },
   {
-    "scope": "enterprise-admin",
-    "id": "delete-self-hosted-runner-group-from-enterprise",
+    "scope": "enterpriseAdmin",
+    "id": "deleteSelfHostedRunnerGroupFromEnterprise",
     "method": "DELETE",
     "url": "/enterprises/{enterprise}/actions/runner-groups/{runner_group_id}",
     "isDeprecated": false,
@@ -1283,8 +1283,8 @@
     "renamed": null
   },
   {
-    "scope": "enterprise-admin",
-    "id": "delete-user-from-enterprise",
+    "scope": "enterpriseAdmin",
+    "id": "deleteUserFromEnterprise",
     "method": "DELETE",
     "url": "/scim/v2/enterprises/{enterprise}/Users/{scim_user_id}",
     "isDeprecated": false,
@@ -1326,8 +1326,8 @@
     "renamed": null
   },
   {
-    "scope": "enterprise-admin",
-    "id": "get-audit-log",
+    "scope": "enterpriseAdmin",
+    "id": "getAuditLog",
     "method": "GET",
     "url": "/enterprises/{enterprise}/audit-log",
     "isDeprecated": false,
@@ -1452,8 +1452,8 @@
     "renamed": null
   },
   {
-    "scope": "enterprise-admin",
-    "id": "get-provisioning-information-for-enterprise-group",
+    "scope": "enterpriseAdmin",
+    "id": "getProvisioningInformationForEnterpriseGroup",
     "method": "GET",
     "url": "/scim/v2/enterprises/{enterprise}/Groups/{scim_group_id}",
     "isDeprecated": false,
@@ -1511,8 +1511,8 @@
     "renamed": null
   },
   {
-    "scope": "enterprise-admin",
-    "id": "get-provisioning-information-for-enterprise-user",
+    "scope": "enterpriseAdmin",
+    "id": "getProvisioningInformationForEnterpriseUser",
     "method": "GET",
     "url": "/scim/v2/enterprises/{enterprise}/Users/{scim_user_id}",
     "isDeprecated": false,
@@ -1558,8 +1558,8 @@
     "renamed": null
   },
   {
-    "scope": "enterprise-admin",
-    "id": "get-self-hosted-runner-for-enterprise",
+    "scope": "enterpriseAdmin",
+    "id": "getSelfHostedRunnerForEnterprise",
     "method": "GET",
     "url": "/enterprises/{enterprise}/actions/runners/{runner_id}",
     "isDeprecated": false,
@@ -1605,8 +1605,8 @@
     "renamed": null
   },
   {
-    "scope": "enterprise-admin",
-    "id": "get-self-hosted-runner-group-for-enterprise",
+    "scope": "enterpriseAdmin",
+    "id": "getSelfHostedRunnerGroupForEnterprise",
     "method": "GET",
     "url": "/enterprises/{enterprise}/actions/runner-groups/{runner_group_id}",
     "isDeprecated": false,
@@ -1652,8 +1652,8 @@
     "renamed": null
   },
   {
-    "scope": "enterprise-admin",
-    "id": "list-org-access-to-self-hosted-runner-group-in-enterprise",
+    "scope": "enterpriseAdmin",
+    "id": "listOrgAccessToSelfHostedRunnerGroupInEnterprise",
     "method": "GET",
     "url": "/enterprises/{enterprise}/actions/runner-groups/{runner_group_id}/organizations",
     "isDeprecated": false,
@@ -1723,8 +1723,8 @@
     "renamed": null
   },
   {
-    "scope": "enterprise-admin",
-    "id": "list-provisioned-groups-enterprise",
+    "scope": "enterpriseAdmin",
+    "id": "listProvisionedGroupsEnterprise",
     "method": "GET",
     "url": "/scim/v2/enterprises/{enterprise}/Groups",
     "isDeprecated": false,
@@ -1806,8 +1806,8 @@
     "renamed": null
   },
   {
-    "scope": "enterprise-admin",
-    "id": "list-provisioned-identities-enterprise",
+    "scope": "enterpriseAdmin",
+    "id": "listProvisionedIdentitiesEnterprise",
     "method": "GET",
     "url": "/scim/v2/enterprises/{enterprise}/Users",
     "isDeprecated": false,
@@ -1877,8 +1877,8 @@
     "renamed": null
   },
   {
-    "scope": "enterprise-admin",
-    "id": "list-runner-applications-for-enterprise",
+    "scope": "enterpriseAdmin",
+    "id": "listRunnerApplicationsForEnterprise",
     "method": "GET",
     "url": "/enterprises/{enterprise}/actions/runners/downloads",
     "isDeprecated": false,
@@ -1912,8 +1912,8 @@
     "renamed": null
   },
   {
-    "scope": "enterprise-admin",
-    "id": "list-self-hosted-runner-groups-for-enterprise",
+    "scope": "enterpriseAdmin",
+    "id": "listSelfHostedRunnerGroupsForEnterprise",
     "method": "GET",
     "url": "/enterprises/{enterprise}/actions/runner-groups",
     "isDeprecated": false,
@@ -1971,8 +1971,8 @@
     "renamed": null
   },
   {
-    "scope": "enterprise-admin",
-    "id": "list-self-hosted-runners-for-enterprise",
+    "scope": "enterpriseAdmin",
+    "id": "listSelfHostedRunnersForEnterprise",
     "method": "GET",
     "url": "/enterprises/{enterprise}/actions/runners",
     "isDeprecated": false,
@@ -2030,8 +2030,8 @@
     "renamed": null
   },
   {
-    "scope": "enterprise-admin",
-    "id": "list-self-hosted-runners-in-group-for-enterprise",
+    "scope": "enterpriseAdmin",
+    "id": "listSelfHostedRunnersInGroupForEnterprise",
     "method": "GET",
     "url": "/enterprises/{enterprise}/actions/runner-groups/{runner_group_id}/runners",
     "isDeprecated": false,
@@ -2101,8 +2101,8 @@
     "renamed": null
   },
   {
-    "scope": "enterprise-admin",
-    "id": "provision-and-invite-enterprise-group",
+    "scope": "enterpriseAdmin",
+    "id": "provisionAndInviteEnterpriseGroup",
     "method": "POST",
     "url": "/scim/v2/enterprises/{enterprise}/Groups",
     "isDeprecated": false,
@@ -2184,8 +2184,8 @@
     "renamed": null
   },
   {
-    "scope": "enterprise-admin",
-    "id": "provision-and-invite-enterprise-user",
+    "scope": "enterpriseAdmin",
+    "id": "provisionAndInviteEnterpriseUser",
     "method": "POST",
     "url": "/scim/v2/enterprises/{enterprise}/Users",
     "isDeprecated": false,
@@ -2351,8 +2351,8 @@
     "renamed": null
   },
   {
-    "scope": "enterprise-admin",
-    "id": "remove-org-access-to-self-hosted-runner-group-in-enterprise",
+    "scope": "enterpriseAdmin",
+    "id": "removeOrgAccessToSelfHostedRunnerGroupInEnterprise",
     "method": "DELETE",
     "url": "/enterprises/{enterprise}/actions/runner-groups/{runner_group_id}/organizations/{org_id}",
     "isDeprecated": false,
@@ -2406,8 +2406,8 @@
     "renamed": null
   },
   {
-    "scope": "enterprise-admin",
-    "id": "remove-self-hosted-runner-from-group-for-enterprise",
+    "scope": "enterpriseAdmin",
+    "id": "removeSelfHostedRunnerFromGroupForEnterprise",
     "method": "DELETE",
     "url": "/enterprises/{enterprise}/actions/runner-groups/{runner_group_id}/runners/{runner_id}",
     "isDeprecated": false,
@@ -2461,8 +2461,8 @@
     "renamed": null
   },
   {
-    "scope": "enterprise-admin",
-    "id": "set-information-for-provisioned-enterprise-group",
+    "scope": "enterpriseAdmin",
+    "id": "setInformationForProvisionedEnterpriseGroup",
     "method": "PUT",
     "url": "/scim/v2/enterprises/{enterprise}/Groups/{scim_group_id}",
     "isDeprecated": false,
@@ -2556,8 +2556,8 @@
     "renamed": null
   },
   {
-    "scope": "enterprise-admin",
-    "id": "set-information-for-provisioned-enterprise-user",
+    "scope": "enterpriseAdmin",
+    "id": "setInformationForProvisionedEnterpriseUser",
     "method": "PUT",
     "url": "/scim/v2/enterprises/{enterprise}/Users/{scim_user_id}",
     "isDeprecated": false,
@@ -2735,8 +2735,8 @@
     "renamed": null
   },
   {
-    "scope": "enterprise-admin",
-    "id": "set-org-access-to-self-hosted-runner-group-in-enterprise",
+    "scope": "enterpriseAdmin",
+    "id": "setOrgAccessToSelfHostedRunnerGroupInEnterprise",
     "method": "PUT",
     "url": "/enterprises/{enterprise}/actions/runner-groups/{runner_group_id}/organizations",
     "isDeprecated": false,
@@ -2790,8 +2790,8 @@
     "renamed": null
   },
   {
-    "scope": "enterprise-admin",
-    "id": "set-self-hosted-runners-in-group-for-enterprise",
+    "scope": "enterpriseAdmin",
+    "id": "setSelfHostedRunnersInGroupForEnterprise",
     "method": "PUT",
     "url": "/enterprises/{enterprise}/actions/runner-groups/{runner_group_id}/runners",
     "isDeprecated": false,
@@ -2845,8 +2845,8 @@
     "renamed": null
   },
   {
-    "scope": "enterprise-admin",
-    "id": "update-attribute-for-enterprise-group",
+    "scope": "enterpriseAdmin",
+    "id": "updateAttributeForEnterpriseGroup",
     "method": "PATCH",
     "url": "/scim/v2/enterprises/{enterprise}/Groups/{scim_group_id}",
     "isDeprecated": false,
@@ -2959,8 +2959,8 @@
     "renamed": null
   },
   {
-    "scope": "enterprise-admin",
-    "id": "update-attribute-for-enterprise-user",
+    "scope": "enterpriseAdmin",
+    "id": "updateAttributeForEnterpriseUser",
     "method": "PATCH",
     "url": "/scim/v2/enterprises/{enterprise}/Users/{scim_user_id}",
     "isDeprecated": false,
@@ -3030,8 +3030,8 @@
     "renamed": null
   },
   {
-    "scope": "enterprise-admin",
-    "id": "update-self-hosted-runner-group-for-enterprise",
+    "scope": "enterpriseAdmin",
+    "id": "updateSelfHostedRunnerGroupForEnterprise",
     "method": "PATCH",
     "url": "/enterprises/{enterprise}/actions/runner-groups/{runner_group_id}",
     "isDeprecated": false,
@@ -3105,7 +3105,7 @@
   },
   {
     "scope": "orgs",
-    "id": "get-audit-log",
+    "id": "getAuditLog",
     "method": "GET",
     "url": "/orgs/{org}/audit-log",
     "isDeprecated": false,
@@ -3231,7 +3231,7 @@
   },
   {
     "scope": "orgs",
-    "id": "list-saml-sso-authorizations",
+    "id": "listSamlSsoAuthorizations",
     "method": "GET",
     "url": "/orgs/{org}/credential-authorizations",
     "isDeprecated": false,
@@ -3266,7 +3266,7 @@
   },
   {
     "scope": "orgs",
-    "id": "remove-saml-sso-authorization",
+    "id": "removeSamlSsoAuthorization",
     "method": "DELETE",
     "url": "/orgs/{org}/credential-authorizations/{credential_id}",
     "isDeprecated": false,
@@ -3313,7 +3313,7 @@
   },
   {
     "scope": "scim",
-    "id": "delete-user-from-org",
+    "id": "deleteUserFromOrg",
     "method": "DELETE",
     "url": "/scim/v2/organizations/{org}/Users/{scim_user_id}",
     "isDeprecated": false,
@@ -3376,7 +3376,7 @@
   },
   {
     "scope": "scim",
-    "id": "get-provisioning-information-for-user",
+    "id": "getProvisioningInformationForUser",
     "method": "GET",
     "url": "/scim/v2/organizations/{org}/Users/{scim_user_id}",
     "isDeprecated": false,
@@ -3443,7 +3443,7 @@
   },
   {
     "scope": "scim",
-    "id": "list-provisioned-identities",
+    "id": "listProvisionedIdentities",
     "method": "GET",
     "url": "/scim/v2/organizations/{org}/Users",
     "isDeprecated": false,
@@ -3545,7 +3545,7 @@
   },
   {
     "scope": "scim",
-    "id": "provision-and-invite-user",
+    "id": "provisionAndInviteUser",
     "method": "POST",
     "url": "/scim/v2/organizations/{org}/Users",
     "isDeprecated": false,
@@ -3792,7 +3792,7 @@
   },
   {
     "scope": "scim",
-    "id": "set-information-for-provisioned-user",
+    "id": "setInformationForProvisionedUser",
     "method": "PUT",
     "url": "/scim/v2/organizations/{org}/Users/{scim_user_id}",
     "isDeprecated": false,
@@ -4027,7 +4027,7 @@
   },
   {
     "scope": "scim",
-    "id": "update-attribute-for-user",
+    "id": "updateAttributeForUser",
     "method": "PATCH",
     "url": "/scim/v2/organizations/{org}/Users/{scim_user_id}",
     "isDeprecated": false,
@@ -4170,7 +4170,7 @@
   },
   {
     "scope": "teams",
-    "id": "create-or-update-idp-group-connections-in-org",
+    "id": "createOrUpdateIdpGroupConnectionsInOrg",
     "method": "PATCH",
     "url": "/orgs/{org}/teams/{team_slug}/team-sync/group-mappings",
     "isDeprecated": false,
@@ -4265,7 +4265,7 @@
   },
   {
     "scope": "teams",
-    "id": "list-idp-groups-for-org",
+    "id": "listIdpGroupsForOrg",
     "method": "GET",
     "url": "/orgs/{org}/team-sync/groups",
     "isDeprecated": false,
@@ -4324,7 +4324,7 @@
   },
   {
     "scope": "teams",
-    "id": "list-idp-groups-in-org",
+    "id": "listIdpGroupsInOrg",
     "method": "GET",
     "url": "/orgs/{org}/teams/{team_slug}/team-sync/group-mappings",
     "isDeprecated": false,
