@@ -3,6 +3,7 @@ const { writeFileSync } = require("fs");
 
 const prettier = require("prettier");
 const sortKeys = require("sort-keys");
+const camelcase = require("camelcase");
 
 const ENDPOINTS = require("./generated/endpoints.json");
 const ROUTES_PATH = join(
@@ -16,12 +17,13 @@ const ROUTES_PATH = join(
 
 const newRoutes = {};
 
-ENDPOINTS.forEach(endpoint => {
-  if (!newRoutes[endpoint.scope]) {
-    newRoutes[endpoint.scope] = {};
+ENDPOINTS.forEach((endpoint) => {
+  const scope = camelcase(endpoint.scope);
+  if (!newRoutes[scope]) {
+    newRoutes[scope] = {};
   }
 
-  const idName = endpoint.id;
+  const idName = camelcase(endpoint.id);
   const route = `${endpoint.method} ${endpoint.url.replace(
     /\{([^}]+)}/g,
     ":$1"
@@ -41,14 +43,14 @@ ENDPOINTS.forEach(endpoint => {
 
   if (endpoint.previews.length) {
     endpointDefaults.mediaType = {
-      previews: endpoint.previews.map(preview => preview.name)
+      previews: endpoint.previews.map((preview) => preview.name),
     };
   }
 
   if (endpoint.renamed) {
     endpointDecorations.renamed = [
       endpoint.renamed.after.scope,
-      endpoint.renamed.after.id
+      endpoint.renamed.after.id,
     ];
   }
 
@@ -56,15 +58,12 @@ ENDPOINTS.forEach(endpoint => {
     endpointDecorations.deprecated = `octokit.scim.${idName}() is deprecated, see ${endpoint.documentationUrl}`;
   }
 
-  newRoutes[endpoint.scope][idName] = [route];
+  newRoutes[scope][idName] = [route];
 
   if (Object.keys(endpointDecorations).length) {
-    newRoutes[endpoint.scope][idName].push(
-      endpointDefaults,
-      endpointDecorations
-    );
+    newRoutes[scope][idName].push(endpointDefaults, endpointDecorations);
   } else if (Object.keys(endpointDefaults).length) {
-    newRoutes[endpoint.scope][idName].push(endpointDefaults);
+    newRoutes[scope][idName].push(endpointDefaults);
   }
 });
 

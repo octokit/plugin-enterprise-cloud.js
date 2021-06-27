@@ -1,7 +1,9 @@
 name: Update
 on:
   repository_dispatch:
-    types: [github-openapi-release]
+    types:
+      - octokit/openapi release
+      - octokit/types.ts release
 
   workflow_dispatch:
     inputs:

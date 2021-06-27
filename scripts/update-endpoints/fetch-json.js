@@ -1,13 +1,11 @@
 const { writeFileSync } = require("fs");
 const path = require("path");
 
-const { graphql } = require("@octokit/graphql");
+const graphql = require("github-openapi-graphql-query");
 
 if (!process.env.VERSION) {
   throw new Error("VERSION environment variable must be set");
 }
-
-const version = process.env.VERSION.replace(/^v/, "");
 
 const QUERY = `
 query ($version: String!, $ignoreChangesBefore: String!) {
@@ -61,14 +59,14 @@ query ($version: String!, $ignoreChangesBefore: String!) {
 main();
 
 async function main() {
-  const { endpoints } = await graphql(QUERY, {
+  const result = await graphql(QUERY, {
     url: "https://github-openapi-graphql-server.vercel.app/api/graphql",
     version: process.env.VERSION,
-    ignoreChangesBefore: "2019-01-01",
+    ignoreChangesBefore: "2021-06-27",
   });
 
   writeFileSync(
     path.resolve(__dirname, "generated", "endpoints.json"),
-    JSON.stringify(endpoints, null, 2) + "\n"
+    JSON.stringify(result.data.endpoints, null, 2) + "\n"
   );
 }
