@@ -21,6 +21,6 @@ jobs:
         uses: actions/setup-node@v2
         with:
           cache: npm
-          node-version: 16
+          node-version: ${{ matrix.node_version }}
       - run: npm ci
       - run: npm run test
