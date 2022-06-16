@@ -173,9 +173,20 @@ const Endpoints: EndpointsDefaultsAndDecorations = {
     createOrUpdateIdpGroupConnectionsInOrg: [
       "PATCH /orgs/:org/teams/:team_slug/team-sync/group-mappings",
     ],
+    externalIdpGroupInfoForOrg: ["GET /orgs/:org/external-group/:group_id"],
+    linkExternalIdpGroupToTeamForOrg: [
+      "PATCH /orgs/:org/teams/:team_slug/external-groups",
+    ],
+    listExternalIdpGroupsForOrg: ["GET /orgs/:org/external-groups"],
     listIdpGroupsForOrg: ["GET /orgs/:org/team-sync/groups"],
     listIdpGroupsInOrg: [
       "GET /orgs/:org/teams/:team_slug/team-sync/group-mappings",
+    ],
+    listLinkedExternalIdpGroupsToTeamForOrg: [
+      "GET /orgs/:org/teams/:team_slug/external-groups",
+    ],
+    unlinkExternalIdpGroupFromTeamForOrg: [
+      "DELETE /orgs/:org/teams/:team_slug/external-groups",
     ],
   },
 };
