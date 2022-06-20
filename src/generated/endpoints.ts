@@ -50,6 +50,11 @@ const Endpoints: EndpointsDefaultsAndDecorations = {
       "GET /enterprises/:enterprise/settings/billing/shared-storage",
     ],
   },
+  dependencyGraph: {
+    createRepositorySnapshot: [
+      "POST /repos/:owner/:repo/dependency-graph/snapshots",
+    ],
+  },
   enterpriseAdmin: {
     addOrgAccessToSelfHostedRunnerGroupInEnterprise: [
       "PUT /enterprises/:enterprise/actions/runner-groups/:runner_group_id/organizations/:org_id",
