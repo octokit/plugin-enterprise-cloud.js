@@ -13,6 +13,9 @@ const Endpoints: EndpointsDefaultsAndDecorations = {
     deleteSelfHostedRunnerGroupFromOrg: [
       "DELETE /orgs/:org/actions/runner-groups/:runner_group_id",
     ],
+    getCustomOidcSubClaimForRepo: [
+      "GET /repos/:owner/:repo/actions/oidc/customization/sub",
+    ],
     getSelfHostedRunnerGroupForOrg: [
       "GET /orgs/:org/actions/runner-groups/:runner_group_id",
     ],
@@ -28,6 +31,12 @@ const Endpoints: EndpointsDefaultsAndDecorations = {
     ],
     removeSelfHostedRunnerFromGroupForOrg: [
       "DELETE /orgs/:org/actions/runner-groups/:runner_group_id/runners/:runner_id",
+    ],
+    setActionsOidcCustomIssuerPolicyForEnterprise: [
+      "PUT /enterprises/:enterprise/actions/oidc/customization/issuer",
+    ],
+    setCustomOidcSubClaimForRepo: [
+      "PUT /repos/:owner/:repo/actions/oidc/customization/sub",
     ],
     setRepoAccessToSelfHostedRunnerGroupInOrg: [
       "PUT /orgs/:org/actions/runner-groups/:runner_group_id/repositories",
@@ -149,6 +158,14 @@ const Endpoints: EndpointsDefaultsAndDecorations = {
     ],
     updateSelfHostedRunnerGroupForEnterprise: [
       "PATCH /enterprises/:enterprise/actions/runner-groups/:runner_group_id",
+    ],
+  },
+  oidc: {
+    getOidcCustomSubTemplateForOrg: [
+      "GET /orgs/:org/actions/oidc/customization/sub",
+    ],
+    updateOidcCustomSubTemplateForOrg: [
+      "PUT /orgs/:org/actions/oidc/customization/sub",
     ],
   },
   orgs: {
