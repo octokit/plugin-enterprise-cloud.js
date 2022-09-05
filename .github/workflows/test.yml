@@ -39,7 +39,6 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
       - run: npm ci
-      - run: npm run test:typescript
       - run: npm run lint
       - run: npm run build
     if: ${{ always() }}
