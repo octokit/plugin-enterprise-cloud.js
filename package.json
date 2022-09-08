@@ -103,21 +103,6 @@
       ]
     ]
   },
-  "renovate": {
-    "extends": [
-      "github>octokit/.github"
-    ],
-    "packageRules": [
-      {
-        "depTypeList": [
-          "dependencies"
-        ],
-        "excludePackageNames": [
-          "sort-keys"
-        ]
-      }
-    ]
-  },
   "engines": {
     "node": ">= 14"
   }
