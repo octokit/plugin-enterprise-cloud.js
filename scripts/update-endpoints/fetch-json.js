@@ -60,7 +60,7 @@ main();
 
 async function main() {
   const result = await graphql(QUERY, {
-    version: process.env.VERSION,
+    version: process.env.VERSION.replace(/^v/, ""),
     ignoreChangesBefore: "2021-06-27",
   });
 
