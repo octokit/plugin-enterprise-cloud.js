@@ -1,11 +1,66 @@
 [
   {
     "scope": "actions",
+    "id": "addRepoAccessToSelfHostedRunnerGroupInOrg",
+    "method": "PUT",
+    "url": "/orgs/{org}/actions/runner-groups/{runner_group_id}/repositories/{repository_id}",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/actions#add-repository-acess-to-a-self-hosted-runner-group-in-an-organization",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "org",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "runner_group_id",
+        "in": "PATH",
+        "type": "integer",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "repository_id",
+        "in": "PATH",
+        "type": "integer",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 204,
+        "examples": null
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "actions",
     "id": "addSelfHostedRunnerToGroupForOrg",
     "method": "PUT",
     "url": "/orgs/{org}/actions/runner-groups/{runner_group_id}/runners/{runner_id}",
     "isDeprecated": false,
-    "documentationUrl": "https://docs.github.com/rest/reference/actions#add-a-self-hosted-runner-to-a-group-for-an-organization",
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/actions#add-a-self-hosted-runner-to-a-group-for-an-organization",
     "previews": [],
     "headers": [],
     "parameters": [
@@ -60,7 +115,7 @@
     "method": "POST",
     "url": "/orgs/{org}/actions/runner-groups",
     "isDeprecated": false,
-    "documentationUrl": "https://docs.github.com/rest/reference/actions#create-a-self-hosted-runner-group-for-an-organization",
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/actions#create-a-self-hosted-runner-group-for-an-organization",
     "previews": [],
     "headers": [],
     "parameters": [
@@ -183,7 +238,7 @@
     "method": "DELETE",
     "url": "/orgs/{org}/actions/runner-groups/{runner_group_id}",
     "isDeprecated": false,
-    "documentationUrl": "https://docs.github.com/rest/reference/actions#delete-a-self-hosted-runner-group-from-an-organization",
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/actions#delete-a-self-hosted-runner-group-from-an-organization",
     "previews": [],
     "headers": [],
     "parameters": [
@@ -222,11 +277,70 @@
   },
   {
     "scope": "actions",
+    "id": "getCustomOidcSubClaimForRepo",
+    "method": "GET",
+    "url": "/repos/{owner}/{repo}/actions/oidc/customization/sub",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/actions/oidc#get-the-opt-out-flag-of-an-oidc-subject-claim-customization-for-a-repository",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "owner",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "repo",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "{\"use_default\":false}"
+          }
+        ]
+      },
+      {
+        "code": 400,
+        "examples": null
+      },
+      {
+        "code": 400,
+        "examples": null
+      },
+      {
+        "code": 404,
+        "examples": null
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "actions",
     "id": "getSelfHostedRunnerGroupForOrg",
     "method": "GET",
     "url": "/orgs/{org}/actions/runner-groups/{runner_group_id}",
     "isDeprecated": false,
-    "documentationUrl": "https://docs.github.com/rest/reference/actions#get-a-self-hosted-runner-group-for-an-organization",
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/actions#get-a-self-hosted-runner-group-for-an-organization",
     "previews": [],
     "headers": [],
     "parameters": [
@@ -273,7 +387,7 @@
     "method": "GET",
     "url": "/orgs/{org}/actions/runner-groups/{runner_group_id}/repositories",
     "isDeprecated": false,
-    "documentationUrl": "https://docs.github.com/rest/reference/actions#list-repository-access-to-a-self-hosted-runner-group-in-an-organization",
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/actions#list-repository-access-to-a-self-hosted-runner-group-in-an-organization",
     "previews": [],
     "headers": [],
     "parameters": [
@@ -344,7 +458,7 @@
     "method": "GET",
     "url": "/orgs/{org}/actions/runner-groups",
     "isDeprecated": false,
-    "documentationUrl": "https://docs.github.com/rest/reference/actions#list-self-hosted-runner-groups-for-an-organization",
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/actions#list-self-hosted-runner-groups-for-an-organization",
     "previews": [],
     "headers": [],
     "parameters": [
@@ -415,7 +529,7 @@
     "method": "GET",
     "url": "/orgs/{org}/actions/runner-groups/{runner_group_id}/runners",
     "isDeprecated": false,
-    "documentationUrl": "https://docs.github.com/rest/reference/actions#list-self-hosted-runners-in-a-group-for-an-organization",
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/actions#list-self-hosted-runners-in-a-group-for-an-organization",
     "previews": [],
     "headers": [],
     "parameters": [
@@ -486,7 +600,7 @@
     "method": "DELETE",
     "url": "/orgs/{org}/actions/runner-groups/{runner_group_id}/repositories/{repository_id}",
     "isDeprecated": false,
-    "documentationUrl": "https://docs.github.com/rest/reference/actions#remove-repository-access-to-a-self-hosted-runner-group-in-an-organization",
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/actions#remove-repository-access-to-a-self-hosted-runner-group-in-an-organization",
     "previews": [],
     "headers": [],
     "parameters": [
@@ -541,7 +655,7 @@
     "method": "DELETE",
     "url": "/orgs/{org}/actions/runner-groups/{runner_group_id}/runners/{runner_id}",
     "isDeprecated": false,
-    "documentationUrl": "https://docs.github.com/rest/reference/actions#remove-a-self-hosted-runner-from-a-group-for-an-organization",
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/actions#remove-a-self-hosted-runner-from-a-group-for-an-organization",
     "previews": [],
     "headers": [],
     "parameters": [
@@ -592,11 +706,125 @@
   },
   {
     "scope": "actions",
+    "id": "setActionsOidcCustomIssuerPolicyForEnterprise",
+    "method": "PUT",
+    "url": "/enterprises/{enterprise}/actions/oidc/customization/issuer",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/actions/oidc#set-actions-oidc-custom-issuer-policy-for-enterprise",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "enterprise",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "include_enterprise_slug",
+        "in": "BODY",
+        "type": "boolean",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 204,
+        "examples": null
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "actions",
+    "id": "setCustomOidcSubClaimForRepo",
+    "method": "PUT",
+    "url": "/repos/{owner}/{repo}/actions/oidc/customization/sub",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/actions/oidc#set-the-opt-out-flag-of-an-oidc-subject-claim-customization-for-a-repository",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "owner",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "repo",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "use_default",
+        "in": "BODY",
+        "type": "boolean",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 201,
+        "examples": null
+      },
+      {
+        "code": 400,
+        "examples": null
+      },
+      {
+        "code": 400,
+        "examples": null
+      },
+      {
+        "code": 404,
+        "examples": null
+      },
+      {
+        "code": 422,
+        "examples": null
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "actions",
     "id": "setRepoAccessToSelfHostedRunnerGroupInOrg",
     "method": "PUT",
     "url": "/orgs/{org}/actions/runner-groups/{runner_group_id}/repositories",
     "isDeprecated": false,
-    "documentationUrl": "https://docs.github.com/rest/reference/actions#set-repository-access-to-a-self-hosted-runner-group-in-an-organization",
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/actions#set-repository-access-to-a-self-hosted-runner-group-in-an-organization",
     "previews": [],
     "headers": [],
     "parameters": [
@@ -651,7 +879,7 @@
     "method": "PUT",
     "url": "/orgs/{org}/actions/runner-groups/{runner_group_id}/runners",
     "isDeprecated": false,
-    "documentationUrl": "https://docs.github.com/rest/reference/actions#set-self-hosted-runners-in-a-group-for-an-organization",
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/actions#set-self-hosted-runners-in-a-group-for-an-organization",
     "previews": [],
     "headers": [],
     "parameters": [
@@ -706,7 +934,7 @@
     "method": "PATCH",
     "url": "/orgs/{org}/actions/runner-groups/{runner_group_id}",
     "isDeprecated": false,
-    "documentationUrl": "https://docs.github.com/rest/reference/actions#update-a-self-hosted-runner-group-for-an-organization",
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/actions#update-a-self-hosted-runner-group-for-an-organization",
     "previews": [],
     "headers": [],
     "parameters": [
@@ -817,7 +1045,106 @@
     "method": "PUT",
     "url": "/enterprises/{enterprise}/actions/runner-groups/{runner_group_id}/organizations/{org_id}",
     "isDeprecated": false,
-    "documentationUrl": "https://docs.github.com/rest/reference/actions#add-organization-access-to-a-self-hosted-runner-group-in-an-enterprise",
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/billing#get-github-actions-billing-for-an-enterprise",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "enterprise",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "{\"total_minutes_used\":305,\"total_paid_minutes_used\":0,\"included_minutes\":3000,\"minutes_used_breakdown\":{\"UBUNTU\":205,\"MACOS\":10,\"WINDOWS\":90}}"
+          }
+        ]
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "billing",
+    "id": "getGithubPackagesBillingGhe",
+    "method": "GET",
+    "url": "/enterprises/{enterprise}/settings/billing/packages",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/billing#get-github-packages-billing-for-an-enterprise",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "org_id",
+        "in": "PATH",
+        "type": "integer",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 204,
+        "examples": null
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "enterpriseAdmin",
+    "id": "addSelfHostedRunnerToGroupForEnterprise",
+    "method": "PUT",
+    "url": "/enterprises/{enterprise}/actions/runner-groups/{runner_group_id}/runners/{runner_id}",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/billing#get-shared-storage-billing-for-an-enterprise",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "enterprise",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "{\"days_left_in_billing_cycle\":20,\"estimated_paid_storage_for_month\":15,\"estimated_storage_for_month\":40}"
+          }
+        ]
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "enterpriseAdmin",
+    "id": "addOrgAccessToSelfHostedRunnerGroupInEnterprise",
+    "method": "PUT",
+    "url": "/enterprises/{enterprise}/actions/runner-groups/{runner_group_id}/organizations/{org_id}",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/actions#add-organization-access-to-a-self-hosted-runner-group-in-an-enterprise",
     "previews": [],
     "headers": [],
     "parameters": [
@@ -872,7 +1199,7 @@
     "method": "PUT",
     "url": "/enterprises/{enterprise}/actions/runner-groups/{runner_group_id}/runners/{runner_id}",
     "isDeprecated": false,
-    "documentationUrl": "https://docs.github.com/rest/reference/actions#add-a-self-hosted-runner-to-a-group-for-an-enterprise",
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/actions#add-a-self-hosted-runner-to-a-group-for-an-enterprise",
     "previews": [],
     "headers": [],
     "parameters": [
@@ -927,7 +1254,7 @@
     "method": "POST",
     "url": "/enterprises/{enterprise}/actions/runners/registration-token",
     "isDeprecated": false,
-    "documentationUrl": "https://docs.github.com/rest/reference/actions#create-a-registration-token-for-an-enterprise",
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/actions#create-a-registration-token-for-an-enterprise",
     "previews": [],
     "headers": [],
     "parameters": [
@@ -962,7 +1289,7 @@
     "method": "POST",
     "url": "/enterprises/{enterprise}/actions/runners/remove-token",
     "isDeprecated": false,
-    "documentationUrl": "https://docs.github.com/rest/reference/actions#create-a-remove-token-for-an-enterprise",
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/actions#create-a-remove-token-for-an-enterprise",
     "previews": [],
     "headers": [],
     "parameters": [
@@ -997,7 +1324,7 @@
     "method": "POST",
     "url": "/enterprises/{enterprise}/actions/runner-groups",
     "isDeprecated": false,
-    "documentationUrl": "https://docs.github.com/rest/reference/actions#create-self-hosted-runner-group-for-an-enterprise",
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/actions#create-self-hosted-runner-group-for-an-enterprise",
     "previews": [],
     "headers": [],
     "parameters": [
@@ -1117,52 +1444,9 @@
     "scope": "enterpriseAdmin",
     "id": "deleteSelfHostedRunnerFromEnterprise",
     "method": "DELETE",
-    "url": "/enterprises/{enterprise}/actions/runners/{runner_id}",
-    "isDeprecated": false,
-    "documentationUrl": "https://docs.github.com/rest/reference/actions#delete-self-hosted-runner-from-an-enterprise",
-    "previews": [],
-    "headers": [],
-    "parameters": [
-      {
-        "name": "enterprise",
-        "in": "PATH",
-        "type": "string",
-        "required": true,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      },
-      {
-        "name": "runner_id",
-        "in": "PATH",
-        "type": "integer",
-        "required": true,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      }
-    ],
-    "responses": [
-      {
-        "code": 204,
-        "examples": null
-      }
-    ],
-    "renamed": null
-  },
-  {
-    "scope": "enterpriseAdmin",
-    "id": "deleteSelfHostedRunnerGroupFromEnterprise",
-    "method": "DELETE",
     "url": "/enterprises/{enterprise}/actions/runner-groups/{runner_group_id}",
     "isDeprecated": false,
-    "documentationUrl": "https://docs.github.com/rest/reference/actions#delete-a-self-hosted-runner-group-from-an-enterprise",
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/actions#delete-self-hosted-runner-from-an-enterprise",
     "previews": [],
     "headers": [],
     "parameters": [
@@ -1205,7 +1489,7 @@
     "method": "GET",
     "url": "/enterprises/{enterprise}/actions/runners/{runner_id}",
     "isDeprecated": false,
-    "documentationUrl": "https://docs.github.com/rest/reference/actions#get-a-self-hosted-runner-for-an-enterprise",
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/actions#delete-a-self-hosted-runner-group-from-an-enterprise",
     "previews": [],
     "headers": [],
     "parameters": [
@@ -1248,58 +1532,11 @@
   },
   {
     "scope": "enterpriseAdmin",
-    "id": "getSelfHostedRunnerGroupForEnterprise",
-    "method": "GET",
-    "url": "/enterprises/{enterprise}/actions/runner-groups/{runner_group_id}",
-    "isDeprecated": false,
-    "documentationUrl": "https://docs.github.com/rest/reference/actions#get-a-self-hosted-runner-group-for-an-enterprise",
-    "previews": [],
-    "headers": [],
-    "parameters": [
-      {
-        "name": "enterprise",
-        "in": "PATH",
-        "type": "string",
-        "required": true,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      },
-      {
-        "name": "runner_group_id",
-        "in": "PATH",
-        "type": "integer",
-        "required": true,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      }
-    ],
-    "responses": [
-      {
-        "code": 200,
-        "examples": [
-          {
-            "data": "{\"id\":2,\"name\":\"octo-runner-group\",\"visibility\":\"selected\",\"default\":false,\"selected_organizations_url\":\"https://api.github.com/enterprises/octo-corp/actions/runner-groups/2/organizations\",\"runners_url\":\"https://api.github.com/enterprises/octo-corp/actions/runner-groups/2/runners\",\"allows_public_repositories\":false,\"restricted_to_workflows\":true,\"selected_workflows\":[\"octo-org/octo-repo/.github/workflows/deploy.yaml@refs/heads/main\"],\"workflow_restrictions_read_only\":false}"
-          }
-        ]
-      }
-    ],
-    "renamed": null
-  },
-  {
-    "scope": "enterpriseAdmin",
-    "id": "listOrgAccessToSelfHostedRunnerGroupInEnterprise",
+    "id": "getAuditLog",
     "method": "GET",
     "url": "/enterprises/{enterprise}/actions/runner-groups/{runner_group_id}/organizations",
     "isDeprecated": false,
-    "documentationUrl": "https://docs.github.com/rest/reference/actions#list-organization-access-to-a-self-hosted-runner-group-in-a-enterprise",
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/enterprise-admin#get-the-audit-log-for-an-enterprise",
     "previews": [],
     "headers": [],
     "parameters": [
@@ -1472,11 +1709,368 @@
   },
   {
     "scope": "enterpriseAdmin",
+    "id": "getConsumedLicenses",
+    "method": "GET",
+    "url": "/enterprises/{enterprise}/consumed-licenses",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/enterprise-admin#list-enterprise-consumed-licenses",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "enterprise",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "per_page",
+        "in": "QUERY",
+        "type": "integer",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "page",
+        "in": "QUERY",
+        "type": "integer",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "{\"total_seats_consumed\":5000,\"total_seats_purchased\":4500,\"users\":[{\"enterprise_server_emails\":[\"monalisa@github.com\"],\"github_com_login\":\"monalisa\",\"github_com_name\":\"Mona Lisa\",\"github_com_profile\":\"https://github.com/monalisa\",\"license_type\":\"enterprise\",\"github_com_member_roles\":[\"org1:Owner\",\"org2:Owner\"],\"github_com_enterprise_role\":\"owner\",\"github_com_enterprise_roles\":[\"owner\"],\"visual_studio_subscription_user\":false,\"github_com_verified_domain_emails\":[\"monalisa@github.com\"],\"github_com_saml_name_id\":\"monalisa\",\"enterprise_server_user\":true,\"github_com_user\":true,\"total_user_accounts\":3,\"enterprise_server_user_ids\":[\"example_host_name.com:123\",\"example_host_name_2:222\"],\"github_com_orgs_with_pending_invites\":[\"org1\",\"org2\"],\"visual_studio_subscription_email\":\"\"},{\"enterprise_server_emails\":[\"deleonjavier@example.com\"],\"github_com_login\":\"\",\"github_com_name\":\"\",\"github_com_profile\":\"\",\"license_type\":\"enterprise\",\"github_com_member_roles\":[],\"github_com_enterprise_role\":\"\",\"github_com_enterprise_roles\":[],\"visual_studio_subscription_user\":false,\"github_com_verified_domain_emails\":[],\"github_com_saml_name_id\":\"\",\"enterprise_server_user\":true,\"github_com_user\":false,\"total_user_accounts\":1,\"enterprise_server_user_ids\":[\"example_host_name:123\"],\"github_com_orgs_with_pending_invites\":[],\"visual_studio_subscription_email\":\"\"}]}"
+          }
+        ]
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "enterpriseAdmin",
+    "id": "getLicenseSyncStatus",
+    "method": "GET",
+    "url": "/enterprises/{enterprise}/license-sync-status",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/enterprise-admin#get-a-license-sync-status",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "enterprise",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "{\"server_instances\":[{\"server_id\":\"deadbeef1\",\"hostname\":\"github.example.com\",\"last_sync\":{\"date\":\"2020-01-01T00:00:00Z\",\"status\":\"success\",\"error\":\"\"}},{\"server_id\":\"filetoffish1\",\"hostname\":\"github2.example.com\",\"last_sync\":{\"date\":\"2020-01-01T00:00:00Z\",\"status\":\"success\",\"error\":\"\"}}]}"
+          }
+        ]
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "enterpriseAdmin",
+    "id": "getSelfHostedRunnerForEnterprise",
+    "method": "GET",
+    "url": "/enterprises/{enterprise}/actions/runners/{runner_id}",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/actions#get-a-self-hosted-runner-for-an-enterprise",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "per_page",
+        "in": "QUERY",
+        "type": "integer",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "page",
+        "in": "QUERY",
+        "type": "integer",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "{\"total_count\":2,\"runners\":[{\"id\":23,\"name\":\"linux_runner\",\"os\":\"linux\",\"status\":\"online\",\"busy\":true,\"labels\":[{\"id\":5,\"name\":\"self-hosted\",\"type\":\"read-only\"},{\"id\":7,\"name\":\"X64\",\"type\":\"read-only\"},{\"id\":11,\"name\":\"Linux\",\"type\":\"read-only\"}]},{\"id\":24,\"name\":\"mac_runner\",\"os\":\"macos\",\"status\":\"offline\",\"busy\":false,\"labels\":[{\"id\":5,\"name\":\"self-hosted\",\"type\":\"read-only\"},{\"id\":7,\"name\":\"X64\",\"type\":\"read-only\"},{\"id\":20,\"name\":\"macOS\",\"type\":\"read-only\"},{\"id\":21,\"name\":\"no-gpu\",\"type\":\"custom\"}]}]}"
+          }
+        ]
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "enterpriseAdmin",
+    "id": "removeOrgAccessToSelfHostedRunnerGroupInEnterprise",
+    "method": "DELETE",
+    "url": "/enterprises/{enterprise}/actions/runner-groups/{runner_group_id}/organizations/{org_id}",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/actions#get-a-self-hosted-runner-group-for-an-enterprise",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "enterprise",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "runner_group_id",
+        "in": "PATH",
+        "type": "integer",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "org_id",
+        "in": "PATH",
+        "type": "integer",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 204,
+        "examples": null
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "enterpriseAdmin",
+    "id": "removeSelfHostedRunnerFromGroupForEnterprise",
+    "method": "DELETE",
+    "url": "/enterprises/{enterprise}/actions/runner-groups/{runner_group_id}/runners/{runner_id}",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/actions#list-organization-access-to-a-self-hosted-runner-group-in-a-enterprise",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "enterprise",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "runner_group_id",
+        "in": "PATH",
+        "type": "integer",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "runner_id",
+        "in": "PATH",
+        "type": "integer",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 204,
+        "examples": null
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "enterpriseAdmin",
+    "id": "listRunnerApplicationsForEnterprise",
+    "method": "GET",
+    "url": "/enterprises/{enterprise}/actions/runners/downloads",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/actions#list-runner-applications-for-an-enterprise",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "enterprise",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "[{\"os\":\"osx\",\"architecture\":\"x64\",\"download_url\":\"https://github.com/actions/runner/releases/download/v2.164.0/actions-runner-osx-x64-2.164.0.tar.gz\",\"filename\":\"actions-runner-osx-x64-2.164.0.tar.gz\"},{\"os\":\"linux\",\"architecture\":\"x64\",\"download_url\":\"https://github.com/actions/runner/releases/download/v2.164.0/actions-runner-linux-x64-2.164.0.tar.gz\",\"filename\":\"actions-runner-linux-x64-2.164.0.tar.gz\"},{\"os\":\"linux\",\"architecture\":\"arm\",\"download_url\":\"https://github.com/actions/runner/releases/download/v2.164.0/actions-runner-linux-arm-2.164.0.tar.gz\",\"filename\":\"actions-runner-linux-arm-2.164.0.tar.gz\"},{\"os\":\"win\",\"architecture\":\"x64\",\"download_url\":\"https://github.com/actions/runner/releases/download/v2.164.0/actions-runner-win-x64-2.164.0.zip\",\"filename\":\"actions-runner-win-x64-2.164.0.zip\"},{\"os\":\"linux\",\"architecture\":\"arm64\",\"download_url\":\"https://github.com/actions/runner/releases/download/v2.164.0/actions-runner-linux-arm64-2.164.0.tar.gz\",\"filename\":\"actions-runner-linux-arm64-2.164.0.tar.gz\"}]"
+          }
+        ]
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "enterpriseAdmin",
+    "id": "listSelfHostedRunnerGroupsForEnterprise",
+    "method": "GET",
+    "url": "/enterprises/{enterprise}/actions/runner-groups",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/actions#list-self-hosted-runner-groups-for-an-enterprise",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "enterprise",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "per_page",
+        "in": "QUERY",
+        "type": "integer",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "page",
+        "in": "QUERY",
+        "type": "integer",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "visible_to_organization",
+        "in": "QUERY",
+        "type": "string",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "{\"total_count\":3,\"runner_groups\":[{\"id\":1,\"name\":\"Default\",\"visibility\":\"all\",\"default\":true,\"runners_url\":\"https://api.github.com/enterprises/octo-corp/actions/runner_groups/1/runners\",\"allows_public_repositories\":false,\"restricted_to_workflows\":false,\"selected_workflows\":[],\"workflow_restrictions_read_only\":false},{\"id\":2,\"name\":\"octo-runner-group\",\"visibility\":\"selected\",\"default\":false,\"selected_organizations_url\":\"https://api.github.com/enterprises/octo-corp/actions/runner_groups/2/organizations\",\"runners_url\":\"https://api.github.com/enterprises/octo-corp/actions/runner_groups/2/runners\",\"allows_public_repositories\":true,\"restricted_to_workflows\":true,\"selected_workflows\":[\"octo-org/octo-repo/.github/workflows/deploy.yaml@refs/heads/main\"],\"workflow_restrictions_read_only\":false},{\"id\":3,\"name\":\"expensive-hardware\",\"visibility\":\"private\",\"default\":false,\"runners_url\":\"https://api.github.com/enterprises/octo-corp/actions/runner_groups/3/runners\",\"allows_public_repositories\":true,\"restricted_to_workflows\":false,\"selected_workflows\":[\"octo-org/octo-repo/.github/workflows/deploy.yaml@refs/heads/main\"],\"workflow_restrictions_read_only\":false}]}"
+          }
+        ]
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "enterpriseAdmin",
     "id": "listSelfHostedRunnersForEnterprise",
     "method": "GET",
     "url": "/enterprises/{enterprise}/actions/runners",
     "isDeprecated": false,
-    "documentationUrl": "https://docs.github.com/rest/reference/actions#list-self-hosted-runners-for-an-enterprise",
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/actions#list-self-hosted-runners-for-an-enterprise",
     "previews": [],
     "headers": [],
     "parameters": [
@@ -1535,14 +2129,14 @@
     "method": "GET",
     "url": "/enterprises/{enterprise}/actions/runner-groups/{runner_group_id}/runners",
     "isDeprecated": false,
-    "documentationUrl": "https://docs.github.com/rest/reference/actions#list-self-hosted-runners-in-a-group-for-an-enterprise",
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/actions#list-self-hosted-runners-in-a-group-for-an-enterprise",
     "previews": [],
     "headers": [],
     "parameters": [
       {
-        "name": "enterprise",
+        "name": "runner_group_id",
         "in": "PATH",
-        "type": "string",
+        "type": "integer",
         "required": true,
         "enum": null,
         "allowNull": false,
@@ -1586,9 +2180,7 @@
         "validation": null,
         "alias": null,
         "deprecated": null
-      }
-    ],
-    "responses": [
+      },
       {
         "code": 200,
         "examples": [
@@ -1606,7 +2198,7 @@
     "method": "DELETE",
     "url": "/enterprises/{enterprise}/actions/runner-groups/{runner_group_id}/organizations/{org_id}",
     "isDeprecated": false,
-    "documentationUrl": "https://docs.github.com/rest/reference/actions#remove-organization-access-to-a-self-hosted-runner-group-in-an-enterprise",
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/actions#remove-organization-access-to-a-self-hosted-runner-group-in-an-enterprise",
     "previews": [],
     "headers": [],
     "parameters": [
@@ -1661,7 +2253,7 @@
     "method": "DELETE",
     "url": "/enterprises/{enterprise}/actions/runner-groups/{runner_group_id}/runners/{runner_id}",
     "isDeprecated": false,
-    "documentationUrl": "https://docs.github.com/rest/reference/actions#remove-a-self-hosted-runner-from-a-group-for-an-enterprise",
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/actions#remove-a-self-hosted-runner-from-a-group-for-an-enterprise",
     "previews": [],
     "headers": [],
     "parameters": [
@@ -1716,7 +2308,7 @@
     "method": "PUT",
     "url": "/enterprises/{enterprise}/actions/runner-groups/{runner_group_id}/organizations",
     "isDeprecated": false,
-    "documentationUrl": "https://docs.github.com/rest/reference/actions#set-organization-access-to-a-self-hosted-runner-group-in-an-enterprise",
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/actions#set-organization-access-to-a-self-hosted-runner-group-in-an-enterprise",
     "previews": [],
     "headers": [],
     "parameters": [
@@ -1771,7 +2363,7 @@
     "method": "PUT",
     "url": "/enterprises/{enterprise}/actions/runner-groups/{runner_group_id}/runners",
     "isDeprecated": false,
-    "documentationUrl": "https://docs.github.com/rest/reference/actions#set-self-hosted-runners-in-a-group-for-an-enterprise",
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/actions#set-self-hosted-runners-in-a-group-for-an-enterprise",
     "previews": [],
     "headers": [],
     "parameters": [
@@ -1826,7 +2418,7 @@
     "method": "PATCH",
     "url": "/enterprises/{enterprise}/actions/runner-groups/{runner_group_id}",
     "isDeprecated": false,
-    "documentationUrl": "https://docs.github.com/rest/reference/actions#update-a-self-hosted-runner-group-for-an-enterprise",
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/actions#update-a-self-hosted-runner-group-for-an-enterprise",
     "previews": [],
     "headers": [],
     "parameters": [
@@ -1926,6 +2518,1661 @@
             "data": "{\"id\":2,\"name\":\"Expensive hardware runners\",\"visibility\":\"selected\",\"default\":false,\"selected_organizations_url\":\"https://api.github.com/enterprises/octo-corp/actions/runner-groups/2/organizations\",\"runners_url\":\"https://api.github.com/enterprises/octo-corp/actions/runner-groups/2/runners\",\"allows_public_repositories\":true,\"restricted_to_workflows\":false,\"selected_workflows\":[\"octo-org/octo-repo/.github/workflows/deploy.yaml@refs/heads/main\"],\"workflow_restrictions_read_only\":false}"
           }
         ]
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "oidc",
+    "id": "getOidcCustomSubTemplateForOrg",
+    "method": "GET",
+    "url": "/orgs/{org}/actions/oidc/customization/sub",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/actions/oidc#get-the-customization-template-for-an-oidc-subject-claim-for-an-organization",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "org",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "{\"include_claim_keys\":[\"repo\",\"context\"]}"
+          }
+        ]
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "oidc",
+    "id": "updateOidcCustomSubTemplateForOrg",
+    "method": "PUT",
+    "url": "/orgs/{org}/actions/oidc/customization/sub",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/actions/oidc#set-the-customization-template-for-an-oidc-subject-claim-for-an-organization",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "org",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "include_claim_keys",
+        "in": "BODY",
+        "type": "string[]",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 201,
+        "examples": [
+          {
+            "data": "null"
+          }
+        ]
+      },
+      {
+        "code": 403,
+        "examples": null
+      },
+      {
+        "code": 404,
+        "examples": null
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "orgs",
+    "id": "getAuditLog",
+    "method": "GET",
+    "url": "/orgs/{org}/audit-log",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/orgs#get-audit-log",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "org",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "phrase",
+        "in": "QUERY",
+        "type": "string",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "include",
+        "in": "QUERY",
+        "type": "string",
+        "required": false,
+        "enum": [
+          "web",
+          "git",
+          "all"
+        ],
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "after",
+        "in": "QUERY",
+        "type": "string",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "before",
+        "in": "QUERY",
+        "type": "string",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "order",
+        "in": "QUERY",
+        "type": "string",
+        "required": false,
+        "enum": [
+          "desc",
+          "asc"
+        ],
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "per_page",
+        "in": "QUERY",
+        "type": "integer",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "[{\"@timestamp\":1606929874512,\"action\":\"team.add_member\",\"actor\":\"octocat\",\"created_at\":1606929874512,\"_document_id\":\"xJJFlFOhQ6b-5vaAFy9Rjw\",\"org\":\"octo-corp\",\"team\":\"octo-corp/example-team\",\"user\":\"monalisa\"},{\"@timestamp\":1606507117008,\"action\":\"org.create\",\"actor\":\"octocat\",\"created_at\":1606507117008,\"_document_id\":\"Vqvg6kZ4MYqwWRKFDzlMoQ\",\"org\":\"octocat-test-org\"},{\"@timestamp\":1605719148837,\"action\":\"repo.destroy\",\"actor\":\"monalisa\",\"created_at\":1605719148837,\"_document_id\":\"LwW2vpJZCDS-WUmo9Z-ifw\",\"org\":\"mona-org\",\"repo\":\"mona-org/mona-test-repo\",\"visibility\":\"private\"}]"
+          }
+        ]
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "orgs",
+    "id": "listSamlSsoAuthorizations",
+    "method": "GET",
+    "url": "/orgs/{org}/credential-authorizations",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/orgs#list-saml-sso-authorizations-for-an-organization",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "org",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "per_page",
+        "in": "QUERY",
+        "type": "integer",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "page",
+        "in": "QUERY",
+        "type": "integer",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "login",
+        "in": "QUERY",
+        "type": "string",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "[{\"login\":\"octocat\",\"credential_id\":161195,\"credential_type\":\"personal access token\",\"token_last_eight\":\"71c3fc11\",\"credential_authorized_at\":\"2011-01-26T19:06:43Z\",\"authorized_credential_expires_at\":\"2011-02-25T19:06:43Z\",\"scopes\":[\"user\",\"repo\"]},{\"login\":\"hubot\",\"credential_id\":161196,\"credential_type\":\"personal access token\",\"token_last_eight\":\"Ae178B4a\",\"credential_authorized_at\":\"2019-03-29T19:06:43Z\",\"authorized_credential_expires_at\":\"2019-04-28T19:06:43Z\",\"scopes\":[\"repo\"]}]"
+          }
+        ]
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "orgs",
+    "id": "removeSamlSsoAuthorization",
+    "method": "DELETE",
+    "url": "/orgs/{org}/credential-authorizations/{credential_id}",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/orgs#remove-a-saml-sso-authorization-for-an-organization",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "org",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "credential_id",
+        "in": "PATH",
+        "type": "integer",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 204,
+        "examples": null
+      },
+      {
+        "code": 404,
+        "examples": null
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "scim",
+    "id": "deleteUserFromOrg",
+    "method": "DELETE",
+    "url": "/scim/v2/organizations/{org}/Users/{scim_user_id}",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/scim#delete-a-scim-user-from-an-organization",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "org",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "scim_user_id",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 204,
+        "examples": null
+      },
+      {
+        "code": 304,
+        "examples": null
+      },
+      {
+        "code": 403,
+        "examples": null
+      },
+      {
+        "code": 403,
+        "examples": null
+      },
+      {
+        "code": 404,
+        "examples": null
+      },
+      {
+        "code": 404,
+        "examples": null
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "scim",
+    "id": "getProvisioningInformationForUser",
+    "method": "GET",
+    "url": "/scim/v2/organizations/{org}/Users/{scim_user_id}",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/scim#get-scim-provisioning-information-for-a-user",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "org",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "scim_user_id",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "{\"schemas\":[\"urn:ietf:params:scim:schemas:core:2.0:User\"],\"id\":\"edefdfedf-050c-11e7-8d32\",\"externalId\":\"a7d0f98382\",\"userName\":\"mona.octocat@okta.example.com\",\"displayName\":\"Monalisa Octocat\",\"name\":{\"givenName\":\"Monalisa\",\"familyName\":\"Octocat\",\"formatted\":\"Monalisa Octocat\"},\"emails\":[{\"value\":\"mona.octocat@okta.example.com\",\"primary\":true},{\"value\":\"monalisa@octocat.github.com\"}],\"active\":true,\"meta\":{\"resourceType\":\"User\",\"created\":\"2017-03-09T16:11:13-05:00\",\"lastModified\":\"2017-03-09T16:11:13-05:00\",\"location\":\"https://api.github.com/scim/v2/organizations/octo-org/Users/edefdfedf-050c-11e7-8d32\"}}"
+          }
+        ]
+      },
+      {
+        "code": 304,
+        "examples": null
+      },
+      {
+        "code": 403,
+        "examples": null
+      },
+      {
+        "code": 403,
+        "examples": null
+      },
+      {
+        "code": 404,
+        "examples": null
+      },
+      {
+        "code": 404,
+        "examples": null
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "scim",
+    "id": "listProvisionedIdentities",
+    "method": "GET",
+    "url": "/scim/v2/organizations/{org}/Users",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/scim#list-scim-provisioned-identities",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "org",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "startIndex",
+        "in": "QUERY",
+        "type": "integer",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "count",
+        "in": "QUERY",
+        "type": "integer",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "filter",
+        "in": "QUERY",
+        "type": "string",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "{\"schemas\":[\"urn:ietf:params:scim:api:messages:2.0:ListResponse\"],\"totalResults\":1,\"itemsPerPage\":1,\"startIndex\":1,\"Resources\":[{\"schemas\":[\"urn:ietf:params:scim:schemas:core:2.0:User\"],\"id\":\"5fc0c238-1112-11e8-8e45-920c87bdbd75\",\"externalId\":\"00u1dhhb1fkIGP7RL1d8\",\"userName\":\"octocat@github.com\",\"displayName\":\"Mona Octocat\",\"name\":{\"givenName\":\"Mona\",\"familyName\":\"Octocat\",\"formatted\":\"Mona Octocat\"},\"emails\":[{\"value\":\"octocat@github.com\",\"primary\":true}],\"active\":true,\"meta\":{\"resourceType\":\"User\",\"created\":\"2018-02-13T15:05:24.000-08:00\",\"lastModified\":\"2018-02-13T15:05:55.000-08:00\",\"location\":\"https://api.github.com/scim/v2/organizations/octo-org/Users/5fc0c238-1112-11e8-8e45-920c87bdbd75\"}}]}"
+          },
+          {
+            "data": "{\"schemas\":[\"urn:ietf:params:scim:api:messages:2.0:ListResponse\"],\"totalResults\":2,\"itemsPerPage\":2,\"startIndex\":1,\"Resources\":[{\"schemas\":[\"urn:ietf:params:scim:schemas:core:2.0:User\"],\"id\":\"edefdfedf-050c-11e7-8d32\",\"externalId\":\"a7d0f98382\",\"userName\":\"mona.octocat@okta.example.com\",\"displayName\":\"Mona Octocat\",\"name\":{\"givenName\":\"Mona\",\"familyName\":\"Octocat\",\"formatted\":\"Mona Octocat\"},\"emails\":[{\"value\":\"mona.octocat@okta.example.com\",\"primary\":true}],\"active\":true,\"meta\":{\"resourceType\":\"User\",\"created\":\"2017-03-09T16:11:13-05:00\",\"lastModified\":\"2017-03-09T16:11:13-05:00\",\"location\":\"https://api.github.com/scim/v2/organizations/octo-org/Users/edefdfedf-050c-11e7-8d32\"}},{\"schemas\":[\"urn:ietf:params:scim:schemas:core:2.0:User\"],\"id\":\"77563764-eb6-24-0598234-958243\",\"externalId\":\"sdfoiausdofiua\",\"userName\":\"hubot@example.com\",\"displayName\":\"hu bot\",\"name\":{\"givenName\":\"hu\",\"familyName\":\"bot\",\"formatted\":\"hu bot\"},\"emails\":[{\"value\":\"hubot@example.com\",\"primary\":true}],\"active\":true,\"meta\":{\"resourceType\":\"User\",\"created\":\"2017-03-09T16:11:13-05:00\",\"lastModified\":\"2017-03-09T16:11:13-05:00\",\"location\":\"https://api.github.com/scim/v2/organizations/octo-org/Users/77563764-eb6-24-0598234-958243\"}}]}"
+          }
+        ]
+      },
+      {
+        "code": 304,
+        "examples": null
+      },
+      {
+        "code": 400,
+        "examples": null
+      },
+      {
+        "code": 400,
+        "examples": null
+      },
+      {
+        "code": 403,
+        "examples": null
+      },
+      {
+        "code": 403,
+        "examples": null
+      },
+      {
+        "code": 404,
+        "examples": null
+      },
+      {
+        "code": 404,
+        "examples": null
+      },
+      {
+        "code": 429,
+        "examples": null
+      },
+      {
+        "code": 429,
+        "examples": null
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "scim",
+    "id": "provisionAndInviteUser",
+    "method": "POST",
+    "url": "/scim/v2/organizations/{org}/Users",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/scim#provision-and-invite-a-scim-user",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "org",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "userName",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "displayName",
+        "in": "BODY",
+        "type": "string",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "name",
+        "in": "BODY",
+        "type": "object",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "name.givenName",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "name.familyName",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "name.formatted",
+        "in": "BODY",
+        "type": "string",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "emails",
+        "in": "BODY",
+        "type": "object[]",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "emails[].value",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "emails[].primary",
+        "in": "BODY",
+        "type": "boolean",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "emails[].type",
+        "in": "BODY",
+        "type": "string",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "schemas",
+        "in": "BODY",
+        "type": "string[]",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "externalId",
+        "in": "BODY",
+        "type": "string",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "groups",
+        "in": "BODY",
+        "type": "string[]",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "active",
+        "in": "BODY",
+        "type": "boolean",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 201,
+        "examples": [
+          {
+            "data": "{\"schemas\":[\"urn:ietf:params:scim:schemas:core:2.0:User\"],\"id\":\"edefdfedf-050c-11e7-8d32\",\"externalId\":\"a7d0f98382\",\"userName\":\"mona.octocat@okta.example.com\",\"displayName\":\"Monalisa Octocat\",\"name\":{\"givenName\":\"Monalisa\",\"familyName\":\"Octocat\",\"formatted\":\"Monalisa Octocat\"},\"emails\":[{\"value\":\"mona.octocat@okta.example.com\",\"primary\":true},{\"value\":\"monalisa@octocat.github.com\"}],\"active\":true,\"meta\":{\"resourceType\":\"User\",\"created\":\"2017-03-09T16:11:13-05:00\",\"lastModified\":\"2017-03-09T16:11:13-05:00\",\"location\":\"https://api.github.com/scim/v2/organizations/octo-org/Users/edefdfedf-050c-11e7-8d32\"}}"
+          }
+        ]
+      },
+      {
+        "code": 304,
+        "examples": null
+      },
+      {
+        "code": 400,
+        "examples": null
+      },
+      {
+        "code": 400,
+        "examples": null
+      },
+      {
+        "code": 403,
+        "examples": null
+      },
+      {
+        "code": 403,
+        "examples": null
+      },
+      {
+        "code": 404,
+        "examples": null
+      },
+      {
+        "code": 404,
+        "examples": null
+      },
+      {
+        "code": 409,
+        "examples": null
+      },
+      {
+        "code": 409,
+        "examples": null
+      },
+      {
+        "code": 500,
+        "examples": null
+      },
+      {
+        "code": 500,
+        "examples": null
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "scim",
+    "id": "setInformationForProvisionedUser",
+    "method": "PUT",
+    "url": "/scim/v2/organizations/{org}/Users/{scim_user_id}",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/scim#set-scim-information-for-a-provisioned-user",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "org",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "scim_user_id",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "schemas",
+        "in": "BODY",
+        "type": "string[]",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "displayName",
+        "in": "BODY",
+        "type": "string",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "externalId",
+        "in": "BODY",
+        "type": "string",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "groups",
+        "in": "BODY",
+        "type": "string[]",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "active",
+        "in": "BODY",
+        "type": "boolean",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "userName",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "name",
+        "in": "BODY",
+        "type": "object",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "name.givenName",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "name.familyName",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "name.formatted",
+        "in": "BODY",
+        "type": "string",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "emails",
+        "in": "BODY",
+        "type": "object[]",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "emails[].type",
+        "in": "BODY",
+        "type": "string",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "emails[].value",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "emails[].primary",
+        "in": "BODY",
+        "type": "boolean",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "{\"schemas\":[\"urn:ietf:params:scim:schemas:core:2.0:User\"],\"id\":\"edefdfedf-050c-11e7-8d32\",\"externalId\":\"a7d0f98382\",\"userName\":\"mona.octocat@okta.example.com\",\"displayName\":\"Monalisa Octocat\",\"name\":{\"givenName\":\"Monalisa\",\"familyName\":\"Octocat\",\"formatted\":\"Monalisa Octocat\"},\"emails\":[{\"value\":\"mona.octocat@okta.example.com\",\"primary\":true},{\"value\":\"monalisa@octocat.github.com\"}],\"active\":true,\"meta\":{\"resourceType\":\"User\",\"created\":\"2017-03-09T16:11:13-05:00\",\"lastModified\":\"2017-03-09T16:11:13-05:00\",\"location\":\"https://api.github.com/scim/v2/organizations/octo-org/Users/edefdfedf-050c-11e7-8d32\"}}"
+          }
+        ]
+      },
+      {
+        "code": 304,
+        "examples": null
+      },
+      {
+        "code": 403,
+        "examples": null
+      },
+      {
+        "code": 403,
+        "examples": null
+      },
+      {
+        "code": 404,
+        "examples": null
+      },
+      {
+        "code": 404,
+        "examples": null
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "scim",
+    "id": "updateAttributeForUser",
+    "method": "PATCH",
+    "url": "/scim/v2/organizations/{org}/Users/{scim_user_id}",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/scim#update-an-attribute-for-a-scim-user",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "org",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "scim_user_id",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "schemas",
+        "in": "BODY",
+        "type": "string[]",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "Operations",
+        "in": "BODY",
+        "type": "object[]",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "Operations[].op",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": [
+          "add",
+          "remove",
+          "replace"
+        ],
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "Operations[].path",
+        "in": "BODY",
+        "type": "string",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "Operations[].value",
+        "in": "BODY",
+        "type": null,
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "{\"schemas\":[\"urn:ietf:params:scim:schemas:core:2.0:User\"],\"id\":\"edefdfedf-050c-11e7-8d32\",\"externalId\":\"a7d0f98382\",\"userName\":\"mona.octocat@okta.example.com\",\"displayName\":\"Monalisa Octocat\",\"name\":{\"givenName\":\"Monalisa\",\"familyName\":\"Octocat\",\"formatted\":\"Monalisa Octocat\"},\"emails\":[{\"value\":\"mona.octocat@okta.example.com\",\"primary\":true},{\"value\":\"monalisa@octocat.github.com\"}],\"active\":true,\"meta\":{\"resourceType\":\"User\",\"created\":\"2017-03-09T16:11:13-05:00\",\"lastModified\":\"2017-03-09T16:11:13-05:00\",\"location\":\"https://api.github.com/scim/v2/organizations/octo-org/Users/edefdfedf-050c-11e7-8d32\"}}"
+          }
+        ]
+      },
+      {
+        "code": 304,
+        "examples": null
+      },
+      {
+        "code": 400,
+        "examples": null
+      },
+      {
+        "code": 400,
+        "examples": null
+      },
+      {
+        "code": 403,
+        "examples": null
+      },
+      {
+        "code": 403,
+        "examples": null
+      },
+      {
+        "code": 404,
+        "examples": null
+      },
+      {
+        "code": 404,
+        "examples": null
+      },
+      {
+        "code": 429,
+        "examples": null
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "teams",
+    "id": "createOrUpdateIdpGroupConnectionsInOrg",
+    "method": "PATCH",
+    "url": "/orgs/{org}/teams/{team_slug}/team-sync/group-mappings",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/teams#create-or-update-idp-group-connections",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "org",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "team_slug",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "groups",
+        "in": "BODY",
+        "type": "object[]",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "groups[].group_id",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "groups[].group_name",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "groups[].group_description",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "{\"groups\":[{\"group_id\":\"123\",\"group_name\":\"Octocat admins\",\"group_description\":\"The people who configure your octoworld.\"},{\"group_id\":\"456\",\"group_name\":\"Octocat docs members\",\"group_description\":\"The people who make your octoworld come to life.\"}]}"
+          }
+        ]
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "teams",
+    "id": "externalIdpGroupInfoForOrg",
+    "method": "GET",
+    "url": "/orgs/{org}/external-group/{group_id}",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/teams#external-idp-group-info-for-an-organization",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "org",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "group_id",
+        "in": "PATH",
+        "type": "integer",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "{\"group_id\":\"123\",\"group_name\":\"Octocat admins\",\"updated_at\":\"2021-01-24T11:31:04-06:00\",\"teams\":[{\"team_id\":1,\"team_name\":\"team-test\"},{\"team_id\":2,\"team_name\":\"team-test2\"}],\"members\":[{\"member_id\":1,\"member_login\":\"mona-lisa_eocsaxrs\",\"member_name\":\"Mona Lisa\",\"member_email\":\"mona_lisa@github.com\"},{\"member_id\":2,\"member_login\":\"octo-lisa_eocsaxrs\",\"member_name\":\"Octo Lisa\",\"member_email\":\"octo_lisa@github.com\"}]}"
+          }
+        ]
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "teams",
+    "id": "linkExternalIdpGroupToTeamForOrg",
+    "method": "PATCH",
+    "url": "/orgs/{org}/teams/{team_slug}/external-groups",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/teams#link-external-idp-group-team-connection",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "org",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "team_slug",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "group_id",
+        "in": "BODY",
+        "type": "integer",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "{\"group_id\":\"123\",\"group_name\":\"Octocat admins\",\"updated_at\":\"2021-01-24T11:31:04-06:00\",\"teams\":[{\"team_id\":1,\"team_name\":\"team-test\"},{\"team_id\":2,\"team_name\":\"team-test2\"}],\"members\":[{\"member_id\":1,\"member_login\":\"mona-lisa_eocsaxrs\",\"member_name\":\"Mona Lisa\",\"member_email\":\"mona_lisa@github.com\"},{\"member_id\":2,\"member_login\":\"octo-lisa_eocsaxrs\",\"member_name\":\"Octo Lisa\",\"member_email\":\"octo_lisa@github.com\"}]}"
+          }
+        ]
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "teams",
+    "id": "listExternalIdpGroupsForOrg",
+    "method": "GET",
+    "url": "/orgs/{org}/external-groups",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/teams#list-external-idp-groups-for-an-organization",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "org",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "per_page",
+        "in": "QUERY",
+        "type": "integer",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "page",
+        "in": "QUERY",
+        "type": "integer",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "display_name",
+        "in": "QUERY",
+        "type": "string",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "{\"groups\":[{\"group_id\":\"123\",\"group_name\":\"Octocat admins\",\"updated_at\":\"2021-01-24T11:31:04-06:00\"},{\"group_id\":\"456\",\"group_name\":\"Octocat docs members\",\"updated_at\":\"2021-03-24T11:31:04-06:00\"}]}"
+          }
+        ]
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "teams",
+    "id": "listIdpGroupsForOrg",
+    "method": "GET",
+    "url": "/orgs/{org}/team-sync/groups",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/teams#list-idp-groups-for-an-organization",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "org",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "per_page",
+        "in": "QUERY",
+        "type": "integer",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "page",
+        "in": "QUERY",
+        "type": "string",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "{\"groups\":[{\"group_id\":\"123\",\"group_name\":\"Octocat admins\",\"group_description\":\"The people who configure your octoworld.\"},{\"group_id\":\"456\",\"group_name\":\"Octocat docs members\",\"group_description\":\"The people who make your octoworld come to life.\"}]}"
+          }
+        ]
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "teams",
+    "id": "listIdpGroupsInOrg",
+    "method": "GET",
+    "url": "/orgs/{org}/teams/{team_slug}/team-sync/group-mappings",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/teams#list-idp-groups-for-a-team",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "org",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "team_slug",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "{\"groups\":[{\"group_id\":\"123\",\"group_name\":\"Octocat admins\",\"group_description\":\"The people who configure your octoworld.\"},{\"group_id\":\"456\",\"group_name\":\"Octocat docs members\",\"group_description\":\"The people who make your octoworld come to life.\"}]}"
+          }
+        ]
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "teams",
+    "id": "listLinkedExternalIdpGroupsToTeamForOrg",
+    "method": "GET",
+    "url": "/orgs/{org}/teams/{team_slug}/external-groups",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/teams#list-external-idp-group-team-connection",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "org",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "team_slug",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "{\"groups\":[{\"group_id\":\"123\",\"group_name\":\"Octocat admins\",\"updated_at\":\"2021-01-24T11:31:04-06:00\"},{\"group_id\":\"456\",\"group_name\":\"Octocat docs members\",\"updated_at\":\"2021-03-24T11:31:04-06:00\"}]}"
+          }
+        ]
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "teams",
+    "id": "unlinkExternalIdpGroupFromTeamForOrg",
+    "method": "DELETE",
+    "url": "/orgs/{org}/teams/{team_slug}/external-groups",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/teams#unlink-external-idp-group-team-connection",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "org",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "team_slug",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 204,
+        "examples": null
       }
     ],
     "renamed": null
