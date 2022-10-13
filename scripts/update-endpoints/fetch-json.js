@@ -9,7 +9,7 @@ if (!process.env.VERSION) {
 
 const QUERY = `
 query ($version: String!, $ignoreChangesBefore: String!) {
-  endpoints(version: $version, ignoreChangesBefore: $ignoreChangesBefore, filter: { isGithubCloudOnly: true }) {
+  endpoints(version: $version, ignoreChangesBefore: $ignoreChangesBefore, filter: { isGithubCloudOnly: true }, ghe: GHEC) {
     scope(format: CAMELCASE)
     id(format: CAMELCASE)
     method
