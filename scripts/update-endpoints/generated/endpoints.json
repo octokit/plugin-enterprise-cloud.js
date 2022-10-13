@@ -1444,52 +1444,9 @@
     "scope": "enterpriseAdmin",
     "id": "deleteSelfHostedRunnerFromEnterprise",
     "method": "DELETE",
-    "url": "/enterprises/{enterprise}/actions/runner-groups/{runner_group_id}",
-    "isDeprecated": false,
-    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/actions#delete-self-hosted-runner-from-an-enterprise",
-    "previews": [],
-    "headers": [],
-    "parameters": [
-      {
-        "name": "enterprise",
-        "in": "PATH",
-        "type": "string",
-        "required": true,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      },
-      {
-        "name": "runner_group_id",
-        "in": "PATH",
-        "type": "integer",
-        "required": true,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      }
-    ],
-    "responses": [
-      {
-        "code": 204,
-        "examples": null
-      }
-    ],
-    "renamed": null
-  },
-  {
-    "scope": "enterpriseAdmin",
-    "id": "getSelfHostedRunnerForEnterprise",
-    "method": "GET",
     "url": "/enterprises/{enterprise}/actions/runners/{runner_id}",
     "isDeprecated": false,
-    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/actions#delete-a-self-hosted-runner-group-from-an-enterprise",
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/actions#delete-self-hosted-runner-from-an-enterprise",
     "previews": [],
     "headers": [],
     "parameters": [
@@ -1536,7 +1493,7 @@
     "method": "GET",
     "url": "/enterprises/{enterprise}/actions/runner-groups/{runner_group_id}/organizations",
     "isDeprecated": false,
-    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/enterprise-admin#get-the-audit-log-for-an-enterprise",
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/actions#delete-a-self-hosted-runner-group-from-an-enterprise",
     "previews": [],
     "headers": [],
     "parameters": [
@@ -1603,46 +1560,11 @@
   },
   {
     "scope": "enterpriseAdmin",
-    "id": "listRunnerApplicationsForEnterprise",
-    "method": "GET",
-    "url": "/enterprises/{enterprise}/actions/runners/downloads",
-    "isDeprecated": false,
-    "documentationUrl": "https://docs.github.com/rest/reference/actions#list-runner-applications-for-an-enterprise",
-    "previews": [],
-    "headers": [],
-    "parameters": [
-      {
-        "name": "enterprise",
-        "in": "PATH",
-        "type": "string",
-        "required": true,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      }
-    ],
-    "responses": [
-      {
-        "code": 200,
-        "examples": [
-          {
-            "data": "[{\"os\":\"osx\",\"architecture\":\"x64\",\"download_url\":\"https://github.com/actions/runner/releases/download/v2.164.0/actions-runner-osx-x64-2.164.0.tar.gz\",\"filename\":\"actions-runner-osx-x64-2.164.0.tar.gz\"},{\"os\":\"linux\",\"architecture\":\"x64\",\"download_url\":\"https://github.com/actions/runner/releases/download/v2.164.0/actions-runner-linux-x64-2.164.0.tar.gz\",\"filename\":\"actions-runner-linux-x64-2.164.0.tar.gz\"},{\"os\":\"linux\",\"architecture\":\"arm\",\"download_url\":\"https://github.com/actions/runner/releases/download/v2.164.0/actions-runner-linux-arm-2.164.0.tar.gz\",\"filename\":\"actions-runner-linux-arm-2.164.0.tar.gz\"},{\"os\":\"win\",\"architecture\":\"x64\",\"download_url\":\"https://github.com/actions/runner/releases/download/v2.164.0/actions-runner-win-x64-2.164.0.zip\",\"filename\":\"actions-runner-win-x64-2.164.0.zip\"},{\"os\":\"linux\",\"architecture\":\"arm64\",\"download_url\":\"https://github.com/actions/runner/releases/download/v2.164.0/actions-runner-linux-arm64-2.164.0.tar.gz\",\"filename\":\"actions-runner-linux-arm64-2.164.0.tar.gz\"}]"
-          }
-        ]
-      }
-    ],
-    "renamed": null
-  },
-  {
-    "scope": "enterpriseAdmin",
-    "id": "listSelfHostedRunnerGroupsForEnterprise",
+    "id": "getAuditLog",
     "method": "GET",
     "url": "/enterprises/{enterprise}/actions/runner-groups",
     "isDeprecated": false,
-    "documentationUrl": "https://docs.github.com/rest/reference/actions#list-self-hosted-runner-groups-for-an-enterprise",
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/enterprise-admin#get-the-audit-log-for-an-enterprise",
     "previews": [],
     "headers": [],
     "parameters": [
@@ -1995,6 +1917,41 @@
   },
   {
     "scope": "enterpriseAdmin",
+    "id": "listRunnerApplicationsForEnterprise",
+    "method": "GET",
+    "url": "/enterprises/{enterprise}/actions/runners/downloads",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/actions#list-runner-applications-for-an-enterprise",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "enterprise",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "[{\"os\":\"osx\",\"architecture\":\"x64\",\"download_url\":\"https://github.com/actions/runner/releases/download/v2.164.0/actions-runner-osx-x64-2.164.0.tar.gz\",\"filename\":\"actions-runner-osx-x64-2.164.0.tar.gz\"},{\"os\":\"linux\",\"architecture\":\"x64\",\"download_url\":\"https://github.com/actions/runner/releases/download/v2.164.0/actions-runner-linux-x64-2.164.0.tar.gz\",\"filename\":\"actions-runner-linux-x64-2.164.0.tar.gz\"},{\"os\":\"linux\",\"architecture\":\"arm\",\"download_url\":\"https://github.com/actions/runner/releases/download/v2.164.0/actions-runner-linux-arm-2.164.0.tar.gz\",\"filename\":\"actions-runner-linux-arm-2.164.0.tar.gz\"},{\"os\":\"win\",\"architecture\":\"x64\",\"download_url\":\"https://github.com/actions/runner/releases/download/v2.164.0/actions-runner-win-x64-2.164.0.zip\",\"filename\":\"actions-runner-win-x64-2.164.0.zip\"},{\"os\":\"linux\",\"architecture\":\"arm64\",\"download_url\":\"https://github.com/actions/runner/releases/download/v2.164.0/actions-runner-linux-arm64-2.164.0.tar.gz\",\"filename\":\"actions-runner-linux-arm64-2.164.0.tar.gz\"}]"
+          }
+        ]
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "enterpriseAdmin",
     "id": "listSelfHostedRunnerGroupsForEnterprise",
     "method": "GET",
     "url": "/enterprises/{enterprise}/actions/runner-groups",
@@ -2031,7 +1988,7 @@
         "name": "page",
         "in": "QUERY",
         "type": "integer",
-        "required": true,
+        "required": false,
         "enum": null,
         "allowNull": false,
         "mapToData": null,
@@ -2075,9 +2032,9 @@
     "headers": [],
     "parameters": [
       {
-        "name": "enterprise",
+        "name": "runner_group_id",
         "in": "PATH",
-        "type": "string",
+        "type": "integer",
         "required": true,
         "enum": null,
         "allowNull": false,
@@ -2180,7 +2137,9 @@
         "validation": null,
         "alias": null,
         "deprecated": null
-      },
+      }
+    ],
+    "responses": [
       {
         "code": 200,
         "examples": [
