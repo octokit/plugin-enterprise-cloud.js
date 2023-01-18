@@ -48,6 +48,20 @@ const Endpoints: EndpointsDefaultsAndDecorations = {
       "PATCH /orgs/:org/actions/runner-groups/:runner_group_id",
     ],
   },
+  announcementBanners: {
+    getAnnouncementBannerForEnterprise: [
+      "GET /enterprises/:enterprise/announcement",
+    ],
+    getAnnouncementBannerForOrg: ["GET /orgs/:org/announcement"],
+    removeAnnouncementBannerForEnterprise: [
+      "DELETE /enterprises/:enterprise/announcement",
+    ],
+    removeAnnouncementBannerForOrg: ["DELETE /orgs/:org/announcement"],
+    setAnnouncementBannerForEnterprise: [
+      "PATCH /enterprises/:enterprise/announcement",
+    ],
+    setAnnouncementBannerForOrg: ["PATCH /orgs/:org/announcement"],
+  },
   billing: {
     getGithubActionsBillingGhe: [
       "GET /enterprises/:enterprise/settings/billing/actions",
