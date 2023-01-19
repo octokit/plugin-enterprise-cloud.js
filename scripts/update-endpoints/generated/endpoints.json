@@ -281,7 +281,7 @@
     "method": "GET",
     "url": "/repos/{owner}/{repo}/actions/oidc/customization/sub",
     "isDeprecated": false,
-    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/actions/oidc#get-the-opt-out-flag-of-an-oidc-subject-claim-customization-for-a-repository",
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/actions/oidc#get-the-customization-template-for-an-oidc-subject-claim-for-a-repository",
     "previews": [],
     "headers": [],
     "parameters": [
@@ -315,7 +315,7 @@
         "code": 200,
         "examples": [
           {
-            "data": "{\"use_default\":false}"
+            "data": "{\"use_default\":false,\"include_claim_keys\":[\"repo\",\"context\"]}"
           }
         ]
       },
@@ -753,7 +753,7 @@
     "method": "PUT",
     "url": "/repos/{owner}/{repo}/actions/oidc/customization/sub",
     "isDeprecated": false,
-    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/actions/oidc#set-the-opt-out-flag-of-an-oidc-subject-claim-customization-for-a-repository",
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/actions/oidc#set-the-customization-template-for-an-oidc-subject-claim-for-a-repository",
     "previews": [],
     "headers": [],
     "parameters": [
@@ -792,12 +792,28 @@
         "validation": null,
         "alias": null,
         "deprecated": null
+      },
+      {
+        "name": "include_claim_keys",
+        "in": "BODY",
+        "type": "string[]",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
       }
     ],
     "responses": [
       {
         "code": 201,
-        "examples": null
+        "examples": [
+          {
+            "data": "null"
+          }
+        ]
       },
       {
         "code": 400,
@@ -1033,6 +1049,256 @@
         "examples": [
           {
             "data": "{\"id\":2,\"name\":\"octo-runner-group\",\"visibility\":\"selected\",\"default\":false,\"selected_repositories_url\":\"https://api.github.com/orgs/octo-org/actions/runner-groups/2/repositories\",\"runners_url\":\"https://api.github.com/orgs/octo-org/actions/runner_groups/2/runners\",\"inherited\":false,\"allows_public_repositories\":true,\"restricted_to_workflows\":true,\"selected_workflows\":[\"octo-org/octo-repo/.github/workflows/deploy.yaml@refs/heads/main\"],\"workflow_restrictions_read_only\":false}"
+          }
+        ]
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "announcementBanners",
+    "id": "getAnnouncementBannerForEnterprise",
+    "method": "GET",
+    "url": "/enterprises/{enterprise}/announcement",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/announcement-banners#get-announcement-banner-for-enterprise",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "enterprise",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "{\"announcement\":\"Very **important** announcement about _something_.\",\"expires_at\":\"2021-01-01T00:00:00.000+00:00\",\"user_dismissible\":false}"
+          }
+        ]
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "announcementBanners",
+    "id": "getAnnouncementBannerForOrg",
+    "method": "GET",
+    "url": "/orgs/{org}/announcement",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/announcement-banners#get-enterprise-announcement-banner-for-org",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "org",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "{\"announcement\":\"Very **important** announcement about _something_.\",\"expires_at\":\"2021-01-01T00:00:00.000+00:00\",\"user_dismissible\":false}"
+          }
+        ]
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "announcementBanners",
+    "id": "removeAnnouncementBannerForEnterprise",
+    "method": "DELETE",
+    "url": "/enterprises/{enterprise}/announcement",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/announcement-banners/enterprises#remove-announcement-banner-from-enterprise",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "enterprise",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 204,
+        "examples": null
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "announcementBanners",
+    "id": "removeAnnouncementBannerForOrg",
+    "method": "DELETE",
+    "url": "/orgs/{org}/announcement",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/announcement-banners/organizations#remove-announcement-banner-from-organization",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "org",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 204,
+        "examples": null
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "announcementBanners",
+    "id": "setAnnouncementBannerForEnterprise",
+    "method": "PATCH",
+    "url": "/enterprises/{enterprise}/announcement",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/announcement-banners/enterprises#set-announcement-banner-for-enterprise",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "enterprise",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "announcement",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": true,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "expires_at",
+        "in": "BODY",
+        "type": "string",
+        "required": false,
+        "enum": null,
+        "allowNull": true,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "{\"announcement\":\"Very **important** announcement about _something_.\",\"expires_at\":\"2021-01-01T00:00:00.000+00:00\",\"user_dismissible\":false}"
+          }
+        ]
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "announcementBanners",
+    "id": "setAnnouncementBannerForOrg",
+    "method": "PATCH",
+    "url": "/orgs/{org}/announcement",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/announcement-banners/organizations#set-announcement-banner-for-organization",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "org",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "announcement",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": true,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "expires_at",
+        "in": "BODY",
+        "type": "string",
+        "required": false,
+        "enum": null,
+        "allowNull": true,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "{\"announcement\":\"Very **important** announcement about _something_.\",\"expires_at\":\"2021-01-01T00:00:00.000+00:00\",\"user_dismissible\":false}"
           }
         ]
       }
@@ -1710,7 +1976,7 @@
         "code": 200,
         "examples": [
           {
-            "data": "{\"total_seats_consumed\":5000,\"total_seats_purchased\":4500,\"users\":[{\"enterprise_server_emails\":[\"monalisa@github.com\"],\"github_com_login\":\"monalisa\",\"github_com_name\":\"Mona Lisa\",\"github_com_profile\":\"https://github.com/monalisa\",\"license_type\":\"enterprise\",\"github_com_member_roles\":[\"org1:Owner\",\"org2:Owner\"],\"github_com_enterprise_role\":\"owner\",\"github_com_enterprise_roles\":[\"owner\"],\"visual_studio_subscription_user\":false,\"github_com_verified_domain_emails\":[\"monalisa@github.com\"],\"github_com_saml_name_id\":\"monalisa\",\"enterprise_server_user\":true,\"github_com_user\":true,\"total_user_accounts\":3,\"enterprise_server_user_ids\":[\"example_host_name.com:123\",\"example_host_name_2:222\"],\"github_com_orgs_with_pending_invites\":[\"org1\",\"org2\"],\"visual_studio_subscription_email\":\"\"},{\"enterprise_server_emails\":[\"deleonjavier@example.com\"],\"github_com_login\":\"\",\"github_com_name\":\"\",\"github_com_profile\":\"\",\"license_type\":\"enterprise\",\"github_com_member_roles\":[],\"github_com_enterprise_role\":\"\",\"github_com_enterprise_roles\":[],\"visual_studio_subscription_user\":false,\"github_com_verified_domain_emails\":[],\"github_com_saml_name_id\":\"\",\"enterprise_server_user\":true,\"github_com_user\":false,\"total_user_accounts\":1,\"enterprise_server_user_ids\":[\"example_host_name:123\"],\"github_com_orgs_with_pending_invites\":[],\"visual_studio_subscription_email\":\"\"}]}"
+            "data": "{\"total_seats_consumed\":5000,\"total_seats_purchased\":4500,\"users\":[{\"github_com_login\":\"monalisa\",\"github_com_name\":\"Mona Lisa\",\"enterprise_server_user_ids\":[\"example_host_name.com:123\",\"example_host_name_2:222\"],\"github_com_user\":true,\"enterprise_server_user\":true,\"visual_studio_subscription_user\":false,\"license_type\":\"enterprise\",\"github_com_profile\":\"https://github.com/monalisa\",\"github_com_member_roles\":[\"org1:Owner\",\"org2:Owner\"],\"github_com_enterprise_roles\":[\"owner\"],\"github_com_verified_domain_emails\":[\"monalisa@github.com\"],\"github_com_saml_name_id\":\"monalisa\",\"github_com_orgs_with_pending_invites\":[\"org1\",\"org2\"],\"github_com_two_factor_auth\":true,\"enterprise_server_primary_emails\":[\"monalisa@github.com\"],\"visual_studio_license_status\":\"\",\"visual_studio_subscription_email\":\"\",\"total_user_accounts\":3},{\"github_com_login\":\"\",\"github_com_name\":\"\",\"enterprise_server_user_ids\":[\"example_host_name:123\"],\"github_com_user\":false,\"enterprise_server_user\":true,\"visual_studio_subscription_user\":false,\"license_type\":\"enterprise\",\"github_com_profile\":\"\",\"github_com_member_roles\":[],\"github_com_enterprise_role\":\"\",\"github_com_enterprise_roles\":[],\"github_com_verified_domain_emails\":[],\"github_com_saml_name_id\":\"\",\"github_com_orgs_with_pending_invites\":[],\"github_com_two_factor_auth\":\"\",\"enterprise_server_emails\":[\"hubot@example.com\"],\"visual_studio_license_status\":\"\",\"visual_studio_subscription_email\":\"\",\"total_user_accounts\":1}]}"
           }
         ]
       }
@@ -2751,7 +3017,7 @@
         "code": 200,
         "examples": [
           {
-            "data": "[{\"login\":\"octocat\",\"credential_id\":161195,\"credential_type\":\"personal access token\",\"token_last_eight\":\"71c3fc11\",\"credential_authorized_at\":\"2011-01-26T19:06:43Z\",\"authorized_credential_expires_at\":\"2011-02-25T19:06:43Z\",\"scopes\":[\"user\",\"repo\"]},{\"login\":\"hubot\",\"credential_id\":161196,\"credential_type\":\"personal access token\",\"token_last_eight\":\"Ae178B4a\",\"credential_authorized_at\":\"2019-03-29T19:06:43Z\",\"authorized_credential_expires_at\":\"2019-04-28T19:06:43Z\",\"scopes\":[\"repo\"]}]"
+            "data": "[{\"login\":\"octocat\",\"credential_id\":161195,\"credential_type\":\"personal access token\",\"token_last_eight\":\"71c3fc11\",\"credential_authorized_at\":\"2011-01-26T19:06:43Z\",\"credential_accessed_at\":\"2011-01-26T19:06:43Z\",\"authorized_credential_expires_at\":\"2011-02-25T19:06:43Z\",\"scopes\":[\"user\",\"repo\"]},{\"login\":\"hubot\",\"credential_id\":161196,\"credential_type\":\"personal access token\",\"token_last_eight\":\"Ae178B4a\",\"credential_authorized_at\":\"2019-03-29T19:06:43Z\",\"credential_accessed_at\":\"2011-01-26T19:06:43Z\",\"authorized_credential_expires_at\":\"2019-04-28T19:06:43Z\",\"scopes\":[\"repo\"]}]"
           }
         ]
       }
@@ -3978,6 +4244,18 @@
       },
       {
         "name": "page",
+        "in": "QUERY",
+        "type": "string",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "q",
         "in": "QUERY",
         "type": "string",
         "required": false,
