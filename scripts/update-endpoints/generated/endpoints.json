@@ -277,16 +277,28 @@
   },
   {
     "scope": "actions",
-    "id": "getActionsCacheUsageForEnterprise",
+    "id": "getCustomOidcSubClaimForRepo",
     "method": "GET",
-    "url": "/enterprises/{enterprise}/actions/cache/usage",
+    "url": "/repos/{owner}/{repo}/actions/oidc/customization/sub",
     "isDeprecated": false,
-    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/actions#get-github-actions-cache-usage-for-an-enterprise",
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/actions/oidc#get-the-customization-template-for-an-oidc-subject-claim-for-a-repository",
     "previews": [],
     "headers": [],
     "parameters": [
       {
-        "name": "enterprise",
+        "name": "owner",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "repo",
         "in": "PATH",
         "type": "string",
         "required": true,
@@ -303,44 +315,21 @@
         "code": 200,
         "examples": [
           {
-            "data": "{\"total_active_caches_size_in_bytes\":3344284,\"total_active_caches_count\":5}"
+            "data": "{\"use_default\":false,\"include_claim_keys\":[\"repo\",\"context\"]}"
           }
         ]
-      }
-    ],
-    "renamed": null
-  },
-  {
-    "scope": "actions",
-    "id": "getGithubActionsDefaultWorkflowPermissionsEnterprise",
-    "method": "GET",
-    "url": "/enterprises/{enterprise}/actions/permissions/workflow",
-    "isDeprecated": false,
-    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/actions#get-default-workflow-permissions-for-an-enterprise",
-    "previews": [],
-    "headers": [],
-    "parameters": [
+      },
       {
-        "name": "enterprise",
-        "in": "PATH",
-        "type": "string",
-        "required": true,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      }
-    ],
-    "responses": [
+        "code": 400,
+        "examples": null
+      },
       {
-        "code": 200,
-        "examples": [
-          {
-            "data": "{\"default_workflow_permissions\":\"read\",\"can_approve_pull_request_reviews\":true}"
-          }
-        ]
+        "code": 400,
+        "examples": null
+      },
+      {
+        "code": 404,
+        "examples": null
       }
     ],
     "renamed": null
@@ -760,16 +749,16 @@
   },
   {
     "scope": "actions",
-    "id": "setGithubActionsDefaultWorkflowPermissionsEnterprise",
+    "id": "setCustomOidcSubClaimForRepo",
     "method": "PUT",
-    "url": "/enterprises/{enterprise}/actions/permissions/workflow",
+    "url": "/repos/{owner}/{repo}/actions/oidc/customization/sub",
     "isDeprecated": false,
-    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/actions#set-default-workflow-permissions-for-an-enterprise",
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/actions/oidc#set-the-customization-template-for-an-oidc-subject-claim-for-a-repository",
     "previews": [],
     "headers": [],
     "parameters": [
       {
-        "name": "enterprise",
+        "name": "owner",
         "in": "PATH",
         "type": "string",
         "required": true,
@@ -781,14 +770,11 @@
         "deprecated": null
       },
       {
-        "name": "default_workflow_permissions",
-        "in": "BODY",
+        "name": "repo",
+        "in": "PATH",
         "type": "string",
-        "required": false,
-        "enum": [
-          "read",
-          "write"
-        ],
+        "required": true,
+        "enum": null,
         "allowNull": false,
         "mapToData": null,
         "validation": null,
@@ -796,9 +782,21 @@
         "deprecated": null
       },
       {
-        "name": "can_approve_pull_request_reviews",
+        "name": "use_default",
         "in": "BODY",
         "type": "boolean",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "include_claim_keys",
+        "in": "BODY",
+        "type": "string[]",
         "required": false,
         "enum": null,
         "allowNull": false,
@@ -810,7 +808,27 @@
     ],
     "responses": [
       {
-        "code": 204,
+        "code": 201,
+        "examples": [
+          {
+            "data": "null"
+          }
+        ]
+      },
+      {
+        "code": 400,
+        "examples": null
+      },
+      {
+        "code": 400,
+        "examples": null
+      },
+      {
+        "code": 404,
+        "examples": null
+      },
+      {
+        "code": 422,
         "examples": null
       }
     ],
@@ -1324,132 +1342,6 @@
   },
   {
     "scope": "billing",
-    "id": "getGithubAdvancedSecurityBillingGhe",
-    "method": "GET",
-    "url": "/enterprises/{enterprise}/settings/billing/advanced-security",
-    "isDeprecated": false,
-    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/billing#export-advanced-security-active-committers-data-for-enterprise",
-    "previews": [],
-    "headers": [],
-    "parameters": [
-      {
-        "name": "enterprise",
-        "in": "PATH",
-        "type": "string",
-        "required": true,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      },
-      {
-        "name": "per_page",
-        "in": "QUERY",
-        "type": "integer",
-        "required": false,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      },
-      {
-        "name": "page",
-        "in": "QUERY",
-        "type": "integer",
-        "required": false,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      }
-    ],
-    "responses": [
-      {
-        "code": 200,
-        "examples": [
-          {
-            "data": "{\"total_advanced_security_committers\":2,\"total_count\":2,\"repositories\":[{\"name\":\"octocat-org/Hello-World\",\"advanced_security_committers\":2,\"advanced_security_committers_breakdown\":[{\"user_login\":\"octocat\",\"last_pushed_date\":\"2021-11-03\"},{\"user_login\":\"octokitten\",\"last_pushed_date\":\"2021-10-25\"}]},{\"name\":\"octocat-org/server\",\"advanced_security_committers\":1,\"advanced_security_committers_breakdown\":[{\"user_login\":\"octokitten\",\"last_pushed_date\":\"2021-10-26\"}]}]}"
-          }
-        ]
-      },
-      {
-        "code": 403,
-        "examples": null
-      }
-    ],
-    "renamed": null
-  },
-  {
-    "scope": "billing",
-    "id": "getGithubAdvancedSecurityBillingOrg",
-    "method": "GET",
-    "url": "/orgs/{org}/settings/billing/advanced-security",
-    "isDeprecated": false,
-    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/billing#get-github-advanced-security-active-committers-for-an-organization",
-    "previews": [],
-    "headers": [],
-    "parameters": [
-      {
-        "name": "org",
-        "in": "PATH",
-        "type": "string",
-        "required": true,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      },
-      {
-        "name": "per_page",
-        "in": "QUERY",
-        "type": "integer",
-        "required": false,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      },
-      {
-        "name": "page",
-        "in": "QUERY",
-        "type": "integer",
-        "required": false,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      }
-    ],
-    "responses": [
-      {
-        "code": 200,
-        "examples": [
-          {
-            "data": "{\"total_advanced_security_committers\":2,\"total_count\":2,\"repositories\":[{\"name\":\"octocat-org/Hello-World\",\"advanced_security_committers\":2,\"advanced_security_committers_breakdown\":[{\"user_login\":\"octocat\",\"last_pushed_date\":\"2021-11-03\"},{\"user_login\":\"octokitten\",\"last_pushed_date\":\"2021-10-25\"}]},{\"name\":\"octocat-org/server\",\"advanced_security_committers\":1,\"advanced_security_committers_breakdown\":[{\"user_login\":\"octokitten\",\"last_pushed_date\":\"2021-10-26\"}]}]}"
-          }
-        ]
-      },
-      {
-        "code": 403,
-        "examples": null
-      }
-    ],
-    "renamed": null
-  },
-  {
-    "scope": "billing",
     "id": "getGithubPackagesBillingGhe",
     "method": "GET",
     "url": "/enterprises/{enterprise}/settings/billing/packages",
@@ -1514,235 +1406,6 @@
             "data": "{\"days_left_in_billing_cycle\":20,\"estimated_paid_storage_for_month\":15,\"estimated_storage_for_month\":40}"
           }
         ]
-      }
-    ],
-    "renamed": null
-  },
-  {
-    "scope": "codeScanning",
-    "id": "listAlertsForEnterprise",
-    "method": "GET",
-    "url": "/enterprises/{enterprise}/code-scanning/alerts",
-    "isDeprecated": false,
-    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/code-scanning#list-code-scanning-alerts-for-an-enterprise",
-    "previews": [],
-    "headers": [],
-    "parameters": [
-      {
-        "name": "enterprise",
-        "in": "PATH",
-        "type": "string",
-        "required": true,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      },
-      {
-        "name": "tool_name",
-        "in": "QUERY",
-        "type": "string",
-        "required": false,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      },
-      {
-        "name": "tool_guid",
-        "in": "QUERY",
-        "type": "string",
-        "required": false,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      },
-      {
-        "name": "before",
-        "in": "QUERY",
-        "type": "string",
-        "required": false,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      },
-      {
-        "name": "after",
-        "in": "QUERY",
-        "type": "string",
-        "required": false,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      },
-      {
-        "name": "page",
-        "in": "QUERY",
-        "type": "integer",
-        "required": false,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      },
-      {
-        "name": "per_page",
-        "in": "QUERY",
-        "type": "integer",
-        "required": false,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      },
-      {
-        "name": "direction",
-        "in": "QUERY",
-        "type": "string",
-        "required": false,
-        "enum": [
-          "asc",
-          "desc"
-        ],
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      },
-      {
-        "name": "state",
-        "in": "QUERY",
-        "type": "string",
-        "required": false,
-        "enum": [
-          "open",
-          "closed",
-          "dismissed",
-          "fixed"
-        ],
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      },
-      {
-        "name": "sort",
-        "in": "QUERY",
-        "type": "string",
-        "required": false,
-        "enum": [
-          "created",
-          "updated"
-        ],
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      }
-    ],
-    "responses": [
-      {
-        "code": 200,
-        "examples": [
-          {
-            "data": "[{\"number\":4,\"created_at\":\"2020-02-13T12:29:18Z\",\"url\":\"https://api.github.com/repos/octocat/hello-world/code-scanning/alerts/4\",\"html_url\":\"https://github.com/octocat/hello-world/code-scanning/4\",\"state\":\"open\",\"dismissed_by\":null,\"dismissed_at\":null,\"dismissed_reason\":null,\"dismissed_comment\":null,\"rule\":{\"id\":\"js/zipslip\",\"severity\":\"error\",\"tags\":[\"security\",\"external/cwe/cwe-022\"],\"description\":\"Arbitrary file write during zip extraction\",\"name\":\"js/zipslip\"},\"tool\":{\"name\":\"CodeQL\",\"guid\":null,\"version\":\"2.4.0\"},\"most_recent_instance\":{\"ref\":\"refs/heads/main\",\"analysis_key\":\".github/workflows/codeql-analysis.yml:CodeQL-Build\",\"category\":\".github/workflows/codeql-analysis.yml:CodeQL-Build\",\"environment\":\"{}\",\"state\":\"open\",\"commit_sha\":\"39406e42cb832f683daa691dd652a8dc36ee8930\",\"message\":{\"text\":\"This path depends on a user-provided value.\"},\"location\":{\"path\":\"spec-main/api-session-spec.ts\",\"start_line\":917,\"end_line\":917,\"start_column\":7,\"end_column\":18},\"classifications\":[\"test\"]},\"instances_url\":\"https://api.github.com/repos/octocat/hello-world/code-scanning/alerts/4/instances\",\"repository\":{\"id\":1296269,\"node_id\":\"MDEwOlJlcG9zaXRvcnkxMjk2MjY5\",\"name\":\"Hello-World\",\"full_name\":\"octocat/Hello-World\",\"owner\":{\"login\":\"octocat\",\"id\":1,\"node_id\":\"MDQ6VXNlcjE=\",\"avatar_url\":\"https://github.com/images/error/octocat_happy.gif\",\"gravatar_id\":\"\",\"url\":\"https://api.github.com/users/octocat\",\"html_url\":\"https://github.com/octocat\",\"followers_url\":\"https://api.github.com/users/octocat/followers\",\"following_url\":\"https://api.github.com/users/octocat/following{/other_user}\",\"gists_url\":\"https://api.github.com/users/octocat/gists{/gist_id}\",\"starred_url\":\"https://api.github.com/users/octocat/starred{/owner}{/repo}\",\"subscriptions_url\":\"https://api.github.com/users/octocat/subscriptions\",\"organizations_url\":\"https://api.github.com/users/octocat/orgs\",\"repos_url\":\"https://api.github.com/users/octocat/repos\",\"events_url\":\"https://api.github.com/users/octocat/events{/privacy}\",\"received_events_url\":\"https://api.github.com/users/octocat/received_events\",\"type\":\"User\",\"site_admin\":false},\"private\":false,\"html_url\":\"https://github.com/octocat/Hello-World\",\"description\":\"This your first repo!\",\"fork\":false,\"url\":\"https://api.github.com/repos/octocat/Hello-World\",\"archive_url\":\"https://api.github.com/repos/octocat/Hello-World/{archive_format}{/ref}\",\"assignees_url\":\"https://api.github.com/repos/octocat/Hello-World/assignees{/user}\",\"blobs_url\":\"https://api.github.com/repos/octocat/Hello-World/git/blobs{/sha}\",\"branches_url\":\"https://api.github.com/repos/octocat/Hello-World/branches{/branch}\",\"collaborators_url\":\"https://api.github.com/repos/octocat/Hello-World/collaborators{/collaborator}\",\"comments_url\":\"https://api.github.com/repos/octocat/Hello-World/comments{/number}\",\"commits_url\":\"https://api.github.com/repos/octocat/Hello-World/commits{/sha}\",\"compare_url\":\"https://api.github.com/repos/octocat/Hello-World/compare/{base}...{head}\",\"contents_url\":\"https://api.github.com/repos/octocat/Hello-World/contents/{+path}\",\"contributors_url\":\"https://api.github.com/repos/octocat/Hello-World/contributors\",\"deployments_url\":\"https://api.github.com/repos/octocat/Hello-World/deployments\",\"downloads_url\":\"https://api.github.com/repos/octocat/Hello-World/downloads\",\"events_url\":\"https://api.github.com/repos/octocat/Hello-World/events\",\"forks_url\":\"https://api.github.com/repos/octocat/Hello-World/forks\",\"git_commits_url\":\"https://api.github.com/repos/octocat/Hello-World/git/commits{/sha}\",\"git_refs_url\":\"https://api.github.com/repos/octocat/Hello-World/git/refs{/sha}\",\"git_tags_url\":\"https://api.github.com/repos/octocat/Hello-World/git/tags{/sha}\",\"issue_comment_url\":\"https://api.github.com/repos/octocat/Hello-World/issues/comments{/number}\",\"issue_events_url\":\"https://api.github.com/repos/octocat/Hello-World/issues/events{/number}\",\"issues_url\":\"https://api.github.com/repos/octocat/Hello-World/issues{/number}\",\"keys_url\":\"https://api.github.com/repos/octocat/Hello-World/keys{/key_id}\",\"labels_url\":\"https://api.github.com/repos/octocat/Hello-World/labels{/name}\",\"languages_url\":\"https://api.github.com/repos/octocat/Hello-World/languages\",\"merges_url\":\"https://api.github.com/repos/octocat/Hello-World/merges\",\"milestones_url\":\"https://api.github.com/repos/octocat/Hello-World/milestones{/number}\",\"notifications_url\":\"https://api.github.com/repos/octocat/Hello-World/notifications{?since,all,participating}\",\"pulls_url\":\"https://api.github.com/repos/octocat/Hello-World/pulls{/number}\",\"releases_url\":\"https://api.github.com/repos/octocat/Hello-World/releases{/id}\",\"stargazers_url\":\"https://api.github.com/repos/octocat/Hello-World/stargazers\",\"statuses_url\":\"https://api.github.com/repos/octocat/Hello-World/statuses/{sha}\",\"subscribers_url\":\"https://api.github.com/repos/octocat/Hello-World/subscribers\",\"subscription_url\":\"https://api.github.com/repos/octocat/Hello-World/subscription\",\"tags_url\":\"https://api.github.com/repos/octocat/Hello-World/tags\",\"teams_url\":\"https://api.github.com/repos/octocat/Hello-World/teams\",\"trees_url\":\"https://api.github.com/repos/octocat/Hello-World/git/trees{/sha}\",\"hooks_url\":\"https://api.github.com/repos/octocat/Hello-World/hooks\"}},{\"number\":3,\"created_at\":\"2020-02-13T12:29:18Z\",\"url\":\"https://api.github.com/repos/octocat/hello-world/code-scanning/alerts/3\",\"html_url\":\"https://github.com/octocat/hello-world/code-scanning/3\",\"state\":\"dismissed\",\"dismissed_by\":{\"login\":\"octocat\",\"id\":1,\"node_id\":\"MDQ6VXNlcjE=\",\"avatar_url\":\"https://github.com/images/error/octocat_happy.gif\",\"gravatar_id\":\"\",\"url\":\"https://api.github.com/users/octocat\",\"html_url\":\"https://github.com/octocat\",\"followers_url\":\"https://api.github.com/users/octocat/followers\",\"following_url\":\"https://api.github.com/users/octocat/following{/other_user}\",\"gists_url\":\"https://api.github.com/users/octocat/gists{/gist_id}\",\"starred_url\":\"https://api.github.com/users/octocat/starred{/owner}{/repo}\",\"subscriptions_url\":\"https://api.github.com/users/octocat/subscriptions\",\"organizations_url\":\"https://api.github.com/users/octocat/orgs\",\"repos_url\":\"https://api.github.com/users/octocat/repos\",\"events_url\":\"https://api.github.com/users/octocat/events{/privacy}\",\"received_events_url\":\"https://api.github.com/users/octocat/received_events\",\"type\":\"User\",\"site_admin\":false},\"dismissed_at\":\"2020-02-14T12:29:18Z\",\"dismissed_reason\":\"false positive\",\"dismissed_comment\":\"This alert is not actually correct, because there's a sanitizer included in the library.\",\"rule\":{\"id\":\"js/zipslip\",\"severity\":\"error\",\"tags\":[\"security\",\"external/cwe/cwe-022\"],\"description\":\"Arbitrary file write during zip extraction\",\"name\":\"js/zipslip\"},\"tool\":{\"name\":\"CodeQL\",\"guid\":null,\"version\":\"2.4.0\"},\"most_recent_instance\":{\"ref\":\"refs/heads/main\",\"analysis_key\":\".github/workflows/codeql-analysis.yml:CodeQL-Build\",\"category\":\".github/workflows/codeql-analysis.yml:CodeQL-Build\",\"environment\":\"{}\",\"state\":\"open\",\"commit_sha\":\"39406e42cb832f683daa691dd652a8dc36ee8930\",\"message\":{\"text\":\"This path depends on a user-provided value.\"},\"location\":{\"path\":\"lib/ab12-gen.js\",\"start_line\":917,\"end_line\":917,\"start_column\":7,\"end_column\":18},\"classifications\":[]},\"instances_url\":\"https://api.github.com/repos/octocat/hello-world/code-scanning/alerts/3/instances\",\"repository\":{\"id\":1296269,\"node_id\":\"MDEwOlJlcG9zaXRvcnkxMjk2MjY5\",\"name\":\"Hello-World\",\"full_name\":\"octocat/Hello-World\",\"owner\":{\"login\":\"octocat\",\"id\":1,\"node_id\":\"MDQ6VXNlcjE=\",\"avatar_url\":\"https://github.com/images/error/octocat_happy.gif\",\"gravatar_id\":\"\",\"url\":\"https://api.github.com/users/octocat\",\"html_url\":\"https://github.com/octocat\",\"followers_url\":\"https://api.github.com/users/octocat/followers\",\"following_url\":\"https://api.github.com/users/octocat/following{/other_user}\",\"gists_url\":\"https://api.github.com/users/octocat/gists{/gist_id}\",\"starred_url\":\"https://api.github.com/users/octocat/starred{/owner}{/repo}\",\"subscriptions_url\":\"https://api.github.com/users/octocat/subscriptions\",\"organizations_url\":\"https://api.github.com/users/octocat/orgs\",\"repos_url\":\"https://api.github.com/users/octocat/repos\",\"events_url\":\"https://api.github.com/users/octocat/events{/privacy}\",\"received_events_url\":\"https://api.github.com/users/octocat/received_events\",\"type\":\"User\",\"site_admin\":false},\"private\":false,\"html_url\":\"https://github.com/octocat/Hello-World\",\"description\":\"This your first repo!\",\"fork\":false,\"url\":\"https://api.github.com/repos/octocat/Hello-World\",\"archive_url\":\"https://api.github.com/repos/octocat/Hello-World/{archive_format}{/ref}\",\"assignees_url\":\"https://api.github.com/repos/octocat/Hello-World/assignees{/user}\",\"blobs_url\":\"https://api.github.com/repos/octocat/Hello-World/git/blobs{/sha}\",\"branches_url\":\"https://api.github.com/repos/octocat/Hello-World/branches{/branch}\",\"collaborators_url\":\"https://api.github.com/repos/octocat/Hello-World/collaborators{/collaborator}\",\"comments_url\":\"https://api.github.com/repos/octocat/Hello-World/comments{/number}\",\"commits_url\":\"https://api.github.com/repos/octocat/Hello-World/commits{/sha}\",\"compare_url\":\"https://api.github.com/repos/octocat/Hello-World/compare/{base}...{head}\",\"contents_url\":\"https://api.github.com/repos/octocat/Hello-World/contents/{+path}\",\"contributors_url\":\"https://api.github.com/repos/octocat/Hello-World/contributors\",\"deployments_url\":\"https://api.github.com/repos/octocat/Hello-World/deployments\",\"downloads_url\":\"https://api.github.com/repos/octocat/Hello-World/downloads\",\"events_url\":\"https://api.github.com/repos/octocat/Hello-World/events\",\"forks_url\":\"https://api.github.com/repos/octocat/Hello-World/forks\",\"git_commits_url\":\"https://api.github.com/repos/octocat/Hello-World/git/commits{/sha}\",\"git_refs_url\":\"https://api.github.com/repos/octocat/Hello-World/git/refs{/sha}\",\"git_tags_url\":\"https://api.github.com/repos/octocat/Hello-World/git/tags{/sha}\",\"issue_comment_url\":\"https://api.github.com/repos/octocat/Hello-World/issues/comments{/number}\",\"issue_events_url\":\"https://api.github.com/repos/octocat/Hello-World/issues/events{/number}\",\"issues_url\":\"https://api.github.com/repos/octocat/Hello-World/issues{/number}\",\"keys_url\":\"https://api.github.com/repos/octocat/Hello-World/keys{/key_id}\",\"labels_url\":\"https://api.github.com/repos/octocat/Hello-World/labels{/name}\",\"languages_url\":\"https://api.github.com/repos/octocat/Hello-World/languages\",\"merges_url\":\"https://api.github.com/repos/octocat/Hello-World/merges\",\"milestones_url\":\"https://api.github.com/repos/octocat/Hello-World/milestones{/number}\",\"notifications_url\":\"https://api.github.com/repos/octocat/Hello-World/notifications{?since,all,participating}\",\"pulls_url\":\"https://api.github.com/repos/octocat/Hello-World/pulls{/number}\",\"releases_url\":\"https://api.github.com/repos/octocat/Hello-World/releases{/id}\",\"stargazers_url\":\"https://api.github.com/repos/octocat/Hello-World/stargazers\",\"statuses_url\":\"https://api.github.com/repos/octocat/Hello-World/statuses/{sha}\",\"subscribers_url\":\"https://api.github.com/repos/octocat/Hello-World/subscribers\",\"subscription_url\":\"https://api.github.com/repos/octocat/Hello-World/subscription\",\"tags_url\":\"https://api.github.com/repos/octocat/Hello-World/tags\",\"teams_url\":\"https://api.github.com/repos/octocat/Hello-World/teams\",\"trees_url\":\"https://api.github.com/repos/octocat/Hello-World/git/trees{/sha}\",\"hooks_url\":\"https://api.github.com/repos/octocat/Hello-World/hooks\"}}]"
-          }
-        ]
-      },
-      {
-        "code": 404,
-        "examples": null
-      },
-      {
-        "code": 503,
-        "examples": null
-      }
-    ],
-    "renamed": null
-  },
-  {
-    "scope": "enterpriseAdmin",
-    "id": "addCustomLabelsToSelfHostedRunnerForEnterprise",
-    "method": "POST",
-    "url": "/enterprises/{enterprise}/actions/runners/{runner_id}/labels",
-    "isDeprecated": false,
-    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/actions#add-custom-labels-to-a-self-hosted-runner-for-an-enterprise",
-    "previews": [],
-    "headers": [],
-    "parameters": [
-      {
-        "name": "enterprise",
-        "in": "PATH",
-        "type": "string",
-        "required": true,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      },
-      {
-        "name": "runner_id",
-        "in": "PATH",
-        "type": "integer",
-        "required": true,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      },
-      {
-        "name": "labels",
-        "in": "BODY",
-        "type": "string[]",
-        "required": true,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      }
-    ],
-    "responses": [
-      {
-        "code": 200,
-        "examples": [
-          {
-            "data": "{\"total_count\":4,\"labels\":[{\"id\":5,\"name\":\"self-hosted\",\"type\":\"read-only\"},{\"id\":7,\"name\":\"X64\",\"type\":\"read-only\"},{\"id\":20,\"name\":\"macOS\",\"type\":\"read-only\"},{\"id\":21,\"name\":\"no-gpu\",\"type\":\"custom\"}]}"
-          }
-        ]
-      },
-      {
-        "code": 404,
-        "examples": null
-      },
-      {
-        "code": 422,
-        "examples": null
       }
     ],
     "renamed": null
@@ -2137,127 +1800,6 @@
   },
   {
     "scope": "enterpriseAdmin",
-    "id": "disableSelectedOrganizationGithubActionsEnterprise",
-    "method": "DELETE",
-    "url": "/enterprises/{enterprise}/actions/permissions/organizations/{org_id}",
-    "isDeprecated": false,
-    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/actions#disable-a-selected-organization-for-github-actions-in-an-enterprise",
-    "previews": [],
-    "headers": [],
-    "parameters": [
-      {
-        "name": "enterprise",
-        "in": "PATH",
-        "type": "string",
-        "required": true,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      },
-      {
-        "name": "org_id",
-        "in": "PATH",
-        "type": "integer",
-        "required": true,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      }
-    ],
-    "responses": [
-      {
-        "code": 204,
-        "examples": null
-      }
-    ],
-    "renamed": null
-  },
-  {
-    "scope": "enterpriseAdmin",
-    "id": "enableSelectedOrganizationGithubActionsEnterprise",
-    "method": "PUT",
-    "url": "/enterprises/{enterprise}/actions/permissions/organizations/{org_id}",
-    "isDeprecated": false,
-    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/actions#enable-a-selected-organization-for-github-actions-in-an-enterprise",
-    "previews": [],
-    "headers": [],
-    "parameters": [
-      {
-        "name": "enterprise",
-        "in": "PATH",
-        "type": "string",
-        "required": true,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      },
-      {
-        "name": "org_id",
-        "in": "PATH",
-        "type": "integer",
-        "required": true,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      }
-    ],
-    "responses": [
-      {
-        "code": 204,
-        "examples": null
-      }
-    ],
-    "renamed": null
-  },
-  {
-    "scope": "enterpriseAdmin",
-    "id": "getAllowedActionsEnterprise",
-    "method": "GET",
-    "url": "/enterprises/{enterprise}/actions/permissions/selected-actions",
-    "isDeprecated": false,
-    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/actions#get-allowed-actions-for-an-enterprise",
-    "previews": [],
-    "headers": [],
-    "parameters": [
-      {
-        "name": "enterprise",
-        "in": "PATH",
-        "type": "string",
-        "required": true,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      }
-    ],
-    "responses": [
-      {
-        "code": 200,
-        "examples": [
-          {
-            "data": "{\"github_owned_allowed\":true,\"verified_allowed\":false,\"patterns_allowed\":[\"monalisa/octocat@*\",\"docker/*\"]}"
-          }
-        ]
-      }
-    ],
-    "renamed": null
-  },
-  {
-    "scope": "enterpriseAdmin",
     "id": "getAuditLog",
     "method": "GET",
     "url": "/enterprises/{enterprise}/audit-log",
@@ -2443,41 +1985,6 @@
   },
   {
     "scope": "enterpriseAdmin",
-    "id": "getGithubActionsPermissionsEnterprise",
-    "method": "GET",
-    "url": "/enterprises/{enterprise}/actions/permissions",
-    "isDeprecated": false,
-    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/actions#get-github-actions-permissions-for-an-enterprise",
-    "previews": [],
-    "headers": [],
-    "parameters": [
-      {
-        "name": "enterprise",
-        "in": "PATH",
-        "type": "string",
-        "required": true,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      }
-    ],
-    "responses": [
-      {
-        "code": 200,
-        "examples": [
-          {
-            "data": "{\"enabled_organizations\":\"all\",\"allowed_actions\":\"selected\",\"selected_actions_url\":\"https://api.github.com/enterprises/2/actions/permissions/selected-actions\"}"
-          }
-        ]
-      }
-    ],
-    "renamed": null
-  },
-  {
-    "scope": "enterpriseAdmin",
     "id": "getLicenseSyncStatus",
     "method": "GET",
     "url": "/enterprises/{enterprise}/license-sync-status",
@@ -2607,116 +2114,6 @@
   },
   {
     "scope": "enterpriseAdmin",
-    "id": "getServerStatistics",
-    "method": "GET",
-    "url": "/enterprise-installation/{enterprise_or_org}/server-statistics",
-    "isDeprecated": false,
-    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/enterprise-admin#get-github-enterprise-server-statistics",
-    "previews": [],
-    "headers": [],
-    "parameters": [
-      {
-        "name": "enterprise_or_org",
-        "in": "PATH",
-        "type": "string",
-        "required": true,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      },
-      {
-        "name": "date_start",
-        "in": "QUERY",
-        "type": "string",
-        "required": false,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      },
-      {
-        "name": "date_end",
-        "in": "QUERY",
-        "type": "string",
-        "required": false,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      }
-    ],
-    "responses": [
-      {
-        "code": 200,
-        "examples": [
-          {
-            "data": "{\"server_id\":\"ea6088f3-f095-4bf2-8d7f-c573819e8768\",\"collection_date\":\"2021-12-14T23:59:59Z\",\"schema_version\":\"20230306\",\"ghes_version\":\"3.9.0\",\"host_name\":\"github.example.com\",\"github_connect\":{\"features_enabled\":[\"license_usage_sync\",\"content_analysis\",\"content_analysis_notifications\"]},\"ghe_stats\":{\"comments\":{\"total_commit_comments\":1000,\"total_gist_comments\":1000,\"total_issue_comments\":0,\"total_pull_request_comments\":0},\"gists\":{\"total_gists\":100,\"private_gists\":59,\"public_gists\":41},\"hooks\":{\"total_hooks\":2,\"active_hooks\":1,\"inactive_hooks\":1},\"issues\":{\"total_issues\":3421,\"open_issues\":1234,\"closed_issues\":1222},\"milestones\":{\"total_milestones\":50,\"open_milestones\":20,\"closed_milestones\":30},\"orgs\":{\"total_orgs\":100,\"disabled_orgs\":22,\"total_teams\":299,\"total_team_members\":400},\"pages\":{\"total_pages\":10},\"pulls\":{\"total_pulls\":1232,\"merged_pulls\":223,\"mergeable_pulls\":435,\"unmergeable_pulls\":0},\"repos\":{\"total_repos\":12,\"root_repos\":1,\"fork_repos\":2,\"org_repos\":1,\"total_pushes\":42,\"total_wikis\":1},\"users\":{\"total_users\":2000,\"admin_users\":299,\"suspended_users\":423}},\"dormant_users\":{\"total_dormant_users\":5,\"dormancy_threshold\":\"90 days\"},\"actions_stats\":{\"$ref\":\"server-statistics-actions.yaml\"},\"packages_stats\":{\"$ref\":\"server-statistics-packages.yaml\"}}"
-          }
-        ]
-      }
-    ],
-    "renamed": null
-  },
-  {
-    "scope": "enterpriseAdmin",
-    "id": "listLabelsForSelfHostedRunnerForEnterprise",
-    "method": "GET",
-    "url": "/enterprises/{enterprise}/actions/runners/{runner_id}/labels",
-    "isDeprecated": false,
-    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/actions#list-labels-for-a-self-hosted-runner-for-an-enterprise",
-    "previews": [],
-    "headers": [],
-    "parameters": [
-      {
-        "name": "enterprise",
-        "in": "PATH",
-        "type": "string",
-        "required": true,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      },
-      {
-        "name": "runner_id",
-        "in": "PATH",
-        "type": "integer",
-        "required": true,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      }
-    ],
-    "responses": [
-      {
-        "code": 200,
-        "examples": [
-          {
-            "data": "{\"total_count\":4,\"labels\":[{\"id\":5,\"name\":\"self-hosted\",\"type\":\"read-only\"},{\"id\":7,\"name\":\"X64\",\"type\":\"read-only\"},{\"id\":20,\"name\":\"macOS\",\"type\":\"read-only\"},{\"id\":21,\"name\":\"no-gpu\",\"type\":\"custom\"}]}"
-          }
-        ]
-      },
-      {
-        "code": 404,
-        "examples": null
-      }
-    ],
-    "renamed": null
-  },
-  {
-    "scope": "enterpriseAdmin",
     "id": "listOrgAccessToSelfHostedRunnerGroupInEnterprise",
     "method": "GET",
     "url": "/enterprises/{enterprise}/actions/runner-groups/{runner_group_id}/organizations",
@@ -2815,65 +2212,6 @@
         "examples": [
           {
             "data": "[{\"os\":\"osx\",\"architecture\":\"x64\",\"download_url\":\"https://github.com/actions/runner/releases/download/v2.164.0/actions-runner-osx-x64-2.164.0.tar.gz\",\"filename\":\"actions-runner-osx-x64-2.164.0.tar.gz\"},{\"os\":\"linux\",\"architecture\":\"x64\",\"download_url\":\"https://github.com/actions/runner/releases/download/v2.164.0/actions-runner-linux-x64-2.164.0.tar.gz\",\"filename\":\"actions-runner-linux-x64-2.164.0.tar.gz\"},{\"os\":\"linux\",\"architecture\":\"arm\",\"download_url\":\"https://github.com/actions/runner/releases/download/v2.164.0/actions-runner-linux-arm-2.164.0.tar.gz\",\"filename\":\"actions-runner-linux-arm-2.164.0.tar.gz\"},{\"os\":\"win\",\"architecture\":\"x64\",\"download_url\":\"https://github.com/actions/runner/releases/download/v2.164.0/actions-runner-win-x64-2.164.0.zip\",\"filename\":\"actions-runner-win-x64-2.164.0.zip\"},{\"os\":\"linux\",\"architecture\":\"arm64\",\"download_url\":\"https://github.com/actions/runner/releases/download/v2.164.0/actions-runner-linux-arm64-2.164.0.tar.gz\",\"filename\":\"actions-runner-linux-arm64-2.164.0.tar.gz\"}]"
-          }
-        ]
-      }
-    ],
-    "renamed": null
-  },
-  {
-    "scope": "enterpriseAdmin",
-    "id": "listSelectedOrganizationsEnabledGithubActionsEnterprise",
-    "method": "GET",
-    "url": "/enterprises/{enterprise}/actions/permissions/organizations",
-    "isDeprecated": false,
-    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/actions#list-selected-organizations-enabled-for-github-actions-in-an-enterprise",
-    "previews": [],
-    "headers": [],
-    "parameters": [
-      {
-        "name": "enterprise",
-        "in": "PATH",
-        "type": "string",
-        "required": true,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      },
-      {
-        "name": "per_page",
-        "in": "QUERY",
-        "type": "integer",
-        "required": false,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      },
-      {
-        "name": "page",
-        "in": "QUERY",
-        "type": "integer",
-        "required": false,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      }
-    ],
-    "responses": [
-      {
-        "code": 200,
-        "examples": [
-          {
-            "data": "{\"total_count\":1,\"organizations\":[{\"login\":\"octocat\",\"id\":161335,\"node_id\":\"MDEwOlJlcG9zaXRvcnkxMjk2MjY5\",\"url\":\"https://api.github.com/orgs/octo-org\",\"repos_url\":\"https://api.github.com/orgs/octo-org/repos\",\"events_url\":\"https://api.github.com/orgs/octo-org/events\",\"hooks_url\":\"https://api.github.com/orgs/octo-org/hooks\",\"issues_url\":\"https://api.github.com/orgs/octo-org/issues\",\"members_url\":\"https://api.github.com/orgs/octo-org/members{/member}\",\"public_members_url\":\"https://api.github.com/orgs/octo-org/public_members{/member}\",\"avatar_url\":\"https://github.com/images/error/octocat_happy.gif\",\"description\":\"A great organization\"}]}"
           }
         ]
       }
@@ -3083,128 +2421,6 @@
   },
   {
     "scope": "enterpriseAdmin",
-    "id": "removeAllCustomLabelsFromSelfHostedRunnerForEnterprise",
-    "method": "DELETE",
-    "url": "/enterprises/{enterprise}/actions/runners/{runner_id}/labels",
-    "isDeprecated": false,
-    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/actions#remove-all-custom-labels-from-a-self-hosted-runner-for-an-enterprise",
-    "previews": [],
-    "headers": [],
-    "parameters": [
-      {
-        "name": "enterprise",
-        "in": "PATH",
-        "type": "string",
-        "required": true,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      },
-      {
-        "name": "runner_id",
-        "in": "PATH",
-        "type": "integer",
-        "required": true,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      }
-    ],
-    "responses": [
-      {
-        "code": 200,
-        "examples": [
-          {
-            "data": "{\"total_count\":3,\"labels\":[{\"id\":5,\"name\":\"self-hosted\",\"type\":\"read-only\"},{\"id\":7,\"name\":\"X64\",\"type\":\"read-only\"},{\"id\":20,\"name\":\"macOS\",\"type\":\"read-only\"}]}"
-          }
-        ]
-      },
-      {
-        "code": 404,
-        "examples": null
-      },
-      {
-        "code": 422,
-        "examples": null
-      }
-    ],
-    "renamed": null
-  },
-  {
-    "scope": "enterpriseAdmin",
-    "id": "removeCustomLabelFromSelfHostedRunnerForEnterprise",
-    "method": "DELETE",
-    "url": "/enterprises/{enterprise}/actions/runners/{runner_id}/labels/{name}",
-    "isDeprecated": false,
-    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/actions#remove-a-custom-label-from-a-self-hosted-runner-for-an-enterprise",
-    "previews": [],
-    "headers": [],
-    "parameters": [
-      {
-        "name": "enterprise",
-        "in": "PATH",
-        "type": "string",
-        "required": true,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      },
-      {
-        "name": "runner_id",
-        "in": "PATH",
-        "type": "integer",
-        "required": true,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      },
-      {
-        "name": "name",
-        "in": "PATH",
-        "type": "string",
-        "required": true,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      }
-    ],
-    "responses": [
-      {
-        "code": 200,
-        "examples": [
-          {
-            "data": "{\"total_count\":4,\"labels\":[{\"id\":5,\"name\":\"self-hosted\",\"type\":\"read-only\"},{\"id\":7,\"name\":\"X64\",\"type\":\"read-only\"},{\"id\":20,\"name\":\"macOS\",\"type\":\"read-only\"},{\"id\":21,\"name\":\"no-gpu\",\"type\":\"custom\"}]}"
-          }
-        ]
-      },
-      {
-        "code": 404,
-        "examples": null
-      },
-      {
-        "code": 422,
-        "examples": null
-      }
-    ],
-    "renamed": null
-  },
-  {
-    "scope": "enterpriseAdmin",
     "id": "removeOrgAccessToSelfHostedRunnerGroupInEnterprise",
     "method": "DELETE",
     "url": "/enterprises/{enterprise}/actions/runner-groups/{runner_group_id}/organizations/{org_id}",
@@ -3315,203 +2531,6 @@
   },
   {
     "scope": "enterpriseAdmin",
-    "id": "setAllowedActionsEnterprise",
-    "method": "PUT",
-    "url": "/enterprises/{enterprise}/actions/permissions/selected-actions",
-    "isDeprecated": false,
-    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/actions#set-allowed-actions-for-an-enterprise",
-    "previews": [],
-    "headers": [],
-    "parameters": [
-      {
-        "name": "enterprise",
-        "in": "PATH",
-        "type": "string",
-        "required": true,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      },
-      {
-        "name": "github_owned_allowed",
-        "in": "BODY",
-        "type": "boolean",
-        "required": false,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      },
-      {
-        "name": "verified_allowed",
-        "in": "BODY",
-        "type": "boolean",
-        "required": false,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      },
-      {
-        "name": "patterns_allowed",
-        "in": "BODY",
-        "type": "string[]",
-        "required": false,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      }
-    ],
-    "responses": [
-      {
-        "code": 204,
-        "examples": null
-      }
-    ],
-    "renamed": null
-  },
-  {
-    "scope": "enterpriseAdmin",
-    "id": "setCustomLabelsForSelfHostedRunnerForEnterprise",
-    "method": "PUT",
-    "url": "/enterprises/{enterprise}/actions/runners/{runner_id}/labels",
-    "isDeprecated": false,
-    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/actions#set-custom-labels-for-a-self-hosted-runner-for-an-enterprise",
-    "previews": [],
-    "headers": [],
-    "parameters": [
-      {
-        "name": "enterprise",
-        "in": "PATH",
-        "type": "string",
-        "required": true,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      },
-      {
-        "name": "runner_id",
-        "in": "PATH",
-        "type": "integer",
-        "required": true,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      },
-      {
-        "name": "labels",
-        "in": "BODY",
-        "type": "string[]",
-        "required": true,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      }
-    ],
-    "responses": [
-      {
-        "code": 200,
-        "examples": [
-          {
-            "data": "{\"total_count\":4,\"labels\":[{\"id\":5,\"name\":\"self-hosted\",\"type\":\"read-only\"},{\"id\":7,\"name\":\"X64\",\"type\":\"read-only\"},{\"id\":20,\"name\":\"macOS\",\"type\":\"read-only\"},{\"id\":21,\"name\":\"no-gpu\",\"type\":\"custom\"}]}"
-          }
-        ]
-      },
-      {
-        "code": 404,
-        "examples": null
-      },
-      {
-        "code": 422,
-        "examples": null
-      }
-    ],
-    "renamed": null
-  },
-  {
-    "scope": "enterpriseAdmin",
-    "id": "setGithubActionsPermissionsEnterprise",
-    "method": "PUT",
-    "url": "/enterprises/{enterprise}/actions/permissions",
-    "isDeprecated": false,
-    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/actions#set-github-actions-permissions-for-an-enterprise",
-    "previews": [],
-    "headers": [],
-    "parameters": [
-      {
-        "name": "enterprise",
-        "in": "PATH",
-        "type": "string",
-        "required": true,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      },
-      {
-        "name": "enabled_organizations",
-        "in": "BODY",
-        "type": "string",
-        "required": true,
-        "enum": [
-          "all",
-          "none",
-          "selected"
-        ],
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      },
-      {
-        "name": "allowed_actions",
-        "in": "BODY",
-        "type": "string",
-        "required": false,
-        "enum": [
-          "all",
-          "local_only",
-          "selected"
-        ],
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      }
-    ],
-    "responses": [
-      {
-        "code": 204,
-        "examples": null
-      }
-    ],
-    "renamed": null
-  },
-  {
-    "scope": "enterpriseAdmin",
     "id": "setOrgAccessToSelfHostedRunnerGroupInEnterprise",
     "method": "PUT",
     "url": "/enterprises/{enterprise}/actions/runner-groups/{runner_group_id}/organizations",
@@ -3536,49 +2555,6 @@
         "name": "runner_group_id",
         "in": "PATH",
         "type": "integer",
-        "required": true,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      },
-      {
-        "name": "selected_organization_ids",
-        "in": "BODY",
-        "type": "integer[]",
-        "required": true,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      }
-    ],
-    "responses": [
-      {
-        "code": 204,
-        "examples": null
-      }
-    ],
-    "renamed": null
-  },
-  {
-    "scope": "enterpriseAdmin",
-    "id": "setSelectedOrganizationsEnabledGithubActionsEnterprise",
-    "method": "PUT",
-    "url": "/enterprises/{enterprise}/actions/permissions/organizations",
-    "isDeprecated": false,
-    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/actions#set-selected-organizations-enabled-for-github-actions-in-an-enterprise",
-    "previews": [],
-    "headers": [],
-    "parameters": [
-      {
-        "name": "enterprise",
-        "in": "PATH",
-        "type": "string",
         "required": true,
         "enum": null,
         "allowNull": false,
@@ -3774,12 +2750,47 @@
     "renamed": null
   },
   {
-    "scope": "orgs",
-    "id": "createCustomRepoRole",
-    "method": "POST",
-    "url": "/orgs/{org}/custom-repository-roles",
+    "scope": "oidc",
+    "id": "getOidcCustomSubTemplateForOrg",
+    "method": "GET",
+    "url": "/orgs/{org}/actions/oidc/customization/sub",
     "isDeprecated": false,
-    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/orgs/custom-roles#create-a-custom-repository-role",
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/actions/oidc#get-the-customization-template-for-an-oidc-subject-claim-for-an-organization",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "org",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "{\"include_claim_keys\":[\"repo\",\"context\"]}"
+          }
+        ]
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "oidc",
+    "id": "updateOidcCustomSubTemplateForOrg",
+    "method": "PUT",
+    "url": "/orgs/{org}/actions/oidc/customization/sub",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/actions/oidc#set-the-customization-template-for-an-oidc-subject-claim-for-an-organization",
     "previews": [],
     "headers": [],
     "parameters": [
@@ -3796,48 +2807,7 @@
         "deprecated": null
       },
       {
-        "name": "name",
-        "in": "BODY",
-        "type": "string",
-        "required": true,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      },
-      {
-        "name": "description",
-        "in": "BODY",
-        "type": "string",
-        "required": false,
-        "enum": null,
-        "allowNull": true,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      },
-      {
-        "name": "base_role",
-        "in": "BODY",
-        "type": "string",
-        "required": true,
-        "enum": [
-          "read",
-          "triage",
-          "write",
-          "maintain"
-        ],
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      },
-      {
-        "name": "permissions",
+        "name": "include_claim_keys",
         "in": "BODY",
         "type": "string[]",
         "required": true,
@@ -3854,198 +2824,16 @@
         "code": 201,
         "examples": [
           {
-            "data": "{\"id\":8030,\"name\":\"Security Engineer\",\"description\":\"Able to contribute code and maintain the security pipeline\",\"base_role\":\"maintain\",\"permissions\":[\"delete_alerts_code_scanning\"],\"organization\":{\"login\":\"github\",\"id\":9919,\"node_id\":\"MDEyOk9yZ2FuaXphdGlvbjk5MTk=\",\"avatar_url\":\"https://avatars.githubusercontent.com/u/9919?v=4\",\"gravatar_id\":\"\",\"url\":\"https://api.github.com/users/github\",\"html_url\":\"https://github.com/github\",\"followers_url\":\"https://api.github.com/users/github/followers\",\"following_url\":\"https://api.github.com/users/github/following{/other_user}\",\"gists_url\":\"https://api.github.com/users/github/gists{/gist_id}\",\"starred_url\":\"https://api.github.com/users/github/starred{/owner}{/repo}\",\"subscriptions_url\":\"https://api.github.com/users/github/subscriptions\",\"organizations_url\":\"https://api.github.com/users/github/orgs\",\"repos_url\":\"https://api.github.com/users/github/repos\",\"events_url\":\"https://api.github.com/users/github/events{/privacy}\",\"received_events_url\":\"https://api.github.com/users/github/received_events\",\"type\":\"Organization\",\"site_admin\":false},\"created_at\":\"2022-07-04T22:19:11Z\",\"updated_at\":\"2022-07-04T22:20:11Z\"}"
+            "data": "null"
           }
         ]
       },
       {
-        "code": 404,
+        "code": 403,
         "examples": null
-      },
-      {
-        "code": 422,
-        "examples": null
-      }
-    ],
-    "renamed": null
-  },
-  {
-    "scope": "orgs",
-    "id": "createCustomRole",
-    "method": "POST",
-    "url": "/orgs/{org}/custom_roles",
-    "isDeprecated": true,
-    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/orgs#create-a-custom-role",
-    "previews": [],
-    "headers": [],
-    "parameters": [
-      {
-        "name": "org",
-        "in": "PATH",
-        "type": "string",
-        "required": true,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      },
-      {
-        "name": "name",
-        "in": "BODY",
-        "type": "string",
-        "required": true,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      },
-      {
-        "name": "description",
-        "in": "BODY",
-        "type": "string",
-        "required": false,
-        "enum": null,
-        "allowNull": true,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      },
-      {
-        "name": "base_role",
-        "in": "BODY",
-        "type": "string",
-        "required": true,
-        "enum": [
-          "read",
-          "triage",
-          "write",
-          "maintain"
-        ],
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      },
-      {
-        "name": "permissions",
-        "in": "BODY",
-        "type": "string[]",
-        "required": true,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      }
-    ],
-    "responses": [
-      {
-        "code": 201,
-        "examples": [
-          {
-            "data": "{\"id\":8030,\"name\":\"Security Engineer\",\"description\":\"Able to contribute code and maintain the security pipeline\",\"base_role\":\"maintain\",\"permissions\":[\"delete_alerts_code_scanning\"],\"organization\":{\"login\":\"github\",\"id\":9919,\"node_id\":\"MDEyOk9yZ2FuaXphdGlvbjk5MTk=\",\"avatar_url\":\"https://avatars.githubusercontent.com/u/9919?v=4\",\"gravatar_id\":\"\",\"url\":\"https://api.github.com/users/github\",\"html_url\":\"https://github.com/github\",\"followers_url\":\"https://api.github.com/users/github/followers\",\"following_url\":\"https://api.github.com/users/github/following{/other_user}\",\"gists_url\":\"https://api.github.com/users/github/gists{/gist_id}\",\"starred_url\":\"https://api.github.com/users/github/starred{/owner}{/repo}\",\"subscriptions_url\":\"https://api.github.com/users/github/subscriptions\",\"organizations_url\":\"https://api.github.com/users/github/orgs\",\"repos_url\":\"https://api.github.com/users/github/repos\",\"events_url\":\"https://api.github.com/users/github/events{/privacy}\",\"received_events_url\":\"https://api.github.com/users/github/received_events\",\"type\":\"Organization\",\"site_admin\":false},\"created_at\":\"2022-07-04T22:19:11Z\",\"updated_at\":\"2022-07-04T22:20:11Z\"}"
-          }
-        ]
       },
       {
         "code": 404,
-        "examples": null
-      },
-      {
-        "code": 422,
-        "examples": null
-      }
-    ],
-    "renamed": null
-  },
-  {
-    "scope": "orgs",
-    "id": "deleteCustomRepoRole",
-    "method": "DELETE",
-    "url": "/orgs/{org}/custom-repository-roles/{role_id}",
-    "isDeprecated": false,
-    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/orgs/custom-roles#delete-a-custom-repository-role",
-    "previews": [],
-    "headers": [],
-    "parameters": [
-      {
-        "name": "org",
-        "in": "PATH",
-        "type": "string",
-        "required": true,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      },
-      {
-        "name": "role_id",
-        "in": "PATH",
-        "type": "integer",
-        "required": true,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      }
-    ],
-    "responses": [
-      {
-        "code": 204,
-        "examples": null
-      }
-    ],
-    "renamed": null
-  },
-  {
-    "scope": "orgs",
-    "id": "deleteCustomRole",
-    "method": "DELETE",
-    "url": "/orgs/{org}/custom_roles/{role_id}",
-    "isDeprecated": true,
-    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/orgs#delete-a-custom-role",
-    "previews": [],
-    "headers": [],
-    "parameters": [
-      {
-        "name": "org",
-        "in": "PATH",
-        "type": "string",
-        "required": true,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      },
-      {
-        "name": "role_id",
-        "in": "PATH",
-        "type": "integer",
-        "required": true,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      }
-    ],
-    "responses": [
-      {
-        "code": 204,
         "examples": null
       }
     ],
@@ -4167,248 +2955,6 @@
   },
   {
     "scope": "orgs",
-    "id": "getCustomRepoRole",
-    "method": "GET",
-    "url": "/orgs/{org}/custom-repository-roles/{role_id}",
-    "isDeprecated": false,
-    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/orgs/custom-roles#get-a-custom-repository-role",
-    "previews": [],
-    "headers": [],
-    "parameters": [
-      {
-        "name": "org",
-        "in": "PATH",
-        "type": "string",
-        "required": true,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      },
-      {
-        "name": "role_id",
-        "in": "PATH",
-        "type": "integer",
-        "required": true,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      }
-    ],
-    "responses": [
-      {
-        "code": 200,
-        "examples": [
-          {
-            "data": "{\"id\":8030,\"name\":\"Security Engineer\",\"description\":\"Able to contribute code and maintain the security pipeline\",\"base_role\":\"maintain\",\"permissions\":[\"delete_alerts_code_scanning\"],\"organization\":{\"login\":\"github\",\"id\":9919,\"node_id\":\"MDEyOk9yZ2FuaXphdGlvbjk5MTk=\",\"avatar_url\":\"https://avatars.githubusercontent.com/u/9919?v=4\",\"gravatar_id\":\"\",\"url\":\"https://api.github.com/users/github\",\"html_url\":\"https://github.com/github\",\"followers_url\":\"https://api.github.com/users/github/followers\",\"following_url\":\"https://api.github.com/users/github/following{/other_user}\",\"gists_url\":\"https://api.github.com/users/github/gists{/gist_id}\",\"starred_url\":\"https://api.github.com/users/github/starred{/owner}{/repo}\",\"subscriptions_url\":\"https://api.github.com/users/github/subscriptions\",\"organizations_url\":\"https://api.github.com/users/github/orgs\",\"repos_url\":\"https://api.github.com/users/github/repos\",\"events_url\":\"https://api.github.com/users/github/events{/privacy}\",\"received_events_url\":\"https://api.github.com/users/github/received_events\",\"type\":\"Organization\",\"site_admin\":false},\"created_at\":\"2022-07-04T22:19:11Z\",\"updated_at\":\"2022-07-04T22:20:11Z\"}"
-          }
-        ]
-      },
-      {
-        "code": 404,
-        "examples": null
-      }
-    ],
-    "renamed": null
-  },
-  {
-    "scope": "orgs",
-    "id": "getCustomRole",
-    "method": "GET",
-    "url": "/orgs/{org}/custom_roles/{role_id}",
-    "isDeprecated": true,
-    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/orgs/#get-a-custom-role",
-    "previews": [],
-    "headers": [],
-    "parameters": [
-      {
-        "name": "org",
-        "in": "PATH",
-        "type": "string",
-        "required": true,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      },
-      {
-        "name": "role_id",
-        "in": "PATH",
-        "type": "integer",
-        "required": true,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      }
-    ],
-    "responses": [
-      {
-        "code": 200,
-        "examples": [
-          {
-            "data": "{\"id\":8030,\"name\":\"Security Engineer\",\"description\":\"Able to contribute code and maintain the security pipeline\",\"base_role\":\"maintain\",\"permissions\":[\"delete_alerts_code_scanning\"],\"organization\":{\"login\":\"github\",\"id\":9919,\"node_id\":\"MDEyOk9yZ2FuaXphdGlvbjk5MTk=\",\"avatar_url\":\"https://avatars.githubusercontent.com/u/9919?v=4\",\"gravatar_id\":\"\",\"url\":\"https://api.github.com/users/github\",\"html_url\":\"https://github.com/github\",\"followers_url\":\"https://api.github.com/users/github/followers\",\"following_url\":\"https://api.github.com/users/github/following{/other_user}\",\"gists_url\":\"https://api.github.com/users/github/gists{/gist_id}\",\"starred_url\":\"https://api.github.com/users/github/starred{/owner}{/repo}\",\"subscriptions_url\":\"https://api.github.com/users/github/subscriptions\",\"organizations_url\":\"https://api.github.com/users/github/orgs\",\"repos_url\":\"https://api.github.com/users/github/repos\",\"events_url\":\"https://api.github.com/users/github/events{/privacy}\",\"received_events_url\":\"https://api.github.com/users/github/received_events\",\"type\":\"Organization\",\"site_admin\":false},\"created_at\":\"2022-07-04T22:19:11Z\",\"updated_at\":\"2022-07-04T22:20:11Z\"}"
-          }
-        ]
-      },
-      {
-        "code": 404,
-        "examples": null
-      }
-    ],
-    "renamed": null
-  },
-  {
-    "scope": "orgs",
-    "id": "listCustomRepoRoles",
-    "method": "GET",
-    "url": "/orgs/{org}/custom-repository-roles",
-    "isDeprecated": false,
-    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/orgs/custom-roles#list-custom-repository-roles-in-an-organization",
-    "previews": [],
-    "headers": [],
-    "parameters": [
-      {
-        "name": "org",
-        "in": "PATH",
-        "type": "string",
-        "required": true,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      }
-    ],
-    "responses": [
-      {
-        "code": 200,
-        "examples": [
-          {
-            "data": "{\"total_count\":2,\"custom_roles\":[{\"id\":8030,\"name\":\"Security Engineer\",\"description\":\"Able to contribute code and maintain the security pipeline\",\"base_role\":\"maintain\",\"permissions\":[\"delete_alerts_code_scanning\"],\"organization\":{\"login\":\"github\",\"id\":9919,\"node_id\":\"MDEyOk9yZ2FuaXphdGlvbjk5MTk=\",\"avatar_url\":\"https://avatars.githubusercontent.com/u/9919?v=4\",\"gravatar_id\":\"\",\"url\":\"https://api.github.com/users/github\",\"html_url\":\"https://github.com/github\",\"followers_url\":\"https://api.github.com/users/github/followers\",\"following_url\":\"https://api.github.com/users/github/following{/other_user}\",\"gists_url\":\"https://api.github.com/users/github/gists{/gist_id}\",\"starred_url\":\"https://api.github.com/users/github/starred{/owner}{/repo}\",\"subscriptions_url\":\"https://api.github.com/users/github/subscriptions\",\"organizations_url\":\"https://api.github.com/users/github/orgs\",\"repos_url\":\"https://api.github.com/users/github/repos\",\"events_url\":\"https://api.github.com/users/github/events{/privacy}\",\"received_events_url\":\"https://api.github.com/users/github/received_events\",\"type\":\"Organization\",\"site_admin\":false},\"created_at\":\"2022-07-04T22:19:11Z\",\"updated_at\":\"2022-07-04T22:20:11Z\"},{\"id\":8031,\"name\":\"Community manager\",\"description\":\"Able to handle all the community interactions without being able to contribute code\",\"base_role\":\"read\",\"permissions\":[\"mark_as_duplicate\",\"manage_settings_pages\",\"manage_settings_wiki\",\"set_social_preview\",\"edit_repo_metadata\",\"toggle_discussion_comment_minimize\"],\"organization\":{\"login\":\"github\",\"id\":9919,\"node_id\":\"MDEyOk9yZ2FuaXphdGlvbjk5MTk=\",\"avatar_url\":\"https://avatars.githubusercontent.com/u/9919?v=4\",\"gravatar_id\":\"\",\"url\":\"https://api.github.com/users/github\",\"html_url\":\"https://github.com/github\",\"followers_url\":\"https://api.github.com/users/github/followers\",\"following_url\":\"https://api.github.com/users/github/following{/other_user}\",\"gists_url\":\"https://api.github.com/users/github/gists{/gist_id}\",\"starred_url\":\"https://api.github.com/users/github/starred{/owner}{/repo}\",\"subscriptions_url\":\"https://api.github.com/users/github/subscriptions\",\"organizations_url\":\"https://api.github.com/users/github/orgs\",\"repos_url\":\"https://api.github.com/users/github/repos\",\"events_url\":\"https://api.github.com/users/github/events{/privacy}\",\"received_events_url\":\"https://api.github.com/users/github/received_events\",\"type\":\"Organization\",\"site_admin\":false},\"created_at\":\"2022-07-05T12:01:11Z\",\"updated_at\":\"2022-07-05T12:20:11Z\"}]}"
-          }
-        ]
-      }
-    ],
-    "renamed": null
-  },
-  {
-    "scope": "orgs",
-    "id": "listCustomRoles",
-    "method": "GET",
-    "url": "/organizations/{organization_id}/custom_roles",
-    "isDeprecated": true,
-    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/orgs#deprecated-list-custom-repository-roles-in-an-organization",
-    "previews": [],
-    "headers": [],
-    "parameters": [
-      {
-        "name": "organization_id",
-        "in": "PATH",
-        "type": "string",
-        "required": true,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      }
-    ],
-    "responses": [
-      {
-        "code": 200,
-        "examples": [
-          {
-            "data": "{\"id\":8030,\"name\":\"Security Engineer\",\"description\":\"Able to contribute code and maintain the security pipeline\",\"base_role\":\"maintain\",\"permissions\":[\"delete_alerts_code_scanning\"],\"organization\":{\"login\":\"github\",\"id\":9919,\"node_id\":\"MDEyOk9yZ2FuaXphdGlvbjk5MTk=\",\"avatar_url\":\"https://avatars.githubusercontent.com/u/9919?v=4\",\"gravatar_id\":\"\",\"url\":\"https://api.github.com/users/github\",\"html_url\":\"https://github.com/github\",\"followers_url\":\"https://api.github.com/users/github/followers\",\"following_url\":\"https://api.github.com/users/github/following{/other_user}\",\"gists_url\":\"https://api.github.com/users/github/gists{/gist_id}\",\"starred_url\":\"https://api.github.com/users/github/starred{/owner}{/repo}\",\"subscriptions_url\":\"https://api.github.com/users/github/subscriptions\",\"organizations_url\":\"https://api.github.com/users/github/orgs\",\"repos_url\":\"https://api.github.com/users/github/repos\",\"events_url\":\"https://api.github.com/users/github/events{/privacy}\",\"received_events_url\":\"https://api.github.com/users/github/received_events\",\"type\":\"Organization\",\"site_admin\":false},\"created_at\":\"2022-07-04T22:19:11Z\",\"updated_at\":\"2022-07-04T22:20:11Z\"}"
-          }
-        ]
-      }
-    ],
-    "renamed": null
-  },
-  {
-    "scope": "orgs",
-    "id": "listFineGrainedPermissions",
-    "method": "GET",
-    "url": "/orgs/{org}/fine_grained_permissions",
-    "isDeprecated": true,
-    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/orgs#list-repository-fine-grained-permissions-for-an-organization",
-    "previews": [],
-    "headers": [],
-    "parameters": [
-      {
-        "name": "org",
-        "in": "PATH",
-        "type": "string",
-        "required": true,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      }
-    ],
-    "responses": [
-      {
-        "code": 200,
-        "examples": [
-          {
-            "data": "[{\"name\":\"add_assignee\",\"description\":\"Assign or remove a user\"},{\"name\":\"remove_assignee\",\"description\":\"Remove an assigned user\"},{\"name\":\"add_label\",\"description\":\"Add or remove a label\"}]"
-          }
-        ]
-      }
-    ],
-    "renamed": null
-  },
-  {
-    "scope": "orgs",
-    "id": "listRepoFineGrainedPermissions",
-    "method": "GET",
-    "url": "/orgs/{org}/repository-fine-grained-permissions",
-    "isDeprecated": false,
-    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/orgs/custom-roles#list-repo-fine-grained-permissions",
-    "previews": [],
-    "headers": [],
-    "parameters": [
-      {
-        "name": "org",
-        "in": "PATH",
-        "type": "string",
-        "required": true,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      }
-    ],
-    "responses": [
-      {
-        "code": 200,
-        "examples": [
-          {
-            "data": "[{\"name\":\"add_assignee\",\"description\":\"Assign or remove a user\"},{\"name\":\"remove_assignee\",\"description\":\"Remove an assigned user\"},{\"name\":\"add_label\",\"description\":\"Add or remove a label\"}]"
-          }
-        ]
-      }
-    ],
-    "renamed": null
-  },
-  {
-    "scope": "orgs",
     "id": "listSamlSsoAuthorizations",
     "method": "GET",
     "url": "/orgs/{org}/credential-authorizations",
@@ -4520,222 +3066,6 @@
       },
       {
         "code": 404,
-        "examples": null
-      }
-    ],
-    "renamed": null
-  },
-  {
-    "scope": "orgs",
-    "id": "updateCustomRepoRole",
-    "method": "PATCH",
-    "url": "/orgs/{org}/custom-repository-roles/{role_id}",
-    "isDeprecated": false,
-    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/orgs/custom-roles#update-a-custom-repository-role",
-    "previews": [],
-    "headers": [],
-    "parameters": [
-      {
-        "name": "org",
-        "in": "PATH",
-        "type": "string",
-        "required": true,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      },
-      {
-        "name": "role_id",
-        "in": "PATH",
-        "type": "integer",
-        "required": true,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      },
-      {
-        "name": "name",
-        "in": "BODY",
-        "type": "string",
-        "required": false,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      },
-      {
-        "name": "description",
-        "in": "BODY",
-        "type": "string",
-        "required": false,
-        "enum": null,
-        "allowNull": true,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      },
-      {
-        "name": "base_role",
-        "in": "BODY",
-        "type": "string",
-        "required": false,
-        "enum": [
-          "read",
-          "triage",
-          "write",
-          "maintain"
-        ],
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      },
-      {
-        "name": "permissions",
-        "in": "BODY",
-        "type": "string[]",
-        "required": false,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      }
-    ],
-    "responses": [
-      {
-        "code": 200,
-        "examples": [
-          {
-            "data": "{\"id\":8030,\"name\":\"Security Engineer\",\"description\":\"Able to contribute code and maintain the security pipeline\",\"base_role\":\"maintain\",\"permissions\":[\"delete_alerts_code_scanning\"],\"organization\":{\"login\":\"github\",\"id\":9919,\"node_id\":\"MDEyOk9yZ2FuaXphdGlvbjk5MTk=\",\"avatar_url\":\"https://avatars.githubusercontent.com/u/9919?v=4\",\"gravatar_id\":\"\",\"url\":\"https://api.github.com/users/github\",\"html_url\":\"https://github.com/github\",\"followers_url\":\"https://api.github.com/users/github/followers\",\"following_url\":\"https://api.github.com/users/github/following{/other_user}\",\"gists_url\":\"https://api.github.com/users/github/gists{/gist_id}\",\"starred_url\":\"https://api.github.com/users/github/starred{/owner}{/repo}\",\"subscriptions_url\":\"https://api.github.com/users/github/subscriptions\",\"organizations_url\":\"https://api.github.com/users/github/orgs\",\"repos_url\":\"https://api.github.com/users/github/repos\",\"events_url\":\"https://api.github.com/users/github/events{/privacy}\",\"received_events_url\":\"https://api.github.com/users/github/received_events\",\"type\":\"Organization\",\"site_admin\":false},\"created_at\":\"2022-07-04T22:19:11Z\",\"updated_at\":\"2022-07-04T22:20:11Z\"}"
-          }
-        ]
-      },
-      {
-        "code": 404,
-        "examples": null
-      },
-      {
-        "code": 422,
-        "examples": null
-      }
-    ],
-    "renamed": null
-  },
-  {
-    "scope": "orgs",
-    "id": "updateCustomRole",
-    "method": "PATCH",
-    "url": "/orgs/{org}/custom_roles/{role_id}",
-    "isDeprecated": true,
-    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/reference/orgs#update-a-custom-role",
-    "previews": [],
-    "headers": [],
-    "parameters": [
-      {
-        "name": "org",
-        "in": "PATH",
-        "type": "string",
-        "required": true,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      },
-      {
-        "name": "role_id",
-        "in": "PATH",
-        "type": "integer",
-        "required": true,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      },
-      {
-        "name": "name",
-        "in": "BODY",
-        "type": "string",
-        "required": false,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      },
-      {
-        "name": "description",
-        "in": "BODY",
-        "type": "string",
-        "required": false,
-        "enum": null,
-        "allowNull": true,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      },
-      {
-        "name": "base_role",
-        "in": "BODY",
-        "type": "string",
-        "required": false,
-        "enum": [
-          "read",
-          "triage",
-          "write",
-          "maintain"
-        ],
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      },
-      {
-        "name": "permissions",
-        "in": "BODY",
-        "type": "string[]",
-        "required": false,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      }
-    ],
-    "responses": [
-      {
-        "code": 200,
-        "examples": [
-          {
-            "data": "{\"id\":8030,\"name\":\"Security Engineer\",\"description\":\"Able to contribute code and maintain the security pipeline\",\"base_role\":\"maintain\",\"permissions\":[\"delete_alerts_code_scanning\"],\"organization\":{\"login\":\"github\",\"id\":9919,\"node_id\":\"MDEyOk9yZ2FuaXphdGlvbjk5MTk=\",\"avatar_url\":\"https://avatars.githubusercontent.com/u/9919?v=4\",\"gravatar_id\":\"\",\"url\":\"https://api.github.com/users/github\",\"html_url\":\"https://github.com/github\",\"followers_url\":\"https://api.github.com/users/github/followers\",\"following_url\":\"https://api.github.com/users/github/following{/other_user}\",\"gists_url\":\"https://api.github.com/users/github/gists{/gist_id}\",\"starred_url\":\"https://api.github.com/users/github/starred{/owner}{/repo}\",\"subscriptions_url\":\"https://api.github.com/users/github/subscriptions\",\"organizations_url\":\"https://api.github.com/users/github/orgs\",\"repos_url\":\"https://api.github.com/users/github/repos\",\"events_url\":\"https://api.github.com/users/github/events{/privacy}\",\"received_events_url\":\"https://api.github.com/users/github/received_events\",\"type\":\"Organization\",\"site_admin\":false},\"created_at\":\"2022-07-04T22:19:11Z\",\"updated_at\":\"2022-07-04T22:20:11Z\"}"
-          }
-        ]
-      },
-      {
-        "code": 404,
-        "examples": null
-      },
-      {
-        "code": 422,
         "examples": null
       }
     ],
@@ -5601,215 +3931,6 @@
       },
       {
         "code": 429,
-        "examples": null
-      }
-    ],
-    "renamed": null
-  },
-  {
-    "scope": "secretScanning",
-    "id": "getSecurityAnalysisSettingsForEnterprise",
-    "method": "GET",
-    "url": "/enterprises/{enterprise}/code_security_and_analysis",
-    "isDeprecated": false,
-    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/enterprise-admin#get-code-security-analysis-features-for-an-enterprise",
-    "previews": [],
-    "headers": [],
-    "parameters": [
-      {
-        "name": "enterprise",
-        "in": "PATH",
-        "type": "string",
-        "required": true,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      }
-    ],
-    "responses": [
-      {
-        "code": 200,
-        "examples": [
-          {
-            "data": "{\"advanced_security_enabled_for_new_repositories\":true,\"dependabot_alerts_enabled_for_new_repositories\":true,\"secret_scanning_enabled_for_new_repositories\":true,\"secret_scanning_push_protection_enabled_for_new_repositories\":true,\"secret_scanning_push_protection_custom_link\":\"https://github.com/test-org/test-repo/blob/main/README.md\"}"
-          }
-        ]
-      },
-      {
-        "code": 404,
-        "examples": null
-      }
-    ],
-    "renamed": null
-  },
-  {
-    "scope": "secretScanning",
-    "id": "patchSecurityAnalysisSettingsForEnterprise",
-    "method": "PATCH",
-    "url": "/enterprises/{enterprise}/code_security_and_analysis",
-    "isDeprecated": false,
-    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/enterprise-admin#update-code-security-and-analysis-features-for-an-enterprise",
-    "previews": [],
-    "headers": [],
-    "parameters": [
-      {
-        "name": "enterprise",
-        "in": "PATH",
-        "type": "string",
-        "required": true,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      },
-      {
-        "name": "advanced_security_enabled_for_new_repositories",
-        "in": "BODY",
-        "type": "boolean",
-        "required": false,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      },
-      {
-        "name": "dependabot_alerts_enabled_for_new_repositories",
-        "in": "BODY",
-        "type": "boolean",
-        "required": false,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      },
-      {
-        "name": "secret_scanning_enabled_for_new_repositories",
-        "in": "BODY",
-        "type": "boolean",
-        "required": false,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      },
-      {
-        "name": "secret_scanning_push_protection_enabled_for_new_repositories",
-        "in": "BODY",
-        "type": "boolean",
-        "required": false,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      },
-      {
-        "name": "secret_scanning_push_protection_custom_link",
-        "in": "BODY",
-        "type": "string",
-        "required": false,
-        "enum": null,
-        "allowNull": true,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      }
-    ],
-    "responses": [
-      {
-        "code": 204,
-        "examples": null
-      },
-      {
-        "code": 404,
-        "examples": null
-      },
-      {
-        "code": 422,
-        "examples": null
-      }
-    ],
-    "renamed": null
-  },
-  {
-    "scope": "secretScanning",
-    "id": "postSecurityProductEnablementForEnterprise",
-    "method": "POST",
-    "url": "/enterprises/{enterprise}/{security_product}/{enablement}",
-    "isDeprecated": false,
-    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/enterprise-admin#enable-or-disable-a-security-feature",
-    "previews": [],
-    "headers": [],
-    "parameters": [
-      {
-        "name": "enterprise",
-        "in": "PATH",
-        "type": "string",
-        "required": true,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      },
-      {
-        "name": "security_product",
-        "in": "PATH",
-        "type": "string",
-        "required": true,
-        "enum": [
-          "advanced_security",
-          "dependabot_alerts",
-          "secret_scanning",
-          "secret_scanning_push_protection"
-        ],
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      },
-      {
-        "name": "enablement",
-        "in": "PATH",
-        "type": "string",
-        "required": true,
-        "enum": [
-          "enable_all",
-          "disable_all"
-        ],
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      }
-    ],
-    "responses": [
-      {
-        "code": 204,
-        "examples": null
-      },
-      {
-        "code": 404,
-        "examples": null
-      },
-      {
-        "code": 422,
         "examples": null
       }
     ],
