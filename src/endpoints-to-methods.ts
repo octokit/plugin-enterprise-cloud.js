@@ -14,7 +14,7 @@ type EndpointMethods = {
 
 export function endpointsToMethods(
   octokit: Octokit,
-  endpointsMap: EndpointsDefaultsAndDecorations
+  endpointsMap: EndpointsDefaultsAndDecorations,
 ) {
   const newMethods = {} as Record<string, Record<string, Function>>;
 
@@ -24,7 +24,7 @@ export function endpointsToMethods(
       const [method, url] = route.split(/ /) as [RequestMethod, Url];
       const endpointDefaults: EndpointOptions = Object.assign(
         { method, url },
-        defaults
+        defaults,
       );
 
       if (!newMethods[scope]) {
@@ -39,7 +39,7 @@ export function endpointsToMethods(
         scopeMethods[methodName] = deprecate(
           octokit,
           `octokit.${scope}.${methodName}() has been renamed to octokit.${newScope}.${newMethodName}()`,
-          endpointDefaults
+          endpointDefaults,
         );
         continue;
       }
@@ -49,7 +49,7 @@ export function endpointsToMethods(
         scopeMethods[methodName] = deprecate(
           octokit,
           decorations.deprecated,
-          endpointDefaults
+          endpointDefaults,
         );
         continue;
       }
@@ -65,7 +65,7 @@ export function endpointsToMethods(
 function deprecate(
   octokit: Octokit,
   deprecation: string,
-  defaults: EndpointOptions
+  defaults: EndpointOptions,
 ): typeof Octokit.prototype.request {
   const requestWithDefaults = octokit.request.defaults(defaults);
   function deprecated(
