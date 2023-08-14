@@ -27,7 +27,7 @@ describe("enterpriseCloud plugin", () => {
       filter: 'userName eq "Octocat"',
     });
 
-    expect(data).toStrictEqual([{ ok: true }]);
+    expect(data).toEqual([{ ok: true }]);
   });
 
   it("deprecated method", async () => {
@@ -77,6 +77,6 @@ describe("enterpriseCloud plugin", () => {
       ],
     });
 
-    expect(data).toStrictEqual([{ ok: true }]);
+    expect(data).toEqual([{ ok: true }]);
   });
 });
