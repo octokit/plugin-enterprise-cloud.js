@@ -67,16 +67,19 @@ ENDPOINTS.forEach((endpoint) => {
   }
 });
 
-writeFileSync(
-  ROUTES_PATH,
-  prettier.format(
-    `import type { EndpointsDefaultsAndDecorations } from "../types";
-const Endpoints: EndpointsDefaultsAndDecorations = ${JSON.stringify(
-      sortKeys(newRoutes, { deep: true })
-    )}
+async function main() {
+  writeFileSync(
+    ROUTES_PATH,
+    await prettier.format(
+      `import type { EndpointsDefaultsAndDecorations } from "../types";
+  const Endpoints: EndpointsDefaultsAndDecorations = ${JSON.stringify(
+        sortKeys(newRoutes, { deep: true })
+      )}
 
-export default Endpoints`,
-    { parser: "typescript" }
-  )
-);
-console.log(`${ROUTES_PATH} written.`);
+  export default Endpoints`,
+      { parser: "typescript" }
+    )
+  );
+  console.log(`${ROUTES_PATH} written.`);
+}
+main();
