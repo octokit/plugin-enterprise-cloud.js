@@ -106,14 +106,12 @@ const Endpoints: EndpointsDefaultsAndDecorations = {
     createSelfHostedRunnerGroupForEnterprise: [
       "POST /enterprises/:enterprise/actions/runner-groups",
     ],
-    deleteScimGroupFromEnterprise: ["DELETE /scim/v2/Groups/:scim_group_id"],
     deleteSelfHostedRunnerFromEnterprise: [
       "DELETE /enterprises/:enterprise/actions/runners/:runner_id",
     ],
     deleteSelfHostedRunnerGroupFromEnterprise: [
       "DELETE /enterprises/:enterprise/actions/runner-groups/:runner_group_id",
     ],
-    deleteUserFromEnterprise: ["DELETE /scim/v2/Users/:scim_user_id"],
     disableSelectedOrganizationGithubActionsEnterprise: [
       "DELETE /enterprises/:enterprise/actions/permissions/organizations/:org_id",
     ],
@@ -129,12 +127,6 @@ const Endpoints: EndpointsDefaultsAndDecorations = {
       "GET /enterprises/:enterprise/actions/permissions",
     ],
     getLicenseSyncStatus: ["GET /enterprises/:enterprise/license-sync-status"],
-    getProvisioningInformationForEnterpriseGroup: [
-      "GET /scim/v2/Groups/:scim_group_id",
-    ],
-    getProvisioningInformationForEnterpriseUser: [
-      "GET /scim/v2/Users/:scim_user_id",
-    ],
     getSelfHostedRunnerForEnterprise: [
       "GET /enterprises/:enterprise/actions/runners/:runner_id",
     ],
@@ -150,8 +142,6 @@ const Endpoints: EndpointsDefaultsAndDecorations = {
     listOrgAccessToSelfHostedRunnerGroupInEnterprise: [
       "GET /enterprises/:enterprise/actions/runner-groups/:runner_group_id/organizations",
     ],
-    listProvisionedGroupsEnterprise: ["GET /scim/v2/Groups"],
-    listProvisionedIdentitiesEnterprise: ["GET /scim/v2/Users"],
     listRunnerApplicationsForEnterprise: [
       "GET /enterprises/:enterprise/actions/runners/downloads",
     ],
@@ -167,8 +157,6 @@ const Endpoints: EndpointsDefaultsAndDecorations = {
     listSelfHostedRunnersInGroupForEnterprise: [
       "GET /enterprises/:enterprise/actions/runner-groups/:runner_group_id/runners",
     ],
-    provisionEnterpriseGroup: ["POST /scim/v2/Groups"],
-    provisionEnterpriseUser: ["POST /scim/v2/Users"],
     removeAllCustomLabelsFromSelfHostedRunnerForEnterprise: [
       "DELETE /enterprises/:enterprise/actions/runners/:runner_id/labels",
     ],
@@ -190,12 +178,6 @@ const Endpoints: EndpointsDefaultsAndDecorations = {
     setGithubActionsPermissionsEnterprise: [
       "PUT /enterprises/:enterprise/actions/permissions",
     ],
-    setInformationForProvisionedEnterpriseGroup: [
-      "PUT /scim/v2/Groups/:scim_group_id",
-    ],
-    setInformationForProvisionedEnterpriseUser: [
-      "PUT /scim/v2/Users/:scim_user_id",
-    ],
     setOrgAccessToSelfHostedRunnerGroupInEnterprise: [
       "PUT /enterprises/:enterprise/actions/runner-groups/:runner_group_id/organizations",
     ],
@@ -205,8 +187,6 @@ const Endpoints: EndpointsDefaultsAndDecorations = {
     setSelfHostedRunnersInGroupForEnterprise: [
       "PUT /enterprises/:enterprise/actions/runner-groups/:runner_group_id/runners",
     ],
-    updateAttributeForEnterpriseGroup: ["PATCH /scim/v2/Groups/:scim_group_id"],
-    updateAttributeForEnterpriseUser: ["PATCH /scim/v2/Users/:scim_user_id"],
     updateSelfHostedRunnerGroupForEnterprise: [
       "PATCH /enterprises/:enterprise/actions/runner-groups/:runner_group_id",
     ],
@@ -218,7 +198,7 @@ const Endpoints: EndpointsDefaultsAndDecorations = {
       {},
       {
         deprecated:
-          "octokit.scim.createCustomRole() is deprecated, see https://docs.github.com/enterprise-cloud@latest//rest/orgs/custom-roles#deprecated---create-a-custom-role",
+          "octokit.scim.createCustomRole() is deprecated, see https://docs.github.com/enterprise-cloud@latest//rest/reference/orgs#create-a-custom-role",
       },
     ],
     deleteCustomRepoRole: [
@@ -229,7 +209,7 @@ const Endpoints: EndpointsDefaultsAndDecorations = {
       {},
       {
         deprecated:
-          "octokit.scim.deleteCustomRole() is deprecated, see https://docs.github.com/enterprise-cloud@latest//rest/orgs/custom-roles#deprecated---delete-a-custom-role",
+          "octokit.scim.deleteCustomRole() is deprecated, see https://docs.github.com/enterprise-cloud@latest//rest/reference/orgs#delete-a-custom-role",
       },
     ],
     getAuditLog: ["GET /orgs/:org/audit-log"],
@@ -239,7 +219,7 @@ const Endpoints: EndpointsDefaultsAndDecorations = {
       {},
       {
         deprecated:
-          "octokit.scim.getCustomRole() is deprecated, see https://docs.github.com/enterprise-cloud@latest//rest/orgs/custom-roles#deprecated---get-a-custom-role",
+          "octokit.scim.getCustomRole() is deprecated, see https://docs.github.com/enterprise-cloud@latest//rest/reference/orgs/#get-a-custom-role",
       },
     ],
     listCustomRepoRoles: ["GET /orgs/:org/custom-repository-roles"],
@@ -248,7 +228,7 @@ const Endpoints: EndpointsDefaultsAndDecorations = {
       {},
       {
         deprecated:
-          "octokit.scim.listCustomRoles() is deprecated, see https://docs.github.com/enterprise-cloud@latest//rest/orgs/custom-roles#deprecated---list-custom-repository-roles-in-an-organization",
+          "octokit.scim.listCustomRoles() is deprecated, see https://docs.github.com/enterprise-cloud@latest//rest/reference/orgs#deprecated-list-custom-repository-roles-in-an-organization",
       },
     ],
     listFineGrainedPermissions: [
@@ -256,7 +236,7 @@ const Endpoints: EndpointsDefaultsAndDecorations = {
       {},
       {
         deprecated:
-          "octokit.scim.listFineGrainedPermissions() is deprecated, see https://docs.github.com/enterprise-cloud@latest//rest/orgs/custom-roles#deprecated---list-fine-grained-permissions-for-an-organization",
+          "octokit.scim.listFineGrainedPermissions() is deprecated, see https://docs.github.com/enterprise-cloud@latest//rest/reference/orgs#list-repository-fine-grained-permissions-for-an-organization",
       },
     ],
     listRepoFineGrainedPermissions: [
@@ -272,13 +252,9 @@ const Endpoints: EndpointsDefaultsAndDecorations = {
       {},
       {
         deprecated:
-          "octokit.scim.updateCustomRole() is deprecated, see https://docs.github.com/enterprise-cloud@latest//rest/orgs/custom-roles#deprecated---update-a-custom-role",
+          "octokit.scim.updateCustomRole() is deprecated, see https://docs.github.com/enterprise-cloud@latest//rest/reference/orgs#update-a-custom-role",
       },
     ],
-  },
-  repos: {
-    disableLfsForRepo: ["DELETE /repos/:owner/:repo/lfs"],
-    enableLfsForRepo: ["PUT /repos/:owner/:repo/lfs"],
   },
   scim: {
     deleteUserFromOrg: [
