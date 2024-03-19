@@ -1377,10 +1377,6 @@
             "data": "{\"total_advanced_security_committers\":2,\"total_count\":2,\"maximum_advanced_security_committers\":4,\"purchased_advanced_security_committers\":4,\"repositories\":[{\"name\":\"octocat-org/Hello-World\",\"advanced_security_committers\":2,\"advanced_security_committers_breakdown\":[{\"user_login\":\"octocat\",\"last_pushed_date\":\"2021-11-03\",\"last_pushed_email\":\"octocat@github.com\"},{\"user_login\":\"octokitten\",\"last_pushed_date\":\"2021-10-25\",\"last_pushed_email\":\"octokitten@github.com\"}]},{\"name\":\"octocat-org/server\",\"advanced_security_committers\":1,\"advanced_security_committers_breakdown\":[{\"user_login\":\"octokitten\",\"last_pushed_date\":\"2021-10-26\",\"last_pushed_email\":\"octokitten@github.com\"}]}]}"
           }
         ]
-      },
-      {
-        "code": 403,
-        "examples": null
       }
     ],
     "renamed": null
@@ -1440,10 +1436,6 @@
             "data": "{\"total_advanced_security_committers\":2,\"total_count\":2,\"maximum_advanced_security_committers\":4,\"purchased_advanced_security_committers\":4,\"repositories\":[{\"name\":\"octocat-org/Hello-World\",\"advanced_security_committers\":2,\"advanced_security_committers_breakdown\":[{\"user_login\":\"octocat\",\"last_pushed_date\":\"2021-11-03\",\"last_pushed_email\":\"octocat@github.com\"},{\"user_login\":\"octokitten\",\"last_pushed_date\":\"2021-10-25\",\"last_pushed_email\":\"octokitten@github.com\"}]},{\"name\":\"octocat-org/server\",\"advanced_security_committers\":1,\"advanced_security_committers_breakdown\":[{\"user_login\":\"octokitten\",\"last_pushed_date\":\"2021-10-26\",\"last_pushed_email\":\"octokitten@github.com\"}]}]}"
           }
         ]
-      },
-      {
-        "code": 403,
-        "examples": null
       }
     ],
     "renamed": null
@@ -2053,7 +2045,7 @@
     "scope": "enterpriseAdmin",
     "id": "deleteScimGroupFromEnterprise",
     "method": "DELETE",
-    "url": "/scim/v2/Groups/{scim_group_id}",
+    "url": "/scim/v2/enterprises/{enterprise}/Groups/{scim_group_id}",
     "isDeprecated": false,
     "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/enterprise-admin/scim#delete-a-scim-group-from-an-enterprise",
     "previews": [],
@@ -2061,6 +2053,18 @@
     "parameters": [
       {
         "name": "scim_group_id",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "enterprise",
         "in": "PATH",
         "type": "string",
         "required": true,
@@ -2206,7 +2210,7 @@
     "scope": "enterpriseAdmin",
     "id": "deleteUserFromEnterprise",
     "method": "DELETE",
-    "url": "/scim/v2/Users/{scim_user_id}",
+    "url": "/scim/v2/enterprises/{enterprise}/Users/{scim_user_id}",
     "isDeprecated": false,
     "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/enterprise-admin/scim#delete-a-scim-user-from-an-enterprise",
     "previews": [],
@@ -2214,6 +2218,18 @@
     "parameters": [
       {
         "name": "scim_user_id",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "enterprise",
         "in": "PATH",
         "type": "string",
         "required": true,
@@ -2649,7 +2665,7 @@
     "scope": "enterpriseAdmin",
     "id": "getProvisioningInformationForEnterpriseGroup",
     "method": "GET",
-    "url": "/scim/v2/Groups/{scim_group_id}",
+    "url": "/scim/v2/enterprises/{enterprise}/Groups/{scim_group_id}",
     "isDeprecated": false,
     "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/enterprise-admin/scim#get-scim-provisioning-information-for-an-enterprise-group",
     "previews": [],
@@ -2672,6 +2688,18 @@
         "in": "QUERY",
         "type": "string",
         "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "enterprise",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
         "enum": null,
         "allowNull": false,
         "mapToData": null,
@@ -2732,7 +2760,7 @@
     "scope": "enterpriseAdmin",
     "id": "getProvisioningInformationForEnterpriseUser",
     "method": "GET",
-    "url": "/scim/v2/Users/{scim_user_id}",
+    "url": "/scim/v2/enterprises/{enterprise}/Users/{scim_user_id}",
     "isDeprecated": false,
     "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/enterprise-admin/scim#get-scim-provisioning-information-for-an-enterprise-user",
     "previews": [],
@@ -2740,6 +2768,18 @@
     "parameters": [
       {
         "name": "scim_user_id",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "enterprise",
         "in": "PATH",
         "type": "string",
         "required": true,
@@ -3078,7 +3118,7 @@
     "scope": "enterpriseAdmin",
     "id": "listProvisionedGroupsEnterprise",
     "method": "GET",
-    "url": "/scim/v2/Groups",
+    "url": "/scim/v2/enterprises/{enterprise}/Groups",
     "isDeprecated": false,
     "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/enterprise-admin/scim#list-provisioned-scim-groups-for-an-enterprise",
     "previews": [],
@@ -3125,6 +3165,18 @@
         "in": "QUERY",
         "type": "integer",
         "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "enterprise",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
         "enum": null,
         "allowNull": false,
         "mapToData": null,
@@ -3181,7 +3233,7 @@
     "scope": "enterpriseAdmin",
     "id": "listProvisionedIdentitiesEnterprise",
     "method": "GET",
-    "url": "/scim/v2/Users",
+    "url": "/scim/v2/enterprises/{enterprise}/Users",
     "isDeprecated": false,
     "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/enterprise-admin/scim#list-scim-provisioned-identities-for-an-enterprise",
     "previews": [],
@@ -3216,6 +3268,18 @@
         "in": "QUERY",
         "type": "integer",
         "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "enterprise",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
         "enum": null,
         "allowNull": false,
         "mapToData": null,
@@ -3579,12 +3643,24 @@
     "scope": "enterpriseAdmin",
     "id": "provisionEnterpriseGroup",
     "method": "POST",
-    "url": "/scim/v2/Groups",
+    "url": "/scim/v2/enterprises/{enterprise}/Groups",
     "isDeprecated": false,
     "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/enterprise-admin/scim#provision-a-scim-enterprise-group",
     "previews": [],
     "headers": [],
     "parameters": [
+      {
+        "name": "enterprise",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
       {
         "name": "schemas",
         "in": "BODY",
@@ -3710,12 +3786,24 @@
     "scope": "enterpriseAdmin",
     "id": "provisionEnterpriseUser",
     "method": "POST",
-    "url": "/scim/v2/Users",
+    "url": "/scim/v2/enterprises/{enterprise}/Users",
     "isDeprecated": false,
     "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/enterprise-admin/scim#provision-a-scim-enterprise-user",
     "previews": [],
     "headers": [],
     "parameters": [
+      {
+        "name": "enterprise",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
       {
         "name": "schemas",
         "in": "BODY",
@@ -4440,7 +4528,7 @@
     "scope": "enterpriseAdmin",
     "id": "setInformationForProvisionedEnterpriseGroup",
     "method": "PUT",
-    "url": "/scim/v2/Groups/{scim_group_id}",
+    "url": "/scim/v2/enterprises/{enterprise}/Groups/{scim_group_id}",
     "isDeprecated": false,
     "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/enterprise-admin/scim#set-scim-information-for-a-provisioned-enterprise-group",
     "previews": [],
@@ -4448,6 +4536,18 @@
     "parameters": [
       {
         "name": "scim_group_id",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "enterprise",
         "in": "PATH",
         "type": "string",
         "required": true,
@@ -4590,7 +4690,7 @@
     "scope": "enterpriseAdmin",
     "id": "setInformationForProvisionedEnterpriseUser",
     "method": "PUT",
-    "url": "/scim/v2/Users/{scim_user_id}",
+    "url": "/scim/v2/enterprises/{enterprise}/Users/{scim_user_id}",
     "isDeprecated": false,
     "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/enterprise-admin/scim#set-scim-information-for-a-provisioned-enterprise-user",
     "previews": [],
@@ -4598,6 +4698,18 @@
     "parameters": [
       {
         "name": "scim_user_id",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "enterprise",
         "in": "PATH",
         "type": "string",
         "required": true,
@@ -5057,7 +5169,7 @@
     "scope": "enterpriseAdmin",
     "id": "updateAttributeForEnterpriseGroup",
     "method": "PATCH",
-    "url": "/scim/v2/Groups/{scim_group_id}",
+    "url": "/scim/v2/enterprises/{enterprise}/Groups/{scim_group_id}",
     "isDeprecated": false,
     "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/enterprise-admin/scim#update-an-attribute-for-a-scim-enterprise-group",
     "previews": [],
@@ -5065,6 +5177,18 @@
     "parameters": [
       {
         "name": "scim_group_id",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "enterprise",
         "in": "PATH",
         "type": "string",
         "required": true,
@@ -5203,7 +5327,7 @@
     "scope": "enterpriseAdmin",
     "id": "updateAttributeForEnterpriseUser",
     "method": "PATCH",
-    "url": "/scim/v2/Users/{scim_user_id}",
+    "url": "/scim/v2/enterprises/{enterprise}/Users/{scim_user_id}",
     "isDeprecated": false,
     "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/enterprise-admin/scim#update-an-attribute-for-a-scim-enterprise-user",
     "previews": [],
@@ -5211,6 +5335,18 @@
     "parameters": [
       {
         "name": "scim_user_id",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "enterprise",
         "in": "PATH",
         "type": "string",
         "required": true,
