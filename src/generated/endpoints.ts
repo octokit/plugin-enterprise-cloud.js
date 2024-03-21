@@ -106,14 +106,18 @@ const Endpoints: EndpointsDefaultsAndDecorations = {
     createSelfHostedRunnerGroupForEnterprise: [
       "POST /enterprises/:enterprise/actions/runner-groups",
     ],
-    deleteScimGroupFromEnterprise: ["DELETE /scim/v2/Groups/:scim_group_id"],
+    deleteScimGroupFromEnterprise: [
+      "DELETE /scim/v2/enterprises/:enterprise/Groups/:scim_group_id",
+    ],
     deleteSelfHostedRunnerFromEnterprise: [
       "DELETE /enterprises/:enterprise/actions/runners/:runner_id",
     ],
     deleteSelfHostedRunnerGroupFromEnterprise: [
       "DELETE /enterprises/:enterprise/actions/runner-groups/:runner_group_id",
     ],
-    deleteUserFromEnterprise: ["DELETE /scim/v2/Users/:scim_user_id"],
+    deleteUserFromEnterprise: [
+      "DELETE /scim/v2/enterprises/:enterprise/Users/:scim_user_id",
+    ],
     disableSelectedOrganizationGithubActionsEnterprise: [
       "DELETE /enterprises/:enterprise/actions/permissions/organizations/:org_id",
     ],
@@ -130,10 +134,10 @@ const Endpoints: EndpointsDefaultsAndDecorations = {
     ],
     getLicenseSyncStatus: ["GET /enterprises/:enterprise/license-sync-status"],
     getProvisioningInformationForEnterpriseGroup: [
-      "GET /scim/v2/Groups/:scim_group_id",
+      "GET /scim/v2/enterprises/:enterprise/Groups/:scim_group_id",
     ],
     getProvisioningInformationForEnterpriseUser: [
-      "GET /scim/v2/Users/:scim_user_id",
+      "GET /scim/v2/enterprises/:enterprise/Users/:scim_user_id",
     ],
     getSelfHostedRunnerForEnterprise: [
       "GET /enterprises/:enterprise/actions/runners/:runner_id",
@@ -150,8 +154,12 @@ const Endpoints: EndpointsDefaultsAndDecorations = {
     listOrgAccessToSelfHostedRunnerGroupInEnterprise: [
       "GET /enterprises/:enterprise/actions/runner-groups/:runner_group_id/organizations",
     ],
-    listProvisionedGroupsEnterprise: ["GET /scim/v2/Groups"],
-    listProvisionedIdentitiesEnterprise: ["GET /scim/v2/Users"],
+    listProvisionedGroupsEnterprise: [
+      "GET /scim/v2/enterprises/:enterprise/Groups",
+    ],
+    listProvisionedIdentitiesEnterprise: [
+      "GET /scim/v2/enterprises/:enterprise/Users",
+    ],
     listRunnerApplicationsForEnterprise: [
       "GET /enterprises/:enterprise/actions/runners/downloads",
     ],
@@ -167,8 +175,8 @@ const Endpoints: EndpointsDefaultsAndDecorations = {
     listSelfHostedRunnersInGroupForEnterprise: [
       "GET /enterprises/:enterprise/actions/runner-groups/:runner_group_id/runners",
     ],
-    provisionEnterpriseGroup: ["POST /scim/v2/Groups"],
-    provisionEnterpriseUser: ["POST /scim/v2/Users"],
+    provisionEnterpriseGroup: ["POST /scim/v2/enterprises/:enterprise/Groups"],
+    provisionEnterpriseUser: ["POST /scim/v2/enterprises/:enterprise/Users"],
     removeAllCustomLabelsFromSelfHostedRunnerForEnterprise: [
       "DELETE /enterprises/:enterprise/actions/runners/:runner_id/labels",
     ],
@@ -191,10 +199,10 @@ const Endpoints: EndpointsDefaultsAndDecorations = {
       "PUT /enterprises/:enterprise/actions/permissions",
     ],
     setInformationForProvisionedEnterpriseGroup: [
-      "PUT /scim/v2/Groups/:scim_group_id",
+      "PUT /scim/v2/enterprises/:enterprise/Groups/:scim_group_id",
     ],
     setInformationForProvisionedEnterpriseUser: [
-      "PUT /scim/v2/Users/:scim_user_id",
+      "PUT /scim/v2/enterprises/:enterprise/Users/:scim_user_id",
     ],
     setOrgAccessToSelfHostedRunnerGroupInEnterprise: [
       "PUT /enterprises/:enterprise/actions/runner-groups/:runner_group_id/organizations",
@@ -205,8 +213,12 @@ const Endpoints: EndpointsDefaultsAndDecorations = {
     setSelfHostedRunnersInGroupForEnterprise: [
       "PUT /enterprises/:enterprise/actions/runner-groups/:runner_group_id/runners",
     ],
-    updateAttributeForEnterpriseGroup: ["PATCH /scim/v2/Groups/:scim_group_id"],
-    updateAttributeForEnterpriseUser: ["PATCH /scim/v2/Users/:scim_user_id"],
+    updateAttributeForEnterpriseGroup: [
+      "PATCH /scim/v2/enterprises/:enterprise/Groups/:scim_group_id",
+    ],
+    updateAttributeForEnterpriseUser: [
+      "PATCH /scim/v2/enterprises/:enterprise/Users/:scim_user_id",
+    ],
     updateSelfHostedRunnerGroupForEnterprise: [
       "PATCH /enterprises/:enterprise/actions/runner-groups/:runner_group_id",
     ],
