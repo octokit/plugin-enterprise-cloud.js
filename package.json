@@ -2,7 +2,8 @@
   "name": "@octokit/plugin-enterprise-cloud",
   "version": "0.0.0-development",
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "provenance": true
   },
   "description": "Octokit plugin for GitHubâs Enterprise Cloud REST APIs",
   "scripts": {
