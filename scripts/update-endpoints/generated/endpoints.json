@@ -7637,18 +7637,6 @@
         "validation": null,
         "alias": null,
         "deprecated": null
-      },
-      {
-        "name": "secret_scanning_push_protection_custom_link",
-        "in": "BODY",
-        "type": "string",
-        "required": false,
-        "enum": null,
-        "allowNull": true,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
       }
     ],
     "responses": [
