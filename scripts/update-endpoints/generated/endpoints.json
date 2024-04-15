@@ -7637,6 +7637,18 @@
         "validation": null,
         "alias": null,
         "deprecated": null
+      },
+      {
+        "name": "dependabot_alerts_enabled_for_new_repositories",
+        "in": "BODY",
+        "type": "boolean",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
       }
     ],
     "responses": [
