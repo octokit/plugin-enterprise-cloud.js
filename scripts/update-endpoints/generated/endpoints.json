@@ -1374,7 +1374,7 @@
         "code": 200,
         "examples": [
           {
-            "data": "{\"total_advanced_security_committers\":2,\"total_count\":2,\"repositories\":[{\"name\":\"octocat-org/Hello-World\",\"advanced_security_committers\":2,\"advanced_security_committers_breakdown\":[{\"user_login\":\"octocat\",\"last_pushed_date\":\"2021-11-03\",\"last_pushed_email\":\"octocat@github.com\"},{\"user_login\":\"octokitten\",\"last_pushed_date\":\"2021-10-25\",\"last_pushed_email\":\"octokitten@github.com\"}]},{\"name\":\"octocat-org/server\",\"advanced_security_committers\":1,\"advanced_security_committers_breakdown\":[{\"user_login\":\"octokitten\",\"last_pushed_date\":\"2021-10-26\",\"last_pushed_email\":\"octokitten@github.com\"}]}]}"
+            "data": "{\"total_advanced_security_committers\":2,\"total_count\":2,\"maximum_advanced_security_committers\":4,\"purchased_advanced_security_committers\":4,\"repositories\":[{\"name\":\"octocat-org/Hello-World\",\"advanced_security_committers\":2,\"advanced_security_committers_breakdown\":[{\"user_login\":\"octocat\",\"last_pushed_date\":\"2021-11-03\",\"last_pushed_email\":\"octocat@github.com\"},{\"user_login\":\"octokitten\",\"last_pushed_date\":\"2021-10-25\",\"last_pushed_email\":\"octokitten@github.com\"}]},{\"name\":\"octocat-org/server\",\"advanced_security_committers\":1,\"advanced_security_committers_breakdown\":[{\"user_login\":\"octokitten\",\"last_pushed_date\":\"2021-10-26\",\"last_pushed_email\":\"octokitten@github.com\"}]}]}"
           }
         ]
       }
@@ -1433,7 +1433,7 @@
         "code": 200,
         "examples": [
           {
-            "data": "{\"total_advanced_security_committers\":2,\"total_count\":2,\"repositories\":[{\"name\":\"octocat-org/Hello-World\",\"advanced_security_committers\":2,\"advanced_security_committers_breakdown\":[{\"user_login\":\"octocat\",\"last_pushed_date\":\"2021-11-03\",\"last_pushed_email\":\"octocat@github.com\"},{\"user_login\":\"octokitten\",\"last_pushed_date\":\"2021-10-25\",\"last_pushed_email\":\"octokitten@github.com\"}]},{\"name\":\"octocat-org/server\",\"advanced_security_committers\":1,\"advanced_security_committers_breakdown\":[{\"user_login\":\"octokitten\",\"last_pushed_date\":\"2021-10-26\",\"last_pushed_email\":\"octokitten@github.com\"}]}]}"
+            "data": "{\"total_advanced_security_committers\":2,\"total_count\":2,\"maximum_advanced_security_committers\":4,\"purchased_advanced_security_committers\":4,\"repositories\":[{\"name\":\"octocat-org/Hello-World\",\"advanced_security_committers\":2,\"advanced_security_committers_breakdown\":[{\"user_login\":\"octocat\",\"last_pushed_date\":\"2021-11-03\",\"last_pushed_email\":\"octocat@github.com\"},{\"user_login\":\"octokitten\",\"last_pushed_date\":\"2021-10-25\",\"last_pushed_email\":\"octokitten@github.com\"}]},{\"name\":\"octocat-org/server\",\"advanced_security_committers\":1,\"advanced_security_committers_breakdown\":[{\"user_login\":\"octokitten\",\"last_pushed_date\":\"2021-10-26\",\"last_pushed_email\":\"octokitten@github.com\"}]}]}"
           }
         ]
       }
@@ -7545,7 +7545,7 @@
         "code": 200,
         "examples": [
           {
-            "data": "{\"advanced_security_enabled_for_new_repositories\":true,\"dependabot_alerts_enabled_for_new_repositories\":true,\"secret_scanning_enabled_for_new_repositories\":true,\"secret_scanning_push_protection_enabled_for_new_repositories\":true,\"secret_scanning_push_protection_custom_link\":\"https://github.com/test-org/test-repo/blob/main/README.md\"}"
+            "data": "{\"advanced_security_enabled_for_new_repositories\":true,\"dependabot_alerts_enabled_for_new_repositories\":true,\"secret_scanning_enabled_for_new_repositories\":true,\"secret_scanning_push_protection_enabled_for_new_repositories\":true,\"secret_scanning_push_protection_custom_link\":\"https://github.com/test-org/test-repo/blob/main/README.md\",\"secret_scanning_validity_checks_enabled\":true}"
           }
         ]
       },
@@ -7615,7 +7615,7 @@
         "deprecated": null
       },
       {
-        "name": "dependabot_alerts_enabled_for_new_repositories",
+        "name": "secret_scanning_enabled_for_new_repositories",
         "in": "BODY",
         "type": "boolean",
         "required": false,
@@ -7627,7 +7627,7 @@
         "deprecated": null
       },
       {
-        "name": "dependabot_alerts_enabled_for_new_repositories",
+        "name": "secret_scanning_push_protection_enabled_for_new_repositories",
         "in": "BODY",
         "type": "boolean",
         "required": false,
@@ -7639,12 +7639,24 @@
         "deprecated": null
       },
       {
-        "name": "dependabot_alerts_enabled_for_new_repositories",
+        "name": "secret_scanning_push_protection_custom_link",
+        "in": "BODY",
+        "type": "string",
+        "required": false,
+        "enum": null,
+        "allowNull": true,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "secret_scanning_validity_checks_enabled",
         "in": "BODY",
         "type": "boolean",
         "required": false,
         "enum": null,
-        "allowNull": false,
+        "allowNull": true,
         "mapToData": null,
         "validation": null,
         "alias": null,
