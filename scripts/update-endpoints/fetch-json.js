@@ -1,7 +1,6 @@
-const { writeFileSync } = require("fs");
-const path = require("path");
+import { writeFileSync } from "node:fs"
 
-const graphql = require("github-openapi-graphql-query");
+import graphql from "github-openapi-graphql-query"
 
 if (!process.env.VERSION) {
   throw new Error("VERSION environment variable must be set");
@@ -65,7 +64,7 @@ async function main() {
   });
 
   writeFileSync(
-    path.resolve(__dirname, "generated", "endpoints.json"),
+    new URL("./generated/endpoints.json", import.meta.url),
     JSON.stringify(result.data.endpoints, null, 2) + "\n"
   );
 }

@@ -5,6 +5,7 @@
     "access": "public",
     "provenance": true
   },
+  "type": "module",
   "description": "Octokit plugin for GitHubâs Enterprise Cloud REST APIs",
   "scripts": {
     "build": "node scripts/build.mjs && tsc -p tsconfig.json",
@@ -31,7 +32,7 @@
     "@octokit/types": "^13.0.0"
   },
   "peerDependencies": {
-    "@octokit/core": ">=5"
+    "@octokit/core": ">=6"
   },
   "devDependencies": {
     "@octokit/core": "^6.0.0",

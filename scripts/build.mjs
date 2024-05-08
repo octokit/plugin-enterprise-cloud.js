@@ -8,6 +8,9 @@ const sharedOptions = {
   minify: false,
   allowOverwrite: true,
   packages: "external",
+  platform: "neutral",
+  format: "esm",
+  target: "es2022"
 };
 
 async function main() {
@@ -18,8 +21,6 @@ async function main() {
     entryPoints: await glob(["./src/*.ts", "./src/**/*.ts"]),
     outdir: "pkg/dist-src",
     bundle: false,
-    platform: "neutral",
-    format: "esm",
     ...sharedOptions,
     sourcemap: false,
   });
@@ -35,27 +36,13 @@ async function main() {
 
   const entryPoints = ["./pkg/dist-src/index.js"];
 
-  await Promise.all([
-    // Build the a CJS Node.js bundle
-    esbuild.build({
+  // Build an ESM bundle
+  await esbuild.build({
       entryPoints,
-      outdir: "pkg/dist-node",
+      outdir: "pkg/dist-bundle",
       bundle: true,
-      platform: "node",
-      target: "node14",
-      format: "cjs",
       ...sharedOptions,
     }),
-    // Build an ESM browser bundle
-    esbuild.build({
-      entryPoints,
-      outdir: "pkg/dist-web",
-      bundle: true,
-      platform: "browser",
-      format: "esm",
-      ...sharedOptions,
-    }),
-  ]);
 
   // Copy the README, LICENSE to the pkg folder
   await copyFile("LICENSE", "pkg/LICENSE");
