@@ -10,7 +10,7 @@ const sharedOptions = {
   packages: "external",
   platform: "neutral",
   format: "esm",
-  target: "es2022"
+  target: "es2022",
 };
 
 async function main() {
@@ -38,12 +38,11 @@ async function main() {
 
   // Build an ESM bundle
   await esbuild.build({
-      entryPoints,
-      outdir: "pkg/dist-bundle",
-      bundle: true,
-      ...sharedOptions,
-    }),
-
+    entryPoints,
+    outdir: "pkg/dist-bundle",
+    bundle: true,
+    ...sharedOptions,
+  });
   // Copy the README, LICENSE to the pkg folder
   await copyFile("LICENSE", "pkg/LICENSE");
   await copyFile("README.md", "pkg/README.md");
