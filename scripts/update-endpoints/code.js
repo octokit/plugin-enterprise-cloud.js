@@ -1,19 +1,16 @@
-const { join } = require("path");
-const { writeFileSync } = require("fs");
+import { writeFileSync } from "node:fs"
+import { readFile } from "node:fs/promises"
 
-const prettier = require("prettier");
-const sortKeys = require("sort-keys");
-const camelcase = require("camelcase");
+import * as prettier from "prettier"
+import sortKeys from "sort-keys"
+import camelcase from "camelcase"
 
-const ENDPOINTS = require("./generated/endpoints.json");
-const ROUTES_PATH = join(
-  __dirname,
-  "..",
-  "..",
-  "src",
-  "generated",
-  "endpoints.ts"
-);
+async function readJSONFile(path) {
+  return await readFile(path, "utf8").then((data) => JSON.parse(data))
+}
+
+const ENDPOINTS = await readJSONFile(new URL("./generated/endpoints.json", import.meta.url));
+const ROUTES_PATH = new URL("../../src/generated/endpoints.ts", import.meta.url);
 
 const newRoutes = {};
 
@@ -80,6 +77,6 @@ async function main() {
       { parser: "typescript" }
     )
   );
-  console.log(`${ROUTES_PATH} written.`);
+  console.log(`${ROUTES_PATH.pathname} written.`);
 }
 main();

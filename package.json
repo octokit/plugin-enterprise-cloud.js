@@ -5,13 +5,14 @@
     "access": "public",
     "provenance": true
   },
+  "type": "module",
   "description": "Octokit plugin for GitHubâs Enterprise Cloud REST APIs",
   "scripts": {
     "build": "node scripts/build.mjs && tsc -p tsconfig.json",
     "lint": "prettier --check '{src,test,scripts}/*' README.md package.json",
     "lint:fix": "prettier --write '{src,test,scripts}/*' README.md package.json",
     "pretest": "npm run -s lint",
-    "test": "jest --coverage",
+    "test": "NODE_OPTIONS=\"$NODE_OPTIONS --experimental-vm-modules\" jest --coverage",
     "update-endpoints": "npm-run-all update-endpoints:*",
     "update-endpoints:fetch-json": "node scripts/update-endpoints/fetch-json",
     "update-endpoints:code": "node scripts/update-endpoints/code"
@@ -28,18 +29,18 @@
   "author": "Gregor Martynus (https://github.com/gr2m)",
   "license": "MIT",
   "dependencies": {
-    "@octokit/types": "^12.6.0"
+    "@octokit/types": "^13.0.0"
   },
   "peerDependencies": {
-    "@octokit/core": ">=5"
+    "@octokit/core": ">=6"
   },
   "devDependencies": {
-    "@octokit/core": "^5.0.0",
-    "@octokit/tsconfig": "^2.0.0",
+    "@octokit/core": "^6.0.0",
+    "@octokit/tsconfig": "^3.0.0",
     "@types/fetch-mock": "^7.3.2",
     "@types/jest": "^29.0.0",
     "@types/node": "^20.0.0",
-    "camelcase": "^6.3.0",
+    "camelcase": "^8.0.0",
     "esbuild": "^0.21.0",
     "fetch-mock": "npm:@gr2m/fetch-mock@9.11.0-pull-request-644.1",
     "github-openapi-graphql-query": "^4.0.0",
@@ -49,16 +50,20 @@
     "prettier": "3.2.5",
     "semantic-release": "^23.0.0",
     "semantic-release-plugin-update-version-in-files": "^1.0.0",
-    "sort-keys": "^4.2.0",
+    "sort-keys": "^5.0.0",
     "ts-jest": "^29.0.0",
     "typescript": "^5.0.0"
   },
   "jest": {
+    "extensionsToTreatAsEsm": [
+      ".ts"
+    ],
     "transform": {
       "^.+\\.(ts|tsx)$": [
         "ts-jest",
         {
-          "tsconfig": "test/tsconfig.test.json"
+          "tsconfig": "test/tsconfig.test.json",
+          "useESM": true
         }
       ]
     },
