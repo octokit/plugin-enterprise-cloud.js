@@ -7,6 +7,7 @@ import type {
   Url,
 } from "@octokit/types";
 import type { EndpointsDefaultsAndDecorations } from "./types.js";
+import type { RestEndpointMethods } from "./generated/method-types.js";
 
 type EndpointMethods = {
   [methodName: string]: typeof Octokit.prototype.request;
@@ -58,7 +59,7 @@ export function endpointsToMethods(
     }
   }
 
-  return newMethods;
+  return newMethods as RestEndpointMethods;
 }
 
 /* istanbul ignore next - there are currently no deprecated methods*/
