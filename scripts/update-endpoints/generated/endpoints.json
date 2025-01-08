@@ -1,61 +1,6 @@
 [
   {
     "scope": "actions",
-    "id": "addRepoAccessToSelfHostedRunnerGroupInOrg",
-    "method": "PUT",
-    "url": "/orgs/{org}/actions/runner-groups/{runner_group_id}/repositories/{repository_id}",
-    "isDeprecated": false,
-    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/actions/self-hosted-runner-groups#add-repository-access-to-a-self-hosted-runner-group-in-an-organization",
-    "previews": [],
-    "headers": [],
-    "parameters": [
-      {
-        "name": "org",
-        "in": "PATH",
-        "type": "string",
-        "required": true,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      },
-      {
-        "name": "runner_group_id",
-        "in": "PATH",
-        "type": "integer",
-        "required": true,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      },
-      {
-        "name": "repository_id",
-        "in": "PATH",
-        "type": "integer",
-        "required": true,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      }
-    ],
-    "responses": [
-      {
-        "code": 204,
-        "examples": null
-      }
-    ],
-    "renamed": null
-  },
-  {
-    "scope": "actions",
     "id": "addSelfHostedRunnerToGroupForOrg",
     "method": "PUT",
     "url": "/orgs/{org}/actions/runner-groups/{runner_group_id}/runners/{runner_id}",
@@ -225,7 +170,7 @@
         "code": 201,
         "examples": [
           {
-            "data": "{\"id\":2,\"name\":\"octo-runner-group\",\"visibility\":\"selected\",\"default\":false,\"selected_repositories_url\":\"https://api.github.com/orgs/octo-org/actions/runner-groups/2/repositories\",\"runners_url\":\"https://api.github.com/orgs/octo-org/actions/runner_groups/2/runners\",\"inherited\":false,\"allows_public_repositories\":true,\"restricted_to_workflows\":true,\"selected_workflows\":[\"octo-org/octo-repo/.github/workflows/deploy.yaml@refs/heads/main\"],\"workflow_restrictions_read_only\":false}"
+            "data": "{\"id\":2,\"name\":\"octo-runner-group\",\"visibility\":\"selected\",\"default\":false,\"selected_repositories_url\":\"https://api.github.com/orgs/octo-org/actions/runner-groups/2/repositories\",\"runners_url\":\"https://api.github.com/orgs/octo-org/actions/runner_groups/2/runners\",\"hosted_runners_url\":\"https://api.github.com/orgs/octo-org/actions/runner_groups/2/hosted-runners\",\"network_configuration_id\":\"EC486D5D793175D7E3B29C27318D5C1AAE49A7833FC85F2E82C3D2C54AC7D3BA\",\"inherited\":false,\"allows_public_repositories\":true,\"restricted_to_workflows\":true,\"selected_workflows\":[\"octo-org/octo-repo/.github/workflows/deploy.yaml@refs/heads/main\"],\"workflow_restrictions_read_only\":false}"
           }
         ]
       }
@@ -270,6 +215,97 @@
     "responses": [
       {
         "code": 204,
+        "examples": null
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "actions",
+    "id": "generateRunnerJitconfigForEnterprise",
+    "method": "POST",
+    "url": "/enterprises/{enterprise}/actions/runners/generate-jitconfig",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/actions/self-hosted-runners#create-configuration-for-a-just-in-time-runner-for-an-enterprise",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "enterprise",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "name",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "runner_group_id",
+        "in": "BODY",
+        "type": "integer",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "labels",
+        "in": "BODY",
+        "type": "string[]",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "work_folder",
+        "in": "BODY",
+        "type": "string",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 201,
+        "examples": [
+          {
+            "data": "{\"runner\":{\"id\":23,\"name\":\"New runner\",\"os\":\"unknown\",\"status\":\"offline\",\"busy\":false,\"labels\":[{\"id\":5,\"name\":\"self-hosted\",\"type\":\"read-only\"},{\"id\":7,\"name\":\"X64\",\"type\":\"read-only\"},{\"id\":20,\"name\":\"macOS\",\"type\":\"read-only\"},{\"id\":21,\"name\":\"no-gpu\",\"type\":\"custom\"}]},\"encoded_jit_config\":\"abc123\"}"
+          }
+        ]
+      },
+      {
+        "code": 404,
+        "examples": null
+      },
+      {
+        "code": 422,
         "examples": null
       }
     ],
@@ -385,7 +421,7 @@
         "code": 200,
         "examples": [
           {
-            "data": "{\"id\":2,\"name\":\"octo-runner-group\",\"visibility\":\"selected\",\"default\":false,\"selected_repositories_url\":\"https://api.github.com/orgs/octo-org/actions/runner_groups/2/repositories\",\"runners_url\":\"https://api.github.com/orgs/octo-org/actions/runner_groups/2/runners\",\"inherited\":false,\"allows_public_repositories\":true,\"restricted_to_workflows\":true,\"selected_workflows\":[\"octo-org/octo-repo/.github/workflows/deploy.yaml@refs/heads/main\"],\"workflow_restrictions_read_only\":false}"
+            "data": "{\"id\":2,\"name\":\"octo-runner-group\",\"visibility\":\"selected\",\"default\":false,\"selected_repositories_url\":\"https://api.github.com/orgs/octo-org/actions/runner_groups/2/repositories\",\"runners_url\":\"https://api.github.com/orgs/octo-org/actions/runner_groups/2/runners\",\"hosted_runners_url\":\"https://api.github.com/orgs/octo-org/actions/runner_groups/2/hosted-runners\",\"network_configuration_id\":\"EC486D5D793175D7E3B29C27318D5C1AAE49A7833FC85F2E82C3D2C54AC7D3BA\",\"inherited\":false,\"allows_public_repositories\":true,\"restricted_to_workflows\":true,\"selected_workflows\":[\"octo-org/octo-repo/.github/workflows/deploy.yaml@refs/heads/main\"],\"workflow_restrictions_read_only\":false}"
           }
         ]
       }
@@ -1030,7 +1066,7 @@
         "code": 200,
         "examples": [
           {
-            "data": "{\"id\":2,\"name\":\"octo-runner-group\",\"visibility\":\"selected\",\"default\":false,\"selected_repositories_url\":\"https://api.github.com/orgs/octo-org/actions/runner-groups/2/repositories\",\"runners_url\":\"https://api.github.com/orgs/octo-org/actions/runner_groups/2/runners\",\"inherited\":false,\"allows_public_repositories\":true,\"restricted_to_workflows\":true,\"selected_workflows\":[\"octo-org/octo-repo/.github/workflows/deploy.yaml@refs/heads/main\"],\"workflow_restrictions_read_only\":false}"
+            "data": "{\"id\":2,\"name\":\"octo-runner-group\",\"visibility\":\"selected\",\"default\":false,\"selected_repositories_url\":\"https://api.github.com/orgs/octo-org/actions/runner-groups/2/repositories\",\"runners_url\":\"https://api.github.com/orgs/octo-org/actions/runner_groups/2/runners\",\"hosted_runners_url\":\"https://api.github.com/orgs/octo-org/actions/runner_groups/2/hosted-runners\",\"network_configuration_id\":\"EC486D5D793175D7E3B29C27318D5C1AAE49A7833FC85F2E82C3D2C54AC7D3BA\",\"inherited\":false,\"allows_public_repositories\":true,\"restricted_to_workflows\":true,\"selected_workflows\":[\"octo-org/octo-repo/.github/workflows/deploy.yaml@refs/heads/main\"],\"workflow_restrictions_read_only\":false}"
           }
         ]
       }
@@ -1289,6 +1325,144 @@
   },
   {
     "scope": "billing",
+    "id": "addResourceToCostCenter",
+    "method": "POST",
+    "url": "/enterprises/{enterprise}/settings/billing/cost-centers/{cost_center_id}/resource",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/enterprise-admin/billing#add-users-to-a-cost-center",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "enterprise",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "cost_center_id",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "users",
+        "in": "BODY",
+        "type": "string[]",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "{\"message\":\"Resources successfully added to the cost center.\"}"
+          }
+        ]
+      },
+      {
+        "code": 400,
+        "examples": null
+      },
+      {
+        "code": 400,
+        "examples": null
+      },
+      {
+        "code": 403,
+        "examples": null
+      },
+      {
+        "code": 409,
+        "examples": null
+      },
+      {
+        "code": 500,
+        "examples": null
+      },
+      {
+        "code": 503,
+        "examples": null
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "billing",
+    "id": "getAllCostCenters",
+    "method": "GET",
+    "url": "/enterprises/{enterprise}/settings/billing/cost-centers",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/enterprise-admin/billing#get-all-cost-centers-for-an-enterprise",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "enterprise",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "{\"costCenters\":[{\"id\":\"2eeb8ffe-6903-11ee-8c99-0242ac120002\",\"name\":\"Cost Center Name\",\"resources\":[{\"type\":\"User\",\"name\":\"Monalisa\"}]}]}"
+          }
+        ]
+      },
+      {
+        "code": 400,
+        "examples": null
+      },
+      {
+        "code": 400,
+        "examples": null
+      },
+      {
+        "code": 403,
+        "examples": null
+      },
+      {
+        "code": 500,
+        "examples": null
+      },
+      {
+        "code": 503,
+        "examples": null
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "billing",
     "id": "getGithubActionsBillingGhe",
     "method": "GET",
     "url": "/enterprises/{enterprise}/settings/billing/actions",
@@ -1442,6 +1616,121 @@
   },
   {
     "scope": "billing",
+    "id": "getGithubBillingUsageReportGhe",
+    "method": "GET",
+    "url": "/enterprises/{enterprise}/settings/billing/usage",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/enterprise-admin/billing#get-billing-usage-report-for-an-enterprise",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "enterprise",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "year",
+        "in": "QUERY",
+        "type": "integer",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "month",
+        "in": "QUERY",
+        "type": "integer",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "day",
+        "in": "QUERY",
+        "type": "integer",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "hour",
+        "in": "QUERY",
+        "type": "integer",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "cost_center_id",
+        "in": "QUERY",
+        "type": "string",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "{\"usageItems\":[{\"date\":\"2023-08-01\",\"product\":\"Actions\",\"sku\":\"Actions Linux\",\"quantity\":100,\"unitType\":\"minutes\",\"pricePerUnit\":0.008,\"grossAmount\":0.8,\"discountAmount\":0,\"netAmount\":0.8,\"organizationName\":\"GitHub\",\"repositoryName\":\"github/example\"}]}"
+          }
+        ]
+      },
+      {
+        "code": 400,
+        "examples": null
+      },
+      {
+        "code": 400,
+        "examples": null
+      },
+      {
+        "code": 403,
+        "examples": null
+      },
+      {
+        "code": 500,
+        "examples": null
+      },
+      {
+        "code": 503,
+        "examples": null
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "billing",
     "id": "getGithubPackagesBillingGhe",
     "method": "GET",
     "url": "/enterprises/{enterprise}/settings/billing/packages",
@@ -1506,6 +1795,85 @@
             "data": "{\"days_left_in_billing_cycle\":20,\"estimated_paid_storage_for_month\":15,\"estimated_storage_for_month\":40}"
           }
         ]
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "billing",
+    "id": "removeResourceFromCostCenter",
+    "method": "DELETE",
+    "url": "/enterprises/{enterprise}/settings/billing/cost-centers/{cost_center_id}/resource",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/enterprise-admin/billing#remove-users-from-a-cost-center",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "enterprise",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "cost_center_id",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "users",
+        "in": "BODY",
+        "type": "string[]",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "{\"message\":\"Resources successfully removed from the cost center.\"}"
+          }
+        ]
+      },
+      {
+        "code": 400,
+        "examples": null
+      },
+      {
+        "code": 400,
+        "examples": null
+      },
+      {
+        "code": 403,
+        "examples": null
+      },
+      {
+        "code": 500,
+        "examples": null
+      },
+      {
+        "code": 503,
+        "examples": null
       }
     ],
     "renamed": null
@@ -1667,6 +2035,501 @@
       },
       {
         "code": 503,
+        "examples": null
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "copilot",
+    "id": "copilotMetricsForEnterprise",
+    "method": "GET",
+    "url": "/enterprises/{enterprise}/copilot/metrics",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/copilot/copilot-metrics#get-copilot-metrics-for-an-enterprise",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "enterprise",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "since",
+        "in": "QUERY",
+        "type": "string",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "until",
+        "in": "QUERY",
+        "type": "string",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "page",
+        "in": "QUERY",
+        "type": "integer",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "per_page",
+        "in": "QUERY",
+        "type": "integer",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "[{\"date\":\"2024-06-24\",\"total_active_users\":24,\"total_engaged_users\":20,\"copilot_ide_code_completions\":{\"total_engaged_users\":20,\"languages\":[{\"name\":\"python\",\"total_engaged_users\":10},{\"name\":\"ruby\",\"total_engaged_users\":10}],\"editors\":[{\"name\":\"vscode\",\"total_engaged_users\":13,\"models\":[{\"name\":\"default\",\"is_custom_model\":false,\"custom_model_training_date\":null,\"total_engaged_users\":13,\"languages\":[{\"name\":\"python\",\"total_engaged_users\":6,\"total_code_suggestions\":249,\"total_code_acceptances\":123,\"total_code_lines_suggested\":225,\"total_code_lines_accepted\":135},{\"name\":\"ruby\",\"total_engaged_users\":7,\"total_code_suggestions\":496,\"total_code_acceptances\":253,\"total_code_lines_suggested\":520,\"total_code_lines_accepted\":270}]}]},{\"name\":\"neovim\",\"total_engaged_users\":7,\"models\":[{\"name\":\"a-custom-model\",\"is_custom_model\":true,\"custom_model_training_date\":\"2024-02-01\",\"languages\":[{\"name\":\"typescript\",\"total_engaged_users\":3,\"total_code_suggestions\":112,\"total_code_acceptances\":56,\"total_code_lines_suggested\":143,\"total_code_lines_accepted\":61},{\"name\":\"go\",\"total_engaged_users\":4,\"total_code_suggestions\":132,\"total_code_acceptances\":67,\"total_code_lines_suggested\":154,\"total_code_lines_accepted\":72}]}]}]},\"copilot_ide_chat\":{\"total_engaged_users\":13,\"editors\":[{\"name\":\"vscode\",\"total_engaged_users\":13,\"models\":[{\"name\":\"default\",\"is_custom_model\":false,\"custom_model_training_date\":null,\"total_engaged_users\":12,\"total_chats\":45,\"total_chat_insertion_events\":12,\"total_chat_copy_events\":16},{\"name\":\"a-custom-model\",\"is_custom_model\":true,\"custom_model_training_date\":\"2024-02-01\",\"total_engaged_users\":1,\"total_chats\":10,\"total_chat_insertion_events\":11,\"total_chat_copy_events\":3}]}]},\"copilot_dotcom_chat\":{\"total_engaged_users\":14,\"models\":[{\"name\":\"default\",\"is_custom_model\":false,\"custom_model_training_date\":null,\"total_engaged_users\":14,\"total_chats\":38}]},\"copilot_dotcom_pull_requests\":{\"total_engaged_users\":12,\"repositories\":[{\"name\":\"demo/repo1\",\"total_engaged_users\":8,\"models\":[{\"name\":\"default\",\"is_custom_model\":false,\"custom_model_training_date\":null,\"total_pr_summaries_created\":6,\"total_engaged_users\":8}]},{\"name\":\"demo/repo2\",\"total_engaged_users\":4,\"models\":[{\"name\":\"a-custom-model\",\"is_custom_model\":true,\"custom_model_training_date\":\"2024-02-01\",\"total_pr_summaries_created\":10,\"total_engaged_users\":4}]}]}}]"
+          }
+        ]
+      },
+      {
+        "code": 403,
+        "examples": null
+      },
+      {
+        "code": 404,
+        "examples": null
+      },
+      {
+        "code": 422,
+        "examples": null
+      },
+      {
+        "code": 500,
+        "examples": null
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "copilot",
+    "id": "copilotMetricsForEnterpriseTeam",
+    "method": "GET",
+    "url": "/enterprises/{enterprise}/team/{team_slug}/copilot/metrics",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/copilot/copilot-metrics#get-copilot-metrics-for-an-enterprise-team",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "enterprise",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "team_slug",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "since",
+        "in": "QUERY",
+        "type": "string",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "until",
+        "in": "QUERY",
+        "type": "string",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "page",
+        "in": "QUERY",
+        "type": "integer",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "per_page",
+        "in": "QUERY",
+        "type": "integer",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "[{\"date\":\"2024-06-24\",\"total_active_users\":24,\"total_engaged_users\":20,\"copilot_ide_code_completions\":{\"total_engaged_users\":20,\"languages\":[{\"name\":\"python\",\"total_engaged_users\":10},{\"name\":\"ruby\",\"total_engaged_users\":10}],\"editors\":[{\"name\":\"vscode\",\"total_engaged_users\":13,\"models\":[{\"name\":\"default\",\"is_custom_model\":false,\"custom_model_training_date\":null,\"total_engaged_users\":13,\"languages\":[{\"name\":\"python\",\"total_engaged_users\":6,\"total_code_suggestions\":249,\"total_code_acceptances\":123,\"total_code_lines_suggested\":225,\"total_code_lines_accepted\":135},{\"name\":\"ruby\",\"total_engaged_users\":7,\"total_code_suggestions\":496,\"total_code_acceptances\":253,\"total_code_lines_suggested\":520,\"total_code_lines_accepted\":270}]}]},{\"name\":\"neovim\",\"total_engaged_users\":7,\"models\":[{\"name\":\"a-custom-model\",\"is_custom_model\":true,\"custom_model_training_date\":\"2024-02-01\",\"languages\":[{\"name\":\"typescript\",\"total_engaged_users\":3,\"total_code_suggestions\":112,\"total_code_acceptances\":56,\"total_code_lines_suggested\":143,\"total_code_lines_accepted\":61},{\"name\":\"go\",\"total_engaged_users\":4,\"total_code_suggestions\":132,\"total_code_acceptances\":67,\"total_code_lines_suggested\":154,\"total_code_lines_accepted\":72}]}]}]},\"copilot_ide_chat\":{\"total_engaged_users\":13,\"editors\":[{\"name\":\"vscode\",\"total_engaged_users\":13,\"models\":[{\"name\":\"default\",\"is_custom_model\":false,\"custom_model_training_date\":null,\"total_engaged_users\":12,\"total_chats\":45,\"total_chat_insertion_events\":12,\"total_chat_copy_events\":16},{\"name\":\"a-custom-model\",\"is_custom_model\":true,\"custom_model_training_date\":\"2024-02-01\",\"total_engaged_users\":1,\"total_chats\":10,\"total_chat_insertion_events\":11,\"total_chat_copy_events\":3}]}]},\"copilot_dotcom_chat\":{\"total_engaged_users\":14,\"models\":[{\"name\":\"default\",\"is_custom_model\":false,\"custom_model_training_date\":null,\"total_engaged_users\":14,\"total_chats\":38}]},\"copilot_dotcom_pull_requests\":{\"total_engaged_users\":12,\"repositories\":[{\"name\":\"demo/repo1\",\"total_engaged_users\":8,\"models\":[{\"name\":\"default\",\"is_custom_model\":false,\"custom_model_training_date\":null,\"total_pr_summaries_created\":6,\"total_engaged_users\":8}]},{\"name\":\"demo/repo2\",\"total_engaged_users\":4,\"models\":[{\"name\":\"a-custom-model\",\"is_custom_model\":true,\"custom_model_training_date\":\"2024-02-01\",\"total_pr_summaries_created\":10,\"total_engaged_users\":4}]}]}}]"
+          }
+        ]
+      },
+      {
+        "code": 403,
+        "examples": null
+      },
+      {
+        "code": 404,
+        "examples": null
+      },
+      {
+        "code": 422,
+        "examples": null
+      },
+      {
+        "code": 500,
+        "examples": null
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "copilot",
+    "id": "listCopilotSeatsForEnterprise",
+    "method": "GET",
+    "url": "/enterprises/{enterprise}/copilot/billing/seats",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/copilot/copilot-user-management#list-all-copilot-seat-assignments-for-an-enterprise",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "enterprise",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "page",
+        "in": "QUERY",
+        "type": "integer",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "per_page",
+        "in": "QUERY",
+        "type": "integer",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "{\"total_seats\":2,\"seats\":[{\"created_at\":\"2021-08-03T18:00:00-06:00\",\"updated_at\":\"2021-09-23T15:00:00-06:00\",\"pending_cancellation_date\":null,\"last_activity_at\":\"2021-10-14T00:53:32-06:00\",\"last_activity_editor\":\"vscode/1.77.3/copilot/1.86.82\",\"plan_type\":\"business\",\"assignee\":{\"login\":\"octocat\",\"id\":1,\"node_id\":\"MDQ6VXNlcjE=\",\"avatar_url\":\"https://github.com/images/error/octocat_happy.gif\",\"gravatar_id\":\"\",\"url\":\"https://api.github.com/users/octocat\",\"html_url\":\"https://github.com/octocat\",\"followers_url\":\"https://api.github.com/users/octocat/followers\",\"following_url\":\"https://api.github.com/users/octocat/following{/other_user}\",\"gists_url\":\"https://api.github.com/users/octocat/gists{/gist_id}\",\"starred_url\":\"https://api.github.com/users/octocat/starred{/owner}{/repo}\",\"subscriptions_url\":\"https://api.github.com/users/octocat/subscriptions\",\"organizations_url\":\"https://api.github.com/users/octocat/orgs\",\"repos_url\":\"https://api.github.com/users/octocat/repos\",\"events_url\":\"https://api.github.com/users/octocat/events{/privacy}\",\"received_events_url\":\"https://api.github.com/users/octocat/received_events\",\"type\":\"User\",\"site_admin\":false},\"assigning_team\":{\"id\":1,\"node_id\":\"MDQ6VGVhbTE=\",\"url\":\"https://api.github.com/teams/1\",\"html_url\":\"https://github.com/orgs/github/teams/justice-league\",\"name\":\"Justice League\",\"slug\":\"justice-league\",\"description\":\"A great team.\",\"privacy\":\"closed\",\"notification_setting\":\"notifications_enabled\",\"permission\":\"admin\",\"members_url\":\"https://api.github.com/teams/1/members{/member}\",\"repositories_url\":\"https://api.github.com/teams/1/repos\",\"parent\":null}},{\"created_at\":\"2021-09-23T18:00:00-06:00\",\"updated_at\":\"2021-09-23T15:00:00-06:00\",\"pending_cancellation_date\":\"2021-11-01\",\"last_activity_at\":\"2021-10-13T00:53:32-06:00\",\"last_activity_editor\":\"vscode/1.77.3/copilot/1.86.82\",\"assignee\":{\"login\":\"octokitten\",\"id\":1,\"node_id\":\"MDQ76VNlcjE=\",\"avatar_url\":\"https://github.com/images/error/octokitten_happy.gif\",\"gravatar_id\":\"\",\"url\":\"https://api.github.com/users/octokitten\",\"html_url\":\"https://github.com/octokitten\",\"followers_url\":\"https://api.github.com/users/octokitten/followers\",\"following_url\":\"https://api.github.com/users/octokitten/following{/other_user}\",\"gists_url\":\"https://api.github.com/users/octokitten/gists{/gist_id}\",\"starred_url\":\"https://api.github.com/users/octokitten/starred{/owner}{/repo}\",\"subscriptions_url\":\"https://api.github.com/users/octokitten/subscriptions\",\"organizations_url\":\"https://api.github.com/users/octokitten/orgs\",\"repos_url\":\"https://api.github.com/users/octokitten/repos\",\"events_url\":\"https://api.github.com/users/octokitten/events{/privacy}\",\"received_events_url\":\"https://api.github.com/users/octokitten/received_events\",\"type\":\"User\",\"site_admin\":false}}]}"
+          }
+        ]
+      },
+      {
+        "code": 401,
+        "examples": null
+      },
+      {
+        "code": 403,
+        "examples": null
+      },
+      {
+        "code": 404,
+        "examples": null
+      },
+      {
+        "code": 500,
+        "examples": null
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "copilot",
+    "id": "usageMetricsForEnterprise",
+    "method": "GET",
+    "url": "/enterprises/{enterprise}/copilot/usage",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/copilot/copilot-usage#get-a-summary-of-copilot-usage-for-enterprise-members",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "enterprise",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "since",
+        "in": "QUERY",
+        "type": "string",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "until",
+        "in": "QUERY",
+        "type": "string",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "page",
+        "in": "QUERY",
+        "type": "integer",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "per_page",
+        "in": "QUERY",
+        "type": "integer",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "[{\"day\":\"2023-10-15\",\"total_suggestions_count\":5000,\"total_acceptances_count\":3000,\"total_lines_suggested\":7000,\"total_lines_accepted\":3500,\"total_active_users\":15,\"total_chat_acceptances\":45,\"total_chat_turns\":350,\"total_active_chat_users\":8,\"breakdown\":[{\"language\":\"python\",\"editor\":\"vscode\",\"suggestions_count\":3000,\"acceptances_count\":2000,\"lines_suggested\":3000,\"lines_accepted\":1500,\"active_users\":5},{\"language\":\"python\",\"editor\":\"jetbrains\",\"suggestions_count\":1000,\"acceptances_count\":500,\"lines_suggested\":2000,\"lines_accepted\":1000,\"active_users\":5},{\"language\":\"javascript\",\"editor\":\"vscode\",\"suggestions_count\":1000,\"acceptances_count\":500,\"lines_suggested\":2000,\"lines_accepted\":1000,\"active_users\":5}]},{\"day\":\"2023-10-16\",\"total_suggestions_count\":5200,\"total_acceptances_count\":5100,\"total_lines_suggested\":5300,\"total_lines_accepted\":5000,\"total_active_users\":15,\"total_chat_acceptances\":57,\"total_chat_turns\":455,\"total_active_chat_users\":12,\"breakdown\":[{\"language\":\"python\",\"editor\":\"vscode\",\"suggestions_count\":3100,\"acceptances_count\":3000,\"lines_suggested\":3200,\"lines_accepted\":3100,\"active_users\":5},{\"language\":\"python\",\"editor\":\"jetbrains\",\"suggestions_count\":1100,\"acceptances_count\":1000,\"lines_suggested\":1200,\"lines_accepted\":1100,\"active_users\":5},{\"language\":\"javascript\",\"editor\":\"vscode\",\"suggestions_count\":1000,\"acceptances_count\":900,\"lines_suggested\":1100,\"lines_accepted\":1000,\"active_users\":5}]}]"
+          }
+        ]
+      },
+      {
+        "code": 401,
+        "examples": null
+      },
+      {
+        "code": 403,
+        "examples": null
+      },
+      {
+        "code": 404,
+        "examples": null
+      },
+      {
+        "code": 500,
+        "examples": null
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "copilot",
+    "id": "usageMetricsForEnterpriseTeam",
+    "method": "GET",
+    "url": "/enterprises/{enterprise}/team/{team_slug}/copilot/usage",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/copilot/copilot-usage#get-a-summary-of-copilot-usage-for-an-enterprise-team",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "enterprise",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "team_slug",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "since",
+        "in": "QUERY",
+        "type": "string",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "until",
+        "in": "QUERY",
+        "type": "string",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "page",
+        "in": "QUERY",
+        "type": "integer",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "per_page",
+        "in": "QUERY",
+        "type": "integer",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "[{\"day\":\"2023-10-15\",\"total_suggestions_count\":1000,\"total_acceptances_count\":800,\"total_lines_suggested\":1800,\"total_lines_accepted\":1200,\"total_active_users\":10,\"total_chat_acceptances\":32,\"total_chat_turns\":200,\"total_active_chat_users\":4,\"breakdown\":[{\"language\":\"python\",\"editor\":\"vscode\",\"suggestions_count\":300,\"acceptances_count\":250,\"lines_suggested\":900,\"lines_accepted\":700,\"active_users\":5},{\"language\":\"python\",\"editor\":\"jetbrains\",\"suggestions_count\":300,\"acceptances_count\":200,\"lines_suggested\":400,\"lines_accepted\":300,\"active_users\":2},{\"language\":\"ruby\",\"editor\":\"vscode\",\"suggestions_count\":400,\"acceptances_count\":350,\"lines_suggested\":500,\"lines_accepted\":200,\"active_users\":3}]},{\"day\":\"2023-10-16\",\"total_suggestions_count\":800,\"total_acceptances_count\":600,\"total_lines_suggested\":1100,\"total_lines_accepted\":700,\"total_active_users\":12,\"total_chat_acceptances\":57,\"total_chat_turns\":426,\"total_active_chat_users\":8,\"breakdown\":[{\"language\":\"python\",\"editor\":\"vscode\",\"suggestions_count\":300,\"acceptances_count\":200,\"lines_suggested\":600,\"lines_accepted\":300,\"active_users\":2},{\"language\":\"python\",\"editor\":\"jetbrains\",\"suggestions_count\":300,\"acceptances_count\":150,\"lines_suggested\":300,\"lines_accepted\":250,\"active_users\":6},{\"language\":\"ruby\",\"editor\":\"vscode\",\"suggestions_count\":200,\"acceptances_count\":150,\"lines_suggested\":200,\"lines_accepted\":150,\"active_users\":3}]}]"
+          }
+        ]
+      },
+      {
+        "code": 401,
+        "examples": null
+      },
+      {
+        "code": 403,
+        "examples": null
+      },
+      {
+        "code": 404,
+        "examples": null
+      },
+      {
+        "code": 500,
         "examples": null
       }
     ],
@@ -1844,6 +2707,580 @@
     "responses": [
       {
         "code": 204,
+        "examples": null
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "enterpriseAdmin",
+    "id": "createAuditLogStream",
+    "method": "POST",
+    "url": "/enterprises/{enterprise}/audit-log/streams",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/enterprise-admin/audit-log#create-an-audit-log-streaming-configuration-for-an-enterprise",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "enterprise",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "enabled",
+        "in": "BODY",
+        "type": "boolean",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "stream_type",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": [
+          "Azure Blob Storage",
+          "Azure Event Hubs",
+          "Amazon S3",
+          "Splunk",
+          "HTTPS Event Collector",
+          "Google Cloud Storage",
+          "Datadog"
+        ],
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "vendor_specific",
+        "in": "BODY",
+        "type": "object",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "vendor_specific.key_id",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "vendor_specific.encrypted_sas_url",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "vendor_specific.name",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "vendor_specific.encrypted_connstring",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "vendor_specific.bucket",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "vendor_specific.region",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "vendor_specific.authentication_type",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": [
+          "access_keys"
+        ],
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "vendor_specific.arn_role",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "vendor_specific.encrypted_secret_key",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "vendor_specific.encrypted_access_key_id",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "vendor_specific.domain",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "vendor_specific.port",
+        "in": "BODY",
+        "type": "integer",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "vendor_specific.encrypted_token",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "vendor_specific.ssl_verify",
+        "in": "BODY",
+        "type": "boolean",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "vendor_specific.encrypted_json_credentials",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "vendor_specific.site",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": [
+          "US",
+          "US3",
+          "US5",
+          "EU1",
+          "US1-FED",
+          "AP1"
+        ],
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "{\"id\":1,\"stream_type\":\"Splunk\",\"stream_details\":\"US\",\"enabled\":true,\"created_at\":\"2024-06-06T08:00:00Z\",\"updated_at\":\"2024-06-06T08:00:00Z\",\"paused_at\":null}"
+          }
+        ]
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "enterpriseAdmin",
+    "id": "createOrUpdateEnterpriseCustomProperties",
+    "method": "PATCH",
+    "url": "/enterprises/{enterprise}/properties/schema",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/enterprise-admin/custom-properties#create-or-update-custom-properties-for-an-enterprise",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "enterprise",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "properties",
+        "in": "BODY",
+        "type": "object[]",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "properties[].property_name",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "properties[].url",
+        "in": "BODY",
+        "type": "string",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "properties[].source_type",
+        "in": "BODY",
+        "type": "string",
+        "required": false,
+        "enum": [
+          "organization",
+          "enterprise"
+        ],
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "properties[].value_type",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": [
+          "string",
+          "single_select",
+          "multi_select",
+          "true_false"
+        ],
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "properties[].required",
+        "in": "BODY",
+        "type": "boolean",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "properties[].default_value",
+        "in": "BODY",
+        "type": null,
+        "required": false,
+        "enum": null,
+        "allowNull": true,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "properties[].description",
+        "in": "BODY",
+        "type": "string",
+        "required": false,
+        "enum": null,
+        "allowNull": true,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "properties[].allowed_values",
+        "in": "BODY",
+        "type": "string[]",
+        "required": false,
+        "enum": null,
+        "allowNull": true,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "properties[].values_editable_by",
+        "in": "BODY",
+        "type": "string",
+        "required": false,
+        "enum": [
+          "org_actors",
+          "org_and_repo_actors"
+        ],
+        "allowNull": true,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "[{\"property_name\":\"environment\",\"url\":\"https://api.github.com/orgs/github/properties/schema/environment\",\"source_type\":\"organization\",\"value_type\":\"single_select\",\"required\":true,\"default_value\":\"production\",\"description\":\"Prod or dev environment\",\"allowed_values\":[\"production\",\"development\"],\"values_editable_by\":\"org_actors\"},{\"property_name\":\"service\",\"url\":\"https://api.github.com/orgs/github/properties/schema/service\",\"source_type\":\"organization\",\"value_type\":\"string\"},{\"property_name\":\"team\",\"url\":\"https://api.github.com/orgs/github/properties/schema/team\",\"source_type\":\"organization\",\"value_type\":\"string\",\"description\":\"Team owning the repository\"}]"
+          }
+        ]
+      },
+      {
+        "code": 403,
+        "examples": null
+      },
+      {
+        "code": 404,
+        "examples": null
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "enterpriseAdmin",
+    "id": "createOrUpdateEnterpriseCustomProperty",
+    "method": "PUT",
+    "url": "/enterprises/{enterprise}/properties/schema/{custom_property_name}",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/enterprise-admin/custom-properties#create-or-update-a-custom-property-for-an-enterprise",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "enterprise",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "custom_property_name",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "value_type",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": [
+          "string",
+          "single_select",
+          "multi_select",
+          "true_false"
+        ],
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "required",
+        "in": "BODY",
+        "type": "boolean",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "default_value",
+        "in": "BODY",
+        "type": null,
+        "required": false,
+        "enum": null,
+        "allowNull": true,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "description",
+        "in": "BODY",
+        "type": "string",
+        "required": false,
+        "enum": null,
+        "allowNull": true,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "allowed_values",
+        "in": "BODY",
+        "type": "string[]",
+        "required": false,
+        "enum": null,
+        "allowNull": true,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "{\"property_name\":\"environment\",\"url\":\"https://api.github.com/orgs/github/properties/schema/environment\",\"source_type\":\"organization\",\"value_type\":\"single_select\",\"required\":true,\"default_value\":\"production\",\"description\":\"Prod or dev environment\",\"allowed_values\":[\"production\",\"development\"]}"
+          }
+        ]
+      },
+      {
+        "code": 403,
+        "examples": null
+      },
+      {
+        "code": 404,
         "examples": null
       }
     ],
@@ -2034,9 +3471,52 @@
         "code": 201,
         "examples": [
           {
-            "data": "{\"id\":2,\"name\":\"octo-runner-group\",\"visibility\":\"selected\",\"default\":false,\"selected_organizations_url\":\"https://api.github.com/enterprises/octo-corp/actions/runner-groups/2/organizations\",\"runners_url\":\"https://api.github.com/enterprises/octo-corp/actions/runner-groups/2/runners\",\"allows_public_repositories\":false,\"restricted_to_workflows\":true,\"selected_workflows\":[\"octo-org/octo-repo/.github/workflows/deploy.yaml@refs/heads/main\"],\"workflow_restrictions_read_only\":false}"
+            "data": "{\"id\":2,\"name\":\"octo-runner-group\",\"visibility\":\"selected\",\"default\":false,\"selected_organizations_url\":\"https://api.github.com/enterprises/octo-corp/actions/runner-groups/2/organizations\",\"runners_url\":\"https://api.github.com/enterprises/octo-corp/actions/runner-groups/2/runners\",\"hosted_runners_url\":\"https://api.github.com/enterprises/octo-corp/actions/runner-groups/2/hosted-runners\",\"network_configuration_id\":\"EC486D5D793175D7E3B29C27318D5C1AAE49A7833FC85F2E82C3D2C54AC7D3BA\",\"allows_public_repositories\":false,\"restricted_to_workflows\":true,\"selected_workflows\":[\"octo-org/octo-repo/.github/workflows/deploy.yaml@refs/heads/main\"],\"workflow_restrictions_read_only\":false}"
           }
         ]
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "enterpriseAdmin",
+    "id": "deleteAuditLogStream",
+    "method": "DELETE",
+    "url": "/enterprises/{enterprise}/audit-log/streams/{stream_id}",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/enterprise-admin/audit-log#delete-an-audit-log-streaming-configuration-for-an-enterprise",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "enterprise",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "stream_id",
+        "in": "PATH",
+        "type": "integer",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 204,
+        "examples": null
       }
     ],
     "renamed": null
@@ -2534,6 +4014,76 @@
   },
   {
     "scope": "enterpriseAdmin",
+    "id": "getAuditLogStreamKey",
+    "method": "GET",
+    "url": "/enterprises/{enterprise}/audit-log/stream-key",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/enterprise-admin/audit-log#get-the-audit-log-stream-key-for-encrypting-secrets",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "enterprise",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "{\"key_id\":\"123\",\"key\":\"actual-public-key-value\"}"
+          }
+        ]
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "enterpriseAdmin",
+    "id": "getAuditLogStreams",
+    "method": "GET",
+    "url": "/enterprises/{enterprise}/audit-log/streams",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/enterprise-admin/audit-log#list-audit-log-stream-configurations-for-an-enterprise",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "enterprise",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "[{\"id\":1,\"stream_type\":\"Splunk\",\"stream_details\":\"US\",\"enabled\":true,\"created_at\":\"2024-06-06T08:00:00Z\",\"updated_at\":\"2024-06-06T08:00:00Z\",\"paused_at\":null}]"
+          }
+        ]
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "enterpriseAdmin",
     "id": "getConsumedLicenses",
     "method": "GET",
     "url": "/enterprises/{enterprise}/consumed-licenses",
@@ -2587,6 +4137,104 @@
             "data": "{\"total_seats_consumed\":5000,\"total_seats_purchased\":4500,\"users\":[{\"github_com_login\":\"monalisa\",\"github_com_name\":\"Mona Lisa\",\"enterprise_server_user_ids\":[\"example_host_name.com:123\",\"example_host_name_2:222\"],\"github_com_user\":true,\"enterprise_server_user\":true,\"visual_studio_subscription_user\":false,\"license_type\":\"enterprise\",\"github_com_profile\":\"https://github.com/monalisa\",\"github_com_member_roles\":[\"org1:Owner\",\"org2:Owner\"],\"github_com_enterprise_roles\":[\"owner\"],\"github_com_verified_domain_emails\":[\"monalisa@github.com\"],\"github_com_saml_name_id\":\"monalisa\",\"github_com_orgs_with_pending_invites\":[\"org1\",\"org2\"],\"github_com_two_factor_auth\":true,\"enterprise_server_emails\":[\"monalisa@github.com\"],\"visual_studio_license_status\":\"\",\"visual_studio_subscription_email\":\"\",\"total_user_accounts\":3},{\"github_com_login\":\"\",\"github_com_name\":\"\",\"enterprise_server_user_ids\":[\"example_host_name:123\"],\"github_com_user\":false,\"enterprise_server_user\":true,\"visual_studio_subscription_user\":false,\"license_type\":\"enterprise\",\"github_com_profile\":\"\",\"github_com_member_roles\":[],\"github_com_enterprise_role\":\"\",\"github_com_enterprise_roles\":[],\"github_com_verified_domain_emails\":[],\"github_com_saml_name_id\":\"\",\"github_com_orgs_with_pending_invites\":[],\"github_com_two_factor_auth\":\"\",\"enterprise_server_emails\":[\"hubot@example.com\"],\"visual_studio_license_status\":\"\",\"visual_studio_subscription_email\":\"\",\"total_user_accounts\":1}]}"
           }
         ]
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "enterpriseAdmin",
+    "id": "getEnterpriseCustomProperties",
+    "method": "GET",
+    "url": "/enterprises/{enterprise}/properties/schema",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/enterprise-admin/custom-properties#get-custom-properties-for-an-enterprise",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "enterprise",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "[{\"property_name\":\"environment\",\"url\":\"https://api.github.com/orgs/github/properties/schema/environment\",\"source_type\":\"organization\",\"value_type\":\"single_select\",\"required\":true,\"default_value\":\"production\",\"description\":\"Prod or dev environment\",\"allowed_values\":[\"production\",\"development\"],\"values_editable_by\":\"org_actors\"},{\"property_name\":\"service\",\"url\":\"https://api.github.com/orgs/github/properties/schema/service\",\"source_type\":\"organization\",\"value_type\":\"string\"},{\"property_name\":\"team\",\"url\":\"https://api.github.com/orgs/github/properties/schema/team\",\"source_type\":\"organization\",\"value_type\":\"string\",\"description\":\"Team owning the repository\"}]"
+          }
+        ]
+      },
+      {
+        "code": 403,
+        "examples": null
+      },
+      {
+        "code": 404,
+        "examples": null
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "enterpriseAdmin",
+    "id": "getEnterpriseCustomProperty",
+    "method": "GET",
+    "url": "/enterprises/{enterprise}/properties/schema/{custom_property_name}",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/enterprise-admin/custom-properties#get-a-custom-property-for-an-enterprise",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "enterprise",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "custom_property_name",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "{\"property_name\":\"environment\",\"url\":\"https://api.github.com/orgs/github/properties/schema/environment\",\"source_type\":\"organization\",\"value_type\":\"single_select\",\"required\":true,\"default_value\":\"production\",\"description\":\"Prod or dev environment\",\"allowed_values\":[\"production\",\"development\"]}"
+          }
+        ]
+      },
+      {
+        "code": 403,
+        "examples": null
+      },
+      {
+        "code": 404,
+        "examples": null
       }
     ],
     "renamed": null
@@ -2663,6 +4311,53 @@
   },
   {
     "scope": "enterpriseAdmin",
+    "id": "getOneAuditLogStream",
+    "method": "GET",
+    "url": "/enterprises/{enterprise}/audit-log/streams/{stream_id}",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/enterprise-admin/audit-log#list-one-audit-log-streaming-configuration-via-a-stream-id",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "enterprise",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "stream_id",
+        "in": "PATH",
+        "type": "integer",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "{\"id\":1,\"stream_type\":\"Splunk\",\"stream_details\":\"US\",\"enabled\":true,\"created_at\":\"2024-06-06T08:00:00Z\",\"updated_at\":\"2024-06-06T08:00:00Z\",\"paused_at\":null}"
+          }
+        ]
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "enterpriseAdmin",
     "id": "getProvisioningInformationForEnterpriseGroup",
     "method": "GET",
     "url": "/scim/v2/enterprises/{enterprise}/Groups/{scim_group_id}",
@@ -2713,7 +4408,7 @@
         "code": 200,
         "examples": [
           {
-            "data": "{\"schemas\":[\"urn:ietf:params:scim:schemas:core:2.0:Group\"],\"id\":\"abcd27f8-a9aa-11ea-8221-f59b2be9cccc\",\"externalId\":\"8aa1a0c0-c4c3-4bc0-b4a5-2ef676900159\",\"displayName\":\"Engineering\",\"members\":[{\"value\":\"879db59-3bdf-4490-ad68-ab880a2694745\",\"$+ref\":\"https://api.github.localhost/scim/v2/Users/879db59-3bdf-4490-ad68-ab880a2694745\",\"displayName\":\"User 1\"},{\"value\":\"0db508eb-91e2-46e4-809c-30dcbda0c685\",\"$+ref\":\"https://api.github.localhost/scim/v2/Users/0db508eb-91e2-46e4-809c-30dcbda0c685\",\"displayName\":\"User 2\"}],\"meta\":{\"resourceType\":\"Group\",\"created\":\"2012-03-27T19:59:26.000Z\",\"lastModified\":\"2018-03-27T19:59:26.000Z\",\"location\":\"https://api.github.localhost/scim/v2/Groups/927fa2c08dcb4a7fae9e\"}}"
+            "data": "{\"schemas\":[\"urn:ietf:params:scim:schemas:core:2.0:Group\"],\"id\":\"abcd27f8-a9aa-11ea-8221-f59b2be9cccc\",\"externalId\":\"8aa1a0c0-c4c3-4bc0-b4a5-2ef676900159\",\"displayName\":\"Engineering\",\"members\":[{\"value\":\"879db59-3bdf-4490-ad68-ab880a2694745\",\"$+ref\":\"https://api.github.localhost/scim/v2/Users/879db59-3bdf-4490-ad68-ab880a2694745\",\"displayName\":\"User 1\"},{\"value\":\"0db508eb-91e2-46e4-809c-30dcbda0c685\",\"$+ref\":\"https://api.github.localhost/scim/v2/Users/0db508eb-91e2-46e4-809c-30dcbda0c685\",\"displayName\":\"User 2\"}],\"meta\":{\"resourceType\":\"Group\",\"created\":\"2012-03-27T19:59:26.000Z\",\"lastModified\":\"2018-03-27T19:59:26.000Z\",\"location\":\"https://api.github.localhost/scim/v2/Groups/24b28bbb-5fc4-4686-a153-a020debb1155\"}}"
           }
         ]
       },
@@ -2926,7 +4621,7 @@
         "code": 200,
         "examples": [
           {
-            "data": "{\"id\":2,\"name\":\"octo-runner-group\",\"visibility\":\"selected\",\"default\":false,\"selected_organizations_url\":\"https://api.github.com/enterprises/octo-corp/actions/runner-groups/2/organizations\",\"runners_url\":\"https://api.github.com/enterprises/octo-corp/actions/runner-groups/2/runners\",\"allows_public_repositories\":false,\"restricted_to_workflows\":true,\"selected_workflows\":[\"octo-org/octo-repo/.github/workflows/deploy.yaml@refs/heads/main\"],\"workflow_restrictions_read_only\":false}"
+            "data": "{\"id\":2,\"name\":\"octo-runner-group\",\"visibility\":\"selected\",\"default\":false,\"selected_organizations_url\":\"https://api.github.com/enterprises/octo-corp/actions/runner-groups/2/organizations\",\"runners_url\":\"https://api.github.com/enterprises/octo-corp/actions/runner-groups/2/runners\",\"hosted_runners_url\":\"https://api.github.com/enterprises/octo-corp/actions/runner-groups/2/hosted-runners\",\"network_configuration_id\":\"EC486D5D793175D7E3B29C27318D5C1AAE49A7833FC85F2E82C3D2C54AC7D3BA\",\"allows_public_repositories\":false,\"restricted_to_workflows\":true,\"selected_workflows\":[\"octo-org/octo-repo/.github/workflows/deploy.yaml@refs/heads/main\"],\"workflow_restrictions_read_only\":false}"
           }
         ]
       }
@@ -2985,7 +4680,7 @@
         "code": 200,
         "examples": [
           {
-            "data": "{\"server_id\":\"ea6088f3-f095-4bf2-8d7f-c573819e8768\",\"collection_date\":\"2021-12-14T23:59:59Z\",\"schema_version\":\"20230306\",\"ghes_version\":\"3.9.0\",\"host_name\":\"github.example.com\",\"github_connect\":{\"features_enabled\":[\"license_usage_sync\",\"content_analysis\",\"content_analysis_notifications\"]},\"ghe_stats\":{\"comments\":{\"total_commit_comments\":1000,\"total_gist_comments\":1000,\"total_issue_comments\":0,\"total_pull_request_comments\":0},\"gists\":{\"total_gists\":100,\"private_gists\":59,\"public_gists\":41},\"hooks\":{\"total_hooks\":2,\"active_hooks\":1,\"inactive_hooks\":1},\"issues\":{\"total_issues\":3421,\"open_issues\":1234,\"closed_issues\":1222},\"milestones\":{\"total_milestones\":50,\"open_milestones\":20,\"closed_milestones\":30},\"orgs\":{\"total_orgs\":100,\"disabled_orgs\":22,\"total_teams\":299,\"total_team_members\":400},\"pages\":{\"total_pages\":10},\"pulls\":{\"total_pulls\":1232,\"merged_pulls\":223,\"mergeable_pulls\":435,\"unmergeable_pulls\":0},\"repos\":{\"total_repos\":12,\"root_repos\":1,\"fork_repos\":2,\"org_repos\":1,\"total_pushes\":42,\"total_wikis\":1},\"users\":{\"total_users\":2000,\"admin_users\":299,\"suspended_users\":423}},\"dormant_users\":{\"total_dormant_users\":5,\"dormancy_threshold\":\"90 days\"},\"actions_stats\":{\"$ref\":\"server-statistics-actions.yaml\"},\"packages_stats\":{\"$ref\":\"server-statistics-packages.yaml\"}}"
+            "data": "{\"server_id\":\"ea6088f3-f095-4bf2-8d7f-c573819e8768\",\"collection_date\":\"2021-12-14T23:59:59Z\",\"schema_version\":\"20230306\",\"ghes_version\":\"3.9.0\",\"host_name\":\"github.example.com\",\"github_connect\":{\"features_enabled\":[\"license_usage_sync\",\"content_analysis\",\"content_analysis_notifications\"]},\"ghe_stats\":{\"comments\":{\"total_commit_comments\":1000,\"total_gist_comments\":1000,\"total_issue_comments\":0,\"total_pull_request_comments\":0},\"gists\":{\"total_gists\":100,\"private_gists\":59,\"public_gists\":41},\"hooks\":{\"total_hooks\":2,\"active_hooks\":1,\"inactive_hooks\":1},\"issues\":{\"total_issues\":3421,\"open_issues\":1234,\"closed_issues\":1222},\"milestones\":{\"total_milestones\":50,\"open_milestones\":20,\"closed_milestones\":30},\"orgs\":{\"total_orgs\":100,\"disabled_orgs\":22,\"total_teams\":299,\"total_team_members\":400},\"pages\":{\"total_pages\":10},\"pulls\":{\"total_pulls\":1232,\"merged_pulls\":223,\"mergeable_pulls\":435,\"unmergeable_pulls\":0},\"repos\":{\"total_repos\":12,\"root_repos\":1,\"fork_repos\":2,\"org_repos\":1,\"total_pushes\":42,\"total_wikis\":1},\"users\":{\"total_users\":2000,\"admin_users\":299,\"suspended_users\":423}},\"dormant_users\":{\"total_dormant_users\":5,\"dormancy_threshold\":\"90 days\"},\"actions_stats\":{\"$ref\":\"server-statistics-actions.yaml\"},\"packages_stats\":{\"$ref\":\"server-statistics-packages.yaml\"},\"advisory_db_stats\":{\"$ref\":\"server-statistics-advisory-db.yaml\"}}"
           }
         ]
       }
@@ -3190,7 +4885,7 @@
         "code": 200,
         "examples": [
           {
-            "data": "{\"schemas\":[\"urn:ietf:params:scim:api:messages:2.0:ListResponse\"],\"totalResults\":1,\"Resources\":[{\"schemas\":[\"urn:ietf:params:scim:schemas:core:2.0:Group\"],\"externalId\":\"8aa1a0c0-c4c3-4bc0-b4a5-2ef676900159\",\"id\":\"927fa2c08dcb4a7fae9e\",\"displayName\":\"Engineering\",\"members\":[{\"value\":\"879db59-3bdf-4490-ad68-ab880a2694745\",\"$+ref\":\"https://api.github.localhost/scim/v2/Users/879db59-3bdf-4490-ad68-ab880a2694745\",\"displayName\":\"User 1\"},{\"value\":\"0db508eb-91e2-46e4-809c-30dcbda0c685\",\"$+ref\":\"https://api.github.localhost/scim/v2/Users/0db508eb-91e2-46e4-809c-30dcbda0c685\",\"displayName\":\"User 2\"}],\"meta\":{\"resourceType\":\"Group\",\"created\":\"2012-03-27T19:59:26.000Z\",\"lastModified\":\"2018-03-27T19:59:26.000Z\",\"location\":\"https://api.github.localhost/scim/v2/Groups/927fa2c08dcb4a7fae9e\"}}],\"startIndex\":1,\"itemsPerPage\":20}"
+            "data": "{\"schemas\":[\"urn:ietf:params:scim:api:messages:2.0:ListResponse\"],\"totalResults\":1,\"Resources\":[{\"schemas\":[\"urn:ietf:params:scim:schemas:core:2.0:Group\"],\"externalId\":\"8aa1a0c0-c4c3-4bc0-b4a5-2ef676900159\",\"id\":\"24b28bbb-5fc4-4686-a153-a020debb1155\",\"displayName\":\"Engineering\",\"members\":[{\"value\":\"879db59-3bdf-4490-ad68-ab880a2694745\",\"$+ref\":\"https://api.github.localhost/scim/v2/Users/879db59-3bdf-4490-ad68-ab880a2694745\",\"displayName\":\"User 1\"},{\"value\":\"0db508eb-91e2-46e4-809c-30dcbda0c685\",\"$+ref\":\"https://api.github.localhost/scim/v2/Users/0db508eb-91e2-46e4-809c-30dcbda0c685\",\"displayName\":\"User 2\"}],\"meta\":{\"resourceType\":\"Group\",\"created\":\"2012-03-27T19:59:26.000Z\",\"lastModified\":\"2018-03-27T19:59:26.000Z\",\"location\":\"https://api.github.localhost/scim/v2/Groups/24b28bbb-5fc4-4686-a153-a020debb1155\"}}],\"startIndex\":1,\"itemsPerPage\":20}"
           }
         ]
       },
@@ -3739,7 +5434,7 @@
         "code": 201,
         "examples": [
           {
-            "data": "{\"schemas\":[\"urn:ietf:params:scim:schemas:core:2.0:Group\"],\"id\":\"abcd27f8-a9aa-11ea-8221-f59b2be9cccc\",\"externalId\":\"8aa1a0c0-c4c3-4bc0-b4a5-2ef676900159\",\"displayName\":\"Engineering\",\"members\":[{\"value\":\"879db59-3bdf-4490-ad68-ab880a2694745\",\"$+ref\":\"https://api.github.localhost/scim/v2/Users/879db59-3bdf-4490-ad68-ab880a2694745\",\"displayName\":\"User 1\"},{\"value\":\"0db508eb-91e2-46e4-809c-30dcbda0c685\",\"$+ref\":\"https://api.github.localhost/scim/v2/Users/0db508eb-91e2-46e4-809c-30dcbda0c685\",\"displayName\":\"User 2\"}],\"meta\":{\"resourceType\":\"Group\",\"created\":\"2012-03-27T19:59:26.000Z\",\"lastModified\":\"2018-03-27T19:59:26.000Z\",\"location\":\"https://api.github.localhost/scim/v2/Groups/927fa2c08dcb4a7fae9e\"}}"
+            "data": "{\"schemas\":[\"urn:ietf:params:scim:schemas:core:2.0:Group\"],\"id\":\"abcd27f8-a9aa-11ea-8221-f59b2be9cccc\",\"externalId\":\"8aa1a0c0-c4c3-4bc0-b4a5-2ef676900159\",\"displayName\":\"Engineering\",\"members\":[{\"value\":\"879db59-3bdf-4490-ad68-ab880a2694745\",\"$+ref\":\"https://api.github.localhost/scim/v2/Users/879db59-3bdf-4490-ad68-ab880a2694745\",\"displayName\":\"User 1\"},{\"value\":\"0db508eb-91e2-46e4-809c-30dcbda0c685\",\"$+ref\":\"https://api.github.localhost/scim/v2/Users/0db508eb-91e2-46e4-809c-30dcbda0c685\",\"displayName\":\"User 2\"}],\"meta\":{\"resourceType\":\"Group\",\"created\":\"2012-03-27T19:59:26.000Z\",\"lastModified\":\"2018-03-27T19:59:26.000Z\",\"location\":\"https://api.github.localhost/scim/v2/Groups/24b28bbb-5fc4-4686-a153-a020debb1155\"}}"
           }
         ]
       },
@@ -4219,6 +5914,57 @@
   },
   {
     "scope": "enterpriseAdmin",
+    "id": "removeEnterpriseCustomProperty",
+    "method": "DELETE",
+    "url": "/enterprises/{enterprise}/properties/schema/{custom_property_name}",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/enterprise-admin/custom-properties#remove-a-custom-property-for-an-enterprise",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "enterprise",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "custom_property_name",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 204,
+        "examples": null
+      },
+      {
+        "code": 403,
+        "examples": null
+      },
+      {
+        "code": 404,
+        "examples": null
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "enterpriseAdmin",
     "id": "removeOrgAccessToSelfHostedRunnerGroupInEnterprise",
     "method": "DELETE",
     "url": "/enterprises/{enterprise}/actions/runner-groups/{runner_group_id}/organizations/{org_id}",
@@ -4636,10 +6382,10 @@
         "code": 200,
         "examples": [
           {
-            "data": "{\"schemas\":[\"urn:ietf:params:scim:schemas:core:2.0:Group\"],\"id\":\"abcd27f8-a9aa-11ea-8221-f59b2be9cccc\",\"externalId\":\"8aa1a0c0-c4c3-4bc0-b4a5-2ef676900159\",\"displayName\":\"Engineering\",\"members\":[{\"value\":\"879db59-3bdf-4490-ad68-ab880a2694745\",\"$+ref\":\"https://api.github.localhost/scim/v2/Users/879db59-3bdf-4490-ad68-ab880a2694745\",\"displayName\":\"User 1\"},{\"value\":\"0db508eb-91e2-46e4-809c-30dcbda0c685\",\"$+ref\":\"https://api.github.localhost/scim/v2/Users/0db508eb-91e2-46e4-809c-30dcbda0c685\",\"displayName\":\"User 2\"}],\"meta\":{\"resourceType\":\"Group\",\"created\":\"2012-03-27T19:59:26.000Z\",\"lastModified\":\"2018-03-27T19:59:26.000Z\",\"location\":\"https://api.github.localhost/scim/v2/Groups/927fa2c08dcb4a7fae9e\"}}"
+            "data": "{\"schemas\":[\"urn:ietf:params:scim:schemas:core:2.0:Group\"],\"id\":\"abcd27f8-a9aa-11ea-8221-f59b2be9cccc\",\"externalId\":\"8aa1a0c0-c4c3-4bc0-b4a5-2ef676900159\",\"displayName\":\"Engineering\",\"members\":[{\"value\":\"879db59-3bdf-4490-ad68-ab880a2694745\",\"$+ref\":\"https://api.github.localhost/scim/v2/Users/879db59-3bdf-4490-ad68-ab880a2694745\",\"displayName\":\"User 1\"},{\"value\":\"0db508eb-91e2-46e4-809c-30dcbda0c685\",\"$+ref\":\"https://api.github.localhost/scim/v2/Users/0db508eb-91e2-46e4-809c-30dcbda0c685\",\"displayName\":\"User 2\"}],\"meta\":{\"resourceType\":\"Group\",\"created\":\"2012-03-27T19:59:26.000Z\",\"lastModified\":\"2018-03-27T19:59:26.000Z\",\"location\":\"https://api.github.localhost/scim/v2/Groups/24b28bbb-5fc4-4686-a153-a020debb1155\"}}"
           },
           {
-            "data": "{\"schemas\":[\"urn:ietf:params:scim:schemas:core:2.0:Group\"],\"id\":\"abcd27f8-a9aa-11ea-8221-f59b2be9cccc\",\"externalId\":\"8aa1a0c0-c4c3-4bc0-b4a5-2ef676900159\",\"displayName\":\"Engineering\",\"members\":[{\"value\":\"879db59-3bdf-4490-ad68-ab880a2694745\",\"$+ref\":\"https://api.github.localhost/scim/v2/Users/879db59-3bdf-4490-ad68-ab880a2694745\",\"displayName\":\"User 1\"},{\"value\":\"0db508eb-91e2-46e4-809c-30dcbda0c685\",\"$+ref\":\"https://api.github.localhost/scim/v2/Users/0db508eb-91e2-46e4-809c-30dcbda0c685\",\"displayName\":\"User 2\"}],\"meta\":{\"resourceType\":\"Group\",\"created\":\"2012-03-27T19:59:26.000Z\",\"lastModified\":\"2018-03-27T19:59:26.000Z\",\"location\":\"https://api.github.localhost/scim/v2/Groups/927fa2c08dcb4a7fae9e\"}}"
+            "data": "{\"schemas\":[\"urn:ietf:params:scim:schemas:core:2.0:Group\"],\"id\":\"abcd27f8-a9aa-11ea-8221-f59b2be9cccc\",\"externalId\":\"8aa1a0c0-c4c3-4bc0-b4a5-2ef676900159\",\"displayName\":\"Engineering\",\"members\":[{\"value\":\"879db59-3bdf-4490-ad68-ab880a2694745\",\"$+ref\":\"https://api.github.localhost/scim/v2/Users/879db59-3bdf-4490-ad68-ab880a2694745\",\"displayName\":\"User 1\"},{\"value\":\"0db508eb-91e2-46e4-809c-30dcbda0c685\",\"$+ref\":\"https://api.github.localhost/scim/v2/Users/0db508eb-91e2-46e4-809c-30dcbda0c685\",\"displayName\":\"User 2\"}],\"meta\":{\"resourceType\":\"Group\",\"created\":\"2012-03-27T19:59:26.000Z\",\"lastModified\":\"2018-03-27T19:59:26.000Z\",\"location\":\"https://api.github.localhost/scim/v2/Groups/24b28bbb-5fc4-4686-a153-a020debb1155\"}}"
           }
         ]
       },
@@ -5269,10 +7015,10 @@
         "code": 200,
         "examples": [
           {
-            "data": "{\"schemas\":[\"urn:ietf:params:scim:schemas:core:2.0:Group\"],\"id\":\"abcd27f8-a9aa-11ea-8221-f59b2be9cccc\",\"externalId\":\"8aa1a0c0-c4c3-4bc0-b4a5-2ef676900159\",\"displayName\":\"Engineering\",\"members\":[{\"value\":\"879db59-3bdf-4490-ad68-ab880a2694745\",\"$+ref\":\"https://api.github.localhost/scim/v2/Users/879db59-3bdf-4490-ad68-ab880a2694745\",\"displayName\":\"User 1\"},{\"value\":\"0db508eb-91e2-46e4-809c-30dcbda0c685\",\"$+ref\":\"https://api.github.localhost/scim/v2/Users/0db508eb-91e2-46e4-809c-30dcbda0c685\",\"displayName\":\"User 2\"}],\"meta\":{\"resourceType\":\"Group\",\"created\":\"2012-03-27T19:59:26.000Z\",\"lastModified\":\"2018-03-27T19:59:26.000Z\",\"location\":\"https://api.github.localhost/scim/v2/Groups/927fa2c08dcb4a7fae9e\"}}"
+            "data": "{\"schemas\":[\"urn:ietf:params:scim:schemas:core:2.0:Group\"],\"id\":\"abcd27f8-a9aa-11ea-8221-f59b2be9cccc\",\"externalId\":\"8aa1a0c0-c4c3-4bc0-b4a5-2ef676900159\",\"displayName\":\"Engineering\",\"members\":[{\"value\":\"879db59-3bdf-4490-ad68-ab880a2694745\",\"$+ref\":\"https://api.github.localhost/scim/v2/Users/879db59-3bdf-4490-ad68-ab880a2694745\",\"displayName\":\"User 1\"},{\"value\":\"0db508eb-91e2-46e4-809c-30dcbda0c685\",\"$+ref\":\"https://api.github.localhost/scim/v2/Users/0db508eb-91e2-46e4-809c-30dcbda0c685\",\"displayName\":\"User 2\"}],\"meta\":{\"resourceType\":\"Group\",\"created\":\"2012-03-27T19:59:26.000Z\",\"lastModified\":\"2018-03-27T19:59:26.000Z\",\"location\":\"https://api.github.localhost/scim/v2/Groups/24b28bbb-5fc4-4686-a153-a020debb1155\"}}"
           },
           {
-            "data": "{\"schemas\":[\"urn:ietf:params:scim:schemas:core:2.0:Group\"],\"id\":\"abcd27f8-a9aa-11ea-8221-f59b2be9cccc\",\"externalId\":\"8aa1a0c0-c4c3-4bc0-b4a5-2ef676900159\",\"displayName\":\"Engineering\",\"members\":[{\"value\":\"879db59-3bdf-4490-ad68-ab880a2694745\",\"$+ref\":\"https://api.github.localhost/scim/v2/Users/879db59-3bdf-4490-ad68-ab880a2694745\",\"displayName\":\"User 1\"},{\"value\":\"0db508eb-91e2-46e4-809c-30dcbda0c685\",\"$+ref\":\"https://api.github.localhost/scim/v2/Users/0db508eb-91e2-46e4-809c-30dcbda0c685\",\"displayName\":\"User 2\"}],\"meta\":{\"resourceType\":\"Group\",\"created\":\"2012-03-27T19:59:26.000Z\",\"lastModified\":\"2018-03-27T19:59:26.000Z\",\"location\":\"https://api.github.localhost/scim/v2/Groups/927fa2c08dcb4a7fae9e\"}}"
+            "data": "{\"schemas\":[\"urn:ietf:params:scim:schemas:core:2.0:Group\"],\"id\":\"abcd27f8-a9aa-11ea-8221-f59b2be9cccc\",\"externalId\":\"8aa1a0c0-c4c3-4bc0-b4a5-2ef676900159\",\"displayName\":\"Engineering\",\"members\":[{\"value\":\"879db59-3bdf-4490-ad68-ab880a2694745\",\"$+ref\":\"https://api.github.localhost/scim/v2/Users/879db59-3bdf-4490-ad68-ab880a2694745\",\"displayName\":\"User 1\"},{\"value\":\"0db508eb-91e2-46e4-809c-30dcbda0c685\",\"$+ref\":\"https://api.github.localhost/scim/v2/Users/0db508eb-91e2-46e4-809c-30dcbda0c685\",\"displayName\":\"User 2\"}],\"meta\":{\"resourceType\":\"Group\",\"created\":\"2012-03-27T19:59:26.000Z\",\"lastModified\":\"2018-03-27T19:59:26.000Z\",\"location\":\"https://api.github.localhost/scim/v2/Groups/24b28bbb-5fc4-4686-a153-a020debb1155\"}}"
           }
         ]
       },
@@ -5482,6 +7228,302 @@
   },
   {
     "scope": "enterpriseAdmin",
+    "id": "updateAuditLogStream",
+    "method": "PUT",
+    "url": "/enterprises/{enterprise}/audit-log/streams/{stream_id}",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/enterprise-admin/audit-log#update-an-existing-audit-log-stream-configuration",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "enterprise",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "stream_id",
+        "in": "PATH",
+        "type": "integer",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "enabled",
+        "in": "BODY",
+        "type": "boolean",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "stream_type",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": [
+          "Azure Blob Storage",
+          "Azure Event Hubs",
+          "Amazon S3",
+          "Splunk",
+          "HTTPS Event Collector",
+          "Google Cloud Storage",
+          "Datadog"
+        ],
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "vendor_specific",
+        "in": "BODY",
+        "type": "object",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "vendor_specific.key_id",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "vendor_specific.encrypted_sas_url",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "vendor_specific.name",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "vendor_specific.encrypted_connstring",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "vendor_specific.bucket",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "vendor_specific.region",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "vendor_specific.authentication_type",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": [
+          "access_keys"
+        ],
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "vendor_specific.arn_role",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "vendor_specific.encrypted_secret_key",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "vendor_specific.encrypted_access_key_id",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "vendor_specific.domain",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "vendor_specific.port",
+        "in": "BODY",
+        "type": "integer",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "vendor_specific.encrypted_token",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "vendor_specific.ssl_verify",
+        "in": "BODY",
+        "type": "boolean",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "vendor_specific.encrypted_json_credentials",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "vendor_specific.site",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": [
+          "US",
+          "US3",
+          "US5",
+          "EU1",
+          "US1-FED",
+          "AP1"
+        ],
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "{\"id\":1,\"stream_type\":\"Splunk\",\"stream_details\":\"US\",\"enabled\":true,\"created_at\":\"2024-06-06T08:00:00Z\",\"updated_at\":\"2024-06-06T08:00:00Z\",\"paused_at\":null}"
+          }
+        ]
+      },
+      {
+        "code": 422,
+        "examples": null
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "enterpriseAdmin",
     "id": "updateSelfHostedRunnerGroupForEnterprise",
     "method": "PATCH",
     "url": "/enterprises/{enterprise}/actions/runner-groups/{runner_group_id}",
@@ -5583,9 +7625,110 @@
         "code": 200,
         "examples": [
           {
-            "data": "{\"id\":2,\"name\":\"Expensive hardware runners\",\"visibility\":\"selected\",\"default\":false,\"selected_organizations_url\":\"https://api.github.com/enterprises/octo-corp/actions/runner-groups/2/organizations\",\"runners_url\":\"https://api.github.com/enterprises/octo-corp/actions/runner-groups/2/runners\",\"allows_public_repositories\":true,\"restricted_to_workflows\":false,\"selected_workflows\":[\"octo-org/octo-repo/.github/workflows/deploy.yaml@refs/heads/main\"],\"workflow_restrictions_read_only\":false}"
+            "data": "{\"id\":2,\"name\":\"Expensive hardware runners\",\"visibility\":\"selected\",\"default\":false,\"selected_organizations_url\":\"https://api.github.com/enterprises/octo-corp/actions/runner-groups/2/organizations\",\"runners_url\":\"https://api.github.com/enterprises/octo-corp/actions/runner-groups/2/runners\",\"hosted_runners_url\":\"https://api.github.com/enterprises/octo-corp/actions/runner_groups/2/hosted-runners\",\"network_configuration_id\":\"EC486D5D793175D7E3B29C27318D5C1AAE49A7833FC85F2E82C3D2C54AC7D3BA\",\"allows_public_repositories\":true,\"restricted_to_workflows\":false,\"selected_workflows\":[\"octo-org/octo-repo/.github/workflows/deploy.yaml@refs/heads/main\"],\"workflow_restrictions_read_only\":false}"
           }
         ]
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "orgs",
+    "id": "createCustomOrganizationRole",
+    "method": "POST",
+    "url": "/orgs/{org}/organization-roles",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/orgs/organization-roles#create-a-custom-organization-role",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "org",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "name",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "description",
+        "in": "BODY",
+        "type": "string",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "permissions",
+        "in": "BODY",
+        "type": "string[]",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "base_role",
+        "in": "BODY",
+        "type": "string",
+        "required": false,
+        "enum": [
+          "read",
+          "triage",
+          "write",
+          "maintain",
+          "admin"
+        ],
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 201,
+        "examples": [
+          {
+            "data": "{\"id\":8030,\"name\":\"Custom Role Manager\",\"description\":\"Permissions to manage custom roles within an org\",\"permissions\":[\"write_organization_custom_repo_role\",\"write_organization_custom_org_role\",\"read_organization_custom_repo_role\",\"read_organization_custom_org_role\"],\"organization\":{\"login\":\"github\",\"id\":1,\"node_id\":\"MDEyOk9yZ2FuaXphdGlvbjE=\",\"url\":\"https://api.github.com/orgs/github\",\"repos_url\":\"https://api.github.com/orgs/github/repos\",\"events_url\":\"https://api.github.com/orgs/github/events\",\"hooks_url\":\"https://api.github.com/orgs/github/hooks\",\"issues_url\":\"https://api.github.com/orgs/github/issues\",\"members_url\":\"https://api.github.com/orgs/github/members{/member}\",\"public_members_url\":\"https://api.github.com/orgs/github/public_members{/member}\",\"avatar_url\":\"https://github.com/images/error/octocat_happy.gif\",\"description\":\"A great organization\"},\"created_at\":\"2022-07-04T22:19:11Z\",\"updated_at\":\"2022-07-04T22:19:11Z\"}"
+          }
+        ]
+      },
+      {
+        "code": 404,
+        "examples": null
+      },
+      {
+        "code": 409,
+        "examples": null
+      },
+      {
+        "code": 422,
+        "examples": null
       }
     ],
     "renamed": null
@@ -5692,7 +7835,7 @@
     "method": "POST",
     "url": "/orgs/{org}/custom_roles",
     "isDeprecated": true,
-    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/orgs/custom-roles#deprecated---create-a-custom-role",
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/orgs/custom-roles#closing-down---create-a-custom-role",
     "previews": [],
     "headers": [],
     "parameters": [
@@ -5784,6 +7927,49 @@
   },
   {
     "scope": "orgs",
+    "id": "deleteCustomOrganizationRole",
+    "method": "DELETE",
+    "url": "/orgs/{org}/organization-roles/{role_id}",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/orgs/organization-roles#delete-a-custom-organization-role",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "org",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "role_id",
+        "in": "PATH",
+        "type": "integer",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 204,
+        "examples": null
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "orgs",
     "id": "deleteCustomRepoRole",
     "method": "DELETE",
     "url": "/orgs/{org}/custom-repository-roles/{role_id}",
@@ -5831,7 +8017,7 @@
     "method": "DELETE",
     "url": "/orgs/{org}/custom_roles/{role_id}",
     "isDeprecated": true,
-    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/orgs/custom-roles#deprecated---delete-a-custom-role",
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/orgs/custom-roles#closing-down---delete-a-custom-role",
     "previews": [],
     "headers": [],
     "parameters": [
@@ -6039,7 +8225,7 @@
     "method": "GET",
     "url": "/orgs/{org}/custom_roles/{role_id}",
     "isDeprecated": true,
-    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/orgs/custom-roles#deprecated---get-a-custom-role",
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/orgs/custom-roles#closing-down---get-a-custom-role",
     "previews": [],
     "headers": [],
     "parameters": [
@@ -6125,7 +8311,7 @@
     "method": "GET",
     "url": "/organizations/{organization_id}/custom_roles",
     "isDeprecated": true,
-    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/orgs/custom-roles#deprecated---list-custom-repository-roles-in-an-organization",
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/orgs/custom-roles#closing-down---list-custom-repository-roles-in-an-organization",
     "previews": [],
     "headers": [],
     "parameters": [
@@ -6160,7 +8346,7 @@
     "method": "GET",
     "url": "/orgs/{org}/fine_grained_permissions",
     "isDeprecated": true,
-    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/orgs/custom-roles#deprecated---list-fine-grained-permissions-for-an-organization",
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/orgs/custom-roles#closing-down---list-fine-grained-permissions-for-an-organization",
     "previews": [],
     "headers": [],
     "parameters": [
@@ -6185,6 +8371,188 @@
             "data": "[{\"name\":\"add_assignee\",\"description\":\"Assign or remove a user\"},{\"name\":\"remove_assignee\",\"description\":\"Remove an assigned user\"},{\"name\":\"add_label\",\"description\":\"Add or remove a label\"}]"
           }
         ]
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "orgs",
+    "id": "listOrganizationFineGrainedPermissions",
+    "method": "GET",
+    "url": "/orgs/{org}/organization-fine-grained-permissions",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/orgs/organization-roles#list-organization-fine-grained-permissions-for-an-organization",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "org",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "[{\"name\":\"read_organization_custom_org_role\",\"description\":\"View organization roles\"},{\"name\":\"write_organization_custom_org_role\",\"description\":\"Manage custom organization roles\"}]"
+          }
+        ]
+      },
+      {
+        "code": 404,
+        "examples": null
+      },
+      {
+        "code": 422,
+        "examples": null
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "orgs",
+    "id": "listPushBypassRequests",
+    "method": "GET",
+    "url": "/orgs/{org}/bypass-requests/push-rules",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/orgs/bypass-requests#list-push-rule-bypass-requests-within-an-organization",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "org",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "repository_name",
+        "in": "QUERY",
+        "type": "string",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "reviewer",
+        "in": "QUERY",
+        "type": "string",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "requester",
+        "in": "QUERY",
+        "type": "string",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "time_period",
+        "in": "QUERY",
+        "type": "string",
+        "required": false,
+        "enum": [
+          "hour",
+          "day",
+          "week",
+          "month"
+        ],
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "request_status",
+        "in": "QUERY",
+        "type": "string",
+        "required": false,
+        "enum": [
+          "completed",
+          "cancelled",
+          "expired",
+          "denied",
+          "open",
+          "all"
+        ],
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "per_page",
+        "in": "QUERY",
+        "type": "integer",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "page",
+        "in": "QUERY",
+        "type": "integer",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "[{\"id\":21,\"number\":42,\"repository\":{\"id\":1,\"name\":\"smile\",\"full_name\":\"octo-org/smile\"},\"organization\":{\"id\":1,\"name\":\"octo-org\"},\"requester\":{\"actor_id\":12,\"actor_name\":\"monalisa\"},\"request_type\":\"push_ruleset_bypass\",\"data\":[{\"ruleset_id\":410,\"ruleset_name\":\"Exclude image files\",\"total_violations\":1,\"rule_type\":\"file_extension_restriction\"}],\"resource_identifier\":\"827efc6d56897b048c772eb4087f854f46256132\",\"status\":\"denied\",\"requester_comment\":\"Updating site images to follow changes in marketing. Part 1\",\"expires_at\":\"2024-07-08T08:43:03Z\",\"created_at\":\"2024-07-01T08:43:03Z\",\"responses\":[{\"id\":42,\"reviewer\":{\"actor_id\":4,\"actor_name\":\"octocat\"},\"status\":\"denied\",\"created_at\":\"2024-07-02T08:43:04Z\"}],\"url\":\"https://api.github.com/repos/octo-org/smile/bypass-requests/push-rules/1\",\"html_url\":\"https://github.com/octo-org/smile/exemptions/1\"},{\"id\":12,\"number\":24,\"repository\":{\"id\":1,\"name\":\"smile\",\"full_name\":\"octo-org/smile\"},\"organization\":{\"id\":1,\"name\":\"octo-org\"},\"requester\":{\"actor_id\":12,\"actor_name\":\"monalisa\"},\"request_type\":\"push_ruleset_bypass\",\"data\":[{\"ruleset_id\":410,\"ruleset_name\":\"Exclude image files\",\"total_violations\":1,\"rule_type\":\"file_extension_restriction\"}],\"resource_identifier\":\"827efc6d56897b048c772eb4087f854f46255555\",\"status\":\"denied\",\"requester_comment\":\"Updating site images to follow changes in marketing. Part 2\",\"expires_at\":\"2024-07-08T07:43:03Z\",\"created_at\":\"2024-07-01T07:43:03Z\",\"responses\":[{\"id\":42,\"reviewer\":{\"actor_id\":4,\"actor_name\":\"octocat\"},\"status\":\"denied\",\"created_at\":\"2024-07-02T08:43:04Z\"}],\"url\":\"https://api.github.com/repos/octo-org/smile/bypass-requests/push-rules/2\",\"html_url\":\"https://github.com/octo-org/smile/exemptions/2\"}]"
+          }
+        ]
+      },
+      {
+        "code": 404,
+        "examples": null
+      },
+      {
+        "code": 500,
+        "examples": null
       }
     ],
     "renamed": null
@@ -6291,6 +8659,120 @@
             "data": "[{\"login\":\"octocat\",\"credential_id\":161195,\"credential_type\":\"personal access token\",\"token_last_eight\":\"71c3fc11\",\"credential_authorized_at\":\"2011-01-26T19:06:43Z\",\"credential_accessed_at\":\"2011-01-26T19:06:43Z\",\"authorized_credential_expires_at\":\"2011-02-25T19:06:43Z\",\"scopes\":[\"user\",\"repo\"]},{\"login\":\"hubot\",\"credential_id\":161196,\"credential_type\":\"personal access token\",\"token_last_eight\":\"Ae178B4a\",\"credential_authorized_at\":\"2019-03-29T19:06:43Z\",\"credential_accessed_at\":\"2011-01-26T19:06:43Z\",\"authorized_credential_expires_at\":\"2019-04-28T19:06:43Z\",\"scopes\":[\"repo\"]}]"
           }
         ]
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "orgs",
+    "id": "patchCustomOrganizationRole",
+    "method": "PATCH",
+    "url": "/orgs/{org}/organization-roles/{role_id}",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/orgs/organization-roles#update-a-custom-organization-role",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "org",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "role_id",
+        "in": "PATH",
+        "type": "integer",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "name",
+        "in": "BODY",
+        "type": "string",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "description",
+        "in": "BODY",
+        "type": "string",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "permissions",
+        "in": "BODY",
+        "type": "string[]",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "base_role",
+        "in": "BODY",
+        "type": "string",
+        "required": false,
+        "enum": [
+          "none",
+          "read",
+          "triage",
+          "write",
+          "maintain",
+          "admin"
+        ],
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "{\"id\":8030,\"name\":\"Custom Role Manager\",\"description\":\"Permissions to manage custom roles within an org\",\"permissions\":[\"write_organization_custom_repo_role\",\"write_organization_custom_org_role\",\"read_organization_custom_repo_role\",\"read_organization_custom_org_role\"],\"organization\":{\"login\":\"github\",\"id\":1,\"node_id\":\"MDEyOk9yZ2FuaXphdGlvbjE=\",\"url\":\"https://api.github.com/orgs/github\",\"repos_url\":\"https://api.github.com/orgs/github/repos\",\"events_url\":\"https://api.github.com/orgs/github/events\",\"hooks_url\":\"https://api.github.com/orgs/github/hooks\",\"issues_url\":\"https://api.github.com/orgs/github/issues\",\"members_url\":\"https://api.github.com/orgs/github/members{/member}\",\"public_members_url\":\"https://api.github.com/orgs/github/public_members{/member}\",\"avatar_url\":\"https://github.com/images/error/octocat_happy.gif\",\"description\":\"A great organization\"},\"created_at\":\"2022-07-04T22:19:11Z\",\"updated_at\":\"2022-07-04T22:19:11Z\"}"
+          }
+        ]
+      },
+      {
+        "code": 404,
+        "examples": null
+      },
+      {
+        "code": 409,
+        "examples": null
+      },
+      {
+        "code": 422,
+        "examples": null
       }
     ],
     "renamed": null
@@ -6456,7 +8938,7 @@
     "method": "PATCH",
     "url": "/orgs/{org}/custom_roles/{role_id}",
     "isDeprecated": true,
-    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/orgs/custom-roles#deprecated---update-a-custom-role",
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/orgs/custom-roles#closing-down---update-a-custom-role",
     "previews": [],
     "headers": [],
     "parameters": [
@@ -6560,6 +9042,720 @@
   },
   {
     "scope": "repos",
+    "id": "createEnterpriseRuleset",
+    "method": "POST",
+    "url": "/enterprises/{enterprise}/rulesets",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/enterprise-admin/rules#create-an-enterprise-repository-ruleset",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "enterprise",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "name",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "target",
+        "in": "BODY",
+        "type": "string",
+        "required": false,
+        "enum": [
+          "branch",
+          "tag",
+          "push",
+          "repository"
+        ],
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "enforcement",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": [
+          "disabled",
+          "active",
+          "evaluate"
+        ],
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "bypass_actors",
+        "in": "BODY",
+        "type": "object[]",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "bypass_actors[].actor_id",
+        "in": "BODY",
+        "type": "integer",
+        "required": false,
+        "enum": null,
+        "allowNull": true,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "bypass_actors[].actor_type",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": [
+          "Integration",
+          "OrganizationAdmin",
+          "RepositoryRole",
+          "Team",
+          "DeployKey",
+          "EnterpriseOwner"
+        ],
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "bypass_actors[].bypass_mode",
+        "in": "BODY",
+        "type": "string",
+        "required": false,
+        "enum": [
+          "always",
+          "pull_request"
+        ],
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "conditions",
+        "in": "BODY",
+        "type": "object",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "rules",
+        "in": "BODY",
+        "type": "object[]",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "rules[].type",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": [
+          "code_scanning"
+        ],
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "rules[].parameters",
+        "in": "BODY",
+        "type": "object",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "rules[].parameters.update_allows_fetch_and_merge",
+        "in": "BODY",
+        "type": "boolean",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "rules[].parameters.check_response_timeout_minutes",
+        "in": "BODY",
+        "type": "integer",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "rules[].parameters.grouping_strategy",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": [
+          "ALLGREEN",
+          "HEADGREEN"
+        ],
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "rules[].parameters.max_entries_to_build",
+        "in": "BODY",
+        "type": "integer",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "rules[].parameters.max_entries_to_merge",
+        "in": "BODY",
+        "type": "integer",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "rules[].parameters.merge_method",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": [
+          "MERGE",
+          "SQUASH",
+          "REBASE"
+        ],
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "rules[].parameters.min_entries_to_merge",
+        "in": "BODY",
+        "type": "integer",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "rules[].parameters.min_entries_to_merge_wait_minutes",
+        "in": "BODY",
+        "type": "integer",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "rules[].parameters.required_deployment_environments",
+        "in": "BODY",
+        "type": "string[]",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "rules[].parameters.allowed_merge_methods",
+        "in": "BODY",
+        "type": "string[]",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "rules[].parameters.dismiss_stale_reviews_on_push",
+        "in": "BODY",
+        "type": "boolean",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "rules[].parameters.require_code_owner_review",
+        "in": "BODY",
+        "type": "boolean",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "rules[].parameters.require_last_push_approval",
+        "in": "BODY",
+        "type": "boolean",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "rules[].parameters.required_approving_review_count",
+        "in": "BODY",
+        "type": "integer",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "rules[].parameters.required_review_thread_resolution",
+        "in": "BODY",
+        "type": "boolean",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "rules[].parameters.do_not_enforce_on_create",
+        "in": "BODY",
+        "type": "boolean",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "rules[].parameters.required_status_checks",
+        "in": "BODY",
+        "type": "object[]",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "rules[].parameters.required_status_checks[].context",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "rules[].parameters.required_status_checks[].integration_id",
+        "in": "BODY",
+        "type": "integer",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "rules[].parameters.strict_required_status_checks_policy",
+        "in": "BODY",
+        "type": "boolean",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "rules[].parameters.name",
+        "in": "BODY",
+        "type": "string",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "rules[].parameters.negate",
+        "in": "BODY",
+        "type": "boolean",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "rules[].parameters.operator",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": [
+          "starts_with",
+          "ends_with",
+          "contains",
+          "regex"
+        ],
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "rules[].parameters.pattern",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "rules[].parameters.restricted_file_paths",
+        "in": "BODY",
+        "type": "string[]",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "rules[].parameters.max_file_path_length",
+        "in": "BODY",
+        "type": "integer",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "rules[].parameters.restricted_file_extensions",
+        "in": "BODY",
+        "type": "string[]",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "rules[].parameters.max_file_size",
+        "in": "BODY",
+        "type": "integer",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "rules[].parameters.workflows",
+        "in": "BODY",
+        "type": "object[]",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "rules[].parameters.workflows[].path",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "rules[].parameters.workflows[].ref",
+        "in": "BODY",
+        "type": "string",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "rules[].parameters.workflows[].repository_id",
+        "in": "BODY",
+        "type": "integer",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "rules[].parameters.workflows[].sha",
+        "in": "BODY",
+        "type": "string",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "rules[].parameters.code_scanning_tools",
+        "in": "BODY",
+        "type": "object[]",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "rules[].parameters.code_scanning_tools[].alerts_threshold",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": [
+          "none",
+          "errors",
+          "errors_and_warnings",
+          "all"
+        ],
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "rules[].parameters.code_scanning_tools[].security_alerts_threshold",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": [
+          "none",
+          "critical",
+          "high_or_higher",
+          "medium_or_higher",
+          "all"
+        ],
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "rules[].parameters.code_scanning_tools[].tool",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 201,
+        "examples": [
+          {
+            "data": "{\"id\":21,\"name\":\"super cool ruleset\",\"target\":\"repository\",\"source_type\":\"Enterprise\",\"source\":\"my-enterprise\",\"enforcement\":\"active\",\"conditions\":{\"organization_name\":{\"include\":[\"important_organization\"]},\"repository_name\":{\"include\":[\"~ALL\"]}},\"rules\":[{\"type\":\"repository_delete\"}],\"node_id\":\"RRS_lACkVXNlcgQB\",\"_links\":{\"self\":{\"href\":\"https://api.github.com/enterprises/my-enterprise/rulesets/21\"},\"html\":{\"href\":\"https://github.com/enterprise/my-enterprise/settings/policies/repositories/21\"}},\"created_at\":\"2024-08-15T08:43:03Z\",\"updated_at\":\"2024-09-23T16:29:47Z\"}"
+          }
+        ]
+      },
+      {
+        "code": 404,
+        "examples": null
+      },
+      {
+        "code": 500,
+        "examples": null
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "repos",
+    "id": "deleteEnterpriseRuleset",
+    "method": "DELETE",
+    "url": "/enterprises/{enterprise}/rulesets/{ruleset_id}",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/enterprise-admin/rules#delete-an-enterprise-repository-ruleset",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "enterprise",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "ruleset_id",
+        "in": "PATH",
+        "type": "integer",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 204,
+        "examples": null
+      },
+      {
+        "code": 404,
+        "examples": null
+      },
+      {
+        "code": 500,
+        "examples": null
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "repos",
     "id": "disableLfsForRepo",
     "method": "DELETE",
     "url": "/repos/{owner}/{repo}/lfs",
@@ -6647,6 +9843,942 @@
       },
       {
         "code": 403,
+        "examples": null
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "repos",
+    "id": "getEnterpriseRuleset",
+    "method": "GET",
+    "url": "/enterprises/{enterprise}/rulesets/{ruleset_id}",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/enterprise-admin/rules#get-an-enterprise-repository-ruleset",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "enterprise",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "ruleset_id",
+        "in": "PATH",
+        "type": "integer",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "{\"id\":21,\"name\":\"super cool ruleset\",\"target\":\"repository\",\"source_type\":\"Enterprise\",\"source\":\"my-enterprise\",\"enforcement\":\"active\",\"conditions\":{\"organization_name\":{\"include\":[\"important_organization\"]},\"repository_name\":{\"include\":[\"~ALL\"]}},\"rules\":[{\"type\":\"repository_delete\"}],\"node_id\":\"RRS_lACkVXNlcgQB\",\"_links\":{\"self\":{\"href\":\"https://api.github.com/enterprises/my-enterprise/rulesets/21\"},\"html\":{\"href\":\"https://github.com/enterprise/my-enterprise/settings/policies/repositories/21\"}},\"created_at\":\"2024-08-15T08:43:03Z\",\"updated_at\":\"2024-09-23T16:29:47Z\"}"
+          }
+        ]
+      },
+      {
+        "code": 404,
+        "examples": null
+      },
+      {
+        "code": 500,
+        "examples": null
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "repos",
+    "id": "getRepoPushBypassRequest",
+    "method": "GET",
+    "url": "/repos/{owner}/{repo}/bypass-requests/push-rules/{bypass_request_number}",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/repos/bypass-requests#get-a-repository-push-bypass-request",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "owner",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "repo",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "bypass_request_number",
+        "in": "PATH",
+        "type": "integer",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "{\"id\":12,\"number\":24,\"repository\":{\"id\":1,\"name\":\"smile\",\"full_name\":\"octo-org/smile\"},\"organization\":{\"id\":1,\"name\":\"octo-org\"},\"requester\":{\"actor_id\":12,\"actor_name\":\"monalisa\"},\"request_type\":\"push_ruleset_bypass\",\"data\":[{\"ruleset_id\":410,\"ruleset_name\":\"Exclude image files\",\"total_violations\":1,\"rule_type\":\"file_extension_restriction\"}],\"resource_identifier\":\"827efc6d56897b048c772eb4087f854f46255555\",\"status\":\"denied\",\"requester_comment\":\"Updating site images to follow changes in marketing. Part 2\",\"expires_at\":\"2024-07-08T07:43:03Z\",\"created_at\":\"2024-07-01T07:43:03Z\",\"responses\":[{\"id\":42,\"reviewer\":{\"actor_id\":4,\"actor_name\":\"octocat\"},\"status\":\"denied\",\"created_at\":\"2024-07-02T08:43:04Z\"}],\"url\":\"https://api.github.com/repos/octo-org/smile/bypass-requests/push-rules/2\",\"html_url\":\"https://github.com/octo-org/smile/exemptions/2\"}"
+          }
+        ]
+      },
+      {
+        "code": 404,
+        "examples": null
+      },
+      {
+        "code": 500,
+        "examples": null
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "repos",
+    "id": "listRepoPushBypassRequests",
+    "method": "GET",
+    "url": "/repos/{owner}/{repo}/bypass-requests/push-rules",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/repos/bypass-requests#list-repository-push-rule-bypass-requests",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "owner",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "repo",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "reviewer",
+        "in": "QUERY",
+        "type": "string",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "requester",
+        "in": "QUERY",
+        "type": "string",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "time_period",
+        "in": "QUERY",
+        "type": "string",
+        "required": false,
+        "enum": [
+          "hour",
+          "day",
+          "week",
+          "month"
+        ],
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "request_status",
+        "in": "QUERY",
+        "type": "string",
+        "required": false,
+        "enum": [
+          "completed",
+          "cancelled",
+          "expired",
+          "denied",
+          "open",
+          "all"
+        ],
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "per_page",
+        "in": "QUERY",
+        "type": "integer",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "page",
+        "in": "QUERY",
+        "type": "integer",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "[{\"id\":21,\"number\":42,\"repository\":{\"id\":1,\"name\":\"smile\",\"full_name\":\"octo-org/smile\"},\"organization\":{\"id\":1,\"name\":\"octo-org\"},\"requester\":{\"actor_id\":12,\"actor_name\":\"monalisa\"},\"request_type\":\"push_ruleset_bypass\",\"data\":[{\"ruleset_id\":410,\"ruleset_name\":\"Exclude image files\",\"total_violations\":1,\"rule_type\":\"file_extension_restriction\"}],\"resource_identifier\":\"827efc6d56897b048c772eb4087f854f46256132\",\"status\":\"denied\",\"requester_comment\":\"Updating site images to follow changes in marketing. Part 1\",\"expires_at\":\"2024-07-08T08:43:03Z\",\"created_at\":\"2024-07-01T08:43:03Z\",\"responses\":[{\"id\":42,\"reviewer\":{\"actor_id\":4,\"actor_name\":\"octocat\"},\"status\":\"denied\",\"created_at\":\"2024-07-02T08:43:04Z\"}],\"url\":\"https://api.github.com/repos/octo-org/smile/bypass-requests/push-rules/1\",\"html_url\":\"https://github.com/octo-org/smile/exemptions/1\"},{\"id\":12,\"number\":24,\"repository\":{\"id\":1,\"name\":\"smile\",\"full_name\":\"octo-org/smile\"},\"organization\":{\"id\":1,\"name\":\"octo-org\"},\"requester\":{\"actor_id\":12,\"actor_name\":\"monalisa\"},\"request_type\":\"push_ruleset_bypass\",\"data\":[{\"ruleset_id\":410,\"ruleset_name\":\"Exclude image files\",\"total_violations\":1,\"rule_type\":\"file_extension_restriction\"}],\"resource_identifier\":\"827efc6d56897b048c772eb4087f854f46255555\",\"status\":\"denied\",\"requester_comment\":\"Updating site images to follow changes in marketing. Part 2\",\"expires_at\":\"2024-07-08T07:43:03Z\",\"created_at\":\"2024-07-01T07:43:03Z\",\"responses\":[{\"id\":42,\"reviewer\":{\"actor_id\":4,\"actor_name\":\"octocat\"},\"status\":\"denied\",\"created_at\":\"2024-07-02T08:43:04Z\"}],\"url\":\"https://api.github.com/repos/octo-org/smile/bypass-requests/push-rules/2\",\"html_url\":\"https://github.com/octo-org/smile/exemptions/2\"}]"
+          }
+        ]
+      },
+      {
+        "code": 404,
+        "examples": null
+      },
+      {
+        "code": 500,
+        "examples": null
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "repos",
+    "id": "updateEnterpriseRuleset",
+    "method": "PUT",
+    "url": "/enterprises/{enterprise}/rulesets/{ruleset_id}",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/enterprise-admin/rules#update-an-enterprise-repository-ruleset",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "enterprise",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "ruleset_id",
+        "in": "PATH",
+        "type": "integer",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "name",
+        "in": "BODY",
+        "type": "string",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "target",
+        "in": "BODY",
+        "type": "string",
+        "required": false,
+        "enum": [
+          "branch",
+          "tag",
+          "push",
+          "repository"
+        ],
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "enforcement",
+        "in": "BODY",
+        "type": "string",
+        "required": false,
+        "enum": [
+          "disabled",
+          "active",
+          "evaluate"
+        ],
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "bypass_actors",
+        "in": "BODY",
+        "type": "object[]",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "bypass_actors[].actor_id",
+        "in": "BODY",
+        "type": "integer",
+        "required": false,
+        "enum": null,
+        "allowNull": true,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "bypass_actors[].actor_type",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": [
+          "Integration",
+          "OrganizationAdmin",
+          "RepositoryRole",
+          "Team",
+          "DeployKey",
+          "EnterpriseOwner"
+        ],
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "bypass_actors[].bypass_mode",
+        "in": "BODY",
+        "type": "string",
+        "required": false,
+        "enum": [
+          "always",
+          "pull_request"
+        ],
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "conditions",
+        "in": "BODY",
+        "type": "object",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "rules",
+        "in": "BODY",
+        "type": "object[]",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "rules[].type",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": [
+          "code_scanning"
+        ],
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "rules[].parameters",
+        "in": "BODY",
+        "type": "object",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "rules[].parameters.update_allows_fetch_and_merge",
+        "in": "BODY",
+        "type": "boolean",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "rules[].parameters.check_response_timeout_minutes",
+        "in": "BODY",
+        "type": "integer",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "rules[].parameters.grouping_strategy",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": [
+          "ALLGREEN",
+          "HEADGREEN"
+        ],
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "rules[].parameters.max_entries_to_build",
+        "in": "BODY",
+        "type": "integer",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "rules[].parameters.max_entries_to_merge",
+        "in": "BODY",
+        "type": "integer",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "rules[].parameters.merge_method",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": [
+          "MERGE",
+          "SQUASH",
+          "REBASE"
+        ],
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "rules[].parameters.min_entries_to_merge",
+        "in": "BODY",
+        "type": "integer",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "rules[].parameters.min_entries_to_merge_wait_minutes",
+        "in": "BODY",
+        "type": "integer",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "rules[].parameters.required_deployment_environments",
+        "in": "BODY",
+        "type": "string[]",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "rules[].parameters.allowed_merge_methods",
+        "in": "BODY",
+        "type": "string[]",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "rules[].parameters.dismiss_stale_reviews_on_push",
+        "in": "BODY",
+        "type": "boolean",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "rules[].parameters.require_code_owner_review",
+        "in": "BODY",
+        "type": "boolean",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "rules[].parameters.require_last_push_approval",
+        "in": "BODY",
+        "type": "boolean",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "rules[].parameters.required_approving_review_count",
+        "in": "BODY",
+        "type": "integer",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "rules[].parameters.required_review_thread_resolution",
+        "in": "BODY",
+        "type": "boolean",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "rules[].parameters.do_not_enforce_on_create",
+        "in": "BODY",
+        "type": "boolean",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "rules[].parameters.required_status_checks",
+        "in": "BODY",
+        "type": "object[]",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "rules[].parameters.required_status_checks[].context",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "rules[].parameters.required_status_checks[].integration_id",
+        "in": "BODY",
+        "type": "integer",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "rules[].parameters.strict_required_status_checks_policy",
+        "in": "BODY",
+        "type": "boolean",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "rules[].parameters.name",
+        "in": "BODY",
+        "type": "string",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "rules[].parameters.negate",
+        "in": "BODY",
+        "type": "boolean",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "rules[].parameters.operator",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": [
+          "starts_with",
+          "ends_with",
+          "contains",
+          "regex"
+        ],
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "rules[].parameters.pattern",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "rules[].parameters.restricted_file_paths",
+        "in": "BODY",
+        "type": "string[]",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "rules[].parameters.max_file_path_length",
+        "in": "BODY",
+        "type": "integer",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "rules[].parameters.restricted_file_extensions",
+        "in": "BODY",
+        "type": "string[]",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "rules[].parameters.max_file_size",
+        "in": "BODY",
+        "type": "integer",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "rules[].parameters.workflows",
+        "in": "BODY",
+        "type": "object[]",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "rules[].parameters.workflows[].path",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "rules[].parameters.workflows[].ref",
+        "in": "BODY",
+        "type": "string",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "rules[].parameters.workflows[].repository_id",
+        "in": "BODY",
+        "type": "integer",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "rules[].parameters.workflows[].sha",
+        "in": "BODY",
+        "type": "string",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "rules[].parameters.code_scanning_tools",
+        "in": "BODY",
+        "type": "object[]",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "rules[].parameters.code_scanning_tools[].alerts_threshold",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": [
+          "none",
+          "errors",
+          "errors_and_warnings",
+          "all"
+        ],
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "rules[].parameters.code_scanning_tools[].security_alerts_threshold",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": [
+          "none",
+          "critical",
+          "high_or_higher",
+          "medium_or_higher",
+          "all"
+        ],
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "rules[].parameters.code_scanning_tools[].tool",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "{\"id\":21,\"name\":\"super cool ruleset\",\"target\":\"repository\",\"source_type\":\"Enterprise\",\"source\":\"my-enterprise\",\"enforcement\":\"active\",\"conditions\":{\"organization_name\":{\"include\":[\"important_organization\"]},\"repository_name\":{\"include\":[\"~ALL\"]}},\"rules\":[{\"type\":\"repository_delete\"}],\"node_id\":\"RRS_lACkVXNlcgQB\",\"_links\":{\"self\":{\"href\":\"https://api.github.com/enterprises/my-enterprise/rulesets/21\"},\"html\":{\"href\":\"https://github.com/enterprise/my-enterprise/settings/policies/repositories/21\"}},\"created_at\":\"2024-08-15T08:43:03Z\",\"updated_at\":\"2024-09-23T16:29:47Z\"}"
+          }
+        ]
+      },
+      {
+        "code": 404,
+        "examples": null
+      },
+      {
+        "code": 500,
         "examples": null
       }
     ],
@@ -7522,7 +11654,7 @@
     "id": "getSecurityAnalysisSettingsForEnterprise",
     "method": "GET",
     "url": "/enterprises/{enterprise}/code_security_and_analysis",
-    "isDeprecated": false,
+    "isDeprecated": true,
     "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/enterprise-admin/code-security-and-analysis#get-code-security-and-analysis-features-for-an-enterprise",
     "previews": [],
     "headers": [],
@@ -7545,7 +11677,7 @@
         "code": 200,
         "examples": [
           {
-            "data": "{\"advanced_security_enabled_for_new_repositories\":true,\"dependabot_alerts_enabled_for_new_repositories\":true,\"secret_scanning_enabled_for_new_repositories\":true,\"secret_scanning_push_protection_enabled_for_new_repositories\":true,\"secret_scanning_push_protection_custom_link\":\"https://github.com/test-org/test-repo/blob/main/README.md\",\"secret_scanning_validity_checks_enabled\":true}"
+            "data": "{\"advanced_security_enabled_for_new_repositories\":true,\"dependabot_alerts_enabled_for_new_repositories\":true,\"secret_scanning_enabled_for_new_repositories\":true,\"secret_scanning_push_protection_enabled_for_new_repositories\":true,\"secret_scanning_push_protection_custom_link\":\"https://github.com/test-org/test-repo/blob/main/README.md\",\"secret_scanning_non_provider_patterns_enabled_for_new_repositories\":true,\"secret_scanning_validity_checks_enabled\":true}"
           }
         ]
       },
@@ -7561,7 +11693,7 @@
     "id": "patchSecurityAnalysisSettingsForEnterprise",
     "method": "PATCH",
     "url": "/enterprises/{enterprise}/code_security_and_analysis",
-    "isDeprecated": false,
+    "isDeprecated": true,
     "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/enterprise-admin/code-security-and-analysis#update-code-security-and-analysis-features-for-an-enterprise",
     "previews": [],
     "headers": [],
@@ -7651,7 +11783,7 @@
         "deprecated": null
       },
       {
-        "name": "secret_scanning_validity_checks_enabled",
+        "name": "secret_scanning_non_provider_patterns_enabled_for_new_repositories",
         "in": "BODY",
         "type": "boolean",
         "required": false,
@@ -7684,7 +11816,7 @@
     "id": "postSecurityProductEnablementForEnterprise",
     "method": "POST",
     "url": "/enterprises/{enterprise}/{security_product}/{enablement}",
-    "isDeprecated": false,
+    "isDeprecated": true,
     "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/enterprise-admin/code-security-and-analysis#enable-or-disable-a-security-feature",
     "previews": [],
     "headers": [],
@@ -7711,7 +11843,8 @@
           "advanced_security_user_namespace",
           "dependabot_alerts",
           "secret_scanning",
-          "secret_scanning_push_protection"
+          "secret_scanning_push_protection",
+          "secret_scanning_non_provider_patterns"
         ],
         "allowNull": false,
         "mapToData": null,
@@ -7873,6 +12006,30 @@
         "in": "PATH",
         "type": "integer",
         "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "per_page",
+        "in": "QUERY",
+        "type": "integer",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "page",
+        "in": "QUERY",
+        "type": "integer",
+        "required": false,
         "enum": null,
         "allowNull": false,
         "mapToData": null,
