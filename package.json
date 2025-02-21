@@ -37,7 +37,7 @@
   "devDependencies": {
     "@octokit/core": "^6.0.0",
     "@octokit/tsconfig": "^4.0.0",
-    "@types/fetch-mock": "^7.3.2",
+    "@types/fetch-mock": "^9.0.0",
     "@types/jest": "^29.0.0",
     "@types/node": "^22.0.0",
     "camelcase": "^8.0.0",
