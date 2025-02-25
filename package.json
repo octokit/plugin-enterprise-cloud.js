@@ -37,12 +37,11 @@
   "devDependencies": {
     "@octokit/core": "^6.0.0",
     "@octokit/tsconfig": "^4.0.0",
-    "@types/fetch-mock": "^9.0.0",
     "@types/jest": "^29.0.0",
     "@types/node": "^22.0.0",
     "camelcase": "^8.0.0",
     "esbuild": "^0.25.0",
-    "fetch-mock": "npm:@gr2m/fetch-mock@9.11.0-pull-request-644.1",
+    "fetch-mock": "^11.0.0",
     "github-openapi-graphql-query": "^4.0.0",
     "glob": "^11.0.0",
     "jest": "^29.0.0",
