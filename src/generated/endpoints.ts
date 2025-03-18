@@ -4,8 +4,14 @@ const Endpoints: EndpointsDefaultsAndDecorations = {
     addSelfHostedRunnerToGroupForOrg: [
       "PUT /orgs/:org/actions/runner-groups/:runner_group_id/runners/:runner_id",
     ],
+    createHostedRunnerForEnterprise: [
+      "POST /enterprises/:enterprise/actions/hosted-runners",
+    ],
     createSelfHostedRunnerGroupForOrg: [
       "POST /orgs/:org/actions/runner-groups",
+    ],
+    deleteHostedRunnerForEnterprise: [
+      "DELETE /enterprises/:enterprise/actions/hosted-runners/:hosted_runner_id",
     ],
     deleteSelfHostedRunnerGroupFromOrg: [
       "DELETE /orgs/:org/actions/runner-groups/:runner_group_id",
@@ -19,8 +25,29 @@ const Endpoints: EndpointsDefaultsAndDecorations = {
     getGithubActionsDefaultWorkflowPermissionsEnterprise: [
       "GET /enterprises/:enterprise/actions/permissions/workflow",
     ],
+    getHostedRunnerForEnterprise: [
+      "GET /enterprises/:enterprise/actions/hosted-runners/:hosted_runner_id",
+    ],
+    getHostedRunnersGithubOwnedImagesForEnterprise: [
+      "GET /enterprises/:enterprise/actions/hosted-runners/images/github-owned",
+    ],
+    getHostedRunnersLimitsForEnterprise: [
+      "GET /enterprises/:enterprise/actions/hosted-runners/limits",
+    ],
+    getHostedRunnersMachineSpecsForEnterprise: [
+      "GET /enterprises/:enterprise/actions/hosted-runners/machine-sizes",
+    ],
+    getHostedRunnersPartnerImagesForEnterprise: [
+      "GET /enterprises/:enterprise/actions/hosted-runners/images/partner",
+    ],
+    getHostedRunnersPlatformsForEnterprise: [
+      "GET /enterprises/:enterprise/actions/hosted-runners/platforms",
+    ],
     getSelfHostedRunnerGroupForOrg: [
       "GET /orgs/:org/actions/runner-groups/:runner_group_id",
+    ],
+    listHostedRunnersForEnterprise: [
+      "GET /enterprises/:enterprise/actions/hosted-runners",
     ],
     listRepoAccessToSelfHostedRunnerGroupInOrg: [
       "GET /orgs/:org/actions/runner-groups/:runner_group_id/repositories",
@@ -46,6 +73,9 @@ const Endpoints: EndpointsDefaultsAndDecorations = {
     ],
     setSelfHostedRunnersInGroupForOrg: [
       "PUT /orgs/:org/actions/runner-groups/:runner_group_id/runners",
+    ],
+    updateHostedRunnerForEnterprise: [
+      "PATCH /enterprises/:enterprise/actions/hosted-runners/:hosted_runner_id",
     ],
     updateSelfHostedRunnerGroupForOrg: [
       "PATCH /orgs/:org/actions/runner-groups/:runner_group_id",
@@ -174,6 +204,12 @@ const Endpoints: EndpointsDefaultsAndDecorations = {
     getEnterpriseCustomProperty: [
       "GET /enterprises/:enterprise/properties/schema/:custom_property_name",
     ],
+    getEnterpriseRulesetHistory: [
+      "GET /enterprises/:enterprise/rulesets/:ruleset_id/history",
+    ],
+    getEnterpriseRulesetVersion: [
+      "GET /enterprises/:enterprise/rulesets/:ruleset_id/history/:version_id",
+    ],
     getGithubActionsPermissionsEnterprise: [
       "GET /enterprises/:enterprise/actions/permissions",
     ],
@@ -208,6 +244,9 @@ const Endpoints: EndpointsDefaultsAndDecorations = {
     listProvisionedIdentitiesEnterprise: [
       "GET /scim/v2/enterprises/:enterprise/Users",
     ],
+    listPushBypassRequests: [
+      "GET /enterprises/:enterprise/bypass-requests/push-rules",
+    ],
     listRunnerApplicationsForEnterprise: [
       "GET /enterprises/:enterprise/actions/runners/downloads",
     ],
@@ -222,6 +261,9 @@ const Endpoints: EndpointsDefaultsAndDecorations = {
     ],
     listSelfHostedRunnersInGroupForEnterprise: [
       "GET /enterprises/:enterprise/actions/runner-groups/:runner_group_id/runners",
+    ],
+    promoteCustomPropertyToEnterprise: [
+      "PUT /enterprises/:enterprise/properties/schema/organizations/:org/:custom_property_name/promote",
     ],
     provisionEnterpriseGroup: ["POST /scim/v2/enterprises/:enterprise/Groups"],
     provisionEnterpriseUser: ["POST /scim/v2/enterprises/:enterprise/Users"],
@@ -275,6 +317,26 @@ const Endpoints: EndpointsDefaultsAndDecorations = {
     ],
     updateSelfHostedRunnerGroupForEnterprise: [
       "PATCH /enterprises/:enterprise/actions/runner-groups/:runner_group_id",
+    ],
+  },
+  hostedCompute: {
+    createNetworkConfigurationForEnterprise: [
+      "POST /enterprises/:enterprise/network-configurations",
+    ],
+    deleteNetworkConfigurationFromEnterprise: [
+      "DELETE /enterprises/:enterprise/network-configurations/:network_configuration_id",
+    ],
+    getNetworkConfigurationForEnterprise: [
+      "GET /enterprises/:enterprise/network-configurations/:network_configuration_id",
+    ],
+    getNetworkSettingsForEnterprise: [
+      "GET /enterprises/:enterprise/network-settings/:network_settings_id",
+    ],
+    listNetworkConfigurationsForEnterprise: [
+      "GET /enterprises/:enterprise/network-configurations",
+    ],
+    updateNetworkConfigurationForEnterprise: [
+      "PATCH /enterprises/:enterprise/network-configurations/:network_configuration_id",
     ],
   },
   orgs: {
@@ -388,6 +450,12 @@ const Endpoints: EndpointsDefaultsAndDecorations = {
     ],
   },
   secretScanning: {
+    dismissBypassResponse: [
+      "DELETE /repos/:owner/:repo/bypass-responses/secret-scanning/:bypass_response_id",
+    ],
+    getBypassRequest: [
+      "GET /repos/:owner/:repo/bypass-requests/secret-scanning/:bypass_request_number",
+    ],
     getSecurityAnalysisSettingsForEnterprise: [
       "GET /enterprises/:enterprise/code_security_and_analysis",
       {},
@@ -395,6 +463,10 @@ const Endpoints: EndpointsDefaultsAndDecorations = {
         deprecated:
           "octokit.scim.getSecurityAnalysisSettingsForEnterprise() is deprecated, see https://docs.github.com/enterprise-cloud@latest//rest/enterprise-admin/code-security-and-analysis#get-code-security-and-analysis-features-for-an-enterprise",
       },
+    ],
+    listOrgBypassRequests: ["GET /orgs/:org/bypass-requests/secret-scanning"],
+    listRepoBypassRequests: [
+      "GET /repos/:owner/:repo/bypass-requests/secret-scanning",
     ],
     patchSecurityAnalysisSettingsForEnterprise: [
       "PATCH /enterprises/:enterprise/code_security_and_analysis",
@@ -411,6 +483,9 @@ const Endpoints: EndpointsDefaultsAndDecorations = {
         deprecated:
           "octokit.scim.postSecurityProductEnablementForEnterprise() is deprecated, see https://docs.github.com/enterprise-cloud@latest//rest/enterprise-admin/code-security-and-analysis#enable-or-disable-a-security-feature",
       },
+    ],
+    reviewBypassRequest: [
+      "PATCH /repos/:owner/:repo/bypass-requests/secret-scanning/:bypass_request_number",
     ],
   },
   teams: {
