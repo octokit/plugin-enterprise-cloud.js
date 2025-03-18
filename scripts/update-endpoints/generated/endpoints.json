@@ -2092,7 +2092,9 @@
         "validation": null,
         "alias": null,
         "deprecated": null
-      },
+      }
+    ],
+    "responses": [
       {
         "code": 200,
         "examples": [
@@ -2115,10 +2117,10 @@
     "headers": [],
     "parameters": [
       {
-        "name": "page",
-        "in": "QUERY",
-        "type": "integer",
-        "required": false,
+        "name": "enterprise",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
         "enum": null,
         "allowNull": false,
         "mapToData": null,
@@ -2418,8 +2420,16 @@
     "headers": [],
     "parameters": [
       {
-        "code": 400,
-        "examples": null
+        "name": "enterprise",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
       },
       {
         "name": "cost_center_id",
@@ -2721,28 +2731,12 @@
         ]
       },
       {
-        "name": "until",
-        "in": "QUERY",
-        "type": "string",
-        "required": false,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
+        "code": 403,
+        "examples": null
       },
       {
-        "name": "page",
-        "in": "QUERY",
-        "type": "integer",
-        "required": false,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
+        "code": 404,
+        "examples": null
       },
       {
         "code": 422,
@@ -3077,7 +3071,7 @@
       {
         "name": "since",
         "in": "QUERY",
-        "type": "integer",
+        "type": "string",
         "required": false,
         "enum": null,
         "allowNull": false,
@@ -3089,7 +3083,7 @@
       {
         "name": "until",
         "in": "QUERY",
-        "type": "integer",
+        "type": "string",
         "required": false,
         "enum": null,
         "allowNull": false,
@@ -3284,9 +3278,9 @@
     "headers": [],
     "parameters": [
       {
-        "name": "org_id",
+        "name": "enterprise",
         "in": "PATH",
-        "type": "integer",
+        "type": "string",
         "required": true,
         "enum": null,
         "allowNull": false,
@@ -3887,6 +3881,21 @@
         "type": "string[]",
         "required": false,
         "enum": null,
+        "allowNull": true,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "values_editable_by",
+        "in": "BODY",
+        "type": "string",
+        "required": false,
+        "enum": [
+          "org_actors",
+          "org_and_repo_actors"
+        ],
         "allowNull": true,
         "mapToData": null,
         "validation": null,
@@ -8663,9 +8672,7 @@
         "in": "PATH",
         "type": "string",
         "required": true,
-        "enum": [
-          "access_keys"
-        ],
+        "enum": null,
         "allowNull": false,
         "mapToData": null,
         "validation": null,
@@ -8735,8 +8742,8 @@
     "headers": [],
     "parameters": [
       {
-        "name": "vendor_specific.encrypted_secret_key",
-        "in": "BODY",
+        "name": "enterprise",
+        "in": "PATH",
         "type": "string",
         "required": true,
         "enum": null,
@@ -8800,7 +8807,9 @@
         "validation": null,
         "alias": null,
         "deprecated": null
-      },
+      }
+    ],
+    "responses": [
       {
         "code": 200,
         "examples": [
@@ -8823,8 +8832,8 @@
     "headers": [],
     "parameters": [
       {
-        "name": "vendor_specific.encrypted_json_credentials",
-        "in": "BODY",
+        "name": "enterprise",
+        "in": "PATH",
         "type": "string",
         "required": true,
         "enum": null,
@@ -8839,14 +8848,7 @@
         "in": "PATH",
         "type": "string",
         "required": true,
-        "enum": [
-          "US",
-          "US3",
-          "US5",
-          "EU1",
-          "US1-FED",
-          "AP1"
-        ],
+        "enum": null,
         "allowNull": false,
         "mapToData": null,
         "validation": null,
@@ -8901,9 +8903,9 @@
         "deprecated": null
       },
       {
-        "name": "properties[].url",
-        "in": "BODY",
-        "type": "string",
+        "name": "page",
+        "in": "QUERY",
+        "type": "integer",
         "required": false,
         "enum": null,
         "allowNull": false,
@@ -8992,34 +8994,7 @@
         "type": "string[]",
         "required": false,
         "enum": null,
-        "allowNull": true,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      },
-      {
-        "name": "properties[].allowed_values",
-        "in": "BODY",
-        "type": "string[]",
-        "required": false,
-        "enum": null,
-        "allowNull": true,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      },
-      {
-        "name": "properties[].values_editable_by",
-        "in": "BODY",
-        "type": "string",
-        "required": false,
-        "enum": [
-          "org_actors",
-          "org_and_repo_actors"
-        ],
-        "allowNull": true,
+        "allowNull": false,
         "mapToData": null,
         "validation": null,
         "alias": null,
@@ -9090,19 +9065,7 @@
         "type": "string[]",
         "required": true,
         "enum": null,
-        "allowNull": true,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      },
-      {
-        "name": "allowed_values",
-        "in": "BODY",
-        "type": "string[]",
-        "required": false,
-        "enum": null,
-        "allowNull": true,
+        "allowNull": false,
         "mapToData": null,
         "validation": null,
         "alias": null,
@@ -10043,9 +10006,7 @@
         "validation": null,
         "alias": null,
         "deprecated": null
-      }
-    ],
-    "responses": [
+      },
       {
         "name": "page",
         "in": "QUERY",
@@ -10109,7 +10070,7 @@
         "name": "role_id",
         "in": "PATH",
         "type": "integer",
-        "required": false,
+        "required": true,
         "enum": null,
         "allowNull": false,
         "mapToData": null,
@@ -10218,13 +10179,11 @@
         "validation": null,
         "alias": null,
         "deprecated": null
-      }
-    ],
-    "responses": [
+      },
       {
         "name": "credential_id",
         "in": "PATH",
-        "type": "string",
+        "type": "integer",
         "required": true,
         "enum": null,
         "allowNull": false,
@@ -10452,11 +10411,11 @@
         ]
       },
       {
-        "code": 403,
+        "code": 404,
         "examples": null
       },
       {
-        "code": 404,
+        "code": 422,
         "examples": null
       }
     ],
@@ -10528,30 +10487,7 @@
         "validation": null,
         "alias": null,
         "deprecated": null
-      }
-    ],
-    "responses": [
-      {
-        "code": 200,
-        "examples": [
-          {
-            "data": "{\"enabled_organizations\":\"all\",\"allowed_actions\":\"selected\",\"selected_actions_url\":\"https://api.github.com/enterprises/2/actions/permissions/selected-actions\"}"
-          }
-        ]
-      }
-    ],
-    "renamed": null
-  },
-  {
-    "scope": "enterpriseAdmin",
-    "id": "getLicenseSyncStatus",
-    "method": "GET",
-    "url": "/enterprises/{enterprise}/license-sync-status",
-    "isDeprecated": false,
-    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/enterprise-admin/license#get-a-license-sync-status",
-    "previews": [],
-    "headers": [],
-    "parameters": [
+      },
       {
         "name": "bypass_actors",
         "in": "BODY",
@@ -10563,9 +10499,7 @@
         "validation": null,
         "alias": null,
         "deprecated": null
-      }
-    ],
-    "responses": [
+      },
       {
         "name": "bypass_actors[].actor_id",
         "in": "BODY",
@@ -10611,9 +10545,7 @@
         "validation": null,
         "alias": null,
         "deprecated": null
-      }
-    ],
-    "responses": [
+      },
       {
         "name": "conditions",
         "in": "BODY",
@@ -10675,16 +10607,6 @@
         "validation": null,
         "alias": null,
         "deprecated": null
-      }
-    ],
-    "responses": [
-      {
-        "code": 200,
-        "examples": [
-          {
-            "data": "{\"schemas\":[\"urn:ietf:params:scim:schemas:core:2.0:User\"],\"id\":\"7fce0092-d52e-4f76-b727-3955bd72c939\",\"externalId\":\"E012345\",\"active\":true,\"userName\":\"E012345\",\"name\":{\"formatted\":\"Ms. Mona Lisa Octocat\",\"familyName\":\"Octocat\",\"givenName\":\"Mona\",\"middleName\":\"Lisa\"},\"displayName\":\"Mona Lisa\",\"emails\":[{\"value\":\"mlisa@example.com\",\"type\":\"work\",\"primary\":true}],\"roles\":[{\"value\":\"User\",\"primary\":false}],\"meta\":{\"resourceType\":\"User\",\"created\":\"2012-03-27T19:59:26.000Z\",\"lastModified\":\"2018-03-27T19:59:26.000Z\",\"location\":\"https://api.github.localhost/scim/v2/Users/7fce0092-d52e-4f76-b727-3955bd72c939\"}}"
-          }
-        ]
       },
       {
         "name": "rules[].parameters.check_response_timeout_minutes",
@@ -10736,9 +10658,7 @@
         "validation": null,
         "alias": null,
         "deprecated": null
-      }
-    ],
-    "responses": [
+      },
       {
         "name": "rules[].parameters.merge_method",
         "in": "BODY",
@@ -10766,9 +10686,7 @@
         "validation": null,
         "alias": null,
         "deprecated": null
-      }
-    ],
-    "responses": [
+      },
       {
         "name": "rules[].parameters.min_entries_to_merge_wait_minutes",
         "in": "BODY",
@@ -10804,9 +10722,7 @@
         "validation": null,
         "alias": null,
         "deprecated": null
-      }
-    ],
-    "responses": [
+      },
       {
         "name": "rules[].parameters.dismiss_stale_reviews_on_push",
         "in": "BODY",
@@ -10830,16 +10746,6 @@
         "validation": null,
         "alias": null,
         "deprecated": null
-      }
-    ],
-    "responses": [
-      {
-        "code": 200,
-        "examples": [
-          {
-            "data": "{\"total_count\":4,\"labels\":[{\"id\":5,\"name\":\"self-hosted\",\"type\":\"read-only\"},{\"id\":7,\"name\":\"X64\",\"type\":\"read-only\"},{\"id\":20,\"name\":\"macOS\",\"type\":\"read-only\"},{\"id\":21,\"name\":\"no-gpu\",\"type\":\"custom\"}]}"
-          }
-        ]
       },
       {
         "name": "rules[].parameters.require_last_push_approval",
@@ -10888,9 +10794,7 @@
         "validation": null,
         "alias": null,
         "deprecated": null
-      }
-    ],
-    "responses": [
+      },
       {
         "name": "rules[].parameters.required_status_checks",
         "in": "BODY",
@@ -11032,7 +10936,7 @@
         "name": "rules[].parameters.max_file_size",
         "in": "BODY",
         "type": "integer",
-        "required": false,
+        "required": true,
         "enum": null,
         "allowNull": false,
         "mapToData": null,
@@ -11245,7 +11149,7 @@
         "name": "owner",
         "in": "PATH",
         "type": "string",
-        "required": false,
+        "required": true,
         "enum": null,
         "allowNull": false,
         "mapToData": null,
@@ -11346,41 +11250,6 @@
         "validation": null,
         "alias": null,
         "deprecated": null
-      }
-    ],
-    "responses": [
-      {
-        "code": 200,
-        "examples": [
-          {
-            "data": "{\"total_count\":2,\"runners\":[{\"id\":23,\"name\":\"linux_runner\",\"os\":\"linux\",\"status\":\"online\",\"busy\":true,\"labels\":[{\"id\":5,\"name\":\"self-hosted\",\"type\":\"read-only\"},{\"id\":7,\"name\":\"X64\",\"type\":\"read-only\"},{\"id\":11,\"name\":\"Linux\",\"type\":\"read-only\"}]},{\"id\":24,\"name\":\"mac_runner\",\"os\":\"macos\",\"status\":\"offline\",\"busy\":false,\"labels\":[{\"id\":5,\"name\":\"self-hosted\",\"type\":\"read-only\"},{\"id\":7,\"name\":\"X64\",\"type\":\"read-only\"},{\"id\":20,\"name\":\"macOS\",\"type\":\"read-only\"},{\"id\":21,\"name\":\"no-gpu\",\"type\":\"custom\"}]}]}"
-          }
-        ]
-      }
-    ],
-    "renamed": null
-  },
-  {
-    "scope": "enterpriseAdmin",
-    "id": "provisionEnterpriseGroup",
-    "method": "POST",
-    "url": "/scim/v2/enterprises/{enterprise}/Groups",
-    "isDeprecated": false,
-    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/enterprise-admin/scim#provision-a-scim-enterprise-group",
-    "previews": [],
-    "headers": [],
-    "parameters": [
-      {
-        "name": "enterprise",
-        "in": "PATH",
-        "type": "string",
-        "required": true,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
       },
       {
         "name": "ruleset_id",
@@ -11393,71 +11262,11 @@
         "validation": null,
         "alias": null,
         "deprecated": null
-      },
-      {
-        "name": "externalId",
-        "in": "BODY",
-        "type": "string",
-        "required": true,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      },
-      {
-        "name": "displayName",
-        "in": "BODY",
-        "type": "string",
-        "required": true,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      },
-      {
-        "name": "members",
-        "in": "BODY",
-        "type": "object[]",
-        "required": true,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      },
-      {
-        "name": "members[].value",
-        "in": "BODY",
-        "type": "string",
-        "required": true,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      },
-      {
-        "name": "members[].displayName",
-        "in": "BODY",
-        "type": "string",
-        "required": true,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
       }
     ],
     "responses": [
       {
-        "code": 201,
+        "code": 200,
         "examples": [
           {
             "data": "{\"id\":21,\"name\":\"super cool ruleset\",\"target\":\"repository\",\"source_type\":\"Enterprise\",\"source\":\"my-enterprise\",\"enforcement\":\"active\",\"conditions\":{\"organization_name\":{\"include\":[\"important_organization\"]},\"repository_name\":{\"include\":[\"~ALL\"]}},\"rules\":[{\"type\":\"repository_delete\"}],\"node_id\":\"RRS_lACkVXNlcgQB\",\"_links\":{\"self\":{\"href\":\"https://api.github.com/enterprises/my-enterprise/rulesets/21\"},\"html\":{\"href\":\"https://github.com/enterprise/my-enterprise/settings/policies/repositories/21\"}},\"created_at\":\"2024-08-15T08:43:03Z\",\"updated_at\":\"2024-09-23T16:29:47Z\"}"
@@ -11580,7 +11389,7 @@
         "name": "reviewer",
         "in": "QUERY",
         "type": "string",
-        "required": true,
+        "required": false,
         "enum": null,
         "allowNull": false,
         "mapToData": null,
@@ -11778,7 +11587,7 @@
         "type": "integer",
         "required": false,
         "enum": null,
-        "allowNull": false,
+        "allowNull": true,
         "mapToData": null,
         "validation": null,
         "alias": null,
@@ -11891,9 +11700,7 @@
         "validation": null,
         "alias": null,
         "deprecated": null
-      }
-    ],
-    "responses": [
+      },
       {
         "name": "rules[].parameters.grouping_strategy",
         "in": "BODY",
@@ -12121,79 +11928,7 @@
         "name": "rules[].parameters.name",
         "in": "BODY",
         "type": "string",
-        "required": true,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      },
-      {
-        "name": "schemas",
-        "in": "BODY",
-        "type": "string[]",
-        "required": true,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      },
-      {
-        "name": "externalId",
-        "in": "BODY",
-        "type": "string",
-        "required": true,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      },
-      {
-        "name": "displayName",
-        "in": "BODY",
-        "type": "string",
-        "required": true,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      },
-      {
-        "name": "members",
-        "in": "BODY",
-        "type": "object[]",
-        "required": true,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      },
-      {
-        "name": "members[].value",
-        "in": "BODY",
-        "type": "string",
-        "required": true,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
-      },
-      {
-        "name": "members[].displayName",
-        "in": "BODY",
-        "type": "string",
-        "required": true,
+        "required": false,
         "enum": null,
         "allowNull": false,
         "mapToData": null,
@@ -12341,8 +12076,8 @@
       {
         "name": "rules[].parameters.workflows[].sha",
         "in": "BODY",
-        "type": "object[]",
-        "required": true,
+        "type": "string",
+        "required": false,
         "enum": null,
         "allowNull": false,
         "mapToData": null,
@@ -12420,16 +12155,8 @@
         ]
       },
       {
-        "name": "rules[].parameters.workflows[].sha",
-        "in": "BODY",
-        "type": "string",
-        "required": false,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
+        "code": 404,
+        "examples": null
       },
       {
         "code": 500,
@@ -12465,12 +12192,7 @@
         "in": "PATH",
         "type": "string",
         "required": true,
-        "enum": [
-          "none",
-          "errors",
-          "errors_and_warnings",
-          "all"
-        ],
+        "enum": null,
         "allowNull": false,
         "mapToData": null,
         "validation": null,
@@ -12521,13 +12243,7 @@
         "in": "PATH",
         "type": "string",
         "required": true,
-        "enum": [
-          "none",
-          "critical",
-          "high_or_higher",
-          "medium_or_higher",
-          "all"
-        ],
+        "enum": null,
         "allowNull": false,
         "mapToData": null,
         "validation": null,
