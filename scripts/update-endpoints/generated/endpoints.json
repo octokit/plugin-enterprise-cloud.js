@@ -56,6 +56,141 @@
   },
   {
     "scope": "actions",
+    "id": "createHostedRunnerForEnterprise",
+    "method": "POST",
+    "url": "/enterprises/{enterprise}/actions/hosted-runners",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/actions/hosted-runners#create-a-github-hosted-runner-for-an-enterprise",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "enterprise",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "name",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "image",
+        "in": "BODY",
+        "type": "object",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "image.id",
+        "in": "BODY",
+        "type": "string",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "image.source",
+        "in": "BODY",
+        "type": "string",
+        "required": false,
+        "enum": [
+          "github",
+          "partner",
+          "custom"
+        ],
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "size",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "runner_group_id",
+        "in": "BODY",
+        "type": "integer",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "maximum_runners",
+        "in": "BODY",
+        "type": "integer",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "enable_static_ip",
+        "in": "BODY",
+        "type": "boolean",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 201,
+        "examples": [
+          {
+            "data": "{\"id\":5,\"name\":\"My hosted ubuntu runner\",\"runner_group_id\":2,\"platform\":\"linux-x64\",\"image\":{\"id\":\"ubuntu-20.04\",\"size\":86},\"machine_size_details\":{\"id\":\"4-core\",\"cpu_cores\":4,\"memory_gb\":16,\"storage_gb\":150},\"status\":\"Ready\",\"maximum_runners\":10,\"public_ip_enabled\":true,\"public_ips\":[{\"enabled\":true,\"prefix\":\"20.80.208.150\",\"length\":31}],\"last_active_on\":\"2022-10-09T23:39:01Z\"}"
+          }
+        ]
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "actions",
     "id": "createSelfHostedRunnerGroupForOrg",
     "method": "POST",
     "url": "/orgs/{org}/actions/runner-groups",
@@ -163,6 +298,18 @@
         "validation": null,
         "alias": null,
         "deprecated": null
+      },
+      {
+        "name": "network_configuration_id",
+        "in": "BODY",
+        "type": "string",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
       }
     ],
     "responses": [
@@ -171,6 +318,53 @@
         "examples": [
           {
             "data": "{\"id\":2,\"name\":\"octo-runner-group\",\"visibility\":\"selected\",\"default\":false,\"selected_repositories_url\":\"https://api.github.com/orgs/octo-org/actions/runner-groups/2/repositories\",\"runners_url\":\"https://api.github.com/orgs/octo-org/actions/runner_groups/2/runners\",\"hosted_runners_url\":\"https://api.github.com/orgs/octo-org/actions/runner_groups/2/hosted-runners\",\"network_configuration_id\":\"EC486D5D793175D7E3B29C27318D5C1AAE49A7833FC85F2E82C3D2C54AC7D3BA\",\"inherited\":false,\"allows_public_repositories\":true,\"restricted_to_workflows\":true,\"selected_workflows\":[\"octo-org/octo-repo/.github/workflows/deploy.yaml@refs/heads/main\"],\"workflow_restrictions_read_only\":false}"
+          }
+        ]
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "actions",
+    "id": "deleteHostedRunnerForEnterprise",
+    "method": "DELETE",
+    "url": "/enterprises/{enterprise}/actions/hosted-runners/{hosted_runner_id}",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/actions/hosted-runners#delete-a-github-hosted-runner-for-an-enterprise",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "enterprise",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "hosted_runner_id",
+        "in": "PATH",
+        "type": "integer",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 202,
+        "examples": [
+          {
+            "data": "{\"id\":5,\"name\":\"My hosted ubuntu runner\",\"runner_group_id\":2,\"platform\":\"linux-x64\",\"image\":{\"id\":\"ubuntu-20.04\",\"size\":86},\"machine_size_details\":{\"id\":\"4-core\",\"cpu_cores\":4,\"memory_gb\":16,\"storage_gb\":150},\"status\":\"Ready\",\"maximum_runners\":10,\"public_ip_enabled\":true,\"public_ips\":[{\"enabled\":true,\"prefix\":\"20.80.208.150\",\"length\":31}],\"last_active_on\":\"2022-10-09T23:39:01Z\"}"
           }
         ]
       }
@@ -305,6 +499,10 @@
         "examples": null
       },
       {
+        "code": 409,
+        "examples": null
+      },
+      {
         "code": 422,
         "examples": null
       }
@@ -383,6 +581,228 @@
   },
   {
     "scope": "actions",
+    "id": "getHostedRunnerForEnterprise",
+    "method": "GET",
+    "url": "/enterprises/{enterprise}/actions/hosted-runners/{hosted_runner_id}",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/actions/hosted-runners#get-a-github-hosted-runner-for-an-enterprise",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "enterprise",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "hosted_runner_id",
+        "in": "PATH",
+        "type": "integer",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "{\"id\":5,\"name\":\"My hosted ubuntu runner\",\"runner_group_id\":2,\"platform\":\"linux-x64\",\"image\":{\"id\":\"ubuntu-20.04\",\"size\":86},\"machine_size_details\":{\"id\":\"4-core\",\"cpu_cores\":4,\"memory_gb\":16,\"storage_gb\":150},\"status\":\"Ready\",\"maximum_runners\":10,\"public_ip_enabled\":true,\"public_ips\":[{\"enabled\":true,\"prefix\":\"20.80.208.150\",\"length\":31}],\"last_active_on\":\"2022-10-09T23:39:01Z\"}"
+          }
+        ]
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "actions",
+    "id": "getHostedRunnersGithubOwnedImagesForEnterprise",
+    "method": "GET",
+    "url": "/enterprises/{enterprise}/actions/hosted-runners/images/github-owned",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/actions/hosted-runners#get-github-owned-images-for-github-hosted-runners-in-an-enterprise",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "enterprise",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "{\"id\":\"ubuntu-20.04\",\"platform\":\"linux-x64\",\"size_gb\":86,\"display_name\":\"20.04\",\"source\":\"github\"}"
+          }
+        ]
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "actions",
+    "id": "getHostedRunnersLimitsForEnterprise",
+    "method": "GET",
+    "url": "/enterprises/{enterprise}/actions/hosted-runners/limits",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/actions/hosted-runners#get-limits-on-github-hosted-runners-for-an-enterprise",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "enterprise",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "{\"public_ips\":{\"current_usage\":17,\"maximum\":50}}"
+          }
+        ]
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "actions",
+    "id": "getHostedRunnersMachineSpecsForEnterprise",
+    "method": "GET",
+    "url": "/enterprises/{enterprise}/actions/hosted-runners/machine-sizes",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/actions/hosted-runners#get-github-hosted-runners-machine-specs-for-an-enterprise",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "enterprise",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "{\"id\":\"4-core\",\"cpu_cores\":4,\"memory_gb\":16,\"storage_gb\":150}"
+          }
+        ]
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "actions",
+    "id": "getHostedRunnersPartnerImagesForEnterprise",
+    "method": "GET",
+    "url": "/enterprises/{enterprise}/actions/hosted-runners/images/partner",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/actions/hosted-runners#get-partner-images-for-github-hosted-runners-in-an-enterprise",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "enterprise",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "{\"id\":\"ubuntu-20.04\",\"platform\":\"linux-x64\",\"size_gb\":86,\"display_name\":\"20.04\",\"source\":\"github\"}"
+          }
+        ]
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "actions",
+    "id": "getHostedRunnersPlatformsForEnterprise",
+    "method": "GET",
+    "url": "/enterprises/{enterprise}/actions/hosted-runners/platforms",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/actions/hosted-runners#get-platforms-for-github-hosted-runners-in-an-enterprise",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "enterprise",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "{\"total_count\":1,\"platforms\":[\"linux-x64\",\"win-x64\"]}"
+          }
+        ]
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "actions",
     "id": "getSelfHostedRunnerGroupForOrg",
     "method": "GET",
     "url": "/orgs/{org}/actions/runner-groups/{runner_group_id}",
@@ -422,6 +842,65 @@
         "examples": [
           {
             "data": "{\"id\":2,\"name\":\"octo-runner-group\",\"visibility\":\"selected\",\"default\":false,\"selected_repositories_url\":\"https://api.github.com/orgs/octo-org/actions/runner_groups/2/repositories\",\"runners_url\":\"https://api.github.com/orgs/octo-org/actions/runner_groups/2/runners\",\"hosted_runners_url\":\"https://api.github.com/orgs/octo-org/actions/runner_groups/2/hosted-runners\",\"network_configuration_id\":\"EC486D5D793175D7E3B29C27318D5C1AAE49A7833FC85F2E82C3D2C54AC7D3BA\",\"inherited\":false,\"allows_public_repositories\":true,\"restricted_to_workflows\":true,\"selected_workflows\":[\"octo-org/octo-repo/.github/workflows/deploy.yaml@refs/heads/main\"],\"workflow_restrictions_read_only\":false}"
+          }
+        ]
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "actions",
+    "id": "listHostedRunnersForEnterprise",
+    "method": "GET",
+    "url": "/enterprises/{enterprise}/actions/hosted-runners",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/actions/hosted-runners#list-github-hosted-runners-for-an-enterprise",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "enterprise",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "per_page",
+        "in": "QUERY",
+        "type": "integer",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "page",
+        "in": "QUERY",
+        "type": "integer",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "{\"total_count\":2,\"runners\":[{\"id\":5,\"name\":\"My hosted ubuntu runner\",\"runner_group_id\":2,\"platform\":\"linux-x64\",\"image\":{\"id\":\"ubuntu-20.04\",\"size\":86},\"machine_size_details\":{\"id\":\"4-core\",\"cpu_cores\":4,\"memory_gb\":16,\"storage_gb\":150},\"status\":\"Ready\",\"maximum_runners\":10,\"public_ip_enabled\":true,\"public_ips\":[{\"enabled\":true,\"prefix\":\"20.80.208.150\",\"length\":31}],\"last_active_on\":\"2022-10-09T23:39:01Z\"},{\"id\":7,\"name\":\"My hosted Windows runner\",\"runner_group_id\":2,\"platform\":\"win-x64\",\"image\":{\"id\":\"windows-latest\",\"size\":256},\"machine_size_details\":{\"id\":\"8-core\",\"cpu_cores\":8,\"memory_gb\":32,\"storage_gb\":300},\"status\":\"Ready\",\"maximum_runners\":20,\"public_ip_enabled\":false,\"public_ips\":[],\"last_active_on\":\"2023-04-26T15:23:37Z\"}]}"
           }
         ]
       }
@@ -634,7 +1113,7 @@
         "code": 200,
         "examples": [
           {
-            "data": "{\"total_count\":2,\"runners\":[{\"id\":23,\"name\":\"linux_runner\",\"os\":\"linux\",\"status\":\"online\",\"busy\":true,\"labels\":[{\"id\":5,\"name\":\"self-hosted\",\"type\":\"read-only\"},{\"id\":7,\"name\":\"X64\",\"type\":\"read-only\"},{\"id\":11,\"name\":\"Linux\",\"type\":\"read-only\"}]},{\"id\":24,\"name\":\"mac_runner\",\"os\":\"macos\",\"status\":\"offline\",\"busy\":false,\"labels\":[{\"id\":5,\"name\":\"self-hosted\",\"type\":\"read-only\"},{\"id\":7,\"name\":\"X64\",\"type\":\"read-only\"},{\"id\":20,\"name\":\"macOS\",\"type\":\"read-only\"},{\"id\":21,\"name\":\"no-gpu\",\"type\":\"custom\"}]}]}"
+            "data": "{\"total_count\":2,\"runners\":[{\"id\":23,\"name\":\"linux_runner\",\"os\":\"linux\",\"status\":\"online\",\"busy\":true,\"ephemeral\":false,\"labels\":[{\"id\":5,\"name\":\"self-hosted\",\"type\":\"read-only\"},{\"id\":7,\"name\":\"X64\",\"type\":\"read-only\"},{\"id\":11,\"name\":\"Linux\",\"type\":\"read-only\"}]},{\"id\":24,\"name\":\"mac_runner\",\"os\":\"macos\",\"status\":\"offline\",\"busy\":false,\"ephemeral\":false,\"labels\":[{\"id\":5,\"name\":\"self-hosted\",\"type\":\"read-only\"},{\"id\":7,\"name\":\"X64\",\"type\":\"read-only\"},{\"id\":20,\"name\":\"macOS\",\"type\":\"read-only\"},{\"id\":21,\"name\":\"no-gpu\",\"type\":\"custom\"}]}]}"
           }
         ]
       }
@@ -964,6 +1443,101 @@
   },
   {
     "scope": "actions",
+    "id": "updateHostedRunnerForEnterprise",
+    "method": "PATCH",
+    "url": "/enterprises/{enterprise}/actions/hosted-runners/{hosted_runner_id}",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/actions/hosted-runners#update-a-github-hosted-runner-for-an-enterprise",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "enterprise",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "hosted_runner_id",
+        "in": "PATH",
+        "type": "integer",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "name",
+        "in": "BODY",
+        "type": "string",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "runner_group_id",
+        "in": "BODY",
+        "type": "integer",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "maximum_runners",
+        "in": "BODY",
+        "type": "integer",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "enable_static_ip",
+        "in": "BODY",
+        "type": "boolean",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "{\"id\":5,\"name\":\"My hosted ubuntu runner\",\"runner_group_id\":2,\"platform\":\"linux-x64\",\"image\":{\"id\":\"ubuntu-20.04\",\"size\":86},\"machine_size_details\":{\"id\":\"4-core\",\"cpu_cores\":4,\"memory_gb\":16,\"storage_gb\":150},\"status\":\"Ready\",\"maximum_runners\":10,\"public_ip_enabled\":true,\"public_ips\":[{\"enabled\":true,\"prefix\":\"20.80.208.150\",\"length\":31}],\"last_active_on\":\"2022-10-09T23:39:01Z\"}"
+          }
+        ]
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "actions",
     "id": "updateSelfHostedRunnerGroupForOrg",
     "method": "PATCH",
     "url": "/orgs/{org}/actions/runner-groups/{runner_group_id}",
@@ -1055,6 +1629,18 @@
         "required": false,
         "enum": null,
         "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "network_configuration_id",
+        "in": "BODY",
+        "type": "string",
+        "required": false,
+        "enum": null,
+        "allowNull": true,
         "mapToData": null,
         "validation": null,
         "alias": null,
@@ -1250,6 +1836,18 @@
         "validation": null,
         "alias": null,
         "deprecated": null
+      },
+      {
+        "name": "user_dismissible",
+        "in": "BODY",
+        "type": "boolean",
+        "required": false,
+        "enum": null,
+        "allowNull": true,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
       }
     ],
     "responses": [
@@ -1302,6 +1900,18 @@
         "name": "expires_at",
         "in": "BODY",
         "type": "string",
+        "required": false,
+        "enum": null,
+        "allowNull": true,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "user_dismissible",
+        "in": "BODY",
+        "type": "boolean",
         "required": false,
         "enum": null,
         "allowNull": true,
@@ -1482,9 +2092,7 @@
         "validation": null,
         "alias": null,
         "deprecated": null
-      }
-    ],
-    "responses": [
+      },
       {
         "code": 200,
         "examples": [
@@ -1507,10 +2115,10 @@
     "headers": [],
     "parameters": [
       {
-        "name": "enterprise",
-        "in": "PATH",
-        "type": "string",
-        "required": true,
+        "name": "page",
+        "in": "QUERY",
+        "type": "integer",
+        "required": false,
         "enum": null,
         "allowNull": false,
         "mapToData": null,
@@ -1810,16 +2418,8 @@
     "headers": [],
     "parameters": [
       {
-        "name": "enterprise",
-        "in": "PATH",
-        "type": "string",
-        "required": true,
-        "enum": null,
-        "allowNull": false,
-        "mapToData": null,
-        "validation": null,
-        "alias": null,
-        "deprecated": null
+        "code": 400,
+        "examples": null
       },
       {
         "name": "cost_center_id",
@@ -2121,12 +2721,28 @@
         ]
       },
       {
-        "code": 403,
-        "examples": null
+        "name": "until",
+        "in": "QUERY",
+        "type": "string",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
       },
       {
-        "code": 404,
-        "examples": null
+        "name": "page",
+        "in": "QUERY",
+        "type": "integer",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
       },
       {
         "code": 422,
@@ -2461,7 +3077,7 @@
       {
         "name": "since",
         "in": "QUERY",
-        "type": "string",
+        "type": "integer",
         "required": false,
         "enum": null,
         "allowNull": false,
@@ -2473,7 +3089,7 @@
       {
         "name": "until",
         "in": "QUERY",
-        "type": "string",
+        "type": "integer",
         "required": false,
         "enum": null,
         "allowNull": false,
@@ -2668,9 +3284,9 @@
     "headers": [],
     "parameters": [
       {
-        "name": "enterprise",
+        "name": "org_id",
         "in": "PATH",
-        "type": "string",
+        "type": "integer",
         "required": true,
         "enum": null,
         "allowNull": false,
@@ -2940,6 +3556,18 @@
         "name": "vendor_specific.ssl_verify",
         "in": "BODY",
         "type": "boolean",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "vendor_specific.path",
+        "in": "BODY",
+        "type": "string",
         "required": true,
         "enum": null,
         "allowNull": false,
@@ -3457,6 +4085,18 @@
         "name": "selected_workflows",
         "in": "BODY",
         "type": "string[]",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "network_configuration_id",
+        "in": "BODY",
+        "type": "string",
         "required": false,
         "enum": null,
         "allowNull": false,
@@ -4241,6 +4881,152 @@
   },
   {
     "scope": "enterpriseAdmin",
+    "id": "getEnterpriseRulesetHistory",
+    "method": "GET",
+    "url": "/enterprises/{enterprise}/rulesets/{ruleset_id}/history",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/enterprise-admin/rules#get-enterprise-ruleset-history",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "enterprise",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "per_page",
+        "in": "QUERY",
+        "type": "integer",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "page",
+        "in": "QUERY",
+        "type": "integer",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "ruleset_id",
+        "in": "PATH",
+        "type": "integer",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "[{\"version_id\":3,\"actor\":{\"id\":1,\"type\":\"User\"},\"updated_at\":\"2024-010-23T16:29:47Z\"},{\"version_id\":2,\"actor\":{\"id\":2,\"type\":\"User\"},\"updated_at\":\"2024-09-23T16:29:47Z\"},{\"version_id\":1,\"actor\":{\"id\":1,\"type\":\"User\"},\"updated_at\":\"2024-08-23T16:29:47Z\"}]"
+          }
+        ]
+      },
+      {
+        "code": 404,
+        "examples": null
+      },
+      {
+        "code": 500,
+        "examples": null
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "enterpriseAdmin",
+    "id": "getEnterpriseRulesetVersion",
+    "method": "GET",
+    "url": "/enterprises/{enterprise}/rulesets/{ruleset_id}/history/{version_id}",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/enterprise-admin/rules#get-enterprise-ruleset-version",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "enterprise",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "ruleset_id",
+        "in": "PATH",
+        "type": "integer",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "version_id",
+        "in": "PATH",
+        "type": "integer",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "[{\"version_id\":3,\"actor\":{\"id\":1,\"type\":\"User\"},\"updated_at\":\"2024-010-23T16:29:47Z\",\"state\":{\"id\":21,\"name\":\"super cool ruleset\",\"target\":\"repository\",\"source_type\":\"Enterprise\",\"source\":\"my-enterprise\",\"enforcement\":\"active\",\"conditions\":{\"organization_name\":{\"include\":[\"important_organization\"]},\"repository_name\":{\"include\":[\"~ALL\"]}},\"rules\":[{\"type\":\"repository_delete\"}]}}]"
+          }
+        ]
+      },
+      {
+        "code": 404,
+        "examples": null
+      },
+      {
+        "code": 500,
+        "examples": null
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "enterpriseAdmin",
     "id": "getGithubActionsPermissionsEnterprise",
     "method": "GET",
     "url": "/enterprises/{enterprise}/actions/permissions",
@@ -4574,7 +5360,7 @@
         "code": 200,
         "examples": [
           {
-            "data": "{\"id\":23,\"name\":\"MBP\",\"os\":\"macos\",\"status\":\"online\",\"busy\":true,\"labels\":[{\"id\":5,\"name\":\"self-hosted\",\"type\":\"read-only\"},{\"id\":7,\"name\":\"X64\",\"type\":\"read-only\"},{\"id\":20,\"name\":\"macOS\",\"type\":\"read-only\"},{\"id\":21,\"name\":\"no-gpu\",\"type\":\"custom\"}]}"
+            "data": "{\"id\":23,\"name\":\"MBP\",\"os\":\"macos\",\"status\":\"online\",\"busy\":true,\"ephemeral\":false,\"labels\":[{\"id\":5,\"name\":\"self-hosted\",\"type\":\"read-only\"},{\"id\":7,\"name\":\"X64\",\"type\":\"read-only\"},{\"id\":20,\"name\":\"macOS\",\"type\":\"read-only\"},{\"id\":21,\"name\":\"no-gpu\",\"type\":\"custom\"}]}"
           }
         ]
       }
@@ -5029,6 +5815,145 @@
   },
   {
     "scope": "enterpriseAdmin",
+    "id": "listPushBypassRequests",
+    "method": "GET",
+    "url": "/enterprises/{enterprise}/bypass-requests/push-rules",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/enterprise-admin/bypass-requests#list-push-rule-bypass-requests-within-an-enterprise",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "enterprise",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "organization_name",
+        "in": "QUERY",
+        "type": "string",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "reviewer",
+        "in": "QUERY",
+        "type": "string",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "requester",
+        "in": "QUERY",
+        "type": "string",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "time_period",
+        "in": "QUERY",
+        "type": "string",
+        "required": false,
+        "enum": [
+          "hour",
+          "day",
+          "week",
+          "month"
+        ],
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "request_status",
+        "in": "QUERY",
+        "type": "string",
+        "required": false,
+        "enum": [
+          "completed",
+          "cancelled",
+          "expired",
+          "denied",
+          "open",
+          "all"
+        ],
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "per_page",
+        "in": "QUERY",
+        "type": "integer",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "page",
+        "in": "QUERY",
+        "type": "integer",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "[{\"id\":21,\"number\":42,\"repository\":{\"id\":1,\"name\":\"smile\",\"full_name\":\"octo-org/smile\"},\"organization\":{\"id\":1,\"name\":\"octo-org\"},\"requester\":{\"actor_id\":12,\"actor_name\":\"monalisa\"},\"request_type\":\"push_ruleset_bypass\",\"data\":[{\"ruleset_id\":410,\"ruleset_name\":\"Exclude image files\",\"total_violations\":1,\"rule_type\":\"file_extension_restriction\"}],\"resource_identifier\":\"827efc6d56897b048c772eb4087f854f46256132\",\"status\":\"denied\",\"requester_comment\":\"Updating site images to follow changes in marketing. Part 1\",\"expires_at\":\"2024-07-08T08:43:03Z\",\"created_at\":\"2024-07-01T08:43:03Z\",\"responses\":[{\"id\":42,\"reviewer\":{\"actor_id\":4,\"actor_name\":\"octocat\"},\"status\":\"denied\",\"created_at\":\"2024-07-02T08:43:04Z\"}],\"url\":\"https://api.github.com/repos/octo-org/smile/bypass-requests/push-rules/1\",\"html_url\":\"https://github.com/octo-org/smile/exemptions/1\"},{\"id\":12,\"number\":24,\"repository\":{\"id\":1,\"name\":\"smile\",\"full_name\":\"octo-org/smile\"},\"organization\":{\"id\":1,\"name\":\"octo-org\"},\"requester\":{\"actor_id\":12,\"actor_name\":\"monalisa\"},\"request_type\":\"push_ruleset_bypass\",\"data\":[{\"ruleset_id\":410,\"ruleset_name\":\"Exclude image files\",\"total_violations\":1,\"rule_type\":\"file_extension_restriction\"}],\"resource_identifier\":\"827efc6d56897b048c772eb4087f854f46255555\",\"status\":\"denied\",\"requester_comment\":\"Updating site images to follow changes in marketing. Part 2\",\"expires_at\":\"2024-07-08T07:43:03Z\",\"created_at\":\"2024-07-01T07:43:03Z\",\"responses\":[{\"id\":42,\"reviewer\":{\"actor_id\":4,\"actor_name\":\"octocat\"},\"status\":\"denied\",\"created_at\":\"2024-07-02T08:43:04Z\"}],\"url\":\"https://api.github.com/repos/octo-org/smile/bypass-requests/push-rules/2\",\"html_url\":\"https://github.com/octo-org/smile/exemptions/2\"}]"
+          }
+        ]
+      },
+      {
+        "code": 404,
+        "examples": null
+      },
+      {
+        "code": 500,
+        "examples": null
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "enterpriseAdmin",
     "id": "listRunnerApplicationsForEnterprise",
     "method": "GET",
     "url": "/enterprises/{enterprise}/actions/runners/downloads",
@@ -5256,7 +6181,7 @@
         "code": 200,
         "examples": [
           {
-            "data": "{\"total_count\":2,\"runners\":[{\"id\":23,\"name\":\"linux_runner\",\"os\":\"linux\",\"status\":\"online\",\"busy\":true,\"labels\":[{\"id\":5,\"name\":\"self-hosted\",\"type\":\"read-only\"},{\"id\":7,\"name\":\"X64\",\"type\":\"read-only\"},{\"id\":11,\"name\":\"Linux\",\"type\":\"read-only\"}]},{\"id\":24,\"name\":\"mac_runner\",\"os\":\"macos\",\"status\":\"offline\",\"busy\":false,\"labels\":[{\"id\":5,\"name\":\"self-hosted\",\"type\":\"read-only\"},{\"id\":7,\"name\":\"X64\",\"type\":\"read-only\"},{\"id\":20,\"name\":\"macOS\",\"type\":\"read-only\"},{\"id\":21,\"name\":\"no-gpu\",\"type\":\"custom\"}]}]}"
+            "data": "{\"total_count\":2,\"runners\":[{\"id\":23,\"name\":\"linux_runner\",\"os\":\"linux\",\"status\":\"online\",\"busy\":true,\"ephemeral\":false,\"labels\":[{\"id\":5,\"name\":\"self-hosted\",\"type\":\"read-only\"},{\"id\":7,\"name\":\"X64\",\"type\":\"read-only\"},{\"id\":11,\"name\":\"Linux\",\"type\":\"read-only\"}]},{\"id\":24,\"name\":\"mac_runner\",\"os\":\"macos\",\"status\":\"offline\",\"busy\":false,\"ephemeral\":false,\"labels\":[{\"id\":5,\"name\":\"self-hosted\",\"type\":\"read-only\"},{\"id\":7,\"name\":\"X64\",\"type\":\"read-only\"},{\"id\":20,\"name\":\"macOS\",\"type\":\"read-only\"},{\"id\":21,\"name\":\"no-gpu\",\"type\":\"custom\"}]}]}"
           }
         ]
       }
@@ -5327,9 +6252,76 @@
         "code": 200,
         "examples": [
           {
-            "data": "{\"total_count\":2,\"runners\":[{\"id\":23,\"name\":\"linux_runner\",\"os\":\"linux\",\"status\":\"online\",\"busy\":true,\"labels\":[{\"id\":5,\"name\":\"self-hosted\",\"type\":\"read-only\"},{\"id\":7,\"name\":\"X64\",\"type\":\"read-only\"},{\"id\":11,\"name\":\"Linux\",\"type\":\"read-only\"}]},{\"id\":24,\"name\":\"mac_runner\",\"os\":\"macos\",\"status\":\"offline\",\"busy\":false,\"labels\":[{\"id\":5,\"name\":\"self-hosted\",\"type\":\"read-only\"},{\"id\":7,\"name\":\"X64\",\"type\":\"read-only\"},{\"id\":20,\"name\":\"macOS\",\"type\":\"read-only\"},{\"id\":21,\"name\":\"no-gpu\",\"type\":\"custom\"}]}]}"
+            "data": "{\"total_count\":2,\"runners\":[{\"id\":23,\"name\":\"linux_runner\",\"os\":\"linux\",\"status\":\"online\",\"busy\":true,\"ephemeral\":false,\"labels\":[{\"id\":5,\"name\":\"self-hosted\",\"type\":\"read-only\"},{\"id\":7,\"name\":\"X64\",\"type\":\"read-only\"},{\"id\":11,\"name\":\"Linux\",\"type\":\"read-only\"}]},{\"id\":24,\"name\":\"mac_runner\",\"os\":\"macos\",\"status\":\"offline\",\"busy\":false,\"ephemeral\":false,\"labels\":[{\"id\":5,\"name\":\"self-hosted\",\"type\":\"read-only\"},{\"id\":7,\"name\":\"X64\",\"type\":\"read-only\"},{\"id\":20,\"name\":\"macOS\",\"type\":\"read-only\"},{\"id\":21,\"name\":\"no-gpu\",\"type\":\"custom\"}]}]}"
           }
         ]
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "enterpriseAdmin",
+    "id": "promoteCustomPropertyToEnterprise",
+    "method": "PUT",
+    "url": "/enterprises/{enterprise}/properties/schema/organizations/{org}/{custom_property_name}/promote",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/enterprise-admin/custom-properties#promote-a-custom-property-to-an-enterprise",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "enterprise",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "org",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "custom_property_name",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "{\"property_name\":\"environment\",\"url\":\"https://api.github.com/orgs/github/properties/schema/environment\",\"source_type\":\"organization\",\"value_type\":\"single_select\",\"required\":true,\"default_value\":\"production\",\"description\":\"Prod or dev environment\",\"allowed_values\":[\"production\",\"development\"]}"
+          }
+        ]
+      },
+      {
+        "code": 403,
+        "examples": null
+      },
+      {
+        "code": 404,
+        "examples": null
       }
     ],
     "renamed": null
@@ -7475,6 +8467,18 @@
         "deprecated": null
       },
       {
+        "name": "vendor_specific.path",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
         "name": "vendor_specific.encrypted_json_credentials",
         "in": "BODY",
         "type": "string",
@@ -7618,6 +8622,18 @@
         "validation": null,
         "alias": null,
         "deprecated": null
+      },
+      {
+        "name": "network_configuration_id",
+        "in": "BODY",
+        "type": "string",
+        "required": false,
+        "enum": null,
+        "allowNull": true,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
       }
     ],
     "responses": [
@@ -7626,6 +8642,396 @@
         "examples": [
           {
             "data": "{\"id\":2,\"name\":\"Expensive hardware runners\",\"visibility\":\"selected\",\"default\":false,\"selected_organizations_url\":\"https://api.github.com/enterprises/octo-corp/actions/runner-groups/2/organizations\",\"runners_url\":\"https://api.github.com/enterprises/octo-corp/actions/runner-groups/2/runners\",\"hosted_runners_url\":\"https://api.github.com/enterprises/octo-corp/actions/runner_groups/2/hosted-runners\",\"network_configuration_id\":\"EC486D5D793175D7E3B29C27318D5C1AAE49A7833FC85F2E82C3D2C54AC7D3BA\",\"allows_public_repositories\":true,\"restricted_to_workflows\":false,\"selected_workflows\":[\"octo-org/octo-repo/.github/workflows/deploy.yaml@refs/heads/main\"],\"workflow_restrictions_read_only\":false}"
+          }
+        ]
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "hostedCompute",
+    "id": "createNetworkConfigurationForEnterprise",
+    "method": "POST",
+    "url": "/enterprises/{enterprise}/network-configurations",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/enterprise-admin/network-configurations#create-a-hosted-compute-network-configuration-for-an-enterprise",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "enterprise",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": [
+          "access_keys"
+        ],
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "name",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "compute_service",
+        "in": "BODY",
+        "type": "string",
+        "required": false,
+        "enum": [
+          "none",
+          "actions"
+        ],
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "network_settings_ids",
+        "in": "BODY",
+        "type": "string[]",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 201,
+        "examples": [
+          {
+            "data": "{\"id\":\"123456789ABCDEF\",\"name\":\"My network configuration\",\"compute_service\":\"actions\",\"network_settings_ids\":[\"23456789ABDCEF1\",\"3456789ABDCEF12\"],\"created_on\":\"2022-10-09T23:39:01Z\"}"
+          }
+        ]
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "hostedCompute",
+    "id": "deleteNetworkConfigurationFromEnterprise",
+    "method": "DELETE",
+    "url": "/enterprises/{enterprise}/network-configurations/{network_configuration_id}",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/enterprise-admin/network-configurations#delete-a-hosted-compute-network-configuration-from-an-enterprise",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "vendor_specific.encrypted_secret_key",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "network_configuration_id",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 204,
+        "examples": null
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "hostedCompute",
+    "id": "getNetworkConfigurationForEnterprise",
+    "method": "GET",
+    "url": "/enterprises/{enterprise}/network-configurations/{network_configuration_id}",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/enterprise-admin/network-configurations#get-a-hosted-compute-network-configuration-for-an-enterprise",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "enterprise",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "network_configuration_id",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "{\"id\":\"123456789ABCDEF\",\"name\":\"My network configuration\",\"compute_service\":\"actions\",\"network_settings_ids\":[\"23456789ABDCEF1\",\"3456789ABDCEF12\"],\"created_on\":\"2022-10-09T23:39:01Z\"}"
+          }
+        ]
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "hostedCompute",
+    "id": "getNetworkSettingsForEnterprise",
+    "method": "GET",
+    "url": "/enterprises/{enterprise}/network-settings/{network_settings_id}",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/enterprise-admin/network-configurations#get-a-hosted-compute-network-settings-resource-for-an-enterprise",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "vendor_specific.encrypted_json_credentials",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "network_settings_id",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": [
+          "US",
+          "US3",
+          "US5",
+          "EU1",
+          "US1-FED",
+          "AP1"
+        ],
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "{\"id\":\"220F78DACB92BBFBC5E6F22DE1CCF52309D\",\"network_configuration_id\":\"934E208B3EE0BD60CF5F752C426BFB53562\",\"name\":\"my_network_settings\",\"subnet_id\":\"/subscriptions/14839728-3ad9-43ab-bd2b-fa6ad0f75e2a/resourceGroups/my-rg/providers/Microsoft.Network/virtualNetworks/my-vnet/subnets/my-subnet\",\"region\":\"eastus\"}"
+          }
+        ]
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "hostedCompute",
+    "id": "listNetworkConfigurationsForEnterprise",
+    "method": "GET",
+    "url": "/enterprises/{enterprise}/network-configurations",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/enterprise-admin/network-configurations#list-hosted-compute-network-configurations-for-an-enterprise",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "enterprise",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "per_page",
+        "in": "QUERY",
+        "type": "integer",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "properties[].url",
+        "in": "BODY",
+        "type": "string",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "{\"total_count\":2,\"network_configurations\":[{\"id\":\"123456789ABCDEF\",\"name\":\"My network configuration\",\"compute_service\":\"actions\",\"network_settings_ids\":[\"23456789ABDCEF1\",\"3456789ABDCEF12\"],\"created_on\":\"2022-10-09T23:39:01Z\"},{\"id\":\"456789ABDCEF123\",\"name\":\"My other configuration\",\"compute_service\":\"none\",\"network_settings_ids\":[\"56789ABDCEF1234\",\"6789ABDCEF12345\"],\"created_on\":\"2023-04-26T15:23:37Z\"}]}"
+          }
+        ]
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "hostedCompute",
+    "id": "updateNetworkConfigurationForEnterprise",
+    "method": "PATCH",
+    "url": "/enterprises/{enterprise}/network-configurations/{network_configuration_id}",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/enterprise-admin/network-configurations#update-a-hosted-compute-network-configuration-for-an-enterprise",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "enterprise",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "network_configuration_id",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "name",
+        "in": "BODY",
+        "type": "string",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "compute_service",
+        "in": "BODY",
+        "type": "string",
+        "required": false,
+        "enum": [
+          "none",
+          "actions"
+        ],
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "network_settings_ids",
+        "in": "BODY",
+        "type": "string[]",
+        "required": false,
+        "enum": null,
+        "allowNull": true,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "properties[].allowed_values",
+        "in": "BODY",
+        "type": "string[]",
+        "required": false,
+        "enum": null,
+        "allowNull": true,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "properties[].values_editable_by",
+        "in": "BODY",
+        "type": "string",
+        "required": false,
+        "enum": [
+          "org_actors",
+          "org_and_repo_actors"
+        ],
+        "allowNull": true,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "{\"id\":\"123456789ABCDEF\",\"name\":\"My network configuration\",\"compute_service\":\"actions\",\"network_settings_ids\":[\"23456789ABDCEF1\",\"3456789ABDCEF12\"],\"created_on\":\"2022-10-09T23:39:01Z\"}"
           }
         ]
       }
@@ -7684,7 +9090,19 @@
         "type": "string[]",
         "required": true,
         "enum": null,
-        "allowNull": false,
+        "allowNull": true,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "allowed_values",
+        "in": "BODY",
+        "type": "string[]",
+        "required": false,
+        "enum": null,
+        "allowNull": true,
         "mapToData": null,
         "validation": null,
         "alias": null,
@@ -8625,7 +10043,9 @@
         "validation": null,
         "alias": null,
         "deprecated": null
-      },
+      }
+    ],
+    "responses": [
       {
         "name": "page",
         "in": "QUERY",
@@ -8689,7 +10109,7 @@
         "name": "role_id",
         "in": "PATH",
         "type": "integer",
-        "required": true,
+        "required": false,
         "enum": null,
         "allowNull": false,
         "mapToData": null,
@@ -8798,11 +10218,13 @@
         "validation": null,
         "alias": null,
         "deprecated": null
-      },
+      }
+    ],
+    "responses": [
       {
         "name": "credential_id",
         "in": "PATH",
-        "type": "integer",
+        "type": "string",
         "required": true,
         "enum": null,
         "allowNull": false,
@@ -9030,11 +10452,11 @@
         ]
       },
       {
-        "code": 404,
+        "code": 403,
         "examples": null
       },
       {
-        "code": 422,
+        "code": 404,
         "examples": null
       }
     ],
@@ -9106,7 +10528,30 @@
         "validation": null,
         "alias": null,
         "deprecated": null
-      },
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "{\"enabled_organizations\":\"all\",\"allowed_actions\":\"selected\",\"selected_actions_url\":\"https://api.github.com/enterprises/2/actions/permissions/selected-actions\"}"
+          }
+        ]
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "enterpriseAdmin",
+    "id": "getLicenseSyncStatus",
+    "method": "GET",
+    "url": "/enterprises/{enterprise}/license-sync-status",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/enterprise-admin/license#get-a-license-sync-status",
+    "previews": [],
+    "headers": [],
+    "parameters": [
       {
         "name": "bypass_actors",
         "in": "BODY",
@@ -9118,7 +10563,9 @@
         "validation": null,
         "alias": null,
         "deprecated": null
-      },
+      }
+    ],
+    "responses": [
       {
         "name": "bypass_actors[].actor_id",
         "in": "BODY",
@@ -9164,7 +10611,9 @@
         "validation": null,
         "alias": null,
         "deprecated": null
-      },
+      }
+    ],
+    "responses": [
       {
         "name": "conditions",
         "in": "BODY",
@@ -9226,6 +10675,16 @@
         "validation": null,
         "alias": null,
         "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "{\"schemas\":[\"urn:ietf:params:scim:schemas:core:2.0:User\"],\"id\":\"7fce0092-d52e-4f76-b727-3955bd72c939\",\"externalId\":\"E012345\",\"active\":true,\"userName\":\"E012345\",\"name\":{\"formatted\":\"Ms. Mona Lisa Octocat\",\"familyName\":\"Octocat\",\"givenName\":\"Mona\",\"middleName\":\"Lisa\"},\"displayName\":\"Mona Lisa\",\"emails\":[{\"value\":\"mlisa@example.com\",\"type\":\"work\",\"primary\":true}],\"roles\":[{\"value\":\"User\",\"primary\":false}],\"meta\":{\"resourceType\":\"User\",\"created\":\"2012-03-27T19:59:26.000Z\",\"lastModified\":\"2018-03-27T19:59:26.000Z\",\"location\":\"https://api.github.localhost/scim/v2/Users/7fce0092-d52e-4f76-b727-3955bd72c939\"}}"
+          }
+        ]
       },
       {
         "name": "rules[].parameters.check_response_timeout_minutes",
@@ -9277,7 +10736,9 @@
         "validation": null,
         "alias": null,
         "deprecated": null
-      },
+      }
+    ],
+    "responses": [
       {
         "name": "rules[].parameters.merge_method",
         "in": "BODY",
@@ -9305,7 +10766,9 @@
         "validation": null,
         "alias": null,
         "deprecated": null
-      },
+      }
+    ],
+    "responses": [
       {
         "name": "rules[].parameters.min_entries_to_merge_wait_minutes",
         "in": "BODY",
@@ -9341,7 +10804,9 @@
         "validation": null,
         "alias": null,
         "deprecated": null
-      },
+      }
+    ],
+    "responses": [
       {
         "name": "rules[].parameters.dismiss_stale_reviews_on_push",
         "in": "BODY",
@@ -9365,6 +10830,16 @@
         "validation": null,
         "alias": null,
         "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "{\"total_count\":4,\"labels\":[{\"id\":5,\"name\":\"self-hosted\",\"type\":\"read-only\"},{\"id\":7,\"name\":\"X64\",\"type\":\"read-only\"},{\"id\":20,\"name\":\"macOS\",\"type\":\"read-only\"},{\"id\":21,\"name\":\"no-gpu\",\"type\":\"custom\"}]}"
+          }
+        ]
       },
       {
         "name": "rules[].parameters.require_last_push_approval",
@@ -9413,7 +10888,9 @@
         "validation": null,
         "alias": null,
         "deprecated": null
-      },
+      }
+    ],
+    "responses": [
       {
         "name": "rules[].parameters.required_status_checks",
         "in": "BODY",
@@ -9555,7 +11032,7 @@
         "name": "rules[].parameters.max_file_size",
         "in": "BODY",
         "type": "integer",
-        "required": true,
+        "required": false,
         "enum": null,
         "allowNull": false,
         "mapToData": null,
@@ -9768,7 +11245,7 @@
         "name": "owner",
         "in": "PATH",
         "type": "string",
-        "required": true,
+        "required": false,
         "enum": null,
         "allowNull": false,
         "mapToData": null,
@@ -9869,6 +11346,41 @@
         "validation": null,
         "alias": null,
         "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "{\"total_count\":2,\"runners\":[{\"id\":23,\"name\":\"linux_runner\",\"os\":\"linux\",\"status\":\"online\",\"busy\":true,\"labels\":[{\"id\":5,\"name\":\"self-hosted\",\"type\":\"read-only\"},{\"id\":7,\"name\":\"X64\",\"type\":\"read-only\"},{\"id\":11,\"name\":\"Linux\",\"type\":\"read-only\"}]},{\"id\":24,\"name\":\"mac_runner\",\"os\":\"macos\",\"status\":\"offline\",\"busy\":false,\"labels\":[{\"id\":5,\"name\":\"self-hosted\",\"type\":\"read-only\"},{\"id\":7,\"name\":\"X64\",\"type\":\"read-only\"},{\"id\":20,\"name\":\"macOS\",\"type\":\"read-only\"},{\"id\":21,\"name\":\"no-gpu\",\"type\":\"custom\"}]}]}"
+          }
+        ]
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "enterpriseAdmin",
+    "id": "provisionEnterpriseGroup",
+    "method": "POST",
+    "url": "/scim/v2/enterprises/{enterprise}/Groups",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/enterprise-admin/scim#provision-a-scim-enterprise-group",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "enterprise",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
       },
       {
         "name": "ruleset_id",
@@ -9881,11 +11393,71 @@
         "validation": null,
         "alias": null,
         "deprecated": null
+      },
+      {
+        "name": "externalId",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "displayName",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "members",
+        "in": "BODY",
+        "type": "object[]",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "members[].value",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "members[].displayName",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
       }
     ],
     "responses": [
       {
-        "code": 200,
+        "code": 201,
         "examples": [
           {
             "data": "{\"id\":21,\"name\":\"super cool ruleset\",\"target\":\"repository\",\"source_type\":\"Enterprise\",\"source\":\"my-enterprise\",\"enforcement\":\"active\",\"conditions\":{\"organization_name\":{\"include\":[\"important_organization\"]},\"repository_name\":{\"include\":[\"~ALL\"]}},\"rules\":[{\"type\":\"repository_delete\"}],\"node_id\":\"RRS_lACkVXNlcgQB\",\"_links\":{\"self\":{\"href\":\"https://api.github.com/enterprises/my-enterprise/rulesets/21\"},\"html\":{\"href\":\"https://github.com/enterprise/my-enterprise/settings/policies/repositories/21\"}},\"created_at\":\"2024-08-15T08:43:03Z\",\"updated_at\":\"2024-09-23T16:29:47Z\"}"
@@ -10008,7 +11580,7 @@
         "name": "reviewer",
         "in": "QUERY",
         "type": "string",
-        "required": false,
+        "required": true,
         "enum": null,
         "allowNull": false,
         "mapToData": null,
@@ -10206,7 +11778,7 @@
         "type": "integer",
         "required": false,
         "enum": null,
-        "allowNull": true,
+        "allowNull": false,
         "mapToData": null,
         "validation": null,
         "alias": null,
@@ -10319,7 +11891,9 @@
         "validation": null,
         "alias": null,
         "deprecated": null
-      },
+      }
+    ],
+    "responses": [
       {
         "name": "rules[].parameters.grouping_strategy",
         "in": "BODY",
@@ -10547,7 +12121,79 @@
         "name": "rules[].parameters.name",
         "in": "BODY",
         "type": "string",
-        "required": false,
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "schemas",
+        "in": "BODY",
+        "type": "string[]",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "externalId",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "displayName",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "members",
+        "in": "BODY",
+        "type": "object[]",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "members[].value",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "members[].displayName",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
         "enum": null,
         "allowNull": false,
         "mapToData": null,
@@ -10695,8 +12341,8 @@
       {
         "name": "rules[].parameters.workflows[].sha",
         "in": "BODY",
-        "type": "string",
-        "required": false,
+        "type": "object[]",
+        "required": true,
         "enum": null,
         "allowNull": false,
         "mapToData": null,
@@ -10774,8 +12420,16 @@
         ]
       },
       {
-        "code": 404,
-        "examples": null
+        "name": "rules[].parameters.workflows[].sha",
+        "in": "BODY",
+        "type": "string",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
       },
       {
         "code": 500,
@@ -10811,7 +12465,12 @@
         "in": "PATH",
         "type": "string",
         "required": true,
-        "enum": null,
+        "enum": [
+          "none",
+          "errors",
+          "errors_and_warnings",
+          "all"
+        ],
         "allowNull": false,
         "mapToData": null,
         "validation": null,
@@ -10862,7 +12521,13 @@
         "in": "PATH",
         "type": "string",
         "required": true,
-        "enum": null,
+        "enum": [
+          "none",
+          "critical",
+          "high_or_higher",
+          "medium_or_higher",
+          "all"
+        ],
         "allowNull": false,
         "mapToData": null,
         "validation": null,
@@ -11651,6 +13316,148 @@
   },
   {
     "scope": "secretScanning",
+    "id": "dismissBypassResponse",
+    "method": "DELETE",
+    "url": "/repos/{owner}/{repo}/bypass-responses/secret-scanning/{bypass_response_id}",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/secret-scanning/delegated-bypass#dismiss-a-response-on-a-bypass-request-for-secret-scanning",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "owner",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "repo",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "bypass_response_id",
+        "in": "PATH",
+        "type": "integer",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 204,
+        "examples": null
+      },
+      {
+        "code": 403,
+        "examples": null
+      },
+      {
+        "code": 404,
+        "examples": null
+      },
+      {
+        "code": 422,
+        "examples": null
+      },
+      {
+        "code": 500,
+        "examples": null
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "secretScanning",
+    "id": "getBypassRequest",
+    "method": "GET",
+    "url": "/repos/{owner}/{repo}/bypass-requests/secret-scanning/{bypass_request_number}",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/secret-scanning/delegated-bypass#get-a-bypass-request-for-secret-scanning",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "owner",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "repo",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "bypass_request_number",
+        "in": "PATH",
+        "type": "integer",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "{\"id\":21,\"number\":42,\"repository\":{\"id\":1,\"name\":\"smile\",\"full_name\":\"octo-org/smile\"},\"organization\":{\"id\":1,\"name\":\"octo-org\"},\"requester\":{\"actor_id\":12,\"actor_name\":\"monalisa\"},\"request_type\":\"secret_scanning\",\"data\":[{\"secret_type\":\"adafruit_io_key\",\"bypass_reason\":\"used_in_tests\",\"path\":\"/tests/README.md:16:0\",\"branch\":\"refs/heads/main\"}],\"resource_identifier\":\"827efc6d56897b048c772eb4087f854f46256132\",\"status\":\"denied\",\"requester_comment\":\"Test token used in the readme as an example\",\"expires_at\":\"2024-07-08T08:43:03Z\",\"created_at\":\"2024-07-01T08:43:03Z\",\"responses\":[{\"id\":42,\"reviewer\":{\"actor_id\":4,\"actor_name\":\"octocat\"},\"status\":\"denied\",\"created_at\":\"2024-07-02T08:43:04Z\"}],\"url\":\"https://api.github.com/repos/octo-org/smile/bypass-requests/secret-scanning/1\",\"html_url\":\"https://github.com/octo-org/smile/exemptions/1\"}"
+          }
+        ]
+      },
+      {
+        "code": 403,
+        "examples": null
+      },
+      {
+        "code": 404,
+        "examples": null
+      },
+      {
+        "code": 500,
+        "examples": null
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "secretScanning",
     "id": "getSecurityAnalysisSettingsForEnterprise",
     "method": "GET",
     "url": "/enterprises/{enterprise}/code_security_and_analysis",
@@ -11683,6 +13490,288 @@
       },
       {
         "code": 404,
+        "examples": null
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "secretScanning",
+    "id": "listOrgBypassRequests",
+    "method": "GET",
+    "url": "/orgs/{org}/bypass-requests/secret-scanning",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/secret-scanning/delegated-bypass#list-bypass-requests-for-secret-scanning-for-an-org",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "org",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "repository_name",
+        "in": "QUERY",
+        "type": "string",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "reviewer",
+        "in": "QUERY",
+        "type": "string",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "requester",
+        "in": "QUERY",
+        "type": "string",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "time_period",
+        "in": "QUERY",
+        "type": "string",
+        "required": false,
+        "enum": [
+          "hour",
+          "day",
+          "week",
+          "month"
+        ],
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "request_status",
+        "in": "QUERY",
+        "type": "string",
+        "required": false,
+        "enum": [
+          "completed",
+          "cancelled",
+          "expired",
+          "denied",
+          "open",
+          "all"
+        ],
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "per_page",
+        "in": "QUERY",
+        "type": "integer",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "page",
+        "in": "QUERY",
+        "type": "integer",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "[{\"id\":21,\"number\":42,\"repository\":{\"id\":1,\"name\":\"smile\",\"full_name\":\"octo-org/smile\"},\"organization\":{\"id\":1,\"name\":\"octo-org\"},\"requester\":{\"actor_id\":12,\"actor_name\":\"monalisa\"},\"request_type\":\"secret_scanning\",\"data\":[{\"secret_type\":\"adafruit_io_key\",\"bypass_reason\":\"used_in_tests\",\"path\":\"/tests/README.md:16:0\",\"branch\":\"refs/heads/main\"}],\"resource_identifier\":\"827efc6d56897b048c772eb4087f854f46256132\",\"status\":\"denied\",\"requester_comment\":\"Test token used in the readme as an example\",\"expires_at\":\"2024-07-08T08:43:03Z\",\"created_at\":\"2024-07-01T08:43:03Z\",\"responses\":[{\"id\":42,\"reviewer\":{\"actor_id\":4,\"actor_name\":\"octocat\"},\"status\":\"denied\",\"created_at\":\"2024-07-02T08:43:04Z\"}],\"url\":\"https://api.github.com/repos/octo-org/smile/bypass-requests/secret-scanning/1\",\"html_url\":\"https://github.com/octo-org/smile/exemptions/1\"},{\"id\":12,\"number\":24,\"repository\":{\"id\":1,\"name\":\"smile\",\"full_name\":\"octo-org/smile\"},\"organization\":{\"id\":1,\"name\":\"octo-org\"},\"requester\":{\"actor_id\":12,\"actor_name\":\"monalisa\"},\"request_type\":\"secret_scanning\",\"data\":[{\"secret_type\":\"adafruit_io_key\",\"bypass_reason\":\"fix_later\",\"path\":\"README.md:17:0\",\"branch\":\"refs/heads/my-branch\"}],\"resource_identifier\":\"827efc6d56897b048c772eb4087f854f46255555\",\"status\":\"denied\",\"requester_comment\":\"Token is already revoked, I'll remove it later\",\"expires_at\":\"2024-07-08T07:43:03Z\",\"created_at\":\"2024-07-01T07:43:03Z\",\"responses\":[{\"id\":42,\"reviewer\":{\"actor_id\":4,\"actor_name\":\"octocat\"},\"status\":\"denied\",\"created_at\":\"2024-07-02T08:43:04Z\"}],\"url\":\"https://api.github.com/repos/octo-org/smile/bypass-requests/secret-scanning/2\",\"html_url\":\"https://github.com/octo-org/smile/exemptions/2\"}]"
+          }
+        ]
+      },
+      {
+        "code": 404,
+        "examples": null
+      },
+      {
+        "code": 500,
+        "examples": null
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "secretScanning",
+    "id": "listRepoBypassRequests",
+    "method": "GET",
+    "url": "/repos/{owner}/{repo}/bypass-requests/secret-scanning",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/secret-scanning/delegated-bypass#list-bypass-requests-for-secret-scanning-for-a-repository",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "owner",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "repo",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "reviewer",
+        "in": "QUERY",
+        "type": "string",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "requester",
+        "in": "QUERY",
+        "type": "string",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "time_period",
+        "in": "QUERY",
+        "type": "string",
+        "required": false,
+        "enum": [
+          "hour",
+          "day",
+          "week",
+          "month"
+        ],
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "request_status",
+        "in": "QUERY",
+        "type": "string",
+        "required": false,
+        "enum": [
+          "completed",
+          "cancelled",
+          "expired",
+          "denied",
+          "open",
+          "all"
+        ],
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "per_page",
+        "in": "QUERY",
+        "type": "integer",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "page",
+        "in": "QUERY",
+        "type": "integer",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "[{\"id\":21,\"number\":42,\"repository\":{\"id\":1,\"name\":\"smile\",\"full_name\":\"octo-org/smile\"},\"organization\":{\"id\":1,\"name\":\"octo-org\"},\"requester\":{\"actor_id\":12,\"actor_name\":\"monalisa\"},\"request_type\":\"secret_scanning\",\"data\":[{\"secret_type\":\"adafruit_io_key\",\"bypass_reason\":\"used_in_tests\",\"path\":\"/tests/README.md:16:0\",\"branch\":\"refs/heads/main\"}],\"resource_identifier\":\"827efc6d56897b048c772eb4087f854f46256132\",\"status\":\"denied\",\"requester_comment\":\"Test token used in the readme as an example\",\"expires_at\":\"2024-07-08T08:43:03Z\",\"created_at\":\"2024-07-01T08:43:03Z\",\"responses\":[{\"id\":42,\"reviewer\":{\"actor_id\":4,\"actor_name\":\"octocat\"},\"status\":\"denied\",\"created_at\":\"2024-07-02T08:43:04Z\"}],\"url\":\"https://api.github.com/repos/octo-org/smile/bypass-requests/secret-scanning/1\",\"html_url\":\"https://github.com/octo-org/smile/exemptions/1\"},{\"id\":12,\"number\":24,\"repository\":{\"id\":1,\"name\":\"smile\",\"full_name\":\"octo-org/smile\"},\"organization\":{\"id\":1,\"name\":\"octo-org\"},\"requester\":{\"actor_id\":12,\"actor_name\":\"monalisa\"},\"request_type\":\"secret_scanning\",\"data\":[{\"secret_type\":\"adafruit_io_key\",\"bypass_reason\":\"fix_later\",\"path\":\"README.md:17:0\",\"branch\":\"refs/heads/my-branch\"}],\"resource_identifier\":\"827efc6d56897b048c772eb4087f854f46255555\",\"status\":\"denied\",\"requester_comment\":\"Token is already revoked, I'll remove it later\",\"expires_at\":\"2024-07-08T07:43:03Z\",\"created_at\":\"2024-07-01T07:43:03Z\",\"responses\":[{\"id\":42,\"reviewer\":{\"actor_id\":4,\"actor_name\":\"octocat\"},\"status\":\"denied\",\"created_at\":\"2024-07-02T08:43:04Z\"}],\"url\":\"https://api.github.com/repos/octo-org/smile/bypass-requests/secret-scanning/2\",\"html_url\":\"https://github.com/octo-org/smile/exemptions/2\"}]"
+          }
+        ]
+      },
+      {
+        "code": 403,
+        "examples": null
+      },
+      {
+        "code": 404,
+        "examples": null
+      },
+      {
+        "code": 500,
         "examples": null
       }
     ],
@@ -11879,6 +13968,108 @@
       },
       {
         "code": 422,
+        "examples": null
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "secretScanning",
+    "id": "reviewBypassRequest",
+    "method": "PATCH",
+    "url": "/repos/{owner}/{repo}/bypass-requests/secret-scanning/{bypass_request_number}",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/secret-scanning/delegated-bypass#review-a-bypass-request-for-secret-scanning",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "owner",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "repo",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "bypass_request_number",
+        "in": "PATH",
+        "type": "integer",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "status",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": [
+          "approve",
+          "reject"
+        ],
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "message",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "{\"bypass_review_id\":1}"
+          }
+        ]
+      },
+      {
+        "code": 403,
+        "examples": null
+      },
+      {
+        "code": 404,
+        "examples": null
+      },
+      {
+        "code": 422,
+        "examples": null
+      },
+      {
+        "code": 500,
         "examples": null
       }
     ],
