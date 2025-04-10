@@ -139,10 +139,6 @@ const Endpoints: EndpointsDefaultsAndDecorations = {
     listCopilotSeatsForEnterprise: [
       "GET /enterprises/:enterprise/copilot/billing/seats",
     ],
-    usageMetricsForEnterprise: ["GET /enterprises/:enterprise/copilot/usage"],
-    usageMetricsForEnterpriseTeam: [
-      "GET /enterprises/:enterprise/team/:team_slug/copilot/usage",
-    ],
   },
   enterpriseAdmin: {
     addCustomLabelsToSelfHostedRunnerForEnterprise: [
