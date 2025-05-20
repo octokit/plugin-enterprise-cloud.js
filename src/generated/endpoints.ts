@@ -136,6 +136,9 @@ const Endpoints: EndpointsDefaultsAndDecorations = {
     copilotMetricsForEnterpriseTeam: [
       "GET /enterprises/:enterprise/team/:team_slug/copilot/metrics",
     ],
+    getCopilotSeatDetailsForEnterpriseUser: [
+      "GET /enterprises/:enterprise/members/:username/copilot",
+    ],
     listCopilotSeatsForEnterprise: [
       "GET /enterprises/:enterprise/copilot/billing/seats",
     ],
@@ -452,6 +455,9 @@ const Endpoints: EndpointsDefaultsAndDecorations = {
     getBypassRequest: [
       "GET /repos/:owner/:repo/bypass-requests/secret-scanning/:bypass_request_number",
     ],
+    getDismissalRequest: [
+      "GET /repos/:owner/:repo/dismissal-requests/secret-scanning/:alert_number",
+    ],
     getSecurityAnalysisSettingsForEnterprise: [
       "GET /enterprises/:enterprise/code_security_and_analysis",
       {},
@@ -461,8 +467,14 @@ const Endpoints: EndpointsDefaultsAndDecorations = {
       },
     ],
     listOrgBypassRequests: ["GET /orgs/:org/bypass-requests/secret-scanning"],
+    listOrgDismissalRequests: [
+      "GET /orgs/:org/dismissal-requests/secret-scanning",
+    ],
     listRepoBypassRequests: [
       "GET /repos/:owner/:repo/bypass-requests/secret-scanning",
+    ],
+    listRepoDismissalRequests: [
+      "GET /repos/:owner/:repo/dismissal-requests/secret-scanning",
     ],
     patchSecurityAnalysisSettingsForEnterprise: [
       "PATCH /enterprises/:enterprise/code_security_and_analysis",
@@ -482,6 +494,9 @@ const Endpoints: EndpointsDefaultsAndDecorations = {
     ],
     reviewBypassRequest: [
       "PATCH /repos/:owner/:repo/bypass-requests/secret-scanning/:bypass_request_number",
+    ],
+    reviewDismissalRequest: [
+      "PATCH /repos/:owner/:repo/dismissal-requests/secret-scanning/:alert_number",
     ],
   },
   teams: {
