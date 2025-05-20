@@ -1971,7 +1971,7 @@
         "name": "users",
         "in": "BODY",
         "type": "string[]",
-        "required": true,
+        "required": false,
         "enum": null,
         "allowNull": false,
         "mapToData": null,
@@ -2477,7 +2477,7 @@
         "name": "users",
         "in": "BODY",
         "type": "string[]",
-        "required": true,
+        "required": false,
         "enum": null,
         "allowNull": false,
         "mapToData": null,
@@ -2870,6 +2870,73 @@
             "data": "[{\"date\":\"2024-06-24\",\"total_active_users\":24,\"total_engaged_users\":20,\"copilot_ide_code_completions\":{\"total_engaged_users\":20,\"languages\":[{\"name\":\"python\",\"total_engaged_users\":10},{\"name\":\"ruby\",\"total_engaged_users\":10}],\"editors\":[{\"name\":\"vscode\",\"total_engaged_users\":13,\"models\":[{\"name\":\"default\",\"is_custom_model\":false,\"custom_model_training_date\":null,\"total_engaged_users\":13,\"languages\":[{\"name\":\"python\",\"total_engaged_users\":6,\"total_code_suggestions\":249,\"total_code_acceptances\":123,\"total_code_lines_suggested\":225,\"total_code_lines_accepted\":135},{\"name\":\"ruby\",\"total_engaged_users\":7,\"total_code_suggestions\":496,\"total_code_acceptances\":253,\"total_code_lines_suggested\":520,\"total_code_lines_accepted\":270}]}]},{\"name\":\"neovim\",\"total_engaged_users\":7,\"models\":[{\"name\":\"a-custom-model\",\"is_custom_model\":true,\"custom_model_training_date\":\"2024-02-01\",\"languages\":[{\"name\":\"typescript\",\"total_engaged_users\":3,\"total_code_suggestions\":112,\"total_code_acceptances\":56,\"total_code_lines_suggested\":143,\"total_code_lines_accepted\":61},{\"name\":\"go\",\"total_engaged_users\":4,\"total_code_suggestions\":132,\"total_code_acceptances\":67,\"total_code_lines_suggested\":154,\"total_code_lines_accepted\":72}]}]}]},\"copilot_ide_chat\":{\"total_engaged_users\":13,\"editors\":[{\"name\":\"vscode\",\"total_engaged_users\":13,\"models\":[{\"name\":\"default\",\"is_custom_model\":false,\"custom_model_training_date\":null,\"total_engaged_users\":12,\"total_chats\":45,\"total_chat_insertion_events\":12,\"total_chat_copy_events\":16},{\"name\":\"a-custom-model\",\"is_custom_model\":true,\"custom_model_training_date\":\"2024-02-01\",\"total_engaged_users\":1,\"total_chats\":10,\"total_chat_insertion_events\":11,\"total_chat_copy_events\":3}]}]},\"copilot_dotcom_chat\":{\"total_engaged_users\":14,\"models\":[{\"name\":\"default\",\"is_custom_model\":false,\"custom_model_training_date\":null,\"total_engaged_users\":14,\"total_chats\":38}]},\"copilot_dotcom_pull_requests\":{\"total_engaged_users\":12,\"repositories\":[{\"name\":\"demo/repo1\",\"total_engaged_users\":8,\"models\":[{\"name\":\"default\",\"is_custom_model\":false,\"custom_model_training_date\":null,\"total_pr_summaries_created\":6,\"total_engaged_users\":8}]},{\"name\":\"demo/repo2\",\"total_engaged_users\":4,\"models\":[{\"name\":\"a-custom-model\",\"is_custom_model\":true,\"custom_model_training_date\":\"2024-02-01\",\"total_pr_summaries_created\":10,\"total_engaged_users\":4}]}]}}]"
           }
         ]
+      },
+      {
+        "code": 403,
+        "examples": null
+      },
+      {
+        "code": 404,
+        "examples": null
+      },
+      {
+        "code": 422,
+        "examples": null
+      },
+      {
+        "code": 500,
+        "examples": null
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "copilot",
+    "id": "getCopilotSeatDetailsForEnterpriseUser",
+    "method": "GET",
+    "url": "/enterprises/{enterprise}/members/{username}/copilot",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/copilot/copilot-user-management#get-copilot-seat-assignment-details-for-an-enterprise-user",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "enterprise",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "username",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "{\"total_seats\":2,\"seats\":[{\"created_at\":\"2021-08-03T18:00:00-06:00\",\"updated_at\":\"2021-09-23T15:00:00-06:00\",\"pending_cancellation_date\":null,\"last_activity_at\":\"2021-10-14T00:53:32-06:00\",\"last_activity_editor\":\"vscode/1.77.3/copilot/1.86.82\",\"plan_type\":\"business\",\"assignee\":{\"login\":\"octocat\",\"id\":1,\"node_id\":\"MDQ6VXNlcjE=\",\"avatar_url\":\"https://github.com/images/error/octocat_happy.gif\",\"gravatar_id\":\"\",\"url\":\"https://api.github.com/users/octocat\",\"html_url\":\"https://github.com/octocat\",\"followers_url\":\"https://api.github.com/users/octocat/followers\",\"following_url\":\"https://api.github.com/users/octocat/following{/other_user}\",\"gists_url\":\"https://api.github.com/users/octocat/gists{/gist_id}\",\"starred_url\":\"https://api.github.com/users/octocat/starred{/owner}{/repo}\",\"subscriptions_url\":\"https://api.github.com/users/octocat/subscriptions\",\"organizations_url\":\"https://api.github.com/users/octocat/orgs\",\"repos_url\":\"https://api.github.com/users/octocat/repos\",\"events_url\":\"https://api.github.com/users/octocat/events{/privacy}\",\"received_events_url\":\"https://api.github.com/users/octocat/received_events\",\"type\":\"User\",\"site_admin\":false},\"assigning_team\":{\"id\":1,\"node_id\":\"MDQ6VGVhbTE=\",\"url\":\"https://api.github.com/teams/1\",\"html_url\":\"https://github.com/orgs/github/teams/justice-league\",\"name\":\"Justice League\",\"slug\":\"justice-league\",\"description\":\"A great team.\",\"privacy\":\"closed\",\"notification_setting\":\"notifications_enabled\",\"permission\":\"admin\",\"members_url\":\"https://api.github.com/teams/1/members{/member}\",\"repositories_url\":\"https://api.github.com/teams/1/repos\",\"parent\":null}},{\"created_at\":\"2021-09-23T18:00:00-06:00\",\"updated_at\":\"2021-09-23T15:00:00-06:00\",\"pending_cancellation_date\":\"2021-11-01\",\"last_activity_at\":\"2021-10-13T00:53:32-06:00\",\"last_activity_editor\":\"vscode/1.77.3/copilot/1.86.82\",\"assignee\":{\"login\":\"octokitten\",\"id\":1,\"node_id\":\"MDQ76VNlcjE=\",\"avatar_url\":\"https://github.com/images/error/octokitten_happy.gif\",\"gravatar_id\":\"\",\"url\":\"https://api.github.com/users/octokitten\",\"html_url\":\"https://github.com/octokitten\",\"followers_url\":\"https://api.github.com/users/octokitten/followers\",\"following_url\":\"https://api.github.com/users/octokitten/following{/other_user}\",\"gists_url\":\"https://api.github.com/users/octokitten/gists{/gist_id}\",\"starred_url\":\"https://api.github.com/users/octokitten/starred{/owner}{/repo}\",\"subscriptions_url\":\"https://api.github.com/users/octokitten/subscriptions\",\"organizations_url\":\"https://api.github.com/users/octokitten/orgs\",\"repos_url\":\"https://api.github.com/users/octokitten/repos\",\"events_url\":\"https://api.github.com/users/octokitten/events{/privacy}\",\"received_events_url\":\"https://api.github.com/users/octokitten/received_events\",\"type\":\"User\",\"site_admin\":false}}]}"
+          }
+        ]
+      },
+      {
+        "code": 401,
+        "examples": null
       },
       {
         "code": 403,
@@ -4107,6 +4174,10 @@
     "responses": [
       {
         "code": 204,
+        "examples": null
+      },
+      {
+        "code": 422,
         "examples": null
       }
     ],
@@ -5725,6 +5796,7 @@
         "enum": [
           "completed",
           "cancelled",
+          "approved",
           "expired",
           "deleted",
           "denied",
@@ -9703,6 +9775,7 @@
         "enum": [
           "completed",
           "cancelled",
+          "approved",
           "expired",
           "deleted",
           "denied",
@@ -11268,6 +11341,7 @@
         "enum": [
           "completed",
           "cancelled",
+          "approved",
           "expired",
           "deleted",
           "denied",
@@ -13021,6 +13095,77 @@
   },
   {
     "scope": "secretScanning",
+    "id": "getDismissalRequest",
+    "method": "GET",
+    "url": "/repos/{owner}/{repo}/dismissal-requests/secret-scanning/{alert_number}",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/secret-scanning/alert-dismissal-requests#get-an-alert-dismissal-request-for-secret-scanning",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "owner",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "repo",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "alert_number",
+        "in": "PATH",
+        "type": "integer",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "{\"id\":21,\"number\":42,\"repository\":{\"id\":1,\"name\":\"smile\",\"full_name\":\"octo-org/smile\"},\"organization\":{\"id\":1,\"name\":\"octo-org\"},\"requester\":{\"actor_id\":12,\"actor_name\":\"monalisa\"},\"request_type\":\"secret_scanning_closure\",\"data\":[{\"secret_type\":\"adafruit_io_key\",\"alert_number\":17,\"reason\":\"false_positive\"}],\"resource_identifier\":17,\"status\":\"denied\",\"requester_comment\":\"Test token used in the readme as an example\",\"expires_at\":\"2024-07-08T08:43:03Z\",\"created_at\":\"2024-07-01T08:43:03Z\",\"responses\":[{\"id\":42,\"reviewer\":{\"actor_id\":4,\"actor_name\":\"octocat\"},\"status\":\"denied\",\"created_at\":\"2024-07-02T08:43:04Z\"}],\"url\":\"https://api.github.com/repos/octo-org/smile/dismissal-requests/secret-scanning/21\",\"html_url\":\"https://github.com/octo-org/smile/security/secret-scanning/17\"}"
+          }
+        ]
+      },
+      {
+        "code": 403,
+        "examples": null
+      },
+      {
+        "code": 404,
+        "examples": null
+      },
+      {
+        "code": 500,
+        "examples": null
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "secretScanning",
     "id": "getSecurityAnalysisSettingsForEnterprise",
     "method": "GET",
     "url": "/enterprises/{enterprise}/code_security_and_analysis",
@@ -13141,6 +13286,7 @@
         "enum": [
           "completed",
           "cancelled",
+          "approved",
           "expired",
           "deleted",
           "denied",
@@ -13186,6 +13332,150 @@
             "data": "[{\"id\":21,\"number\":42,\"repository\":{\"id\":1,\"name\":\"smile\",\"full_name\":\"octo-org/smile\"},\"organization\":{\"id\":1,\"name\":\"octo-org\"},\"requester\":{\"actor_id\":12,\"actor_name\":\"monalisa\"},\"request_type\":\"secret_scanning\",\"data\":[{\"secret_type\":\"adafruit_io_key\",\"bypass_reason\":\"used_in_tests\",\"path\":\"/tests/README.md:16:0\",\"branch\":\"refs/heads/main\"}],\"resource_identifier\":\"827efc6d56897b048c772eb4087f854f46256132\",\"status\":\"denied\",\"requester_comment\":\"Test token used in the readme as an example\",\"expires_at\":\"2024-07-08T08:43:03Z\",\"created_at\":\"2024-07-01T08:43:03Z\",\"responses\":[{\"id\":42,\"reviewer\":{\"actor_id\":4,\"actor_name\":\"octocat\"},\"status\":\"denied\",\"created_at\":\"2024-07-02T08:43:04Z\"}],\"url\":\"https://api.github.com/repos/octo-org/smile/bypass-requests/secret-scanning/1\",\"html_url\":\"https://github.com/octo-org/smile/exemptions/1\"},{\"id\":12,\"number\":24,\"repository\":{\"id\":1,\"name\":\"smile\",\"full_name\":\"octo-org/smile\"},\"organization\":{\"id\":1,\"name\":\"octo-org\"},\"requester\":{\"actor_id\":12,\"actor_name\":\"monalisa\"},\"request_type\":\"secret_scanning\",\"data\":[{\"secret_type\":\"adafruit_io_key\",\"bypass_reason\":\"fix_later\",\"path\":\"README.md:17:0\",\"branch\":\"refs/heads/my-branch\"}],\"resource_identifier\":\"827efc6d56897b048c772eb4087f854f46255555\",\"status\":\"denied\",\"requester_comment\":\"Token is already revoked, I'll remove it later\",\"expires_at\":\"2024-07-08T07:43:03Z\",\"created_at\":\"2024-07-01T07:43:03Z\",\"responses\":[{\"id\":42,\"reviewer\":{\"actor_id\":4,\"actor_name\":\"octocat\"},\"status\":\"denied\",\"created_at\":\"2024-07-02T08:43:04Z\"}],\"url\":\"https://api.github.com/repos/octo-org/smile/bypass-requests/secret-scanning/2\",\"html_url\":\"https://github.com/octo-org/smile/exemptions/2\"}]"
           }
         ]
+      },
+      {
+        "code": 404,
+        "examples": null
+      },
+      {
+        "code": 500,
+        "examples": null
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "secretScanning",
+    "id": "listOrgDismissalRequests",
+    "method": "GET",
+    "url": "/orgs/{org}/dismissal-requests/secret-scanning",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/secret-scanning/alert-dismissal-requests#list-alert-dismissal-requests-for-secret-scanning-for-an-org",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "org",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "repository_name",
+        "in": "QUERY",
+        "type": "string",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "reviewer",
+        "in": "QUERY",
+        "type": "string",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "requester",
+        "in": "QUERY",
+        "type": "string",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "time_period",
+        "in": "QUERY",
+        "type": "string",
+        "required": false,
+        "enum": [
+          "hour",
+          "day",
+          "week",
+          "month"
+        ],
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "request_status",
+        "in": "QUERY",
+        "type": "string",
+        "required": false,
+        "enum": [
+          "completed",
+          "cancelled",
+          "approved",
+          "expired",
+          "denied",
+          "open",
+          "all"
+        ],
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "per_page",
+        "in": "QUERY",
+        "type": "integer",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "page",
+        "in": "QUERY",
+        "type": "integer",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "[{\"id\":21,\"number\":42,\"repository\":{\"id\":1,\"name\":\"smile\",\"full_name\":\"octo-org/smile\"},\"organization\":{\"id\":1,\"name\":\"octo-org\"},\"requester\":{\"actor_id\":12,\"actor_name\":\"monalisa\"},\"request_type\":\"secret_scanning_closure\",\"data\":[{\"secret_type\":\"adafruit_io_key\",\"alert_number\":17,\"reason\":\"false_positive\"}],\"resource_identifier\":17,\"status\":\"denied\",\"requester_comment\":\"Test token used in the readme as an example\",\"expires_at\":\"2024-07-08T08:43:03Z\",\"created_at\":\"2024-07-01T08:43:03Z\",\"responses\":[{\"id\":42,\"reviewer\":{\"actor_id\":4,\"actor_name\":\"octocat\"},\"status\":\"denied\",\"created_at\":\"2024-07-02T08:43:04Z\"}],\"url\":\"https://api.github.com/repos/octo-org/smile/dismissal-requests/secret-scanning/21\",\"html_url\":\"https://github.com/octo-org/smile/security/secret-scanning/17\"},{\"id\":22,\"number\":43,\"repository\":{\"id\":1,\"name\":\"smile\",\"full_name\":\"octo-org/smile\"},\"organization\":{\"id\":1,\"name\":\"octo-org\"},\"requester\":{\"actor_id\":12,\"actor_name\":\"monalisa\"},\"request_type\":\"secret_scanning_closure\",\"data\":[{\"secret_type\":\"adafruit_io_key\",\"alert_number\":19}],\"resource_identifier\":19,\"status\":\"denied\",\"requester_comment\":\"Test token used in the readme as an example\",\"expires_at\":\"2024-07-08T08:43:03Z\",\"created_at\":\"2024-07-01T08:43:03Z\",\"responses\":[{\"id\":46,\"reviewer\":{\"actor_id\":4,\"actor_name\":\"octocat\"},\"status\":\"approved\",\"created_at\":\"2024-07-02T08:43:04Z\"}],\"url\":\"https://api.github.com/repos/octo-org/smile/dismissal-requests/secret-scanning/22\",\"html_url\":\"https://github.com/octo-org/smile/security/secret-scanning/19\"}]"
+          }
+        ]
+      },
+      {
+        "code": 403,
+        "examples": null
       },
       {
         "code": 404,
@@ -13281,6 +13571,7 @@
         "enum": [
           "completed",
           "cancelled",
+          "approved",
           "expired",
           "deleted",
           "denied",
@@ -13324,6 +13615,150 @@
         "examples": [
           {
             "data": "[{\"id\":21,\"number\":42,\"repository\":{\"id\":1,\"name\":\"smile\",\"full_name\":\"octo-org/smile\"},\"organization\":{\"id\":1,\"name\":\"octo-org\"},\"requester\":{\"actor_id\":12,\"actor_name\":\"monalisa\"},\"request_type\":\"secret_scanning\",\"data\":[{\"secret_type\":\"adafruit_io_key\",\"bypass_reason\":\"used_in_tests\",\"path\":\"/tests/README.md:16:0\",\"branch\":\"refs/heads/main\"}],\"resource_identifier\":\"827efc6d56897b048c772eb4087f854f46256132\",\"status\":\"denied\",\"requester_comment\":\"Test token used in the readme as an example\",\"expires_at\":\"2024-07-08T08:43:03Z\",\"created_at\":\"2024-07-01T08:43:03Z\",\"responses\":[{\"id\":42,\"reviewer\":{\"actor_id\":4,\"actor_name\":\"octocat\"},\"status\":\"denied\",\"created_at\":\"2024-07-02T08:43:04Z\"}],\"url\":\"https://api.github.com/repos/octo-org/smile/bypass-requests/secret-scanning/1\",\"html_url\":\"https://github.com/octo-org/smile/exemptions/1\"},{\"id\":12,\"number\":24,\"repository\":{\"id\":1,\"name\":\"smile\",\"full_name\":\"octo-org/smile\"},\"organization\":{\"id\":1,\"name\":\"octo-org\"},\"requester\":{\"actor_id\":12,\"actor_name\":\"monalisa\"},\"request_type\":\"secret_scanning\",\"data\":[{\"secret_type\":\"adafruit_io_key\",\"bypass_reason\":\"fix_later\",\"path\":\"README.md:17:0\",\"branch\":\"refs/heads/my-branch\"}],\"resource_identifier\":\"827efc6d56897b048c772eb4087f854f46255555\",\"status\":\"denied\",\"requester_comment\":\"Token is already revoked, I'll remove it later\",\"expires_at\":\"2024-07-08T07:43:03Z\",\"created_at\":\"2024-07-01T07:43:03Z\",\"responses\":[{\"id\":42,\"reviewer\":{\"actor_id\":4,\"actor_name\":\"octocat\"},\"status\":\"denied\",\"created_at\":\"2024-07-02T08:43:04Z\"}],\"url\":\"https://api.github.com/repos/octo-org/smile/bypass-requests/secret-scanning/2\",\"html_url\":\"https://github.com/octo-org/smile/exemptions/2\"}]"
+          }
+        ]
+      },
+      {
+        "code": 403,
+        "examples": null
+      },
+      {
+        "code": 404,
+        "examples": null
+      },
+      {
+        "code": 500,
+        "examples": null
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "secretScanning",
+    "id": "listRepoDismissalRequests",
+    "method": "GET",
+    "url": "/repos/{owner}/{repo}/dismissal-requests/secret-scanning",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/secret-scanning/alert-dismissal-requests#list-alert-dismissal-requests-for-secret-scanning-for-a-repository",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "owner",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "repo",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "reviewer",
+        "in": "QUERY",
+        "type": "string",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "requester",
+        "in": "QUERY",
+        "type": "string",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "time_period",
+        "in": "QUERY",
+        "type": "string",
+        "required": false,
+        "enum": [
+          "hour",
+          "day",
+          "week",
+          "month"
+        ],
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "request_status",
+        "in": "QUERY",
+        "type": "string",
+        "required": false,
+        "enum": [
+          "completed",
+          "cancelled",
+          "approved",
+          "expired",
+          "denied",
+          "open",
+          "all"
+        ],
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "per_page",
+        "in": "QUERY",
+        "type": "integer",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "page",
+        "in": "QUERY",
+        "type": "integer",
+        "required": false,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "[{\"id\":21,\"number\":42,\"repository\":{\"id\":1,\"name\":\"smile\",\"full_name\":\"octo-org/smile\"},\"organization\":{\"id\":1,\"name\":\"octo-org\"},\"requester\":{\"actor_id\":12,\"actor_name\":\"monalisa\"},\"request_type\":\"secret_scanning_closure\",\"data\":[{\"secret_type\":\"adafruit_io_key\",\"alert_number\":17,\"reason\":\"false_positive\"}],\"resource_identifier\":17,\"status\":\"denied\",\"requester_comment\":\"Test token used in the readme as an example\",\"expires_at\":\"2024-07-08T08:43:03Z\",\"created_at\":\"2024-07-01T08:43:03Z\",\"responses\":[{\"id\":42,\"reviewer\":{\"actor_id\":4,\"actor_name\":\"octocat\"},\"status\":\"denied\",\"created_at\":\"2024-07-02T08:43:04Z\"}],\"url\":\"https://api.github.com/repos/octo-org/smile/dismissal-requests/secret-scanning/21\",\"html_url\":\"https://github.com/octo-org/smile/security/secret-scanning/17\"},{\"id\":22,\"number\":43,\"repository\":{\"id\":1,\"name\":\"smile\",\"full_name\":\"octo-org/smile\"},\"organization\":{\"id\":1,\"name\":\"octo-org\"},\"requester\":{\"actor_id\":12,\"actor_name\":\"monalisa\"},\"request_type\":\"secret_scanning_closure\",\"data\":[{\"secret_type\":\"adafruit_io_key\",\"alert_number\":19}],\"resource_identifier\":19,\"status\":\"denied\",\"requester_comment\":\"Test token used in the readme as an example\",\"expires_at\":\"2024-07-08T08:43:03Z\",\"created_at\":\"2024-07-01T08:43:03Z\",\"responses\":[{\"id\":46,\"reviewer\":{\"actor_id\":4,\"actor_name\":\"octocat\"},\"status\":\"approved\",\"created_at\":\"2024-07-02T08:43:04Z\"}],\"url\":\"https://api.github.com/repos/octo-org/smile/dismissal-requests/secret-scanning/22\",\"html_url\":\"https://github.com/octo-org/smile/security/secret-scanning/19\"}]"
           }
         ]
       },
@@ -13618,6 +14053,108 @@
         "examples": [
           {
             "data": "{\"bypass_review_id\":1}"
+          }
+        ]
+      },
+      {
+        "code": 403,
+        "examples": null
+      },
+      {
+        "code": 404,
+        "examples": null
+      },
+      {
+        "code": 422,
+        "examples": null
+      },
+      {
+        "code": 500,
+        "examples": null
+      }
+    ],
+    "renamed": null
+  },
+  {
+    "scope": "secretScanning",
+    "id": "reviewDismissalRequest",
+    "method": "PATCH",
+    "url": "/repos/{owner}/{repo}/dismissal-requests/secret-scanning/{alert_number}",
+    "isDeprecated": false,
+    "documentationUrl": "https://docs.github.com/enterprise-cloud@latest//rest/secret-scanning/alert-dismissal-requests#review-an-alert-dismissal-request-for-secret-scanning",
+    "previews": [],
+    "headers": [],
+    "parameters": [
+      {
+        "name": "owner",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "repo",
+        "in": "PATH",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "alert_number",
+        "in": "PATH",
+        "type": "integer",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "status",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": [
+          "approve",
+          "deny"
+        ],
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      },
+      {
+        "name": "message",
+        "in": "BODY",
+        "type": "string",
+        "required": true,
+        "enum": null,
+        "allowNull": false,
+        "mapToData": null,
+        "validation": null,
+        "alias": null,
+        "deprecated": null
+      }
+    ],
+    "responses": [
+      {
+        "code": 200,
+        "examples": [
+          {
+            "data": "{\"dismissal_review_id\":1}"
           }
         ]
       },
