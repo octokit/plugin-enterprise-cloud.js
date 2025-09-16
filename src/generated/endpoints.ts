@@ -99,8 +99,17 @@ const Endpoints: EndpointsDefaultsAndDecorations = {
     addResourceToCostCenter: [
       "POST /enterprises/:enterprise/settings/billing/cost-centers/:cost_center_id/resource",
     ],
+    createCostCenter: [
+      "POST /enterprises/:enterprise/settings/billing/cost-centers",
+    ],
+    deleteCostCenter: [
+      "DELETE /enterprises/:enterprise/settings/billing/cost-centers/:cost_center_id",
+    ],
     getAllCostCenters: [
       "GET /enterprises/:enterprise/settings/billing/cost-centers",
+    ],
+    getCostCenter: [
+      "GET /enterprises/:enterprise/settings/billing/cost-centers/:cost_center_id",
     ],
     getGithubActionsBillingGhe: [
       "GET /enterprises/:enterprise/settings/billing/actions",
@@ -123,13 +132,40 @@ const Endpoints: EndpointsDefaultsAndDecorations = {
     removeResourceFromCostCenter: [
       "DELETE /enterprises/:enterprise/settings/billing/cost-centers/:cost_center_id/resource",
     ],
+    updateCostCenter: [
+      "PATCH /enterprises/:enterprise/settings/billing/cost-centers/:cost_center_id",
+    ],
   },
   codeScanning: {
+    getDismissalRequestForRepo: [
+      "GET /repos/:owner/:repo/dismissal-requests/code-scanning/:alert_number",
+    ],
     listAlertsForEnterprise: [
       "GET /enterprises/:enterprise/code-scanning/alerts",
     ],
+    listDismissalRequestsForRepo: [
+      "GET /repos/:owner/:repo/dismissal-requests/code-scanning",
+    ],
+    listOrgDismissalRequests: [
+      "GET /orgs/:org/dismissal-requests/code-scanning",
+    ],
+    reviewDismissalRequestForRepo: [
+      "PATCH /repos/:owner/:repo/dismissal-requests/code-scanning/:alert_number",
+    ],
   },
   copilot: {
+    addCopilotSeatsForEnterpriseTeams: [
+      "POST /enterprises/:enterprise/copilot/billing/selected_enterprise_teams",
+    ],
+    addCopilotSeatsForEnterpriseUsers: [
+      "POST /enterprises/:enterprise/copilot/billing/selected_users",
+    ],
+    cancelCopilotSeatsForEnterpriseTeams: [
+      "DELETE /enterprises/:enterprise/copilot/billing/selected_enterprise_teams",
+    ],
+    cancelCopilotSeatsForEnterpriseUsers: [
+      "DELETE /enterprises/:enterprise/copilot/billing/selected_users",
+    ],
     copilotMetricsForEnterprise: [
       "GET /enterprises/:enterprise/copilot/metrics",
     ],
@@ -154,12 +190,6 @@ const Endpoints: EndpointsDefaultsAndDecorations = {
       "PUT /enterprises/:enterprise/actions/runner-groups/:runner_group_id/runners/:runner_id",
     ],
     createAuditLogStream: ["POST /enterprises/:enterprise/audit-log/streams"],
-    createOrUpdateEnterpriseCustomProperties: [
-      "PATCH /enterprises/:enterprise/properties/schema",
-    ],
-    createOrUpdateEnterpriseCustomProperty: [
-      "PUT /enterprises/:enterprise/properties/schema/:custom_property_name",
-    ],
     createRegistrationTokenForEnterprise: [
       "POST /enterprises/:enterprise/actions/runners/registration-token",
     ],
@@ -168,6 +198,24 @@ const Endpoints: EndpointsDefaultsAndDecorations = {
     ],
     createSelfHostedRunnerGroupForEnterprise: [
       "POST /enterprises/:enterprise/actions/runner-groups",
+    ],
+    customPropertiesForReposCreateOrUpdateEnterpriseDefinition: [
+      "PUT /enterprises/:enterprise/properties/schema/:custom_property_name",
+    ],
+    customPropertiesForReposCreateOrUpdateEnterpriseDefinitions: [
+      "PATCH /enterprises/:enterprise/properties/schema",
+    ],
+    customPropertiesForReposDeleteEnterpriseDefinition: [
+      "DELETE /enterprises/:enterprise/properties/schema/:custom_property_name",
+    ],
+    customPropertiesForReposGetEnterpriseDefinition: [
+      "GET /enterprises/:enterprise/properties/schema/:custom_property_name",
+    ],
+    customPropertiesForReposGetEnterpriseDefinitions: [
+      "GET /enterprises/:enterprise/properties/schema",
+    ],
+    customPropertiesForReposPromoteDefinitionToEnterprise: [
+      "PUT /enterprises/:enterprise/properties/schema/organizations/:org/:custom_property_name/promote",
     ],
     deleteAuditLogStream: [
       "DELETE /enterprises/:enterprise/audit-log/streams/:stream_id",
@@ -193,21 +241,21 @@ const Endpoints: EndpointsDefaultsAndDecorations = {
     getAllowedActionsEnterprise: [
       "GET /enterprises/:enterprise/actions/permissions/selected-actions",
     ],
+    getArtifactAndLogRetentionSettings: [
+      "GET /enterprises/:enterprise/actions/permissions/artifact-and-log-retention",
+    ],
     getAuditLog: ["GET /enterprises/:enterprise/audit-log"],
     getAuditLogStreamKey: ["GET /enterprises/:enterprise/audit-log/stream-key"],
     getAuditLogStreams: ["GET /enterprises/:enterprise/audit-log/streams"],
     getConsumedLicenses: ["GET /enterprises/:enterprise/consumed-licenses"],
-    getEnterpriseCustomProperties: [
-      "GET /enterprises/:enterprise/properties/schema",
-    ],
-    getEnterpriseCustomProperty: [
-      "GET /enterprises/:enterprise/properties/schema/:custom_property_name",
-    ],
     getEnterpriseRulesetHistory: [
       "GET /enterprises/:enterprise/rulesets/:ruleset_id/history",
     ],
     getEnterpriseRulesetVersion: [
       "GET /enterprises/:enterprise/rulesets/:ruleset_id/history/:version_id",
+    ],
+    getForkPrContributorApprovalPermissions: [
+      "GET /enterprises/:enterprise/actions/permissions/fork-pr-contributor-approval",
     ],
     getGithubActionsPermissionsEnterprise: [
       "GET /enterprises/:enterprise/actions/permissions",
@@ -215,6 +263,9 @@ const Endpoints: EndpointsDefaultsAndDecorations = {
     getLicenseSyncStatus: ["GET /enterprises/:enterprise/license-sync-status"],
     getOneAuditLogStream: [
       "GET /enterprises/:enterprise/audit-log/streams/:stream_id",
+    ],
+    getPrivateRepoForkPrWorkflowsSettings: [
+      "GET /enterprises/:enterprise/actions/permissions/fork-pr-workflows-private-repos",
     ],
     getProvisioningInformationForEnterpriseGroup: [
       "GET /scim/v2/enterprises/:enterprise/Groups/:scim_group_id",
@@ -227,6 +278,9 @@ const Endpoints: EndpointsDefaultsAndDecorations = {
     ],
     getSelfHostedRunnerGroupForEnterprise: [
       "GET /enterprises/:enterprise/actions/runner-groups/:runner_group_id",
+    ],
+    getSelfHostedRunnersPermissions: [
+      "GET /enterprises/:enterprise/actions/permissions/self-hosted-runners",
     ],
     getServerStatistics: [
       "GET /enterprise-installation/:enterprise_or_org/server-statistics",
@@ -261,9 +315,6 @@ const Endpoints: EndpointsDefaultsAndDecorations = {
     listSelfHostedRunnersInGroupForEnterprise: [
       "GET /enterprises/:enterprise/actions/runner-groups/:runner_group_id/runners",
     ],
-    promoteCustomPropertyToEnterprise: [
-      "PUT /enterprises/:enterprise/properties/schema/organizations/:org/:custom_property_name/promote",
-    ],
     provisionEnterpriseGroup: ["POST /scim/v2/enterprises/:enterprise/Groups"],
     provisionEnterpriseUser: ["POST /scim/v2/enterprises/:enterprise/Users"],
     removeAllCustomLabelsFromSelfHostedRunnerForEnterprise: [
@@ -271,9 +322,6 @@ const Endpoints: EndpointsDefaultsAndDecorations = {
     ],
     removeCustomLabelFromSelfHostedRunnerForEnterprise: [
       "DELETE /enterprises/:enterprise/actions/runners/:runner_id/labels/:name",
-    ],
-    removeEnterpriseCustomProperty: [
-      "DELETE /enterprises/:enterprise/properties/schema/:custom_property_name",
     ],
     removeOrgAccessToSelfHostedRunnerGroupInEnterprise: [
       "DELETE /enterprises/:enterprise/actions/runner-groups/:runner_group_id/organizations/:org_id",
@@ -284,8 +332,14 @@ const Endpoints: EndpointsDefaultsAndDecorations = {
     setAllowedActionsEnterprise: [
       "PUT /enterprises/:enterprise/actions/permissions/selected-actions",
     ],
+    setArtifactAndLogRetentionSettings: [
+      "PUT /enterprises/:enterprise/actions/permissions/artifact-and-log-retention",
+    ],
     setCustomLabelsForSelfHostedRunnerForEnterprise: [
       "PUT /enterprises/:enterprise/actions/runners/:runner_id/labels",
+    ],
+    setForkPrContributorApprovalPermissions: [
+      "PUT /enterprises/:enterprise/actions/permissions/fork-pr-contributor-approval",
     ],
     setGithubActionsPermissionsEnterprise: [
       "PUT /enterprises/:enterprise/actions/permissions",
@@ -299,11 +353,17 @@ const Endpoints: EndpointsDefaultsAndDecorations = {
     setOrgAccessToSelfHostedRunnerGroupInEnterprise: [
       "PUT /enterprises/:enterprise/actions/runner-groups/:runner_group_id/organizations",
     ],
+    setPrivateRepoForkPrWorkflowsSettings: [
+      "PUT /enterprises/:enterprise/actions/permissions/fork-pr-workflows-private-repos",
+    ],
     setSelectedOrganizationsEnabledGithubActionsEnterprise: [
       "PUT /enterprises/:enterprise/actions/permissions/organizations",
     ],
     setSelfHostedRunnersInGroupForEnterprise: [
       "PUT /enterprises/:enterprise/actions/runner-groups/:runner_group_id/runners",
+    ],
+    setSelfHostedRunnersPermissions: [
+      "PUT /enterprises/:enterprise/actions/permissions/self-hosted-runners",
     ],
     updateAttributeForEnterpriseGroup: [
       "PATCH /scim/v2/enterprises/:enterprise/Groups/:scim_group_id",
@@ -316,6 +376,35 @@ const Endpoints: EndpointsDefaultsAndDecorations = {
     ],
     updateSelfHostedRunnerGroupForEnterprise: [
       "PATCH /enterprises/:enterprise/actions/runner-groups/:runner_group_id",
+    ],
+  },
+  enterpriseApps: {
+    changeInstallationRepositoryAccessSelection: [
+      "PATCH /enterprises/:enterprise/apps/organizations/:org/installations/:installation_id/repositories",
+    ],
+    createInstallation: [
+      "POST /enterprises/:enterprise/apps/organizations/:org/installations",
+    ],
+    deleteInstallation: [
+      "DELETE /enterprises/:enterprise/apps/organizations/:org/installations/:installation_id",
+    ],
+    grantRepositoryAccessToInstallation: [
+      "PATCH /enterprises/:enterprise/apps/organizations/:org/installations/:installation_id/repositories/add",
+    ],
+    installableOrganizationAccessibleRepositories: [
+      "GET /enterprises/:enterprise/apps/installable_organizations/:org/accessible_repositories",
+    ],
+    installableOrganizations: [
+      "GET /enterprises/:enterprise/apps/installable_organizations",
+    ],
+    organizationInstallationRepositories: [
+      "GET /enterprises/:enterprise/apps/organizations/:org/installations/:installation_id/repositories",
+    ],
+    organizationInstallations: [
+      "GET /enterprises/:enterprise/apps/organizations/:org/installations",
+    ],
+    removeRepositoryAccessToInstallation: [
+      "PATCH /enterprises/:enterprise/apps/organizations/:org/installations/:installation_id/repositories/remove",
     ],
   },
   hostedCompute: {
@@ -414,6 +503,56 @@ const Endpoints: EndpointsDefaultsAndDecorations = {
       },
     ],
   },
+  projectsClassic: {
+    createCard: [
+      "POST /projects/columns/:column_id/cards",
+      {},
+      {
+        deprecated:
+          "octokit.scim.createCard() is deprecated, see https://docs.github.com/enterprise-cloud@latest//rest/projects-classic/cards#create-a-project-card",
+      },
+    ],
+    deleteCard: [
+      "DELETE /projects/columns/cards/:card_id",
+      {},
+      {
+        deprecated:
+          "octokit.scim.deleteCard() is deprecated, see https://docs.github.com/enterprise-cloud@latest//rest/projects-classic/cards#delete-a-project-card",
+      },
+    ],
+    getCard: [
+      "GET /projects/columns/cards/:card_id",
+      {},
+      {
+        deprecated:
+          "octokit.scim.getCard() is deprecated, see https://docs.github.com/enterprise-cloud@latest//rest/projects-classic/cards#get-a-project-card",
+      },
+    ],
+    listCards: [
+      "GET /projects/columns/:column_id/cards",
+      {},
+      {
+        deprecated:
+          "octokit.scim.listCards() is deprecated, see https://docs.github.com/enterprise-cloud@latest//rest/projects-classic/cards#list-project-cards",
+      },
+    ],
+    moveCard: [
+      "POST /projects/columns/cards/:card_id/moves",
+      {},
+      {
+        deprecated:
+          "octokit.scim.moveCard() is deprecated, see https://docs.github.com/enterprise-cloud@latest//rest/projects-classic/cards#move-a-project-card",
+      },
+    ],
+    updateCard: [
+      "PATCH /projects/columns/cards/:card_id",
+      {},
+      {
+        deprecated:
+          "octokit.scim.updateCard() is deprecated, see https://docs.github.com/enterprise-cloud@latest//rest/projects-classic/cards#update-an-existing-project-card",
+      },
+    ],
+  },
   repos: {
     createEnterpriseRuleset: ["POST /enterprises/:enterprise/rulesets"],
     deleteEnterpriseRuleset: [
@@ -466,6 +605,12 @@ const Endpoints: EndpointsDefaultsAndDecorations = {
           "octokit.scim.getSecurityAnalysisSettingsForEnterprise() is deprecated, see https://docs.github.com/enterprise-cloud@latest//rest/enterprise-admin/code-security-and-analysis#get-code-security-and-analysis-features-for-an-enterprise",
       },
     ],
+    listEnterpriseBypassRequests: [
+      "GET /enterprises/:enterprise/bypass-requests/secret-scanning",
+    ],
+    listEnterprisePatternConfigs: [
+      "GET /enterprises/:enterprise/secret-scanning/pattern-configurations",
+    ],
     listOrgBypassRequests: ["GET /orgs/:org/bypass-requests/secret-scanning"],
     listOrgDismissalRequests: [
       "GET /orgs/:org/dismissal-requests/secret-scanning",
@@ -497,6 +642,9 @@ const Endpoints: EndpointsDefaultsAndDecorations = {
     ],
     reviewDismissalRequest: [
       "PATCH /repos/:owner/:repo/dismissal-requests/secret-scanning/:alert_number",
+    ],
+    updateEnterprisePatternConfigs: [
+      "PATCH /enterprises/:enterprise/secret-scanning/pattern-configurations",
     ],
   },
   teams: {
