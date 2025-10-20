@@ -27,7 +27,7 @@ export function endpointsToMethods(
 
       const scopeMethods = newMethods[scope] as EndpointMethods;
 
-      /* v8 ignore next 9 - there are currently no renamed methods*/
+      /* v8 ignore start */
       if (decorations.renamed) {
         const [newScope, newMethodName] = decorations.renamed;
         scopeMethods[methodName] = deprecate(
@@ -38,7 +38,6 @@ export function endpointsToMethods(
         continue;
       }
 
-      /* v8 ignore next 7 - there are currently no deprecated methods*/
       if (decorations.deprecated) {
         scopeMethods[methodName] = deprecate(
           octokit,
@@ -47,6 +46,7 @@ export function endpointsToMethods(
         );
         continue;
       }
+      /* v8 ignore end */
 
       scopeMethods[methodName] = octokit.request.defaults(endpointDefaults);
     }
