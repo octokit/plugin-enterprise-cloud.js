@@ -1,3 +1,5 @@
+import { describe, expect, it } from "vitest";
+
 import { enterpriseCloud } from "../src";
 
 describe("Smoke test", () => {

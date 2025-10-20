@@ -1,9 +1,7 @@
 import { Octokit } from "@octokit/core";
 import type {
   EndpointOptions,
-  RequestParameters,
   RequestMethod,
-  Route,
   Url,
 } from "@octokit/types";
 import type { EndpointsDefaultsAndDecorations } from "./types.js";
@@ -69,11 +67,10 @@ function deprecate(
 ): typeof Octokit.prototype.request {
   const requestWithDefaults = octokit.request.defaults(defaults);
   function deprecated(
-    ...args: [Route, RequestParameters?] | [EndpointOptions]
+    ...args: Parameters<typeof requestWithDefaults>
   ) {
     octokit.log.warn(deprecation);
-    // @ts-ignore https://github.com/microsoft/TypeScript/issues/25488
-    return requestWithDefaults(...args);
+    return requestWithDefaults.apply(null, args);
   }
   return Object.assign(deprecated, requestWithDefaults);
 }
