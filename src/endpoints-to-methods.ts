@@ -1,11 +1,5 @@
 import { Octokit } from "@octokit/core";
-import type {
-  EndpointOptions,
-  RequestParameters,
-  RequestMethod,
-  Route,
-  Url,
-} from "@octokit/types";
+import type { EndpointOptions, RequestMethod, Url } from "@octokit/types";
 import type { EndpointsDefaultsAndDecorations } from "./types.js";
 
 type EndpointMethods = {
@@ -33,7 +27,7 @@ export function endpointsToMethods(
 
       const scopeMethods = newMethods[scope] as EndpointMethods;
 
-      /* istanbul ignore next - there are currently no renamed methods*/
+      /* v8 ignore start */
       if (decorations.renamed) {
         const [newScope, newMethodName] = decorations.renamed;
         scopeMethods[methodName] = deprecate(
@@ -44,7 +38,6 @@ export function endpointsToMethods(
         continue;
       }
 
-      /* istanbul ignore next - there are currently no deprecated methods*/
       if (decorations.deprecated) {
         scopeMethods[methodName] = deprecate(
           octokit,
@@ -53,6 +46,7 @@ export function endpointsToMethods(
         );
         continue;
       }
+      /* v8 ignore end */
 
       scopeMethods[methodName] = octokit.request.defaults(endpointDefaults);
     }
@@ -61,19 +55,16 @@ export function endpointsToMethods(
   return newMethods;
 }
 
-/* istanbul ignore next - there are currently no deprecated methods*/
+/* v8 ignore start - there are currently no deprecated methods*/
 function deprecate(
   octokit: Octokit,
   deprecation: string,
   defaults: EndpointOptions,
 ): typeof Octokit.prototype.request {
   const requestWithDefaults = octokit.request.defaults(defaults);
-  function deprecated(
-    ...args: [Route, RequestParameters?] | [EndpointOptions]
-  ) {
+  function deprecated(...args: Parameters<typeof requestWithDefaults>) {
     octokit.log.warn(deprecation);
-    // @ts-ignore https://github.com/microsoft/TypeScript/issues/25488
-    return requestWithDefaults(...args);
+    return requestWithDefaults.apply(null, args);
   }
   return Object.assign(deprecated, requestWithDefaults);
 }
