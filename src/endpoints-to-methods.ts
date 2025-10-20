@@ -1,9 +1,5 @@
 import { Octokit } from "@octokit/core";
-import type {
-  EndpointOptions,
-  RequestMethod,
-  Url,
-} from "@octokit/types";
+import type { EndpointOptions, RequestMethod, Url } from "@octokit/types";
 import type { EndpointsDefaultsAndDecorations } from "./types.js";
 
 type EndpointMethods = {
@@ -66,9 +62,7 @@ function deprecate(
   defaults: EndpointOptions,
 ): typeof Octokit.prototype.request {
   const requestWithDefaults = octokit.request.defaults(defaults);
-  function deprecated(
-    ...args: Parameters<typeof requestWithDefaults>
-  ) {
+  function deprecated(...args: Parameters<typeof requestWithDefaults>) {
     octokit.log.warn(deprecation);
     return requestWithDefaults.apply(null, args);
   }
